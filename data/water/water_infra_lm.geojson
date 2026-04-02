@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "water_infra_lm",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "MANHATTAN SEWAGE PUMP STATION", "lat": 40.726324, "lon": -73.97354, "type": "WASTEWATER PUMPING STATION", "address": "184 AVENUE D", "boro": "MANHATTAN", "operator": "NYC Department of Environmental Protection", "source": "facdb" }, "geometry": { "type": "Point", "coordinates": [ -73.97354, 40.726323999999835 ] } },
+{ "type": "Feature", "properties": { "name": "RED HOOK POLL CONTROL PLANT", "lat": 40.703964, "lon": -73.978522, "type": "WATER POLLUTION CONTROL PLANT", "address": "61 LITTLE STREET", "boro": "BROOKLYN", "operator": "NYC Department of Environmental Protection", "source": "facdb" }, "geometry": { "type": "Point", "coordinates": [ -73.978522, 40.703963999999843 ] } },
+{ "type": "Feature", "properties": { "name": "STEPHEN A SCHWARZMAN BLDG-NYPL", "lat": 40.753202, "lon": -73.982267, "type": "PUMPING STATION", "address": "476 FIFTH AVENUE", "boro": "MANHATTAN", "operator": "NYC Department of Environmental Protection", "source": "facdb" }, "geometry": { "type": "Point", "coordinates": [ -73.982267, 40.753201999999845 ] } },
+{ "type": "Feature", "properties": { "name": "RED HOOK POLLUTION PLANT", "lat": 40.702446, "lon": -73.979792, "type": "WATER POLLUTION CONTROL PLANT", "address": "1 WALLABOUT STREET", "boro": "BROOKLYN", "operator": "NYC Department of Environmental Protection", "source": "facdb" }, "geometry": { "type": "Point", "coordinates": [ -73.979792, 40.702445999999831 ] } },
+{ "type": "Feature", "properties": { "name": "GRAND CANAL COURT PARK", "lat": 40.722303, "lon": -74.00504, "type": "WASTEWATER PUMPING STATION", "address": "THOMPSON STREET", "boro": "MANHATTAN", "operator": "NYC Department of Environmental Protection", "source": "facdb" }, "geometry": { "type": "Point", "coordinates": [ -74.00504, 40.722302999999833 ] } }
+]
+}

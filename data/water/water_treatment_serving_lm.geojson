@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "water_treatment_serving_lm",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "RED HOOK POLL CONTROL PLANT", "lat": 40.703964, "lon": -73.978522, "type": "WATER POLLUTION CONTROL PLANT", "address": "61 LITTLE STREET", "boro": "BROOKLYN", "operator": "NYC Department of Environmental Protection", "source": "facdb", "dist_to_lm": 0.026721485363034824 }, "geometry": { "type": "Point", "coordinates": [ -73.978522, 40.703963999999843 ] } },
+{ "type": "Feature", "properties": { "name": "RED HOOK POLLUTION PLANT", "lat": 40.702446, "lon": -73.979792, "type": "WATER POLLUTION CONTROL PLANT", "address": "1 WALLABOUT STREET", "boro": "BROOKLYN", "operator": "NYC Department of Environmental Protection", "source": "facdb", "dist_to_lm": 0.027202319386546943 }, "geometry": { "type": "Point", "coordinates": [ -73.979792, 40.702445999999831 ] } },
+{ "type": "Feature", "properties": { "name": "BROOKLYN NAVY YARD-ADMIRAL ROW", "lat": 40.698828, "lon": -73.979245, "type": "WATER POLLUTION CONTROL PLANT", "address": "NASSAU STREET", "boro": "BROOKLYN", "operator": "NYC Department of Environmental Protection", "source": "facdb", "dist_to_lm": 0.030548217771408325 }, "geometry": { "type": "Point", "coordinates": [ -73.979245, 40.698827999999821 ] } },
+{ "type": "Feature", "properties": { "name": "RED HOOK WWTP", "lat": 40.698638884161184, "lon": -73.975396452340803, "type": "WASTEWATER TREATMENT PLANT", "address": "63 FLUSHING AVENUE", "boro": "BROOKLYN", "operator": "NYC Department of Environmental Protection", "source": "facdb", "dist_to_lm": 0.032851293872450921 }, "geometry": { "type": "Point", "coordinates": [ -73.975396452340803, 40.698638884161184 ] } },
+{ "type": "Feature", "properties": { "name": "NEWTON CREEK WWTP", "lat": 40.733638, "lon": -73.947611, "type": "WATER POLLUTION CONTROL PLANT", "address": "327 GREENPOINT AVENUE", "boro": "BROOKLYN", "operator": "NYC Department of Environmental Protection", "source": "facdb", "dist_to_lm": 0.0481698283679683 }, "geometry": { "type": "Point", "coordinates": [ -73.947611, 40.733637999999843 ] } }
+]
+}

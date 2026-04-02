@@ -1,0 +1,47 @@
+# External repos (clone separately)
+GIS_FloodSimulation/
+nyc-flood-layers/
+
+# Large data files
+data/telecom/310.csv.gz
+data/telecom/cell_towers_nyc.*
+data/power/substations_nyc.geojson
+data/power/transmission_lines_nyc.geojson
+data/flood/Sandy_Inundation_Zone_20260326.geojson
+data/flood/sandy_inundation_zone.geojson
+data/flood/sandy_inundation_wgs84.tif
+data/graph/lm_infra_heterodata.pt
+data/raw/*.csv
+
+# Generated outputs (reproducible from scripts)
+outputs/
+data/graph/*.html
+data/graph/*.html.zip
+data/graph/*.png
+data/flood/*.graphml
+data/flood/*.geojson
+data/flood/*.txt
+
+# Archive
+archive/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+*.egg
+.venv/
+env/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
