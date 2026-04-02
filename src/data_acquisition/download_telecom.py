@@ -21,7 +21,7 @@ import io
 # ============================================================
 
 # PUT YOUR API TOKEN HERE
-API_TOKEN = "pk.af264c9fa40567c2ccb816cc85f580be"  # <-- Replace with your actual token
+API_TOKEN = os.environ.get("OPENCELLID_TOKEN", "YOUR_TOKEN_HERE")  # set OPENCELLID_TOKEN env var
 
 # NYC bounding box
 NYC_BOUNDS = {

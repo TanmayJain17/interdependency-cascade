@@ -123,5 +123,5 @@ python src/visualization/visualize_map.py
 ## Authors
 
 - **Tanmay Jain** — NYU Courant Institute of Mathematical Sciences
-- **Advisor:** Dr. Yuki Miura — Columbia University (GISSR flood model)
+- **Advisor:** Dr. Yuki Miura — NYU Tandon School of Engineering (GISSR flood model)
 - **Advisor:** Dr. Yuzhang Lin — NYU Tandon School of Engineering

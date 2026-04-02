@@ -22,7 +22,7 @@ print("=" * 60)
 print("EXTRACTING FROM NYC FACILITIES DATABASE")
 print("=" * 60)
 
-facilities = pd.read_csv('facilities_20260325.csv')
+facilities = pd.read_csv('data/raw/facilities_20260325.csv')
 print(f"Total facilities: {len(facilities)}")
 
 # Water infrastructure FACTYPE values confirmed in this dataset:

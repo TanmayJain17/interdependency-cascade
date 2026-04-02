@@ -33,10 +33,9 @@ from pyproj import Transformer
 from collections import Counter
 
 # ── Paths ──────────────────────────────────────────────────────────────────────
-BASE      = os.path.expanduser("~/Desktop/RA")
-GRAPH_DIR = os.path.join(BASE, "data", "graph")
-FLOOD_DIR = os.path.join(BASE, "data", "flood")
-GISSR     = os.path.join(BASE, "GIS_FloodSimulation")
+GRAPH_DIR = "data/graph"
+FLOOD_DIR = "data/flood"
+GISSR     = "GIS_FloodSimulation"
 
 NODES_IN  = os.path.join(GRAPH_DIR, "lm_infra_nodes.geojson")
 GRAPH_IN  = os.path.join(GRAPH_DIR, "lm_infra_graph.graphml")

@@ -6,7 +6,7 @@ import geopandas as gpd
 from shapely.geometry import Point
 
 # Load the CSV
-facilities = pd.read_csv('facilities_20260325.csv')
+facilities = pd.read_csv('data/raw/facilities_20260325.csv')
 
 print(facilities.columns.tolist())
 print(facilities.shape)
