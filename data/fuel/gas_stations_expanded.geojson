@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+"name": "gas_stations_expanded",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Citgo", "lat": 40.700068, "lon": -73.9613207, "brand": "Citgo", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9613207, 40.700068 ] } },
+{ "type": "Feature", "properties": { "name": "Emporium", "lat": 40.6976218, "lon": -73.9694768, "brand": "", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9694768, 40.6976218 ] } },
+{ "type": "Feature", "properties": { "name": "Citgo", "lat": 40.6941556, "lon": -73.9613787, "brand": "Citgo", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9613787, 40.6941556 ] } },
+{ "type": "Feature", "properties": { "name": "BP", "lat": 40.7007687, "lon": -73.9625455, "brand": "BP", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9625455, 40.7007687 ] } },
+{ "type": "Feature", "properties": { "name": "Sunoco", "lat": 40.6979671, "lon": -73.9617489, "brand": "", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9617489, 40.6979671 ] } },
+{ "type": "Feature", "properties": { "name": "Mobil", "lat": 40.6944956, "lon": -73.9834647, "brand": "Mobil", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9834647, 40.6944956 ] } },
+{ "type": "Feature", "properties": { "name": "Exxon", "lat": 40.7596983, "lon": -74.0274256, "brand": "Exxon", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -74.0274256, 40.7596983 ] } },
+{ "type": "Feature", "properties": { "name": "Mobil", "lat": 40.7559743, "lon": -73.9978758, "brand": "Mobil", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9978758, 40.7559743 ] } },
+{ "type": "Feature", "properties": { "name": "Speedway", "lat": 40.7540822, "lon": -74.0292882, "brand": "Speedway", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -74.0292882, 40.7540822 ] } },
+{ "type": "Feature", "properties": { "name": "BP", "lat": 40.7539887, "lon": -74.0289622, "brand": "BP", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -74.0289622, 40.7539887 ] } },
+{ "type": "Feature", "properties": { "name": "Sunoco", "lat": 40.7530735, "lon": -74.0296294, "brand": "Sunoco", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -74.0296294, 40.7530735 ] } },
+{ "type": "Feature", "properties": { "name": "BP", "lat": 40.73515, "lon": -73.9745164, "brand": "BP", "operator": "BP", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -73.9745164, 40.73515 ] } },
+{ "type": "Feature", "properties": { "name": "Mobil", "lat": 40.7389906, "lon": -74.003482, "brand": "Mobil", "operator": "", "source": "osm" }, "geometry": { "type": "Point", "coordinates": [ -74.003482, 40.7389906 ] } }
+]
+}

@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "petroleum_terminals_nyc",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Bayonne Terminal Complex", "lat": 40.662, "lon": -74.096, "capacity_bbl": 5000000, "products": "gasoline,diesel,jet_fuel", "source": "hardcoded_nyserda", "external": true, "type": "PETROLEUM_TERMINAL" }, "geometry": { "type": "Point", "coordinates": [ -74.096, 40.662 ] } },
+{ "type": "Feature", "properties": { "name": "Tremley Point Terminal (Linden, NJ)", "lat": 40.628, "lon": -74.22, "capacity_bbl": 3000000, "products": "gasoline,diesel", "source": "hardcoded_nyserda", "external": true, "type": "PETROLEUM_TERMINAL" }, "geometry": { "type": "Point", "coordinates": [ -74.22, 40.628 ] } },
+{ "type": "Feature", "properties": { "name": "Perth Amboy Terminal", "lat": 40.508, "lon": -74.264, "capacity_bbl": 2000000, "products": "gasoline,diesel,heating_oil", "source": "hardcoded_nyserda", "external": true, "type": "PETROLEUM_TERMINAL" }, "geometry": { "type": "Point", "coordinates": [ -74.264, 40.508 ] } },
+{ "type": "Feature", "properties": { "name": "Bronx Terminal (Hunts Point)", "lat": 40.81, "lon": -73.88, "capacity_bbl": 500000, "products": "gasoline,diesel,heating_oil", "source": "hardcoded_nyserda", "external": true, "type": "PETROLEUM_TERMINAL" }, "geometry": { "type": "Point", "coordinates": [ -73.88, 40.81 ] } },
+{ "type": "Feature", "properties": { "name": "Brooklyn Terminal (Gowanus)", "lat": 40.673, "lon": -73.99, "capacity_bbl": 1000000, "products": "heating_oil,diesel", "source": "hardcoded_nyserda", "external": true, "type": "PETROLEUM_TERMINAL" }, "geometry": { "type": "Point", "coordinates": [ -73.99, 40.673 ] } },
+{ "type": "Feature", "properties": { "name": "Staten Island Terminal (Howland Hook)", "lat": 40.642, "lon": -74.17, "capacity_bbl": 800000, "products": "gasoline,diesel", "source": "hardcoded_nyserda", "external": true, "type": "PETROLEUM_TERMINAL" }, "geometry": { "type": "Point", "coordinates": [ -74.17, 40.642 ] } }
+]
+}

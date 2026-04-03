@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "gas_stations_lm",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "BP", "lat": 40.73515, "lon": -73.9745164, "brand": "BP", "operator": "BP", "source": "osm", "type": "GAS_STATION", "external": false }, "geometry": { "type": "Point", "coordinates": [ -73.9745164, 40.73515 ] } },
+{ "type": "Feature", "properties": { "name": "Mobil", "lat": 40.7389906, "lon": -74.003482, "brand": "Mobil", "operator": "", "source": "osm", "type": "GAS_STATION", "external": false }, "geometry": { "type": "Point", "coordinates": [ -74.003482, 40.7389906 ] } }
+]
+}

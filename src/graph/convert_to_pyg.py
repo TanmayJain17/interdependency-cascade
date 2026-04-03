@@ -1,24 +1,33 @@
 """
-convert_to_pyg.py
+convert_to_pyg.py  (v4 — adds fuel as 6th node type)
 =================
 Converts the Lower Manhattan NetworkX DiGraph to PyTorch Geometric HeteroData.
 
-Solves two issues:
-  [ISSUE 4] NetworkX → PyG HeteroData with typed nodes and edges
-  [ISSUE 5] Numerical feature vectors for each node type
-            (uses available data + reasonable defaults for missing fields)
+Changes from v3:
+  [NEW]  Fuel node type with 8-dim feature vector:
+         lat, lon, elevation, flood_depth, is_terminal, capacity_proxy,
+         has_backup_power, is_external
 
-Node feature vectors per type:
-  power    (dim=8):  lat, lon, elevation, flood_depth, is_active, max_volt_connected, 
-                     degree_centrality, is_external
-  telecom  (dim=8):  lat, lon, elevation, flood_depth, tower_count, has_lte, has_5g,
-                     battery_backup_hrs
-  hospital (dim=8):  lat, lon, elevation, flood_depth, bed_count, generator_fuel_hrs,
-                     water_storage_days, is_critical_facility
-  subway   (dim=8):  lat, lon, elevation, flood_depth, num_routes, ada_accessible,
-                     depth_below_surface, has_flood_gates  
-  water    (dim=8):  lat, lon, elevation, flood_depth, is_treatment_plant, is_pump,
-                     capacity_proxy, is_external
+  [NEW]  Fuel-related edge triplets for RGCN:
+         ('fuel',    'fuel_distribution', 'fuel')       — terminal → station
+         ('fuel',    'fuel_supplies',     'hospital')   — generator refueling
+         ('fuel',    'fuel_supplies',     'telecom')    — generator refueling
+         ('fuel',    'fuel_supplies',     'water')      — diesel pump refueling
+         ('power',   'feeds',            'fuel')        — power dependency
+
+Node feature vectors per type (all dim=8):
+  power    :  lat, lon, elevation, flood_depth, is_active, max_volt_connected,
+              degree_centrality, is_external
+  telecom  :  lat, lon, elevation, flood_depth, tower_count, has_lte, has_5g,
+              battery_backup_hrs
+  hospital :  lat, lon, elevation, flood_depth, bed_count, generator_fuel_hrs,
+              water_storage_days, is_critical_facility
+  subway   :  lat, lon, elevation, flood_depth, num_routes, ada_accessible,
+              depth_below_surface, has_flood_gates
+  water    :  lat, lon, elevation, flood_depth, is_treatment_plant, is_pump,
+              capacity_proxy, is_external
+  fuel     :  lat, lon, elevation, flood_depth, is_terminal, capacity_proxy,
+              has_backup_power, is_external
 
 Edge feature vectors (all types, dim=4):
   weight, distance_m, buffer_hours, coupling_strength
@@ -60,39 +69,40 @@ for itype, nlist in sorted(nodes_by_type.items()):
 # 2. DEFAULT VALUES FOR MISSING FEATURES
 # ══════════════════════════════════════════════════════════════════════════════
 
-# These are reasonable engineering defaults — flag them as assumptions
-# in your presentation. They'll be replaced with real data as it becomes available.
-
 DEFAULTS = {
     "elevation":            3.0,    # meters above sea level (Lower Manhattan avg)
     "flood_depth":          0.0,    # will be filled by GISSR overlay
-    
+
     # Power
     "max_volt_connected":   138.0,  # kV, typical NYC transmission voltage
-    
-    # Telecom  
+
+    # Telecom
     "battery_backup_hrs":   6.0,    # FCC recommendation median
-    
+
     # Hospital
     "bed_count":            200.0,  # NYC average acute care hospital
     "generator_fuel_hrs":   96.0,   # NFPA 110 minimum
     "water_storage_days":   1.0,    # ~1 day typical hospital reserve
-    
+
     # Subway
     "depth_below_surface":  15.0,   # meters, NYC subway average depth
-    "has_flood_gates":      0.0,    # most stations don't have them (binary)
-    
+    "has_flood_gates":      0.0,    # most stations don't have them
+
     # Water
     "pump_capacity":        50.0,   # MGD proxy
+
+    # Fuel
+    "fuel_capacity":        10000.0,  # gallons, typical gas station underground tank
+    "terminal_capacity":    1000000.0,  # barrels, typical terminal
 }
 
-# Voltage class mapping (from transmission lines VOLT_CLASS → kV)
+# Voltage class mapping
 VOLT_CLASS_KV = {
     "345": 345.0,
     "220-287": 250.0,
     "100-161": 138.0,
     "UNDER 100": 69.0,
-    "NOT AVAILABLE": 138.0,  # assume typical
+    "NOT AVAILABLE": 138.0,
 }
 
 
@@ -102,7 +112,6 @@ VOLT_CLASS_KV = {
 
 print("\nComputing derived features...")
 
-# Degree centrality (normalized 0-1)
 degree_centrality = nx.degree_centrality(G)
 
 # For power substations: find max voltage of connected transmission lines
@@ -135,12 +144,11 @@ def safe_float(val, default=0.0):
 # ── Feature extractors per type ───────────────────────────────────────────────
 
 def power_features(nid, attrs):
-    """8-dim feature vector for power substations."""
     return [
         safe_float(attrs.get("lat"), 40.72),
         safe_float(attrs.get("lon"), -73.99),
-        DEFAULTS["elevation"],                              # placeholder
-        DEFAULTS["flood_depth"],                            # placeholder for GISSR
+        DEFAULTS["elevation"],
+        DEFAULTS["flood_depth"],
         1.0 if attrs.get("status") == "IN SERVICE" else 0.0,
         power_max_volt.get(nid, DEFAULTS["max_volt_connected"]),
         degree_centrality.get(nid, 0.0),
@@ -148,7 +156,6 @@ def power_features(nid, attrs):
     ]
 
 def telecom_features(nid, attrs):
-    """8-dim feature vector for telecom clusters."""
     radio = str(attrs.get("radio_types", ""))
     return [
         safe_float(attrs.get("lat"), 40.72),
@@ -157,25 +164,23 @@ def telecom_features(nid, attrs):
         DEFAULTS["flood_depth"],
         safe_float(attrs.get("tower_count"), 1.0),
         1.0 if "LTE" in radio else 0.0,
-        1.0 if "NR" in radio or "5G" in radio else 0.0,    # NR = 5G New Radio
+        1.0 if "NR" in radio or "5G" in radio else 0.0,
         DEFAULTS["battery_backup_hrs"],
     ]
 
 def hospital_features(nid, attrs):
-    """8-dim feature vector for hospitals."""
     return [
         safe_float(attrs.get("lat"), 40.72),
         safe_float(attrs.get("lon"), -73.99),
         DEFAULTS["elevation"],
         DEFAULTS["flood_depth"],
-        DEFAULTS["bed_count"],                              # not in FacDB — use default
+        DEFAULTS["bed_count"],
         DEFAULTS["generator_fuel_hrs"],
         DEFAULTS["water_storage_days"],
-        1.0,                                                # all hospitals are critical facilities
+        1.0,  # all hospitals are critical
     ]
 
 def subway_features(nid, attrs):
-    """8-dim feature vector for subway stations."""
     routes = str(attrs.get("routes", ""))
     num_routes = len(routes.split()) if routes else 0
     ada = safe_float(attrs.get("ada"), 0.0)
@@ -185,13 +190,12 @@ def subway_features(nid, attrs):
         DEFAULTS["elevation"],
         DEFAULTS["flood_depth"],
         float(num_routes),
-        1.0 if ada >= 1 else 0.0,                          # binary: accessible or not
+        1.0 if ada >= 1 else 0.0,
         DEFAULTS["depth_below_surface"],
         DEFAULTS["has_flood_gates"],
     ]
 
 def water_features(nid, attrs):
-    """8-dim feature vector for water infrastructure."""
     subtype = str(attrs.get("subtype", "")).upper()
     is_treatment = 1.0 if "TREATMENT" in subtype or "CONTROL" in subtype else 0.0
     is_pump = 1.0 if "PUMP" in subtype else 0.0
@@ -206,12 +210,39 @@ def water_features(nid, attrs):
         1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
     ]
 
+def fuel_features(nid, attrs):
+    """8-dim feature vector for fuel infrastructure (gas stations + terminals)."""
+    subtype = str(attrs.get("subtype", "")).upper()
+    is_terminal = 1.0 if "TERMINAL" in subtype else 0.0
+
+    # Capacity: use real capacity_bbl for terminals, default for stations
+    if is_terminal > 0:
+        capacity = safe_float(attrs.get("capacity_bbl"), DEFAULTS["terminal_capacity"])
+    else:
+        capacity = DEFAULTS["fuel_capacity"]
+
+    # Terminals have some backup power (~4h), gas stations typically don't
+    has_backup = 1.0 if is_terminal > 0 else 0.0
+
+    return [
+        safe_float(attrs.get("lat"), 40.72),
+        safe_float(attrs.get("lon"), -73.99),
+        DEFAULTS["elevation"],
+        DEFAULTS["flood_depth"],
+        is_terminal,
+        capacity,
+        has_backup,
+        1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
+    ]
+
+
 FEATURE_EXTRACTORS = {
     "power":    power_features,
     "telecom":  telecom_features,
     "hospital": hospital_features,
     "subway":   subway_features,
     "water":    water_features,
+    "fuel":     fuel_features,
 }
 
 FEATURE_NAMES = {
@@ -220,6 +251,7 @@ FEATURE_NAMES = {
     "hospital": ["lat", "lon", "elevation", "flood_depth", "bed_count", "generator_fuel_hrs", "water_storage_days", "is_critical"],
     "subway":   ["lat", "lon", "elevation", "flood_depth", "num_routes", "ada_accessible", "depth_below_surface", "has_flood_gates"],
     "water":    ["lat", "lon", "elevation", "flood_depth", "is_treatment_plant", "is_pump", "capacity_proxy", "is_external"],
+    "fuel":     ["lat", "lon", "elevation", "flood_depth", "is_terminal", "capacity_proxy", "has_backup_power", "is_external"],
 }
 
 
@@ -232,84 +264,78 @@ print("\nBuilding PyG HeteroData...")
 data = HeteroData()
 
 # ── Node ID mappings ──────────────────────────────────────────────────────────
-# PyG uses integer indices. We need to map string node_ids to per-type indices.
-node_id_to_idx = {}   # global: node_id_str → (type, local_idx)
+node_id_to_idx = {}
 
 for itype, nlist in nodes_by_type.items():
     if itype == "unknown":
         continue
-        
+
     extractor = FEATURE_EXTRACTORS.get(itype)
     if extractor is None:
         print(f"  WARNING: No feature extractor for type '{itype}', skipping")
         continue
-    
+
     features = []
     node_ids_ordered = []
-    
+
     for local_idx, (nid, attrs) in enumerate(nlist):
         feat = extractor(nid, attrs)
         features.append(feat)
         node_id_to_idx[nid] = (itype, local_idx)
         node_ids_ordered.append(nid)
-    
-    # Store as tensor
+
     feat_tensor = torch.tensor(features, dtype=torch.float32)
     data[itype].x = feat_tensor
-    data[itype].node_ids = node_ids_ordered    # keep string IDs for debugging
+    data[itype].node_ids = node_ids_ordered
     data[itype].num_nodes = len(nlist)
-    
+
     print(f"  {itype:10s}: x.shape = {list(feat_tensor.shape)}  "
           f"features = {FEATURE_NAMES.get(itype, [])}")
 
 
 # ── Edge construction ─────────────────────────────────────────────────────────
 
-# Map edge_type strings to (src_type, relation, dst_type) triplets for PyG
 EDGE_TYPE_MAP = {
-    "power_line":       ("power",    "power_line",       "power"),
-    "subway_line":      ("subway",   "subway_line",      "subway"),
-    "power_dependency": ("power",    "feeds",            None),       # dst varies
-    "water_flow":       ("water",    "water_flow",       "water"),
-    "water_supplies":   ("water",    "supplies",         "hospital"),
-    "scada_monitoring": ("telecom",  "scada_monitors",   "power"),
-    "repair_access":    ("subway",   "repair_access",    None),       # dst varies
+    "power_line":        ("power",    "power_line",        "power"),
+    "subway_line":       ("subway",   "subway_line",       "subway"),
+    "power_dependency":  ("power",    "feeds",             None),       # dst varies
+    "water_flow":        ("water",    "water_flow",        "water"),
+    "water_supplies":    ("water",    "supplies",          "hospital"),
+    "scada_monitoring":  ("telecom",  "scada_monitors",    "power"),
+    "repair_access":     ("subway",   "repair_access",     None),       # dst varies
+    "fuel_distribution": ("fuel",     "fuel_distribution", "fuel"),
+    "fuel_supplies":     ("fuel",     "fuel_supplies",     None),       # dst varies
 }
 
-# Collect edges by PyG triplet type
-pyg_edges = {}       # (src_type, rel, dst_type) → {'src': [], 'dst': [], 'features': []}
+pyg_edges = {}
 
 for u, v, d in G.edges(data=True):
     et = d.get("edge_type", "unknown")
-    
-    # Look up source and destination types from node mapping
+
     if u not in node_id_to_idx or v not in node_id_to_idx:
         continue
-    
+
     src_type, src_idx = node_id_to_idx[u]
     dst_type, dst_idx = node_id_to_idx[v]
-    
-    # Determine relation name
+
     mapping = EDGE_TYPE_MAP.get(et)
     if mapping:
         _, rel_name, _ = mapping
     else:
         rel_name = et
-    
+
     triplet = (src_type, rel_name, dst_type)
-    
+
     if triplet not in pyg_edges:
         pyg_edges[triplet] = {'src': [], 'dst': [], 'features': []}
-    
+
     pyg_edges[triplet]['src'].append(src_idx)
     pyg_edges[triplet]['dst'].append(dst_idx)
-    
-    # Edge features: weight, distance_m, buffer_hours, coupling_strength
+
     edge_feat = [
         safe_float(d.get("weight"), 1.0),
         safe_float(d.get("distance_m"), 0.0),
         safe_float(d.get("buffer_hours"), 0.0),
-        # coupling_strength: inverse of buffer hours (immediate = 1.0, 96h = low)
         1.0 / (1.0 + safe_float(d.get("buffer_hours"), 0.0)),
     ]
     pyg_edges[triplet]['features'].append(edge_feat)
@@ -320,14 +346,13 @@ print(f"\n  Edge types in HeteroData:")
 for triplet, edge_data in sorted(pyg_edges.items(), key=lambda x: str(x[0])):
     src_indices = torch.tensor(edge_data['src'], dtype=torch.long)
     dst_indices = torch.tensor(edge_data['dst'], dtype=torch.long)
-    
+
     data[triplet].edge_index = torch.stack([src_indices, dst_indices], dim=0)
     data[triplet].edge_attr = torch.tensor(edge_data['features'], dtype=torch.float32)
-    
-    # Tag recovery layer edges
+
     is_recovery = triplet[1] == "repair_access"
     data[triplet].is_recovery = is_recovery
-    
+
     layer_tag = " [RECOVERY]" if is_recovery else " [CASCADE]"
     print(f"    {str(triplet):55s}  edges={len(edge_data['src']):5d}  "
           f"edge_attr={list(data[triplet].edge_attr.shape)}{layer_tag}")
@@ -339,23 +364,21 @@ for triplet, edge_data in sorted(pyg_edges.items(), key=lambda x: str(x[0])):
 
 print("\nNormalizing features...")
 
-# Per-type min-max normalization for node features
 for itype in nodes_by_type:
     if itype == "unknown" or not hasattr(data[itype], 'x'):
         continue
-    
+
     x = data[itype].x
     x_min = x.min(dim=0).values
     x_max = x.max(dim=0).values
     x_range = x_max - x_min
-    x_range[x_range == 0] = 1.0    # avoid division by zero for constant features
-    
-    data[itype].x_raw = x.clone()  # keep raw values for debugging
+    x_range[x_range == 0] = 1.0
+
+    data[itype].x_raw = x.clone()
     data[itype].x = (x - x_min) / x_range
-    
+
     print(f"  {itype:10s}: normalized {x.shape[1]} features to [0,1]")
 
-# Normalize edge features per edge type
 for triplet in pyg_edges:
     if hasattr(data[triplet], 'edge_attr'):
         ea = data[triplet].edge_attr
@@ -363,7 +386,7 @@ for triplet in pyg_edges:
         ea_max = ea.max(dim=0).values
         ea_range = ea_max - ea_min
         ea_range[ea_range == 0] = 1.0
-        
+
         data[triplet].edge_attr_raw = ea.clone()
         data[triplet].edge_attr = (ea - ea_min) / ea_range
 
@@ -414,40 +437,39 @@ print(f"\n{'='*60}")
 print("FEATURE COMPLETENESS AUDIT")
 print(f"{'='*60}")
 print("""
-Features from REAL DATA (available in downloaded datasets):
+Features from REAL DATA:
   ✓ lat, lon                    — all node types (from GIS data)
-  ✓ tower_count                 — telecom (from OpenCelliD)
-  ✓ has_lte, has_5g             — telecom (from OpenCelliD radio field)
-  ✓ num_routes, ada_accessible  — subway (from MTA data)
-  ✓ is_active / status          — power (from HIFLD)
-  ✓ is_treatment_plant, is_pump — water (from FacDB/OSM subtype)
-  ✓ max_volt_connected          — power (derived from transmission line VOLT_CLASS)
-  ✓ degree_centrality           — power (computed from graph structure)
-  ✓ is_external                 — power, water (from graph construction)
+  ✓ tower_count                 — telecom (OpenCelliD)
+  ✓ has_lte, has_5g             — telecom (OpenCelliD radio field)
+  ✓ num_routes, ada_accessible  — subway (MTA data)
+  ✓ is_active / status          — power (HIFLD)
+  ✓ is_treatment_plant, is_pump — water (FacDB/OSM subtype)
+  ✓ max_volt_connected          — power (transmission line VOLT_CLASS)
+  ✓ degree_centrality           — power (graph structure)
+  ✓ is_external                 — power, water, fuel (graph construction)
+  ✓ is_terminal                 — fuel (subtype from download)
+  ✓ capacity_bbl                — fuel terminals (NYSERDA/EIA data)
+  ✓ has_backup_power            — fuel (terminals=yes, stations=no)
 
-Features using DEFAULTS (need real data — flag for advisors):
+Features using DEFAULTS (need real data):
   ⚠ elevation = 3.0m            — need USGS DEM overlay
-  ⚠ flood_depth = 0.0           — need GISSR overlay (NEXT STEP)
-  ⚠ bed_count = 200             — need NYS DOH hospital capacity data
-  ⚠ generator_fuel_hrs = 96     — need facility-level survey data
-  ⚠ water_storage_days = 1.0    — need facility-level survey data
-  ⚠ battery_backup_hrs = 6.0    — need carrier-specific data or FCC filings
-  ⚠ depth_below_surface = 15m   — need MTA station depth data
-  ⚠ has_flood_gates = 0         — need MTA capital projects data
-  ⚠ pump_capacity = 50 MGD      — need NYC DEP facility data
-
-Edge features:
-  ✓ weight                      — computed from distance/voltage
-  ✓ distance_m                  — computed from coordinates
-  ✓ buffer_hours                — from engineering standards (NFPA 110, FCC)
-  ✓ coupling_strength           — derived from buffer_hours (1/(1+buffer))
+  ⚠ flood_depth = 0.0           — need GISSR overlay (Stage 3)
+  ⚠ bed_count = 200             — need NYS DOH hospital capacity
+  ⚠ generator_fuel_hrs = 96     — NFPA 110 minimum (defensible)
+  ⚠ water_storage_days = 1.0    — facility-level data
+  ⚠ battery_backup_hrs = 6.0    — carrier-specific or FCC filings
+  ⚠ depth_below_surface = 15m   — MTA station depth data
+  ⚠ has_flood_gates = 0         — MTA capital projects data
+  ⚠ pump_capacity = 50 MGD      — NYC DEP facility data
+  ⚠ fuel_capacity = 10000 gal   — station-level data (EPA UST database)
 """)
 
-# ── Quick test: can we load it back? ──────────────────────────────────────────
+# ── Verification ──────────────────────────────────────────────────────────────
 print("Verification: loading saved HeteroData...")
 data_loaded = torch.load(outpath, weights_only=False)
 print(f"  Loaded successfully: {data_loaded.node_types}, {len(data_loaded.edge_types)} edge types")
-print(f"  Power features shape: {data_loaded['power'].x.shape}")
-print(f"  Sample power node (raw): {data_loaded['power'].x_raw[0].tolist()}")
-print(f"  Sample power node (normalized): {data_loaded['power'].x[0].tolist()}")
-print("\nDone. Ready for GISSR flood overlay → update flood_depth feature → cascade simulation.")
+print(f"  Power features shape:  {data_loaded['power'].x.shape}")
+print(f"  Fuel features shape:   {data_loaded['fuel'].x.shape}")
+print(f"  Sample fuel node (raw): {data_loaded['fuel'].x_raw[0].tolist()}")
+print(f"  Sample fuel node (norm): {data_loaded['fuel'].x[0].tolist()}")
+print("\nDone. Ready for GISSR flood overlay → fragility curves → cascade simulation.")

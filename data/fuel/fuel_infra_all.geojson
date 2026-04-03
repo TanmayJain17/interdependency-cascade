@@ -1,0 +1,15 @@
+{
+"type": "FeatureCollection",
+"name": "fuel_infra_all",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "BP", "lat": 40.73515, "lon": -73.9745164, "type": "GAS_STATION", "subtype": "BP", "source": "osm", "external": false, "capacity_bbl": null }, "geometry": { "type": "Point", "coordinates": [ -73.9745164, 40.73515 ] } },
+{ "type": "Feature", "properties": { "name": "Mobil", "lat": 40.7389906, "lon": -74.003482, "type": "GAS_STATION", "subtype": "Mobil", "source": "osm", "external": false, "capacity_bbl": null }, "geometry": { "type": "Point", "coordinates": [ -74.003482, 40.7389906 ] } },
+{ "type": "Feature", "properties": { "name": "Bayonne Terminal Complex", "lat": 40.662, "lon": -74.096, "type": "PETROLEUM_TERMINAL", "subtype": "BULK_STORAGE", "source": "hardcoded_nyserda", "external": true, "capacity_bbl": 5000000.0 }, "geometry": { "type": "Point", "coordinates": [ -74.096, 40.662 ] } },
+{ "type": "Feature", "properties": { "name": "Tremley Point Terminal (Linden, NJ)", "lat": 40.628, "lon": -74.22, "type": "PETROLEUM_TERMINAL", "subtype": "BULK_STORAGE", "source": "hardcoded_nyserda", "external": true, "capacity_bbl": 3000000.0 }, "geometry": { "type": "Point", "coordinates": [ -74.22, 40.628 ] } },
+{ "type": "Feature", "properties": { "name": "Perth Amboy Terminal", "lat": 40.508, "lon": -74.264, "type": "PETROLEUM_TERMINAL", "subtype": "BULK_STORAGE", "source": "hardcoded_nyserda", "external": true, "capacity_bbl": 2000000.0 }, "geometry": { "type": "Point", "coordinates": [ -74.264, 40.508 ] } },
+{ "type": "Feature", "properties": { "name": "Bronx Terminal (Hunts Point)", "lat": 40.81, "lon": -73.88, "type": "PETROLEUM_TERMINAL", "subtype": "BULK_STORAGE", "source": "hardcoded_nyserda", "external": true, "capacity_bbl": 500000.0 }, "geometry": { "type": "Point", "coordinates": [ -73.88, 40.81 ] } },
+{ "type": "Feature", "properties": { "name": "Brooklyn Terminal (Gowanus)", "lat": 40.673, "lon": -73.99, "type": "PETROLEUM_TERMINAL", "subtype": "BULK_STORAGE", "source": "hardcoded_nyserda", "external": true, "capacity_bbl": 1000000.0 }, "geometry": { "type": "Point", "coordinates": [ -73.99, 40.673 ] } },
+{ "type": "Feature", "properties": { "name": "Staten Island Terminal (Howland Hook)", "lat": 40.642, "lon": -74.17, "type": "PETROLEUM_TERMINAL", "subtype": "BULK_STORAGE", "source": "hardcoded_nyserda", "external": true, "capacity_bbl": 800000.0 }, "geometry": { "type": "Point", "coordinates": [ -74.17, 40.642 ] } }
+]
+}

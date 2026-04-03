@@ -1,27 +1,31 @@
 """
-build_graph.py  (v3 — DiGraph + buffer durations + 500m telecom grid)
+build_graph.py  (v4 — adds fuel/petroleum as 6th infrastructure type)
 ==============
 Builds a DIRECTED heterogeneous infrastructure graph for Lower Manhattan.
 
-Changes from v2:
+Changes from v3:
+  [NEW]  Fuel infrastructure as 6th node type with two subtypes:
+         - GAS_STATION:        local retail fuel outlets (need power to pump)
+         - PETROLEUM_TERMINAL: external bulk storage (NY Harbor supply nodes)
+
+  [NEW]  Fuel-related edge types:
+         - fuel_distribution:  terminal → gas_station (supply chain)
+         - power → fuel:       power_dependency (station=0h, terminal=4h buffer)
+         - fuel → hospital:    fuel_supplies (models generator refueling dependency)
+         - fuel → telecom:     fuel_supplies (models generator refueling dependency)
+         - fuel → water:       fuel_supplies (models diesel pump refueling)
+
+  Motivation (from Dr. Miura's Week 3 discussion):
+         During Sandy, 67% of NYC gas stations had no fuel (EIA survey).
+         The cascade: port closed → terminals lost power → trucks couldn't load
+         → stations ran dry → hospital generators couldn't refuel.
+         This creates a TIME-DELAYED FEEDBACK LOOP that makes the 96h hospital
+         generator buffer finite: without fuel resupply, hospitals WILL fail.
+
+Prior changes (v3):
   [FIX 1] nx.Graph → nx.DiGraph — cascade propagation is directional
-          - power_line / subway_line: bidirectional (add both u→v and v→u)
-          - power_dependency: power → dependent (one-way)
-          - water_flow: pump → treatment plant (one-way)
-          - water_supplies: water node → hospital (one-way)
-          - scada_monitoring: telecom → power (one-way, reverse dependency)
-          - repair_access: subway → infra node (one-way, recovery layer)
-
   [FIX 2] Every inter-infrastructure edge gets buffer_duration_hours
-          - telecom:  6.0 h  (battery backup median of 4-8h range)
-          - hospital: 96.0 h (NFPA 110 generator requirement)
-          - subway:   0.0 h  (immediate loss on power failure)
-          - water:    3.0 h  (pump reserve median of 2-4h range)
-          - scada:    2.0 h  (local SCADA cache before blind)
-          - repair:   0.0 h  (access constraint, not failure propagation)
-
   [FIX 3] Telecom grid 250m → 500m to reduce node imbalance
-          (~617 clusters → ~150-200 clusters)
 """
 
 import os, json
@@ -48,7 +52,7 @@ def dist_m(lon1, lat1, lon2, lat2):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# [FIX 2] Buffer duration constants (hours)
+# Buffer duration constants (hours)
 # ══════════════════════════════════════════════════════════════════════════════
 
 BUFFER_HOURS = {
@@ -56,11 +60,19 @@ BUFFER_HOURS = {
     "hospital": 96.0,   # NFPA 110 generator fuel requirement
     "subway":   0.0,    # traction power loss is immediate
     "water":    3.0,    # pump reserves: 2-4 hr range, median 3
+    "fuel":     0.0,    # gas stations: no backup — can't pump without grid power
 }
 
 SCADA_BUFFER_HOURS  = 2.0   # local SCADA cache before operators go blind
 REPAIR_BUFFER_HOURS = 0.0   # access constraint — not a failure propagation delay
 WATER_SUPPLY_BUFFER = 24.0  # hospitals have ~1 day of stored water
+
+# ── Fuel-specific buffer durations ────────────────────────────────────────────
+FUEL_TERMINAL_POWER_BUFFER = 4.0    # terminals have some backup generators (~4h)
+FUEL_DISTRIBUTION_BUFFER   = 0.0    # supply chain: if terminal down, no truck loading
+FUEL_TO_HOSPITAL_BUFFER    = 96.0   # hospital generators have 96h fuel reserve
+FUEL_TO_TELECOM_BUFFER     = 48.0   # telecom generators: ~24-72h, median 48h
+FUEL_TO_WATER_BUFFER       = 48.0   # diesel pump backup: ~48h
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -73,15 +85,14 @@ print("Loading datasets…")
 power_sub   = gpd.read_file("data/power/substations_lower_manhattan.geojson")
 power_lines = gpd.read_file("data/power/transmission_lines_lower_manhattan.geojson")
 
-# ── [FIX 3] Telecom: cluster by ~500m grid instead of 250m ───────────────────
+# ── Telecom: cluster by ~500m grid ────────────────────────────────────────────
 telecom_raw = gpd.read_file("data/telecom/cell_towers_lower_manhattan.geojson")
 OP_MAP = {(310, 260): "T-Mobile", (310, 410): "AT&T", (310, 240): "T-Mobile Metro"}
 telecom_raw["operator"] = telecom_raw.apply(
     lambda r: OP_MAP.get((int(r["mcc"]), int(r["net"])), f'{r["mcc"]}/{r["net"]}'), axis=1
 )
 
-# [FIX 3] 0.005° ≈ 440m lat, 380m lon at NYC latitude → ~500m effective grid
-GRID = 0.005
+GRID = 0.005  # ~500m effective grid
 telecom_raw["grid_lat"] = (telecom_raw["lat"] / GRID).round() * GRID
 telecom_raw["grid_lon"] = (telecom_raw["lon"] / GRID).round() * GRID
 telecom = (
@@ -148,6 +159,41 @@ srv_new = water_serving[
 water = pd.concat([water_bbox, srv_new], ignore_index=True)
 print(f"  Water: {len(water_bbox)} in-bbox + {len(srv_new)} serving-LM = {len(water)} total")
 
+# ── Fuel (NEW in v4) ─────────────────────────────────────────────────────────
+# Use expanded gas stations (covers LM + immediate surroundings)
+FUEL_STATIONS_PATH  = "data/fuel/gas_stations_expanded.geojson"
+FUEL_TERMINALS_PATH = "data/fuel/petroleum_terminals_nyc.geojson"
+
+LM_BBOX = {
+    'min_lat': 40.700, 'max_lat': 40.755,
+    'min_lon': -74.020, 'max_lon': -73.970
+}
+
+fuel_stations = gpd.GeoDataFrame()
+fuel_terminals = gpd.GeoDataFrame()
+
+if os.path.exists(FUEL_STATIONS_PATH):
+    fuel_stations = gpd.read_file(FUEL_STATIONS_PATH)
+    # Mark stations inside strict LM bbox as local, others as semi-external
+    fuel_stations["external"] = ~(
+        (fuel_stations["lat"] >= LM_BBOX['min_lat']) &
+        (fuel_stations["lat"] <= LM_BBOX['max_lat']) &
+        (fuel_stations["lon"] >= LM_BBOX['min_lon']) &
+        (fuel_stations["lon"] <= LM_BBOX['max_lon'])
+    )
+    print(f"  Fuel stations: {len(fuel_stations)} "
+          f"({(~fuel_stations['external']).sum()} in LM, "
+          f"{fuel_stations['external'].sum()} expanded area)")
+else:
+    print(f"  WARNING: {FUEL_STATIONS_PATH} not found — run download_fuel.py first")
+
+if os.path.exists(FUEL_TERMINALS_PATH):
+    fuel_terminals = gpd.read_file(FUEL_TERMINALS_PATH)
+    fuel_terminals["external"] = True  # all terminals are external to LM
+    print(f"  Fuel terminals: {len(fuel_terminals)} (all external)")
+else:
+    print(f"  WARNING: {FUEL_TERMINALS_PATH} not found — run download_fuel.py first")
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 2. BUILD UNIFIED NODE TABLE
@@ -156,7 +202,7 @@ print(f"  Water: {len(water_bbox)} in-bbox + {len(srv_new)} serving-LM = {len(wa
 print("\nBuilding node table…")
 
 def slug(s):
-    return s.lower().replace(" ", "_").replace("-", "_").replace("/", "_").replace(",", "")
+    return s.lower().replace(" ", "_").replace("-", "_").replace("/", "_").replace(",", "").replace("(", "").replace(")", "").replace("'", "")
 
 nodes = []
 
@@ -258,6 +304,39 @@ for _, r in water.iterrows():
         external   = bool(r["external"]),
     ))
 
+# ── Fuel — Gas Stations (NEW in v4) ──────────────────────────────────────────
+for i, r in fuel_stations.iterrows():
+    name = str(r.get("name", "Gas Station"))
+    brand = str(r.get("brand", ""))
+    display_name = f"{name} ({brand})" if brand and brand != "nan" else name
+    nodes.append(dict(
+        node_id    = f"fuel_station_{slug(name)}_{i:03d}",
+        name       = display_name,
+        infra_type = "fuel",
+        subtype    = "GAS_STATION",
+        lat        = float(r["lat"]),
+        lon        = float(r["lon"]),
+        brand      = brand,
+        external   = bool(r.get("external", False)),
+    ))
+
+# ── Fuel — Petroleum Terminals (NEW in v4) ────────────────────────────────────
+for _, r in fuel_terminals.iterrows():
+    nodes.append(dict(
+        node_id       = f"fuel_terminal_{slug(r['name'][:35])}",
+        name          = str(r["name"]),
+        infra_type    = "fuel",
+        subtype       = "PETROLEUM_TERMINAL",
+        lat           = float(r["lat"]),
+        lon           = float(r["lon"]),
+        capacity_bbl  = int(r.get("capacity_bbl", 0)),
+        external      = True,
+    ))
+
+n_fuel_stations = len(fuel_stations)
+n_fuel_terminals = len(fuel_terminals)
+print(f"  Fuel: {n_fuel_stations} gas stations + {n_fuel_terminals} terminals = {n_fuel_stations + n_fuel_terminals} total")
+
 # Deduplicate node_ids
 seen, unique_nodes = set(), []
 for n in nodes:
@@ -266,8 +345,8 @@ for n in nodes:
         unique_nodes.append(n)
 nodes = unique_nodes
 
-print(f"  Total nodes: {len(nodes)}")
-for it in ["power", "telecom", "hospital", "subway", "water"]:
+print(f"\n  Total nodes: {len(nodes)}")
+for it in ["power", "telecom", "hospital", "subway", "water", "fuel"]:
     cnt = sum(1 for n in nodes if n["infra_type"] == it)
     ext = sum(1 for n in nodes if n["infra_type"] == it and n.get("external"))
     print(f"    {it:10s}: {cnt:3d}  ({ext} external)")
@@ -277,7 +356,6 @@ for it in ["power", "telecom", "hospital", "subway", "water"]:
 # 3. INITIALISE DIRECTED GRAPH
 # ══════════════════════════════════════════════════════════════════════════════
 
-# [FIX 1] nx.DiGraph — edges have direction, cascade propagates downstream
 G = nx.DiGraph()
 
 for n in nodes:
@@ -304,7 +382,7 @@ def add_bidir_edge(u, v, edge_type, weight=1.0, **attrs):
     add_edge(v, u, edge_type, weight, **attrs)
 
 
-# ── 4a. Power lines (bidirectional — power flows both ways) ───────────────────
+# ── 4a. Power lines (bidirectional) ──────────────────────────────────────────
 VOLT_WEIGHT = {"345": 3.0, "100-161": 1.5, "NOT AVAILABLE": 1.0}
 
 for _, row in power_lines.iterrows():
@@ -312,7 +390,6 @@ for _, row in power_lines.iterrows():
     v = f"power_{slug(str(row['SUB_2']).upper())}"
     volt = str(row["VOLT_CLASS"])
     w    = VOLT_WEIGHT.get(volt, 1.0)
-    # [FIX 1] Bidirectional — power redistributes in both directions during cascade
     add_bidir_edge(u, v, "power_line", weight=w, volt_class=volt,
                    line_type=row["TYPE"], buffer_hours=0.0)
 
@@ -320,7 +397,7 @@ print(f"\nPower line edges: {sum(1 for e in edges if e['edge_type']=='power_line
       f"  (bidirectional → {sum(1 for e in edges if e['edge_type']=='power_line')//2} physical lines)")
 
 
-# ── 4b. Subway lines (bidirectional — trains run both directions) ─────────────
+# ── 4b. Subway lines (bidirectional) ─────────────────────────────────────────
 line_stations = {}
 for n in nodes:
     if n["infra_type"] == "subway" and n.get("routes"):
@@ -340,7 +417,6 @@ for line, station_ids in line_stations.items():
         u, u_lon, u_lat = coords[i]
         v, v_lon, v_lat = coords[i+1]
         d = dist_m(u_lon, u_lat, v_lon, v_lat)
-        # [FIX 1] Bidirectional
         add_bidir_edge(u, v, "subway_line", weight=round(d/1000, 3),
                        line=line, distance_m=round(d), buffer_hours=0.0)
         subway_edge_count += 1
@@ -349,10 +425,10 @@ print(f"Subway line edges: {subway_edge_count} physical links"
       f" → {subway_edge_count*2} directed edges")
 
 
-# ── 4c. Power → dependent infrastructure (directed, with buffer durations) ────
+# ── 4c. Power → dependent infrastructure (directed, with buffer durations) ───
 local_power  = [n for n in nodes if n["infra_type"] == "power"
                 and not n.get("external") and n.get("lat")]
-dep_targets  = [n for n in nodes if n["infra_type"] in ("hospital", "water", "telecom", "subway")
+dep_targets  = [n for n in nodes if n["infra_type"] in ("hospital", "water", "telecom", "subway", "fuel")
                 and not n.get("external") and n.get("lat")]
 
 power_dep_count = 0
@@ -360,10 +436,10 @@ for tn in dep_targets:
     dists = [(dist_m(pn["lon"], pn["lat"], tn["lon"], tn["lat"]), pn) for pn in local_power]
     d, nearest = min(dists, key=lambda x: x[0])
 
-    # [FIX 2] Look up buffer duration based on target infrastructure type
+    # Look up buffer duration based on target infrastructure type
+    # For fuel: gas stations have no backup power (buffer=0h)
     buf = BUFFER_HOURS.get(tn["infra_type"], 0.0)
 
-    # [FIX 1] Directed: power → dependent (failure flows downstream)
     add_edge(nearest["node_id"], tn["node_id"], "power_dependency",
              weight=round(1 / (1 + d / 1000), 3),
              distance_m=round(d),
@@ -371,17 +447,30 @@ for tn in dep_targets:
              dependency_class="physical")
     power_dep_count += 1
 
-# Verify connectivity
-isolated = [n for n in dep_targets
-            if not any(G.has_edge(pn["node_id"], n["node_id"]) for pn in local_power)]
+# Also add power → external fuel terminals (they need power for truck loading)
+ext_fuel_terminals = [n for n in nodes if n["infra_type"] == "fuel"
+                      and n.get("subtype") == "PETROLEUM_TERMINAL" and n.get("lat")]
+# Terminals are external — connect to nearest local substation conceptually
+# (they draw from regional grid, but for cascade: if NYC grid fails, terminals may too)
+for tn in ext_fuel_terminals:
+    if local_power:
+        dists = [(dist_m(pn["lon"], pn["lat"], tn["lon"], tn["lat"]), pn) for pn in local_power]
+        d, nearest = min(dists, key=lambda x: x[0])
+        add_edge(nearest["node_id"], tn["node_id"], "power_dependency",
+                 weight=round(1 / (1 + d / 1000), 3),
+                 distance_m=round(d),
+                 buffer_hours=FUEL_TERMINAL_POWER_BUFFER,
+                 dependency_class="physical")
+        power_dep_count += 1
+
 print(f"Power dependency edges (directed, nearest-substation): {power_dep_count}")
-print(f"  Non-power nodes with no power edge: {len(isolated)}  (should be 0)")
 print(f"  Buffer hours by target type:")
-for itype in ["telecom", "hospital", "subway", "water"]:
+for itype in ["telecom", "hospital", "subway", "water", "fuel"]:
     cnt = sum(1 for e in edges
               if e["edge_type"] == "power_dependency"
               and node_lookup.get(e["v"], {}).get("infra_type") == itype)
-    print(f"    {itype:10s}: {cnt:3d} edges, buffer = {BUFFER_HOURS.get(itype, 0):.1f} h")
+    buf = BUFFER_HOURS.get(itype, 0)
+    print(f"    {itype:10s}: {cnt:3d} edges, buffer = {buf:.1f} h")
 
 
 # ── 4d. Water flow: pump → treatment plant (directed, ≤ 5 km) ────────────────
@@ -398,7 +487,6 @@ for pump in pumps:
     for plant in treatments:
         d = dist_m(pump["lon"], pump["lat"], plant["lon"], plant["lat"])
         if d <= WATER_FLOW_RADIUS_M:
-            # [FIX 1] Directed: pump → plant (sewage flows downstream)
             add_edge(pump["node_id"], plant["node_id"], "water_flow",
                      weight=round(d/1000, 3), distance_m=round(d),
                      buffer_hours=0.0, dependency_class="physical")
@@ -415,8 +503,6 @@ water_supply_count = 0
 for hn in hosp_nodes:
     dists = [(dist_m(wn["lon"], wn["lat"], hn["lon"], hn["lat"]), wn) for wn in all_water_nodes]
     d, nearest_water = min(dists, key=lambda x: x[0])
-    # [FIX 1] Directed: water → hospital
-    # [FIX 2] Hospitals have ~24h stored water before supply loss matters
     add_edge(nearest_water["node_id"], hn["node_id"], "water_supplies",
              weight=round(1 / (1 + d / 1000), 3), distance_m=round(d),
              buffer_hours=WATER_SUPPLY_BUFFER, dependency_class="physical")
@@ -434,8 +520,6 @@ for pn in local_power:
     if not dists:
         continue
     d, nearest_tel = min(dists, key=lambda x: x[0])
-    # [FIX 1] Directed: telecom → power (SCADA dependency)
-    # [FIX 2] SCADA has local cache, ~2h before operators lose visibility
     add_edge(nearest_tel["node_id"], pn["node_id"], "scada_monitoring",
              weight=round(1 / (1 + d / 1000), 3), distance_m=round(d),
              buffer_hours=SCADA_BUFFER_HOURS, dependency_class="cyber")
@@ -444,25 +528,98 @@ for pn in local_power:
 print(f"SCADA monitoring edges (directed, power←telecom, buffer={SCADA_BUFFER_HOURS}h): {scada_count}")
 
 
-# ── 4g. Subway → infrastructure (repair access, directed, recovery layer) ─────
+# ── 4g. Subway → infrastructure (repair access, directed, recovery layer) ────
 subway_nodes   = [n for n in nodes if n["infra_type"] == "subway" and n.get("lat")]
 repair_targets = [n for n in nodes
-                  if n["infra_type"] in ("power", "hospital", "water", "telecom")
+                  if n["infra_type"] in ("power", "hospital", "water", "telecom", "fuel")
                   and not n.get("external") and n.get("lat")]
 
 repair_count = 0
 for tn in repair_targets:
     dists = [(dist_m(sn["lon"], sn["lat"], tn["lon"], tn["lat"]), sn) for sn in subway_nodes]
     d, nearest_sub = min(dists, key=lambda x: x[0])
-    # [FIX 1] Directed: subway → infra (repair crews travel from station to site)
-    # [FIX 2] Tagged as recovery layer — not used in cascade propagation
     add_edge(nearest_sub["node_id"], tn["node_id"], "repair_access",
              weight=round(1 / (1 + d / 1000), 3), distance_m=round(d),
              buffer_hours=REPAIR_BUFFER_HOURS, dependency_class="logical",
-             layer="recovery")   # tag to distinguish from cascade edges
+             layer="recovery")
     repair_count += 1
 
 print(f"Repair access edges (directed, recovery layer): {repair_count}")
+
+
+# ── 4h. Fuel distribution: terminal → gas station (NEW in v4) ────────────────
+fuel_station_nodes  = [n for n in nodes if n["infra_type"] == "fuel"
+                       and n.get("subtype") == "GAS_STATION" and n.get("lat")]
+fuel_terminal_nodes = [n for n in nodes if n["infra_type"] == "fuel"
+                       and n.get("subtype") == "PETROLEUM_TERMINAL" and n.get("lat")]
+
+fuel_dist_count = 0
+for sn in fuel_station_nodes:
+    if not fuel_terminal_nodes:
+        break
+    # Connect each gas station to its nearest petroleum terminal
+    dists = [(dist_m(tn["lon"], tn["lat"], sn["lon"], sn["lat"]), tn) for tn in fuel_terminal_nodes]
+    d, nearest_term = min(dists, key=lambda x: x[0])
+    add_edge(nearest_term["node_id"], sn["node_id"], "fuel_distribution",
+             weight=round(1 / (1 + d / 1000), 3), distance_m=round(d),
+             buffer_hours=FUEL_DISTRIBUTION_BUFFER,
+             dependency_class="physical")
+    fuel_dist_count += 1
+
+print(f"Fuel distribution edges (terminal → station): {fuel_dist_count}")
+
+
+# ── 4i. Fuel → generators: hospital, telecom, water (NEW in v4) ──────────────
+# Gas stations supply fuel for backup generators at hospitals, telecom, water
+# Connect each fuel-dependent node to its nearest gas station
+
+fuel_supply_count = 0
+
+# Fuel → Hospital (generator refueling)
+for hn in hosp_nodes:
+    if not fuel_station_nodes:
+        break
+    dists = [(dist_m(fn["lon"], fn["lat"], hn["lon"], hn["lat"]), fn) for fn in fuel_station_nodes]
+    d, nearest_fuel = min(dists, key=lambda x: x[0])
+    add_edge(nearest_fuel["node_id"], hn["node_id"], "fuel_supplies",
+             weight=round(1 / (1 + d / 1000), 3), distance_m=round(d),
+             buffer_hours=FUEL_TO_HOSPITAL_BUFFER,
+             dependency_class="physical")
+    fuel_supply_count += 1
+
+# Fuel → Telecom (generator refueling)
+# Only connect to telecom clusters with high tower count (likely have generators)
+telecom_with_generators = [n for n in telecom_nodes
+                           if float(n.get("tower_count", 0)) >= 5]
+for tn in telecom_with_generators:
+    if not fuel_station_nodes:
+        break
+    dists = [(dist_m(fn["lon"], fn["lat"], tn["lon"], tn["lat"]), fn) for fn in fuel_station_nodes]
+    d, nearest_fuel = min(dists, key=lambda x: x[0])
+    add_edge(nearest_fuel["node_id"], tn["node_id"], "fuel_supplies",
+             weight=round(1 / (1 + d / 1000), 3), distance_m=round(d),
+             buffer_hours=FUEL_TO_TELECOM_BUFFER,
+             dependency_class="physical")
+    fuel_supply_count += 1
+
+# Fuel → Water (diesel pump backup)
+water_pumps_local = [n for n in nodes if n["infra_type"] == "water"
+                     and not n.get("external") and n.get("lat")]
+for wn in water_pumps_local:
+    if not fuel_station_nodes:
+        break
+    dists = [(dist_m(fn["lon"], fn["lat"], wn["lon"], wn["lat"]), fn) for fn in fuel_station_nodes]
+    d, nearest_fuel = min(dists, key=lambda x: x[0])
+    add_edge(nearest_fuel["node_id"], wn["node_id"], "fuel_supplies",
+             weight=round(1 / (1 + d / 1000), 3), distance_m=round(d),
+             buffer_hours=FUEL_TO_WATER_BUFFER,
+             dependency_class="physical")
+    fuel_supply_count += 1
+
+print(f"Fuel supply edges (fuel → generators): {fuel_supply_count}")
+print(f"  fuel → hospital: {sum(1 for e in edges if e['edge_type']=='fuel_supplies' and node_lookup.get(e['v'],{}).get('infra_type')=='hospital')}")
+print(f"  fuel → telecom:  {sum(1 for e in edges if e['edge_type']=='fuel_supplies' and node_lookup.get(e['v'],{}).get('infra_type')=='telecom')}")
+print(f"  fuel → water:    {sum(1 for e in edges if e['edge_type']=='fuel_supplies' and node_lookup.get(e['v'],{}).get('infra_type')=='water')}")
 
 
 # ── Summary ───────────────────────────────────────────────────────────────────
@@ -525,15 +682,12 @@ print("\n" + "=" * 60)
 print("GRAPH DIAGNOSTICS")
 print("=" * 60)
 
-# Weakly connected = ignoring direction, is it one component?
 wcc = nx.number_weakly_connected_components(G)
 print(f"  Weakly connected components: {wcc}  (should be 1)")
 
-# Strongly connected = can you reach every node from every other following directions?
 scc = nx.number_strongly_connected_components(G)
-print(f"  Strongly connected components: {scc}  (will be >1 — that's expected for directed)")
+print(f"  Strongly connected components: {scc}  (will be >1 — expected for directed)")
 
-# In-degree / out-degree analysis
 in_deg  = dict(G.in_degree())
 out_deg = dict(G.out_degree())
 
@@ -550,8 +704,18 @@ for nid, deg in sorted(in_deg.items(), key=lambda x: -x[1])[:5]:
     print(f"    [{itype:8s}]  {name:<35s}  in-degree={deg}")
 
 print(f"\n  Average out-degree by infra type:")
-for itype in ["power", "telecom", "hospital", "subway", "water"]:
+for itype in ["power", "telecom", "hospital", "subway", "water", "fuel"]:
     type_nodes = [n for n in G.nodes if G.nodes[n].get("infra_type") == itype]
     if type_nodes:
         avg = np.mean([out_deg[n] for n in type_nodes])
         print(f"    {itype:10s}: {avg:.1f}")
+
+# ── Fuel cascade pathway diagnostic ──────────────────────────────────────────
+print(f"\n  Fuel cascade pathway check:")
+fuel_nodes_in_graph = [n for n in G.nodes if G.nodes[n].get("infra_type") == "fuel"]
+print(f"    Fuel nodes in graph: {len(fuel_nodes_in_graph)}")
+print(f"    Fuel stations:  {sum(1 for n in fuel_nodes_in_graph if G.nodes[n].get('subtype')=='GAS_STATION')}")
+print(f"    Fuel terminals: {sum(1 for n in fuel_nodes_in_graph if G.nodes[n].get('subtype')=='PETROLEUM_TERMINAL')}")
+print(f"    fuel_distribution edges:  {etype_counts.get('fuel_distribution', 0)}")
+print(f"    fuel_supplies edges:      {etype_counts.get('fuel_supplies', 0)}")
+print(f"    power → fuel edges:       {sum(1 for e in edges if e['edge_type']=='power_dependency' and node_lookup.get(e['v'],{}).get('infra_type')=='fuel')}")
