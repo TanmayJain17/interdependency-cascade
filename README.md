@@ -54,7 +54,7 @@ git clone https://github.com/mebauer/nyc-flood-layers.git
 
 ## Reproduce the Pipeline
 
-Run all scripts from the **project root** (`~/Desktop/RA/`):
+Run all scripts from the **project root**
 
 ```bash
 # Stage 1: Download infrastructure data
@@ -119,9 +119,3 @@ python src/visualization/visualize_map.py
 - **Edge features:** 4 (weight, distance_m, buffer_hours, coupling_strength)
 
 ---
-
-## Authors
-
-- **Tanmay Jain** — NYU Courant Institute of Mathematical Sciences
-- **Advisor:** Dr. Yuki Miura — NYU Tandon School of Engineering (GISSR flood model)
-- **Advisor:** Dr. Yuzhang Lin — NYU Tandon School of Engineering
