@@ -1,0 +1,1072 @@
+[
+  {
+    "node_id": "power_hudson_avenue",
+    "infra_type": "power",
+    "lat": 40.703808553000044,
+    "lon": -73.98173628399996,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.004631,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "power_farragut",
+    "infra_type": "power",
+    "lat": 40.705098649000035,
+    "lon": -73.98451119499998,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.013306,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "power_cherry_street",
+    "infra_type": "power",
+    "lat": 40.71136985000004,
+    "lon": -73.99068594499994,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.00106,
+    "upstream_trigger": "telecom_cluster_0127"
+  },
+  {
+    "node_id": "power_gowanus",
+    "infra_type": "power",
+    "lat": 40.66195172600004,
+    "lon": -74.00302030199998,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "power_jamaica",
+    "infra_type": "power",
+    "lat": 40.69918522000006,
+    "lon": -73.81390751099997,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "power_rainey",
+    "infra_type": "power",
+    "lat": 40.76322512000007,
+    "lon": -73.94302610599993,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "power_west_49th_street",
+    "infra_type": "power",
+    "lat": 40.76600293900003,
+    "lon": -73.99588389499996,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.01211,
+    "upstream_trigger": "power_east_13th_street"
+  },
+  {
+    "node_id": "power_marion",
+    "infra_type": "power",
+    "lat": 40.746442699000056,
+    "lon": -74.06991519499996,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0002",
+    "infra_type": "telecom",
+    "lat": 40.7008,
+    "lon": -74.0044,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "telecom_cluster_0003",
+    "infra_type": "telecom",
+    "lat": 40.701225,
+    "lon": -73.99445,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0012",
+    "infra_type": "telecom",
+    "lat": 40.70487,
+    "lon": -73.98917,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0013",
+    "infra_type": "telecom",
+    "lat": 40.705775,
+    "lon": -73.985075,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0016",
+    "infra_type": "telecom",
+    "lat": 40.70946666666667,
+    "lon": -74.01024,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0017",
+    "infra_type": "telecom",
+    "lat": 40.7117,
+    "lon": -74.0031,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0019",
+    "infra_type": "telecom",
+    "lat": 40.711016666666666,
+    "lon": -73.99381666666666,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "telecom_cluster_0022",
+    "infra_type": "telecom",
+    "lat": 40.70976666666667,
+    "lon": -73.97983333333333,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0023",
+    "infra_type": "telecom",
+    "lat": 40.7117,
+    "lon": -73.9748,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "telecom_cluster_0024",
+    "infra_type": "telecom",
+    "lat": 40.7111,
+    "lon": -73.9718,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "telecom_cluster_0029",
+    "infra_type": "telecom",
+    "lat": 40.71332727272727,
+    "lon": -73.99403181818182,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "telecom_cluster_0034",
+    "infra_type": "telecom",
+    "lat": 40.71485,
+    "lon": -73.9711,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_13th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0043",
+    "infra_type": "telecom",
+    "lat": 40.7184,
+    "lon": -73.9711,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_13th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0061",
+    "infra_type": "telecom",
+    "lat": 40.7298,
+    "lon": -73.97045,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_13th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0086",
+    "infra_type": "telecom",
+    "lat": 40.74436666666667,
+    "lon": -73.97103333333332,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0093",
+    "infra_type": "telecom",
+    "lat": 40.7522,
+    "lon": -73.9801,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0094",
+    "infra_type": "telecom",
+    "lat": 40.751175,
+    "lon": -73.976575,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0099",
+    "infra_type": "telecom",
+    "lat": 40.753894736842106,
+    "lon": -73.98572105263159,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0100",
+    "infra_type": "telecom",
+    "lat": 40.75384285714286,
+    "lon": -73.98055714285714,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0101",
+    "infra_type": "telecom",
+    "lat": 40.752975,
+    "lon": -73.97525,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0102",
+    "infra_type": "telecom",
+    "lat": 40.7528,
+    "lon": -73.9709,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0106",
+    "infra_type": "telecom",
+    "lat": 40.7017,
+    "lon": -74.0045,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "telecom_cluster_0107",
+    "infra_type": "telecom",
+    "lat": 40.70105,
+    "lon": -73.99961666666667,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0108",
+    "infra_type": "telecom",
+    "lat": 40.70104090909091,
+    "lon": -73.99486818181818,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0109",
+    "infra_type": "telecom",
+    "lat": 40.701375,
+    "lon": -73.99025416666667,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0117",
+    "infra_type": "telecom",
+    "lat": 40.705083333333334,
+    "lon": -73.99408333333332,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "telecom_cluster_0118",
+    "infra_type": "telecom",
+    "lat": 40.70522068965517,
+    "lon": -73.99027586206896,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0119",
+    "infra_type": "telecom",
+    "lat": 40.704884615384614,
+    "lon": -73.98564615384615,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0120",
+    "infra_type": "telecom",
+    "lat": 40.7060375,
+    "lon": -73.979625,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "telecom_cluster_0121",
+    "infra_type": "telecom",
+    "lat": 40.70395,
+    "lon": -73.97565,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "telecom_cluster_0123",
+    "infra_type": "telecom",
+    "lat": 40.71039761904762,
+    "lon": -74.01080476190477,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0124",
+    "infra_type": "telecom",
+    "lat": 40.71117777777778,
+    "lon": -74.00535555555555,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0129",
+    "infra_type": "telecom",
+    "lat": 40.71027368421053,
+    "lon": -73.98015789473685,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_farragut"
+  },
+  {
+    "node_id": "telecom_cluster_0130",
+    "infra_type": "telecom",
+    "lat": 40.71070909090909,
+    "lon": -73.97547272727273,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "telecom_cluster_0131",
+    "infra_type": "telecom",
+    "lat": 40.7109,
+    "lon": -73.972075,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "telecom_cluster_0132",
+    "infra_type": "telecom",
+    "lat": 40.7171,
+    "lon": -74.02,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0137",
+    "infra_type": "telecom",
+    "lat": 40.71426363636363,
+    "lon": -73.9942090909091,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "telecom_cluster_0140",
+    "infra_type": "telecom",
+    "lat": 40.71437142857143,
+    "lon": -73.97978571428571,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "telecom_cluster_0142",
+    "infra_type": "telecom",
+    "lat": 40.7164,
+    "lon": -73.9704,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_13th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0143",
+    "infra_type": "telecom",
+    "lat": 40.7181,
+    "lon": -74.0197,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0153",
+    "infra_type": "telecom",
+    "lat": 40.71933333333333,
+    "lon": -73.97096666666665,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_13th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0164",
+    "infra_type": "telecom",
+    "lat": 40.7309,
+    "lon": -74.01523333333334,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0209",
+    "infra_type": "telecom",
+    "lat": 40.750914,
+    "lon": -73.979778,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0210",
+    "infra_type": "telecom",
+    "lat": 40.75112790697675,
+    "lon": -73.97549534883721,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0211",
+    "infra_type": "telecom",
+    "lat": 40.74937142857143,
+    "lon": -73.97094285714286,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0216",
+    "infra_type": "telecom",
+    "lat": 40.7537375,
+    "lon": -73.98505535714285,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0217",
+    "infra_type": "telecom",
+    "lat": 40.75341923076923,
+    "lon": -73.98056538461539,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0218",
+    "infra_type": "telecom",
+    "lat": 40.75407647058824,
+    "lon": -73.97483529411765,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0219",
+    "infra_type": "telecom",
+    "lat": 40.753890909090906,
+    "lon": -73.97113636363636,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "telecom_cluster_0221",
+    "infra_type": "telecom",
+    "lat": 40.71365,
+    "lon": -73.99415,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "hospital_new_york_presbyterian_lower_ma",
+    "infra_type": "hospital",
+    "lat": 40.71029325171176,
+    "lon": -74.00495109189525,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "subway_york_st_f",
+    "infra_type": "subway",
+    "lat": 40.701397,
+    "lon": -73.986751,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000235,
+    "upstream_trigger": "subway_east_broadway_f"
+  },
+  {
+    "node_id": "subway_fulton_st_23",
+    "infra_type": "subway",
+    "lat": 40.709416,
+    "lon": -74.006571,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000235,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "subway_fulton_st_ac",
+    "infra_type": "subway",
+    "lat": 40.710197,
+    "lon": -74.007691,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "subway_fulton_st_45",
+    "infra_type": "subway",
+    "lat": 40.710368,
+    "lon": -74.009509,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000377,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "subway_fulton_st_jz",
+    "infra_type": "subway",
+    "lat": 40.710374,
+    "lon": -74.007582,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000436,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "subway_world_trade_center_e",
+    "infra_type": "subway",
+    "lat": 40.712582,
+    "lon": -74.009781,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "subway_east_broadway_f",
+    "infra_type": "subway",
+    "lat": 40.713715,
+    "lon": -73.990173,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000779,
+    "upstream_trigger": "power_cherry_street"
+  },
+  {
+    "node_id": "subway_14_st_ace",
+    "infra_type": "subway",
+    "lat": 40.740893,
+    "lon": -74.00169,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.001123,
+    "upstream_trigger": "subway_w_4_st_wash_sq_abcdefm"
+  },
+  {
+    "node_id": "subway_18_st_1",
+    "infra_type": "subway",
+    "lat": 40.74104,
+    "lon": -73.997871,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000343,
+    "upstream_trigger": "subway_14_st_123"
+  },
+  {
+    "node_id": "subway_23_st_rw",
+    "infra_type": "subway",
+    "lat": 40.741303,
+    "lon": -73.989344,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000131,
+    "upstream_trigger": "subway_14_st_union_sq_nqrw"
+  },
+  {
+    "node_id": "subway_23_st_fm",
+    "infra_type": "subway",
+    "lat": 40.742878,
+    "lon": -73.992821,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 2.9e-05,
+    "upstream_trigger": "subway_14_st_fm"
+  },
+  {
+    "node_id": "subway_23_st_1",
+    "infra_type": "subway",
+    "lat": 40.744081,
+    "lon": -73.995657,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 1.7e-05,
+    "upstream_trigger": "subway_18_st_1"
+  },
+  {
+    "node_id": "subway_23_st_ce",
+    "infra_type": "subway",
+    "lat": 40.745906,
+    "lon": -73.998041,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "subway_14_st_ace"
+  },
+  {
+    "node_id": "subway_28_st_1",
+    "infra_type": "subway",
+    "lat": 40.747215,
+    "lon": -73.993365,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 1.7e-05,
+    "upstream_trigger": "subway_23_st_1"
+  },
+  {
+    "node_id": "subway_34_st_penn_station_123",
+    "infra_type": "subway",
+    "lat": 40.750373,
+    "lon": -73.991057,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000343,
+    "upstream_trigger": "subway_14_st_123"
+  },
+  {
+    "node_id": "subway_grand_central_42_st_7",
+    "infra_type": "subway",
+    "lat": 40.751431,
+    "lon": -73.976041,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "subway_grand_central_42_st_456",
+    "infra_type": "subway",
+    "lat": 40.751776,
+    "lon": -73.976848,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000426,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "subway_34_st_penn_station_ace",
+    "infra_type": "subway",
+    "lat": 40.752287,
+    "lon": -73.993391,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "subway_14_st_ace"
+  },
+  {
+    "node_id": "subway_grand_central_42_st_s",
+    "infra_type": "subway",
+    "lat": 40.752769,
+    "lon": -73.979189,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "subway_5_av_7",
+    "infra_type": "subway",
+    "lat": 40.753821,
+    "lon": -73.981963,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "subway_42_st_bryant_pk_bdfm",
+    "infra_type": "subway",
+    "lat": 40.754222,
+    "lon": -73.984569,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000501,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "subway_times_sq_42_st_nqrw",
+    "infra_type": "subway",
+    "lat": 40.754672,
+    "lon": -73.986754,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.000286,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "water_red_hook_poll_control_plant",
+    "infra_type": "water",
+    "lat": 40.703964,
+    "lon": -73.978522,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_hudson_avenue"
+  },
+  {
+    "node_id": "water_red_hook_pollution_plant",
+    "infra_type": "water",
+    "lat": 40.702446,
+    "lon": -73.979792,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "water_manhattan_sewage_pump_station"
+  },
+  {
+    "node_id": "water_brooklyn_navy_yard_admiral_row",
+    "infra_type": "water",
+    "lat": 40.698828,
+    "lon": -73.979245,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "water_manhattan_sewage_pump_station"
+  },
+  {
+    "node_id": "water_red_hook_wwtp",
+    "infra_type": "water",
+    "lat": 40.698638884161184,
+    "lon": -73.9753964523408,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "water_manhattan_sewage_pump_station"
+  },
+  {
+    "node_id": "water_newton_creek_wwtp",
+    "infra_type": "water",
+    "lat": 40.733638,
+    "lon": -73.947611,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "water_manhattan_sewage_pump_station"
+  },
+  {
+    "node_id": "fuel_terminal_bayonne_terminal_complex",
+    "infra_type": "fuel",
+    "lat": 40.662,
+    "lon": -74.096,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "fuel_terminal_tremley_point_terminal_linden_nj",
+    "infra_type": "fuel",
+    "lat": 40.628,
+    "lon": -74.22,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "fuel_terminal_perth_amboy_terminal",
+    "infra_type": "fuel",
+    "lat": 40.508,
+    "lon": -74.264,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "fuel_terminal_bronx_terminal_hunts_point",
+    "infra_type": "fuel",
+    "lat": 40.81,
+    "lon": -73.88,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_east_36th_street"
+  },
+  {
+    "node_id": "fuel_terminal_staten_island_terminal_howland_hoo",
+    "infra_type": "fuel",
+    "lat": 40.642,
+    "lon": -74.17,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 1.0,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "power_leonard_street"
+  },
+  {
+    "node_id": "telecom_cluster_0070",
+    "infra_type": "telecom",
+    "lat": 40.74071428571428,
+    "lon": -74.0089642857143,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0072",
+    "infra_type": "telecom",
+    "lat": 40.74135384615385,
+    "lon": -74.00107692307692,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0074",
+    "infra_type": "telecom",
+    "lat": 40.74105333333333,
+    "lon": -73.9895,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0078",
+    "infra_type": "telecom",
+    "lat": 40.7438,
+    "lon": -74.00865,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0079",
+    "infra_type": "telecom",
+    "lat": 40.74533636363637,
+    "lon": -74.0059,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0080",
+    "infra_type": "telecom",
+    "lat": 40.744925,
+    "lon": -73.9984875,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0081",
+    "infra_type": "telecom",
+    "lat": 40.74435172413793,
+    "lon": -73.99521034482758,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0082",
+    "infra_type": "telecom",
+    "lat": 40.744995238095235,
+    "lon": -73.99004285714285,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0185",
+    "infra_type": "telecom",
+    "lat": 40.74026875,
+    "lon": -74.0099125,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0186",
+    "infra_type": "telecom",
+    "lat": 40.74014,
+    "lon": -74.00439333333334,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0187",
+    "infra_type": "telecom",
+    "lat": 40.740275,
+    "lon": -74.000775,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0189",
+    "infra_type": "telecom",
+    "lat": 40.74014324324324,
+    "lon": -73.98980810810811,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0195",
+    "infra_type": "telecom",
+    "lat": 40.74524,
+    "lon": -74.00604,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0196",
+    "infra_type": "telecom",
+    "lat": 40.74580909090909,
+    "lon": -73.99983636363636,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0197",
+    "infra_type": "telecom",
+    "lat": 40.745239285714284,
+    "lon": -73.99485357142858,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  },
+  {
+    "node_id": "telecom_cluster_0198",
+    "infra_type": "telecom",
+    "lat": 40.74460943396227,
+    "lon": -73.98964528301887,
+    "flood_depth_m": 0.0,
+    "cascade_fail_freq": 0.807,
+    "betweenness_centrality": 0.0,
+    "upstream_trigger": "fuel_station_mobil_012"
+  }
+]

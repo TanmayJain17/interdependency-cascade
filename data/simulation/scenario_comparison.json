@@ -1,0 +1,92 @@
+{
+  "sandy_actual": {
+    "direct_mean": 223.3,
+    "direct_std": 2.2,
+    "total_mean": 300.6,
+    "total_std": 8.2,
+    "amplification_mean": 1.35,
+    "amplification_std": 0.04,
+    "by_timestep": {
+      "t0": {
+        "mean": 223.3,
+        "std": 2.2
+      },
+      "t6": {
+        "mean": 274.1,
+        "std": 2.6
+      },
+      "t24": {
+        "mean": 285.9,
+        "std": 1.2
+      },
+      "t48": {
+        "mean": 300.6,
+        "std": 8.2
+      },
+      "t96": {
+        "mean": 300.6,
+        "std": 8.2
+      }
+    }
+  },
+  "500yr": {
+    "direct_mean": 227.4,
+    "direct_std": 1.5,
+    "total_mean": 305.1,
+    "total_std": 7.7,
+    "amplification_mean": 1.34,
+    "amplification_std": 0.03,
+    "by_timestep": {
+      "t0": {
+        "mean": 227.4,
+        "std": 1.5
+      },
+      "t6": {
+        "mean": 276.6,
+        "std": 1.3
+      },
+      "t24": {
+        "mean": 287.2,
+        "std": 0.9
+      },
+      "t48": {
+        "mean": 305.1,
+        "std": 7.7
+      },
+      "t96": {
+        "mean": 305.1,
+        "std": 7.7
+      }
+    }
+  },
+  "100yr": {
+    "direct_mean": 223.3,
+    "direct_std": 2.2,
+    "total_mean": 300.6,
+    "total_std": 8.2,
+    "amplification_mean": 1.35,
+    "amplification_std": 0.04,
+    "by_timestep": {
+      "t0": {
+        "mean": 223.3,
+        "std": 2.2
+      },
+      "t6": {
+        "mean": 274.1,
+        "std": 2.6
+      },
+      "t24": {
+        "mean": 285.9,
+        "std": 1.2
+      },
+      "t48": {
+        "mean": 300.6,
+        "std": 8.2
+      },
+      "t96": {
+        "mean": 300.6,
+        "std": 8.2
+      }
+    }
+  }
+}
