@@ -20,8 +20,8 @@ import io
 # Configuration
 # ============================================================
 
-# PUT YOUR API TOKEN HERE
-API_TOKEN = os.environ.get("OPENCELLID_TOKEN", "YOUR_TOKEN_HERE")  # set OPENCELLID_TOKEN env var
+# Set OPENCELLID_TOKEN env var before running: export OPENCELLID_TOKEN="your_token_here"
+API_TOKEN = os.environ.get("OPENCELLID_TOKEN", "YOUR_TOKEN_HERE")
 
 # NYC bounding box
 NYC_BOUNDS = {

@@ -1,121 +1,151 @@
-# Flood-Induced Cascading Infrastructure Failure Prediction using GNNs
+# NYC Infrastructure Cascade Analysis
 
-This project builds a heterogeneous Graph Neural Network (GNN) framework to predict cascading infrastructure failures in NYC Lower Manhattan under hurricane-scale flood events. We construct a directed heterogeneous infrastructure graph (328 nodes, 752 edges, 5 infrastructure types) from six real NYC data sources, overlay flood simulation depths from Dr. Yuki Miura's GISSR model validated against Hurricane Sandy ground truth, and convert the result to PyTorch Geometric HeteroData format for downstream GNN training. Sandy validation achieves 68% recall overall and 100% recall on critical infrastructure nodes.
+Predicting flood-induced cascading failures across NYC critical infrastructure using a heterogeneous graph pipeline and graph neural networks.
+
+**Lab:** Climate, Energy, and Risk Analytics Lab, NYU Tandon School of Engineering
+**Advisors:** Prof. Yuki Miura (primary), Prof. Yuzhang Lin (power systems)
+**Researcher:** Tanmay Jain, NYU Courant Institute
 
 ---
 
-## Pipeline
+## Overview
+
+This project models cascading failures across six interdependent urban infrastructure systems — power, water, telecom, subway, hospitals, and fuel — under three NYC DEP flood scenarios. The pipeline combines physics-based simulation with graph neural networks following the I³ framework.
+
+### Research question
+
+Given a flood scenario over NYC, which infrastructure nodes fail directly, and which fail through cascading dependencies propagated through the interconnected network?
+
+### Week 6 key findings
+
+Under the Extreme 2080 scenario (500-year storm with 2080 sea level rise):
+- 298 nodes fail directly from flooding
+- 797 total nodes fail after 96 hours of cascade propagation
+- Amplification ratio of 2.67x, consistent with published cascade literature (Brunner et al. ~2.16x reference)
+- Four Manhattan hospitals — Bellevue, NYU Langone, Mount Sinai Beth Israel, Mount Sinai NYEE — fail through cascade in 98.9% of Monte Carlo runs despite not being directly flooded. These are the same hospitals that evacuated during Hurricane Sandy in 2012.
+
+---
+
+## Pipeline architecture
+
+Five stages:
+
+1. **Data acquisition** — download infrastructure data from HIFLD, MTA, OpenStreetMap, NYSERDA, OpenCelliD, and NYC DEP
+2. **Graph construction** — build heterogeneous directed graph (6,231 nodes, 13,709 edges, 9 edge types)
+3. **Flood overlay** — apply DEP flood scenarios via spatial join
+4. **Monte Carlo simulation** — HAZUS-based fragility sampling plus cascade propagation (1000 runs per scenario)
+5. **GNN prediction** — GraphTransformer + RGCN following I³ framework (in progress)
+
+---
+
+## Repository structure
 
 ```
-Stage 1: Data Acquisition          Stage 2: Graph Construction
-  download_power.py         ──►      build_graph.py
-  download_telecom.py               (328 nodes, 752 edges,
-  download_hospitals.py              5 node types, 13 edge types)
-  download_subway.py                       │
-  download_water.py                        ▼
-        │                         Stage 3: Flood Overlay
-        │                           flood_overlay.py
-        │                         (GISSR Sandy depths,
-        │                          195/328 nodes flooded)
-        │                                  │
-        │                                  ▼
-        │                         Stage 4: Validation
-        │                           validate_sandy.py
-        │                         (68% recall, 100% critical)
-        │                                  │
-        │                                  ▼
-        └──────────────────────► Stage 5: PyG Conversion
-                                    convert_to_pyg.py
-                                  (HeteroData, ready for GNN)
+.
+├── src/
+│   ├── data_acquisition/    # Download scripts (one per infrastructure type)
+│   ├── graph/               # Graph construction, PyTorch Geometric conversion
+│   ├── flood/               # DEP flood overlay pipeline
+│   ├── simulation/          # Fragility curves, Monte Carlo, cascade simulation
+│   └── visualization/       # Static (matplotlib) and interactive (folium) maps
+├── data/
+│   ├── power/               # Substations, transmission lines
+│   ├── fuel/                # Gas stations, petroleum terminals
+│   ├── healthcare/          # Hospitals
+│   ├── transit/             # Subway stations
+│   ├── water/               # Water infrastructure
+│   ├── telecom/             # Cell towers (clustered)
+│   ├── graph/               # Constructed heterogeneous graphs
+│   ├── flood/               # Flood-tagged graphs
+│   └── simulation/          # Aggregated cascade results (raw runs gitignored)
+└── outputs/                 # Generated figures (gitignored)
 ```
+
+Large raw data files and per-run simulation outputs are gitignored. They are regeneratable by running the download and simulation scripts.
 
 ---
 
 ## Setup
 
-```bash
-# 1. Clone this repo
-git clone https://github.com/TanmayJain17/interdependency-cascade.git
-cd interdependency-cascade
+### Environment
 
-# 2. Create conda environment
-conda create -n infra-gnn python=3.10
-conda activate infra-gnn
+```bash
+conda create -n infra-cascade python=3.11
+conda activate infra-cascade
 pip install -r requirements.txt
-
-# 3. Clone the GISSR flood simulation repo (required for flood overlay)
-git clone https://github.com/ym2540/GIS_FloodSimulation.git
-
-# 4. Clone the NYC flood layers reference repo (optional, for reference)
-git clone https://github.com/mebauer/nyc-flood-layers.git
 ```
 
----
+Key packages: `networkx`, `geopandas`, `shapely`, `torch`, `torch-geometric`, `folium`, `matplotlib`, `pandas`.
 
-## Reproduce the Pipeline
+### Run the pipeline
 
-Run all scripts from the **project root**
+All scripts run from the project root.
 
 ```bash
-# Stage 1: Download infrastructure data
-python src/data_acquisition/download_power.py
-python src/data_acquisition/download_telecom.py
-python src/data_acquisition/download_hospitals.py
-python src/data_acquisition/download_subway.py
-python src/data_acquisition/download_water.py
+# Stage 1: download raw data
+python3 src/data_acquisition/download_power.py
+python3 src/data_acquisition/download_hospitals.py
+python3 src/data_acquisition/download_subway.py
+python3 src/data_acquisition/download_water.py
+python3 src/data_acquisition/download_fuel.py
+python3 src/data_acquisition/download_telecom.py
+python3 src/data_acquisition/fetch_dep_flood_maps.py
 
-# Stage 2: Build heterogeneous infrastructure graph
-python src/graph/build_graph.py
+# Stage 2: build the heterogeneous graph
+python3 src/graph/build_graph_nyc.py
+python3 src/graph/convert_to_pyg_nyc.py
 
-# Stage 3: Overlay GISSR flood simulation depths
-python src/flood/flood_overlay.py
+# Stage 3: apply DEP flood overlay
+python3 src/flood/flood_overlay_v3.py nyc
 
-# Stage 4: Validate against Hurricane Sandy ground truth
-python src/flood/validate_sandy.py
+# Stage 4: run cascade Monte Carlo across all three DEP scenarios
+python3 src/simulation/multi_scenario_runner.py
 
-# Stage 5: Convert to PyTorch Geometric HeteroData
-python src/graph/convert_to_pyg.py
-
-# Visualize
-python src/visualization/visualize_graph.py
-python src/visualization/visualize_map.py
+# Stage 5: generate visualizations
+python3 src/visualization/visualize_cascade_static_city.py
+python3 src/visualization/visualize_cascade_interactive_city.py
 ```
 
 ---
 
-## Current Status
+## Current state (Week 6)
 
-| Stage | Description | Status |
-|-------|-------------|--------|
-| 1 | Data Acquisition (5 infra types) | Done |
-| 2 | Heterogeneous Graph Construction | Done |
-| 3 | GISSR Flood Overlay | Done |
-| 4 | Sandy Ground-Truth Validation | Done |
-| 5 | PyG HeteroData Conversion | Done |
-| 6 | GNN Model Training | In Progress |
+**Complete:**
+- Citywide heterogeneous graph (6,231 nodes, 9 edge types, 13,709 directed edges)
+- Three DEP flood scenarios applied via spatial join with geometric validation
+- HAZUS-based Monte Carlo fragility sampling (1000 runs per scenario, 3000 total)
+- Inter-infrastructure cascade propagation through dependency edges with buffer hours
+- Static and interactive citywide visualizations
 
----
+**In progress:**
+- Intra-infrastructure power grid cascade via pandapower (awaiting electrical parameters)
+- GraphTransformer + RGCN implementation for Stage 5 prediction
+- Multi-hazard overlay combining DEP scenarios with Sandy GISSR storm surge
 
-## Data Sources
-
-| Layer | Source | Coverage |
-|-------|--------|----------|
-| Power substations | HIFLD (Homeland Infra. Foundation-Level Data) | NYC-wide |
-| Telecom towers | OpenCelliD (MCC 310) | NYC-wide |
-| Hospitals / healthcare | NYC Facilities Database | NYC-wide |
-| Subway stations | MTA GTFS open data | NYC-wide |
-| Water infrastructure | NYC Open Data (DEP) | NYC-wide |
-| Flood simulation | GISSR model (Dr. Yuki Miura, Columbia) | Lower Manhattan |
-| Sandy validation | NYC OEM Sandy Inundation Zone | NYC-wide |
+**Known limitations:**
+- DEP flood maps exclude storm surge by design — surge-vulnerable infrastructure (FDR corridor, Staten Island coast) is under-represented
+- Current cascade is rule-based with buffer hours rather than physics-based — pandapower integration pending
+- Redundancy currently modeled as OR-gate rather than AND-gate for backup systems
 
 ---
 
-## Graph Statistics
+## Data sources
 
-- **Nodes:** 328 (Power: 14, Telecom: 224, Hospital: 8, Subway: 75, Water: 7)
-- **Edges:** 752 directed (13 heterogeneous edge types)
-- **Flooded nodes (Sandy cold storm):** 195 / 328 (59.5%)
-- **Node features:** 8 per node type (elevation, flood_depth, capacity, age, etc.)
-- **Edge features:** 4 (weight, distance_m, buffer_hours, coupling_strength)
+| Infrastructure | Source | NYC count |
+|---|---|---|
+| Power substations | HIFLD (Rutgers mirror) | 208 |
+| Transmission lines | HIFLD (Rutgers mirror) | 186 |
+| Hospitals | NYC Facilities Database | 74 |
+| Subway stations | MTA GTFS feed | 496 |
+| Water infrastructure | NYC FacDB + DEP plants | 178 |
+| Gas stations | OpenStreetMap + NYS ArcGIS | 1,181 |
+| Petroleum terminals | NYSERDA Terminal Resiliency Assessment | 6 |
+| Cell towers | OpenCelliD (clustered to 500m grid) | 4,150 |
+| Flood scenarios | NYC DEP Stormwater Flood Maps | 3 scenarios |
 
 ---
+
+## Contact
+
+Tanmay Jain — Graduate Research Assistant, NYU Courant / CUSP
+Primary advisor: Prof. Yuki Miura
