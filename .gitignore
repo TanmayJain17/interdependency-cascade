@@ -1,47 +1,97 @@
-# External repos (clone separately)
-GIS_FloodSimulation/
-nyc-flood-layers/
-
-# Large data files
-data/telecom/310.csv.gz
-data/telecom/cell_towers_nyc.*
-data/power/substations_nyc.geojson
-data/power/transmission_lines_nyc.geojson
-data/flood/Sandy_Inundation_Zone_20260326.geojson
-data/flood/sandy_inundation_zone.geojson
-data/flood/sandy_inundation_wgs84.tif
-data/graph/lm_infra_heterodata.pt
-data/raw/*.csv
-
-# Generated outputs (reproducible from scripts)
-outputs/
-data/graph/*.html
-data/graph/*.html.zip
-data/graph/*.png
-data/flood/*.graphml
-data/flood/*.geojson
-data/flood/*.txt
-
-# Archive
-archive/
-
+# ============================================================
 # Python
+# ============================================================
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
+*.so
+.Python
 *.egg-info/
-.eggs/
+.installed.cfg
 *.egg
-.venv/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.ipynb_checkpoints/
+
+# ============================================================
+# Virtual environments
+# ============================================================
+venv/
 env/
+ENV/
+.venv/
 .env
+.env.local
 
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
+# ============================================================
+# IDE / Editor / OS
+# ============================================================
 .vscode/
 .idea/
 *.swp
 *.swo
+.DS_Store
+Thumbs.db
+
+# ============================================================
+# External repos (clone separately)
+# ============================================================
+GIS_FloodSimulation/
+nyc-flood-layers/
+
+# ============================================================
+# Large raw data files — regeneratable from download scripts
+# ============================================================
+data/raw/
+data/telecom/310.csv.gz
+data/telecom/cell_towers_nyc.*
+data/telecom/cell_towers_lower_manhattan.csv
+data/telecom/cell_towers_lower_manhattan.geojson
+data/power/substations_nyc.geojson
+data/power/transmission_lines_nyc.geojson
+data/flood/Sandy_Inundation_Zone_*.geojson
+data/flood/sandy_inundation_zone.geojson
+data/flood/sandy_inundation_wgs84.tif
+data/flood/*.graphml
+data/flood/*.geojson
+data/flood/*.txt
+
+# ============================================================
+# Large Monte Carlo outputs — regeneratable from simulation scripts
+# ============================================================
+data/simulation/monte_carlo_failures_*.json
+data/simulation/cascade_results_*.json
+data/simulation/temp_nodes_*.geojson
+data/simulation/cascade_results.json
+
+# But keep small aggregated summaries — these are useful references
+!data/simulation/nyc_scenario_comparison.json
+!data/simulation/nyc_amplifier_nodes.csv
+
+# ============================================================
+# Generated visualizations — large HTML maps, regeneratable
+# ============================================================
+outputs/
+data/graph/*.html
+data/graph/*.html.zip
+data/graph/*.png
+
+# ============================================================
+# Large graph outputs
+# ============================================================
+data/graph/lm_infra_heterodata.pt
+data/graph/nyc_infra_heterodata.pt
+
+# ============================================================
+# Archive folder
+# ============================================================
+archive/
+
+# ============================================================
+# Backup files
+# ============================================================
+*.backup
+.gitignore.backup

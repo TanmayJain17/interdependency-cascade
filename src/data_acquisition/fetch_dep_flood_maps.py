@@ -2,15 +2,13 @@
 """
 fetch_dep_flood_maps.py
 
-Download the three NYC DEP Stormwater Flood Map scenarios from ArcGIS Online
-FeatureServer endpoints. Saves each as a GeoJSON in data/raw/flood/.
+Download the three NYC DEP Stormwater Flood Map scenarios from the public
+ArcGIS Online FeatureServer endpoints. Saves each as a GeoJSON in
+data/raw/flood/.
 
 The NYC Open Data Socrata mirrors of these layers have been restricted to
 agency-only access. We instead query the original ArcGIS FeatureServers
 (hosted by Esri's NYC demo org), where the data is still public.
-
-Service URLs and schema discovered via:
-    https://www.arcgis.com/sharing/rest/search?q=owner:esri_dashboardpub+NYC+Stormwater
 
 Attribute schema (all three layers):
     OBJECTID            internal row ID
@@ -20,14 +18,25 @@ Attribute schema (all three layers):
         3 = Future High Tides    (tidal inundation; 2050 and 2080 scenarios only)
     Shape__Area         auto-computed polygon area
     Shape__Length       auto-computed polygon perimeter
-    geometry            Polygon/MultiPolygon (service native CRS EPSG:3857;
-                        we request EPSG:4326 output for easier downstream use)
+    geometry            one huge MultiPolygon per category (unioned citywide)
+
+IMPORTANT: an earlier version used geometryPrecision=5 (1 m rounding) to reduce
+payload size on the large Extreme-2080 layer. That rounding corrupted the
+geometries (ring self-intersections plus entire sub-polygons collapsed below
+3 vertices). This version requests FULL coordinate precision -- responses are
+larger (up to ~200 MB per feature for Extreme 2080) but geometrically correct.
+We also fetch one feature at a time by OBJECTID (not paginated bulk), so no
+single HTTP response is bigger than one Flooding_Category polygon.
 
 Run from project root (~/Desktop/RA/):
     python3 src/data_acquisition/fetch_dep_flood_maps.py
 """
 
 from __future__ import annotations
+
+import os
+# Must be set BEFORE geopandas import for GDAL to honor it on read.
+os.environ.setdefault("OGR_GEOJSON_MAX_OBJ_SIZE", "0")
 
 import json
 import sys
@@ -49,9 +58,7 @@ except ImportError:
 # Layer registry
 # -----------------------------------------------------------------------------
 
-BASE = (
-    "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services"
-)
+BASE = "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services"
 
 LAYERS: dict[str, dict[str, str]] = {
     "moderate_current": {
@@ -82,8 +89,11 @@ HEADERS = {
     "Accept": "application/json, application/geo+json, */*",
 }
 
-# Output file size threshold below which we assume download is incomplete
-MIN_VALID_SIZE_BYTES = 100_000  # 100 KB — citywide polygon layers are much larger
+# Full precision -- do NOT send geometryPrecision. Responses are larger but
+# geometrically valid.
+REQUEST_TIMEOUT = 900   # 15 min per request
+MAX_RETRIES = 4         # per feature
+MIN_VALID_SIZE_BYTES = 100_000
 
 
 # -----------------------------------------------------------------------------
@@ -91,12 +101,11 @@ MIN_VALID_SIZE_BYTES = 100_000  # 100 KB — citywide polygon layers are much la
 # -----------------------------------------------------------------------------
 
 def get_layer_info(service_url: str) -> dict[str, Any]:
-    """Fetch metadata for layer 0 of a FeatureServer."""
     resp = requests.get(
         f"{service_url}/0",
         params={"f": "json"},
         headers=HEADERS,
-        timeout=30,
+        timeout=60,
     )
     resp.raise_for_status()
     info = resp.json()
@@ -105,114 +114,101 @@ def get_layer_info(service_url: str) -> dict[str, Any]:
     return info
 
 
-def get_feature_count(service_url: str) -> Optional[int]:
-    """
-    Return the total feature count via returnCountOnly, or None on failure.
-    Used for progress estimation only.
-    """
-    try:
-        resp = requests.get(
-            f"{service_url}/0/query",
-            params={"where": "1=1", "returnCountOnly": "true", "f": "json"},
-            headers=HEADERS,
-            timeout=30,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        return int(data.get("count", 0)) or None
-    except Exception:
-        return None
+def get_object_ids(service_url: str) -> list[int]:
+    resp = requests.get(
+        f"{service_url}/0/query",
+        params={"where": "1=1", "returnIdsOnly": "true", "f": "json"},
+        headers=HEADERS,
+        timeout=60,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    return list(data.get("objectIds", []) or [])
 
 
-def fetch_all_features(
-    service_url: str,
-    page_size: int,
-    total_hint: Optional[int] = None,
-) -> list[dict[str, Any]]:
+def fetch_one_feature(service_url: str, oid: int) -> dict[str, Any]:
     """
-    Paginate through every feature in layer 0 of the FeatureServer.
-    Returns a list of GeoJSON Feature dicts (already in EPSG:4326).
+    Fetch one feature by OBJECTID at full precision. Retries on transport errors.
+    Returns the single GeoJSON Feature dict.
     """
     query_url = f"{service_url}/0/query"
-    base_params = {
-        "where": "1=1",
+    params = {
+        "where": f"OBJECTID={oid}",
         "outFields": "*",
         "outSR": "4326",
         "f": "geojson",
-        "resultRecordCount": page_size,
+        # NOTE: deliberately NOT sending geometryPrecision
     }
 
-    all_features: list[dict[str, Any]] = []
-    offset = 0
-    page = 1
+    last_err: Optional[Exception] = None
+    for attempt in range(1, MAX_RETRIES + 1):
+        t0 = time.time()
+        try:
+            resp = requests.get(
+                query_url,
+                params=params,
+                headers=HEADERS,
+                timeout=REQUEST_TIMEOUT,
+            )
+            resp.raise_for_status()
 
-    while True:
-        params = {**base_params, "resultOffset": offset}
+            size_mb = len(resp.content) / (1024 * 1024)
+            elapsed = time.time() - t0
+            data = resp.json()
 
-        for attempt in range(3):
-            try:
-                resp = requests.get(
-                    query_url,
-                    params=params,
-                    headers=HEADERS,
-                    timeout=300,
-                )
-                resp.raise_for_status()
-                data = resp.json()
-                break
-            except requests.RequestException as e:
-                if attempt == 2:
-                    raise
-                print(f"\n        WARN: page {page} attempt {attempt + 1} failed ({e}); retrying in 3s...")
-                time.sleep(3)
+            if isinstance(data, dict) and data.get("error"):
+                raise RuntimeError(f"ArcGIS error: {data['error']}")
 
-        if isinstance(data, dict) and data.get("error"):
-            raise RuntimeError(f"ArcGIS error on page {page}: {data['error']}")
+            features = data.get("features", [])
+            if not features:
+                raise RuntimeError(f"Empty features array for OBJECTID={oid}")
 
-        features = data.get("features", [])
-        exceeded = data.get("exceededTransferLimit", False)
+            print(
+                f"          attempt {attempt}: OK "
+                f"({size_mb:.1f} MB received in {elapsed:.0f}s)"
+            )
+            return features[0]
 
-        all_features.extend(features)
+        except (requests.RequestException, RuntimeError, ValueError) as e:
+            last_err = e
+            elapsed = time.time() - t0
+            print(
+                f"          attempt {attempt}: FAIL after {elapsed:.0f}s "
+                f"({type(e).__name__}: {str(e)[:140]})"
+            )
+            if attempt < MAX_RETRIES:
+                backoff = 5 * attempt
+                print(f"          retrying in {backoff}s...")
+                time.sleep(backoff)
 
-        # Progress line
-        total_str = f"/{total_hint:,}" if total_hint else ""
-        pct_str = f" ({len(all_features) / total_hint * 100:.0f}%)" if total_hint else ""
-        print(
-            f"        page {page:>3}: offset={offset:>7}  "
-            f"got {len(features):>5} features  "
-            f"cumulative {len(all_features):>7,}{total_str}{pct_str}",
-            flush=True,
-        )
+    raise RuntimeError(f"All {MAX_RETRIES} attempts failed for OBJECTID={oid}: {last_err}")
 
-        # Termination
-        if not features:
-            break
-        if not exceeded and len(features) < page_size:
-            break
 
-        offset += len(features)
-        page += 1
+def fetch_all_features(service_url: str) -> list[dict[str, Any]]:
+    """Fetch every feature in layer 0, one OBJECTID at a time."""
+    object_ids = get_object_ids(service_url)
+    print(f"        Fetching {len(object_ids)} features by OBJECTID: {object_ids}")
 
-    return all_features
+    features: list[dict[str, Any]] = []
+    for i, oid in enumerate(object_ids, start=1):
+        print(f"        [{i}/{len(object_ids)}] OBJECTID={oid}")
+        feat = fetch_one_feature(service_url, oid)
+        features.append(feat)
+    return features
 
 
 # -----------------------------------------------------------------------------
-# Saving and inspecting
+# Save + inspect
 # -----------------------------------------------------------------------------
 
 def save_feature_collection(features: list[dict[str, Any]], out_path: Path) -> None:
-    """Write a list of GeoJSON features as a single FeatureCollection."""
-    collection = {
-        "type": "FeatureCollection",
-        "features": features,
-    }
+    collection = {"type": "FeatureCollection", "features": features}
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(collection, f)
 
 
 def inspect_layer(path: Path, description: str) -> None:
-    """Print schema summary for a downloaded GeoJSON."""
     print("\n" + "=" * 72)
     print(f"SCHEMA: {description}")
     print(f"File:   {path}")
@@ -229,44 +225,27 @@ def inspect_layer(path: Path, description: str) -> None:
         return
 
     geom_types = gdf.geometry.type.value_counts().to_dict()
-    n_valid = int(gdf.geometry.notna().sum())
-    n_empty = len(gdf) - n_valid
+    n_valid = int(gdf.geometry.is_valid.sum())
+    n_invalid = len(gdf) - n_valid
 
     print(f"\n  Rows:              {len(gdf):,}")
-    print(f"  Rows w/ geometry:  {n_valid:,}")
-    if n_empty > 0:
-        print(f"  Rows w/ NULL geom: {n_empty:,}  <-- WARNING")
+    print(f"  Valid geometries:  {n_valid}/{len(gdf)}")
+    if n_invalid > 0:
+        print(f"  INVALID:           {n_invalid}  <-- will need make_valid() in overlay")
     print(f"  CRS:               {gdf.crs}")
     print(f"  Geometry type(s):  {geom_types}")
 
-    if n_valid > 0:
-        bbox = gdf.geometry.dropna().total_bounds
-        print(
-            f"  Bounds (lon/lat):  [{bbox[0]:.4f}, {bbox[1]:.4f}, "
-            f"{bbox[2]:.4f}, {bbox[3]:.4f}]"
-        )
+    bbox = gdf.total_bounds
+    print(
+        f"  Bounds (lon/lat):  [{bbox[0]:.4f}, {bbox[1]:.4f}, "
+        f"{bbox[2]:.4f}, {bbox[3]:.4f}]"
+    )
 
-    print(f"\n  Columns ({len(gdf.columns)}):")
-    print(f"    {'name':<32} {'dtype':<14} {'unique':<10} sample")
-    print(f"    {'-'*32} {'-'*14} {'-'*10} {'-'*30}")
-    for col in gdf.columns:
-        dtype = str(gdf[col].dtype)
-        n_unique = gdf[col].nunique(dropna=True)
-        if col == "geometry":
-            sample = "<geom>"
-        else:
-            non_null = gdf[col].dropna()
-            sample = repr(non_null.iloc[0]) if len(non_null) > 0 else "<all null>"
-            if len(sample) > 30:
-                sample = sample[:27] + "..."
-        print(f"    {col:<32} {dtype:<14} {n_unique:<10} {sample}")
-
-    # Breakdown of the depth-equivalent column
     if "Flooding_Category" in gdf.columns:
         print("\n  Flooding_Category breakdown:")
         vc = gdf["Flooding_Category"].value_counts(dropna=False).sort_index()
         for val, count in vc.items():
-            print(f"    category {val!r:<5} -> {count:,} polygons")
+            print(f"    category {val!r:<5} -> {count:,} row(s)")
 
 
 # -----------------------------------------------------------------------------
@@ -290,23 +269,14 @@ def download_layer(layer_key: str, config: dict[str, str]) -> Optional[Path]:
         return None
 
     layer_name = info.get("name", "<unknown>")
-    max_rec = int(info.get("maxRecordCount", 2000))
-    print(f"        Layer name:      {layer_name}")
-    print(f"        maxRecordCount:  {max_rec:,}")
-
-    total = get_feature_count(config["service_url"])
-    if total is not None:
-        print(f"        Total features:  {total:,}")
+    print(f"        Layer name: {layer_name}")
+    print(f"        Full geometry precision (no rounding)")
 
     t0 = time.time()
     try:
-        features = fetch_all_features(
-            config["service_url"],
-            page_size=max_rec,
-            total_hint=total,
-        )
+        features = fetch_all_features(config["service_url"])
     except Exception as e:
-        print(f"        ERROR during pagination: {e}")
+        print(f"        ERROR: {e}")
         return None
     elapsed = time.time() - t0
 
@@ -318,14 +288,14 @@ def download_layer(layer_key: str, config: dict[str, str]) -> Optional[Path]:
     size_mb = out_path.stat().st_size / (1024 * 1024)
     print(
         f"        Saved {len(features):,} features to {out_path} "
-        f"({size_mb:.1f} MB, {elapsed:.0f}s)"
+        f"({size_mb:.1f} MB, {elapsed:.0f}s total)"
     )
     return out_path
 
 
 def main() -> int:
     print("=" * 72)
-    print("NYC DEP Stormwater Flood Map Downloader (ArcGIS FeatureServer)")
+    print("NYC DEP Stormwater Flood Map Downloader (FeatureServer, full precision)")
     print("=" * 72)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -343,7 +313,6 @@ def main() -> int:
         if path:
             paths[layer_key] = path
 
-    # Schema inspection
     print("\n\n" + "=" * 72)
     print("SCHEMA SUMMARIES")
     print("=" * 72)
@@ -355,7 +324,6 @@ def main() -> int:
         except Exception as e:
             print(f"\n[ERROR inspecting {description}]: {e}")
 
-    # Final status
     print("\n" + "=" * 72)
     failed = set(LAYERS.keys()) - set(paths.keys())
     if failed:

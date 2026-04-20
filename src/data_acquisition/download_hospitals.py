@@ -35,6 +35,9 @@ hospitals['geometry'] = hospitals.apply(
 )
 hospitals_gdf = gpd.GeoDataFrame(hospitals, geometry='geometry', crs='EPSG:4326')
 
+hospitals_gdf.to_file('data/healthcare/hospitals_nyc.geojson', driver='GeoJSON')
+print(f"Saved {len(hospitals_gdf)} NYC hospitals to data/healthcare/hospitals_nyc.geojson")
+
 # ── Filter to Lower Manhattan ──
 hospitals_lm = hospitals_gdf[
     (hospitals_gdf['LATITUDE'] >= 40.700) & (hospitals_gdf['LATITUDE'] <= 40.755) &

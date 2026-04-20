@@ -21,6 +21,9 @@ subway['geometry'] = subway.apply(
 )
 subway_gdf = gpd.GeoDataFrame(subway, geometry='geometry', crs='EPSG:4326')
 
+subway_gdf.to_file('data/transit/subway_stations_nyc.geojson', driver='GeoJSON')
+print(f"Saved {len(subway_gdf)} NYC subway stations to data/transit/subway_stations_nyc.geojson")
+
 # ── Filter to Lower Manhattan ──
 subway_lm = subway_gdf[
     (subway_gdf['GTFS Latitude'] >= 40.700) & (subway_gdf['GTFS Latitude'] <= 40.755) &
