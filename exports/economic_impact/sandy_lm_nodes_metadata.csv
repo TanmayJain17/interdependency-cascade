@@ -1,0 +1,348 @@
+node_id,name,infra_type,lat,lon,borough,flood_sandy_depth_m
+power_hudson_avenue,Hudson Avenue,power,40.703809,-73.981736,Manhattan,0.0
+power_farragut,Farragut,power,40.705099,-73.984511,Manhattan,0.0
+power_water_street,Water Street,power,40.70337,-73.981883,Manhattan,0.0
+power_east_13th_street,East 13Th Street,power,40.727544,-73.974622,Manhattan,1.175
+power_leonard_street,Leonard Street,power,40.718405,-74.006499,Manhattan,1.962
+power_east_36th_street,East 36Th Street,power,40.744947,-73.971336,Manhattan,1.962
+power_west_19th_street,West 19Th Street,power,40.741239,-73.997332,Manhattan,0.0
+power_cherry_street,Cherry Street,power,40.71137,-73.990686,Manhattan,0.0
+power_plymouth,Plymouth,power,40.703987,-73.983429,Manhattan,0.0
+power_gowanus,Gowanus,power,40.661952,-74.00302,Manhattan,0.0
+power_jamaica,Jamaica,power,40.699185,-73.813908,Manhattan,0.0
+power_rainey,Rainey,power,40.763225,-73.943026,Manhattan,0.0
+power_west_49th_street,West 49Th Street,power,40.766003,-73.995884,Manhattan,0.0
+power_marion,Marion,power,40.746443,-74.069915,Manhattan,0.0
+telecom_cluster_0000,AT&T cluster,telecom,40.702225,-74.013425,Manhattan,1.962
+telecom_cluster_0001,AT&T cluster,telecom,40.7016,-74.011525,Manhattan,1.962
+telecom_cluster_0002,AT&T cluster,telecom,40.7008,-74.0044,Manhattan,0.0
+telecom_cluster_0003,AT&T cluster,telecom,40.701225,-73.99445,Manhattan,0.0
+telecom_cluster_0004,AT&T cluster,telecom,40.7012,-73.98944,Manhattan,0.0
+telecom_cluster_0005,AT&T cluster,telecom,40.701143,-73.985829,Manhattan,0.0
+telecom_cluster_0006,AT&T cluster,telecom,40.701033,-73.9806,Manhattan,0.0
+telecom_cluster_0007,AT&T cluster,telecom,40.70495,-74.0136,Manhattan,1.962
+telecom_cluster_0008,AT&T cluster,telecom,40.705633,-74.0092,Manhattan,1.962
+telecom_cluster_0009,AT&T cluster,telecom,40.7031,-74.0074,Manhattan,1.962
+telecom_cluster_0010,AT&T cluster,telecom,40.703767,-73.999033,Manhattan,1.083
+telecom_cluster_0011,AT&T cluster,telecom,40.704758,-73.99525,Manhattan,1.083
+telecom_cluster_0012,AT&T cluster,telecom,40.70487,-73.98917,Manhattan,0.0
+telecom_cluster_0013,AT&T cluster,telecom,40.705775,-73.985075,Manhattan,0.0
+telecom_cluster_0014,AT&T cluster,telecom,40.7034,-73.9814,Manhattan,0.0
+telecom_cluster_0015,AT&T cluster,telecom,40.710593,-74.013364,Manhattan,1.962
+telecom_cluster_0016,AT&T cluster,telecom,40.709467,-74.01024,Manhattan,0.0
+telecom_cluster_0017,AT&T cluster,telecom,40.7117,-74.0031,Manhattan,0.0
+telecom_cluster_0018,AT&T cluster,telecom,40.709967,-73.999667,Manhattan,1.962
+telecom_cluster_0019,AT&T cluster,telecom,40.711017,-73.993817,Manhattan,0.0
+telecom_cluster_0020,AT&T cluster,telecom,40.709167,-73.989883,Manhattan,1.962
+telecom_cluster_0021,AT&T cluster,telecom,40.709443,-73.985314,Manhattan,1.962
+telecom_cluster_0022,AT&T cluster,telecom,40.709767,-73.979833,Manhattan,0.0
+telecom_cluster_0023,AT&T cluster,telecom,40.7117,-73.9748,Manhattan,0.0
+telecom_cluster_0024,AT&T cluster,telecom,40.7111,-73.9718,Manhattan,0.0
+telecom_cluster_0025,AT&T cluster,telecom,40.7139,-74.0145,Manhattan,1.962
+telecom_cluster_0026,AT&T cluster,telecom,40.71585,-74.00805,Manhattan,1.962
+telecom_cluster_0027,AT&T cluster,telecom,40.714938,-74.0057,Manhattan,1.962
+telecom_cluster_0028,AT&T cluster,telecom,40.714567,-73.999433,Manhattan,1.962
+telecom_cluster_0029,AT&T cluster,telecom,40.713327,-73.994032,Manhattan,0.0
+telecom_cluster_0030,AT&T cluster,telecom,40.714767,-73.9907,Manhattan,1.175
+telecom_cluster_0031,AT&T cluster,telecom,40.715525,-73.98355,Manhattan,1.175
+telecom_cluster_0032,AT&T cluster,telecom,40.71554,-73.98004,Manhattan,1.175
+telecom_cluster_0033,AT&T cluster,telecom,40.714875,-73.974275,Manhattan,1.175
+telecom_cluster_0034,AT&T cluster,telecom,40.71485,-73.9711,Manhattan,0.0
+telecom_cluster_0035,AT&T cluster,telecom,40.7178,-74.0126,Manhattan,1.962
+telecom_cluster_0036,AT&T cluster,telecom,40.72136,-74.01094,Manhattan,1.962
+telecom_cluster_0037,AT&T cluster,telecom,40.720333,-74.005783,Manhattan,1.962
+telecom_cluster_0038,AT&T cluster,telecom,40.7202,-73.9993,Manhattan,1.962
+telecom_cluster_0039,AT&T cluster,telecom,40.720517,-73.994267,Manhattan,1.962
+telecom_cluster_0040,AT&T cluster,telecom,40.720543,-73.990357,Manhattan,1.175
+telecom_cluster_0041,AT&T cluster,telecom,40.71915,-73.9841,Manhattan,1.175
+telecom_cluster_0042,AT&T cluster,telecom,40.719067,-73.976067,Manhattan,1.175
+telecom_cluster_0043,AT&T cluster,telecom,40.7184,-73.9711,Manhattan,0.0
+telecom_cluster_0044,AT&T cluster,telecom,40.72355,-74.0097,Manhattan,1.962
+telecom_cluster_0045,AT&T cluster,telecom,40.724378,-74.005511,Manhattan,1.962
+telecom_cluster_0046,AT&T cluster,telecom,40.724496,-74.000108,Manhattan,1.962
+telecom_cluster_0047,AT&T cluster,telecom,40.724879,-73.996543,Manhattan,1.962
+telecom_cluster_0048,AT&T cluster,telecom,40.723833,-73.98955,Manhattan,1.175
+telecom_cluster_0049,AT&T cluster,telecom,40.7247,-73.98705,Manhattan,1.175
+telecom_cluster_0050,AT&T cluster,telecom,40.7235,-73.9788,Manhattan,1.175
+telecom_cluster_0051,AT&T cluster,telecom,40.7243,-73.973233,Manhattan,1.175
+telecom_cluster_0052,AT&T cluster,telecom,40.7256,-73.9718,Manhattan,0.852
+telecom_cluster_0053,AT&T cluster,telecom,40.7301,-74.010467,Manhattan,1.962
+telecom_cluster_0054,AT&T cluster,telecom,40.730612,-74.004212,Manhattan,1.962
+telecom_cluster_0055,AT&T cluster,telecom,40.730335,-74.000276,Manhattan,1.962
+telecom_cluster_0056,AT&T cluster,telecom,40.729575,-73.994675,Manhattan,1.962
+telecom_cluster_0057,AT&T cluster,telecom,40.730015,-73.98957,Manhattan,0.852
+telecom_cluster_0058,AT&T cluster,telecom,40.730375,-73.9855,Manhattan,0.852
+telecom_cluster_0059,AT&T cluster,telecom,40.7285,-73.9786,Manhattan,1.175
+telecom_cluster_0060,AT&T cluster,telecom,40.73025,-73.9751,Manhattan,0.852
+telecom_cluster_0061,AT&T cluster,telecom,40.7298,-73.97045,Manhattan,0.0
+telecom_cluster_0062,AT&T cluster,telecom,40.735217,-74.010033,Manhattan,0.81
+telecom_cluster_0063,AT&T cluster,telecom,40.734632,-74.004105,Manhattan,0.81
+telecom_cluster_0064,AT&T cluster,telecom,40.73515,-73.99975,Manhattan,0.81
+telecom_cluster_0065,AT&T cluster,telecom,40.736133,-73.9932,Manhattan,0.81
+telecom_cluster_0066,AT&T cluster,telecom,40.735422,-73.990256,Manhattan,0.81
+telecom_cluster_0067,AT&T cluster,telecom,40.7345,-73.98665,Manhattan,0.331
+telecom_cluster_0068,AT&T cluster,telecom,40.7366,-73.9792,Manhattan,0.331
+telecom_cluster_0069,AT&T cluster,telecom,40.7344,-73.9723,Manhattan,0.852
+telecom_cluster_0070,AT&T cluster,telecom,40.740714,-74.008964,Manhattan,0.0
+telecom_cluster_0071,AT&T cluster,telecom,40.73966,-74.004975,Manhattan,0.81
+telecom_cluster_0072,AT&T cluster,telecom,40.741354,-74.001077,Manhattan,0.0
+telecom_cluster_0073,AT&T cluster,telecom,40.74105,-73.9941,Manhattan,0.0
+telecom_cluster_0074,AT&T cluster,telecom,40.741053,-73.9895,Manhattan,0.0
+telecom_cluster_0075,AT&T cluster,telecom,40.740653,-73.984728,Manhattan,1.962
+telecom_cluster_0076,AT&T cluster,telecom,40.739967,-73.981133,Manhattan,1.962
+telecom_cluster_0077,AT&T cluster,telecom,40.73955,-73.97375,Manhattan,1.962
+telecom_cluster_0078,AT&T cluster,telecom,40.7438,-74.00865,Manhattan,0.0
+telecom_cluster_0079,AT&T cluster,telecom,40.745336,-74.0059,Manhattan,0.0
+telecom_cluster_0080,AT&T cluster,telecom,40.744925,-73.998488,Manhattan,0.0
+telecom_cluster_0081,AT&T cluster,telecom,40.744352,-73.99521,Manhattan,0.0
+telecom_cluster_0082,AT&T cluster,telecom,40.744995,-73.990043,Manhattan,0.0
+telecom_cluster_0083,AT&T cluster,telecom,40.744833,-73.9853,Manhattan,1.962
+telecom_cluster_0084,AT&T cluster,telecom,40.745125,-73.981375,Manhattan,1.962
+telecom_cluster_0085,AT&T cluster,telecom,40.7446,-73.9746,Manhattan,1.962
+telecom_cluster_0086,AT&T cluster,telecom,40.744367,-73.971033,Manhattan,0.0
+telecom_cluster_0087,AT&T cluster,telecom,40.75025,-74.007975,Manhattan,0.0
+telecom_cluster_0088,AT&T cluster,telecom,40.749143,-74.005157,Manhattan,0.0
+telecom_cluster_0089,AT&T cluster,telecom,40.750609,-74.000291,Manhattan,0.0
+telecom_cluster_0090,AT&T cluster,telecom,40.750238,-73.994438,Manhattan,0.0
+telecom_cluster_0091,AT&T cluster,telecom,40.75022,-73.989155,Manhattan,0.0
+telecom_cluster_0092,AT&T cluster,telecom,40.74965,-73.98485,Manhattan,1.962
+telecom_cluster_0093,AT&T cluster,telecom,40.7522,-73.9801,Manhattan,0.0
+telecom_cluster_0094,AT&T cluster,telecom,40.751175,-73.976575,Manhattan,0.0
+telecom_cluster_0095,AT&T cluster,telecom,40.753867,-74.00545,Manhattan,0.0
+telecom_cluster_0096,AT&T cluster,telecom,40.754089,-74.000022,Manhattan,0.195
+telecom_cluster_0097,AT&T cluster,telecom,40.754,-73.99408,Manhattan,0.0
+telecom_cluster_0098,AT&T cluster,telecom,40.753678,-73.9893,Manhattan,0.0
+telecom_cluster_0099,AT&T cluster,telecom,40.753895,-73.985721,Manhattan,0.0
+telecom_cluster_0100,AT&T cluster,telecom,40.753843,-73.980557,Manhattan,0.0
+telecom_cluster_0101,AT&T cluster,telecom,40.752975,-73.97525,Manhattan,0.0
+telecom_cluster_0102,AT&T cluster,telecom,40.7528,-73.9709,Manhattan,0.0
+telecom_cluster_0103,T-Mobile cluster,telecom,40.7011,-74.01885,Manhattan,1.962
+telecom_cluster_0104,T-Mobile cluster,telecom,40.701662,-74.014288,Manhattan,1.962
+telecom_cluster_0105,T-Mobile cluster,telecom,40.701986,-74.011614,Manhattan,1.962
+telecom_cluster_0106,T-Mobile cluster,telecom,40.7017,-74.0045,Manhattan,0.0
+telecom_cluster_0107,T-Mobile cluster,telecom,40.70105,-73.999617,Manhattan,0.0
+telecom_cluster_0108,T-Mobile cluster,telecom,40.701041,-73.994868,Manhattan,0.0
+telecom_cluster_0109,T-Mobile cluster,telecom,40.701375,-73.990254,Manhattan,0.0
+telecom_cluster_0110,T-Mobile cluster,telecom,40.701227,-73.985859,Manhattan,0.0
+telecom_cluster_0111,T-Mobile cluster,telecom,40.70154,-73.98114,Manhattan,0.0
+telecom_cluster_0112,T-Mobile cluster,telecom,40.703067,-74.018433,Manhattan,1.962
+telecom_cluster_0113,T-Mobile cluster,telecom,40.70525,-74.014627,Manhattan,1.962
+telecom_cluster_0114,T-Mobile cluster,telecom,40.706113,-74.010393,Manhattan,1.962
+telecom_cluster_0115,T-Mobile cluster,telecom,40.70447,-74.006215,Manhattan,1.962
+telecom_cluster_0116,T-Mobile cluster,telecom,40.705714,-73.999595,Manhattan,1.083
+telecom_cluster_0117,T-Mobile cluster,telecom,40.705083,-73.994083,Manhattan,0.0
+telecom_cluster_0118,T-Mobile cluster,telecom,40.705221,-73.990276,Manhattan,0.0
+telecom_cluster_0119,T-Mobile cluster,telecom,40.704885,-73.985646,Manhattan,0.0
+telecom_cluster_0120,T-Mobile cluster,telecom,40.706038,-73.979625,Manhattan,0.0
+telecom_cluster_0121,T-Mobile cluster,telecom,40.70395,-73.97565,Manhattan,0.0
+telecom_cluster_0122,T-Mobile cluster,telecom,40.710211,-74.014111,Manhattan,1.962
+telecom_cluster_0123,T-Mobile cluster,telecom,40.710398,-74.010805,Manhattan,0.0
+telecom_cluster_0124,T-Mobile cluster,telecom,40.711178,-74.005356,Manhattan,0.0
+telecom_cluster_0125,T-Mobile cluster,telecom,40.709329,-74.000247,Manhattan,1.962
+telecom_cluster_0126,T-Mobile cluster,telecom,40.710119,-73.99385,Manhattan,1.962
+telecom_cluster_0127,T-Mobile cluster,telecom,40.709445,-73.990682,Manhattan,1.962
+telecom_cluster_0128,T-Mobile cluster,telecom,40.709917,-73.985488,Manhattan,1.962
+telecom_cluster_0129,T-Mobile cluster,telecom,40.710274,-73.980158,Manhattan,0.0
+telecom_cluster_0130,T-Mobile cluster,telecom,40.710709,-73.975473,Manhattan,0.0
+telecom_cluster_0131,T-Mobile cluster,telecom,40.7109,-73.972075,Manhattan,0.0
+telecom_cluster_0132,T-Mobile cluster,telecom,40.7171,-74.02,Manhattan,0.0
+telecom_cluster_0133,T-Mobile cluster,telecom,40.714856,-74.013833,Manhattan,1.962
+telecom_cluster_0134,T-Mobile cluster,telecom,40.71335,-74.01007,Manhattan,1.962
+telecom_cluster_0135,T-Mobile cluster,telecom,40.715222,-74.004078,Manhattan,1.962
+telecom_cluster_0136,T-Mobile cluster,telecom,40.7154,-73.999533,Manhattan,1.962
+telecom_cluster_0137,T-Mobile cluster,telecom,40.714264,-73.994209,Manhattan,0.0
+telecom_cluster_0138,T-Mobile cluster,telecom,40.714828,-73.99045,Manhattan,1.175
+telecom_cluster_0139,T-Mobile cluster,telecom,40.715992,-73.9852,Manhattan,1.175
+telecom_cluster_0140,T-Mobile cluster,telecom,40.714371,-73.979786,Manhattan,0.0
+telecom_cluster_0141,T-Mobile cluster,telecom,40.714778,-73.97595,Manhattan,1.175
+telecom_cluster_0142,T-Mobile cluster,telecom,40.7164,-73.9704,Manhattan,0.0
+telecom_cluster_0143,T-Mobile cluster,telecom,40.7181,-74.0197,Manhattan,0.0
+telecom_cluster_0144,T-Mobile cluster,telecom,40.7186,-74.0143,Manhattan,1.962
+telecom_cluster_0145,T-Mobile cluster,telecom,40.7208,-74.012,Manhattan,1.962
+telecom_cluster_0146,T-Mobile cluster,telecom,40.719818,-74.004836,Manhattan,1.962
+telecom_cluster_0147,T-Mobile cluster,telecom,40.720033,-74.0006,Manhattan,1.962
+telecom_cluster_0148,T-Mobile cluster,telecom,40.71898,-73.99424,Manhattan,1.962
+telecom_cluster_0149,T-Mobile cluster,telecom,40.71997,-73.989337,Manhattan,1.175
+telecom_cluster_0150,T-Mobile cluster,telecom,40.720182,-73.985086,Manhattan,1.175
+telecom_cluster_0151,T-Mobile cluster,telecom,40.720592,-73.980617,Manhattan,1.175
+telecom_cluster_0152,T-Mobile cluster,telecom,40.720094,-73.9749,Manhattan,1.175
+telecom_cluster_0153,T-Mobile cluster,telecom,40.719333,-73.970967,Manhattan,0.0
+telecom_cluster_0154,T-Mobile cluster,telecom,40.7262,-74.0129,Manhattan,1.962
+telecom_cluster_0155,T-Mobile cluster,telecom,40.7238,-74.0113,Manhattan,1.962
+telecom_cluster_0156,T-Mobile cluster,telecom,40.724012,-74.0039,Manhattan,1.962
+telecom_cluster_0157,T-Mobile cluster,telecom,40.724644,-74.000233,Manhattan,1.962
+telecom_cluster_0158,T-Mobile cluster,telecom,40.7245,-73.995681,Manhattan,1.962
+telecom_cluster_0159,T-Mobile cluster,telecom,40.724733,-73.98983,Manhattan,1.175
+telecom_cluster_0160,T-Mobile cluster,telecom,40.72489,-73.984924,Manhattan,1.175
+telecom_cluster_0161,T-Mobile cluster,telecom,40.724193,-73.980693,Manhattan,1.175
+telecom_cluster_0162,T-Mobile cluster,telecom,40.724518,-73.974424,Manhattan,1.175
+telecom_cluster_0163,T-Mobile cluster,telecom,40.726367,-73.9718,Manhattan,0.852
+telecom_cluster_0164,T-Mobile cluster,telecom,40.7309,-74.015233,Manhattan,0.0
+telecom_cluster_0165,T-Mobile cluster,telecom,40.7288,-74.0094,Manhattan,1.962
+telecom_cluster_0166,T-Mobile cluster,telecom,40.730738,-74.00425,Manhattan,1.962
+telecom_cluster_0167,T-Mobile cluster,telecom,40.7301,-73.999715,Manhattan,1.962
+telecom_cluster_0168,T-Mobile cluster,telecom,40.728825,-73.993975,Manhattan,1.962
+telecom_cluster_0169,T-Mobile cluster,telecom,40.730273,-73.989905,Manhattan,0.852
+telecom_cluster_0170,T-Mobile cluster,telecom,40.729497,-73.984994,Manhattan,0.852
+telecom_cluster_0171,T-Mobile cluster,telecom,40.730021,-73.980354,Manhattan,0.852
+telecom_cluster_0172,T-Mobile cluster,telecom,40.7299,-73.9747,Manhattan,0.852
+telecom_cluster_0173,T-Mobile cluster,telecom,40.72848,-73.9719,Manhattan,0.852
+telecom_cluster_0174,T-Mobile cluster,telecom,40.7354,-74.010133,Manhattan,0.81
+telecom_cluster_0175,T-Mobile cluster,telecom,40.734412,-74.003838,Manhattan,0.81
+telecom_cluster_0176,T-Mobile cluster,telecom,40.735496,-74.000308,Manhattan,0.81
+telecom_cluster_0177,T-Mobile cluster,telecom,40.736474,-73.99573,Manhattan,0.81
+telecom_cluster_0178,T-Mobile cluster,telecom,40.7354,-73.990308,Manhattan,0.81
+telecom_cluster_0179,T-Mobile cluster,telecom,40.734733,-73.984944,Manhattan,0.331
+telecom_cluster_0180,T-Mobile cluster,telecom,40.735519,-73.979706,Manhattan,0.331
+telecom_cluster_0181,T-Mobile cluster,telecom,40.734887,-73.974447,Manhattan,0.331
+telecom_cluster_0182,T-Mobile cluster,telecom,40.7357,-73.972067,Manhattan,1.19
+telecom_cluster_0183,T-Mobile cluster,telecom,40.742,-74.0177,Manhattan,0.0
+telecom_cluster_0184,T-Mobile cluster,telecom,40.741,-74.0129,Manhattan,0.0
+telecom_cluster_0185,T-Mobile cluster,telecom,40.740269,-74.009912,Manhattan,0.0
+telecom_cluster_0186,T-Mobile cluster,telecom,40.74014,-74.004393,Manhattan,0.0
+telecom_cluster_0187,T-Mobile cluster,telecom,40.740275,-74.000775,Manhattan,0.0
+telecom_cluster_0188,T-Mobile cluster,telecom,40.739493,-73.994307,Manhattan,0.81
+telecom_cluster_0189,T-Mobile cluster,telecom,40.740143,-73.989808,Manhattan,0.0
+telecom_cluster_0190,T-Mobile cluster,telecom,40.740017,-73.985583,Manhattan,1.962
+telecom_cluster_0191,T-Mobile cluster,telecom,40.73884,-73.98014,Manhattan,0.331
+telecom_cluster_0192,T-Mobile cluster,telecom,40.740357,-73.974538,Manhattan,1.962
+telecom_cluster_0193,T-Mobile cluster,telecom,40.74085,-73.972275,Manhattan,1.962
+telecom_cluster_0194,T-Mobile cluster,telecom,40.745625,-74.0083,Manhattan,0.0
+telecom_cluster_0195,T-Mobile cluster,telecom,40.74524,-74.00604,Manhattan,0.0
+telecom_cluster_0196,T-Mobile cluster,telecom,40.745809,-73.999836,Manhattan,0.0
+telecom_cluster_0197,T-Mobile cluster,telecom,40.745239,-73.994854,Manhattan,0.0
+telecom_cluster_0198,T-Mobile cluster,telecom,40.744609,-73.989645,Manhattan,0.0
+telecom_cluster_0199,T-Mobile cluster,telecom,40.745633,-73.985588,Manhattan,1.962
+telecom_cluster_0200,T-Mobile cluster,telecom,40.746029,-73.981186,Manhattan,1.962
+telecom_cluster_0201,T-Mobile cluster,telecom,40.744708,-73.974158,Manhattan,1.962
+telecom_cluster_0202,T-Mobile cluster,telecom,40.745117,-73.971642,Manhattan,1.962
+telecom_cluster_0203,T-Mobile cluster,telecom,40.75022,-74.00786,Manhattan,0.0
+telecom_cluster_0204,T-Mobile cluster,telecom,40.7487,-74.003386,Manhattan,0.0
+telecom_cluster_0205,T-Mobile cluster,telecom,40.749967,-74.000027,Manhattan,0.0
+telecom_cluster_0206,T-Mobile cluster,telecom,40.751014,-73.99439,Manhattan,0.0
+telecom_cluster_0207,T-Mobile cluster,telecom,40.750035,-73.989209,Manhattan,0.0
+telecom_cluster_0208,T-Mobile cluster,telecom,40.750241,-73.985269,Manhattan,1.962
+telecom_cluster_0209,T-Mobile cluster,telecom,40.750914,-73.979778,Manhattan,0.0
+telecom_cluster_0210,T-Mobile cluster,telecom,40.751128,-73.975495,Manhattan,0.0
+telecom_cluster_0211,T-Mobile cluster,telecom,40.749371,-73.970943,Manhattan,0.0
+telecom_cluster_0212,T-Mobile cluster,telecom,40.753943,-74.005171,Manhattan,0.0
+telecom_cluster_0213,T-Mobile cluster,telecom,40.753533,-74.000425,Manhattan,0.0
+telecom_cluster_0214,T-Mobile cluster,telecom,40.753565,-73.995494,Manhattan,0.0
+telecom_cluster_0215,T-Mobile cluster,telecom,40.753815,-73.989146,Manhattan,0.0
+telecom_cluster_0216,T-Mobile cluster,telecom,40.753738,-73.985055,Manhattan,0.0
+telecom_cluster_0217,T-Mobile cluster,telecom,40.753419,-73.980565,Manhattan,0.0
+telecom_cluster_0218,T-Mobile cluster,telecom,40.754076,-73.974835,Manhattan,0.0
+telecom_cluster_0219,T-Mobile cluster,telecom,40.753891,-73.971136,Manhattan,0.0
+telecom_cluster_0220,T-Mobile Metro cluster,telecom,40.7,-73.9866,Manhattan,0.0
+telecom_cluster_0221,T-Mobile Metro cluster,telecom,40.71365,-73.99415,Manhattan,0.0
+telecom_cluster_0222,T-Mobile Metro cluster,telecom,40.722,-73.9811,Manhattan,1.175
+telecom_cluster_0223,T-Mobile Metro cluster,telecom,40.7352,-73.9911,Manhattan,0.81
+hospital_bellevue_hospital_center,Bellevue Hospital Center,hospital,40.739245,-73.975488,Manhattan,0.331
+hospital_new_york_presbyterian_lower_ma,New York-Presbyterian/Lower Manhattan Hospital,hospital,40.710293,-74.004951,Manhattan,0.0
+hospital_new_york_eye_and_ear_infirmary,New York Eye And Ear Infirmary Of Mount Sinai,hospital,40.731875,-73.984599,Manhattan,0.852
+hospital_nyu_langone_orthopedic_hospita,Nyu Langone Orthopedic Hospital,hospital,40.734389,-73.982971,Manhattan,0.331
+hospital_mount_sinai____behavioral_heal,Mount Sinai -  Behavioral Health Center,hospital,40.72068,-73.991197,Manhattan,1.175
+hospital_nyu_langone_hospitals,Nyu Langone Hospitals,hospital,40.741471,-73.973622,Manhattan,1.962
+hospital_lenox_health_greenwich_village,Lenox Health Greenwich Village,hospital,40.737719,-74.000864,Manhattan,0.81
+hospital_mount_sinai_beth_israel,Mount Sinai Beth Israel,hospital,40.732666,-73.981598,Manhattan,0.852
+subway_york_st_f,York St,subway,40.701397,-73.986751,Manhattan,0.0
+subway_south_ferry_1,South Ferry,subway,40.702068,-74.013664,Manhattan,1.962
+subway_whitehall_st_south_ferry_rw,Whitehall St-South Ferry,subway,40.703087,-74.012994,Manhattan,1.962
+subway_bowling_green_45,Bowling Green,subway,40.704817,-74.014065,Manhattan,1.962
+subway_broad_st_jz,Broad St,subway,40.706476,-74.011056,Manhattan,1.962
+subway_wall_st_23,Wall St,subway,40.706821,-74.0091,Manhattan,1.962
+subway_rector_st_rw,Rector St,subway,40.70722,-74.013342,Manhattan,1.962
+subway_rector_st_1,Rector St,subway,40.707513,-74.013783,Manhattan,1.962
+subway_wall_st_45,Wall St,subway,40.707557,-74.011862,Manhattan,1.962
+subway_fulton_st_23,Fulton St,subway,40.709416,-74.006571,Manhattan,0.0
+subway_fulton_st_ac,Fulton St,subway,40.710197,-74.007691,Manhattan,0.0
+subway_fulton_st_45,Fulton St,subway,40.710368,-74.009509,Manhattan,0.0
+subway_fulton_st_jz,Fulton St,subway,40.710374,-74.007582,Manhattan,0.0
+subway_cortlandt_st_rw,Cortlandt St,subway,40.710668,-74.011029,Manhattan,1.962
+subway_wtc_cortlandt_1,WTC Cortlandt,subway,40.711835,-74.012188,Manhattan,1.962
+subway_world_trade_center_e,World Trade Center,subway,40.712582,-74.009781,Manhattan,0.0
+subway_park_place_23,Park Place,subway,40.713051,-74.008811,Manhattan,1.962
+subway_brooklyn_bridge_city_hall_456,Brooklyn Bridge-City Hall,subway,40.713065,-74.004131,Manhattan,1.962
+subway_chambers_st_jz,Chambers St,subway,40.713243,-74.003401,Manhattan,1.962
+subway_city_hall_rw,City Hall,subway,40.713282,-74.006978,Manhattan,1.962
+subway_east_broadway_f,East Broadway,subway,40.713715,-73.990173,Manhattan,0.0
+subway_chambers_st_ac,Chambers St,subway,40.714111,-74.008585,Manhattan,1.962
+subway_chambers_st_123,Chambers St,subway,40.715478,-74.009266,Manhattan,1.962
+subway_canal_st_jz,Canal St,subway,40.718092,-73.999892,Manhattan,1.962
+subway_grand_st_bd,Grand St,subway,40.718267,-73.993753,Manhattan,1.962
+subway_delancey_st_essex_st_jmz,Delancey St-Essex St,subway,40.718315,-73.987437,Manhattan,1.175
+subway_canal_st_nq,Canal St,subway,40.718383,-74.00046,Manhattan,1.962
+subway_delancey_st_essex_st_f,Delancey St-Essex St,subway,40.718611,-73.988114,Manhattan,1.175
+subway_canal_st_6,Canal St,subway,40.718803,-74.000193,Manhattan,1.962
+subway_franklin_st_1,Franklin St,subway,40.719318,-74.006886,Manhattan,1.962
+subway_canal_st_rw,Canal St,subway,40.719527,-74.001775,Manhattan,1.962
+subway_bowery_jz,Bowery,subway,40.72028,-73.993915,Manhattan,1.962
+subway_canal_st_ace,Canal St,subway,40.720824,-74.005229,Manhattan,1.962
+subway_spring_st_6,Spring St,subway,40.722301,-73.997141,Manhattan,1.962
+subway_canal_st_1,Canal St,subway,40.722854,-74.006277,Manhattan,1.962
+subway_2_av_f,2 Av,subway,40.723402,-73.989938,Manhattan,1.175
+subway_prince_st_rw,Prince St,subway,40.724329,-73.997702,Manhattan,1.962
+subway_broadway_lafayette_st_bdfm,Broadway-Lafayette St,subway,40.725297,-73.996204,Manhattan,1.962
+subway_bleecker_st_6,Bleecker St,subway,40.725915,-73.994659,Manhattan,1.962
+subway_spring_st_ce,Spring St,subway,40.726227,-74.003739,Manhattan,1.962
+subway_houston_st_1,Houston St,subway,40.728251,-74.005367,Manhattan,1.962
+subway_astor_pl_6,Astor Pl,subway,40.730054,-73.99107,Manhattan,0.852
+subway_8_st_nyu_rw,8 St-NYU,subway,40.730328,-73.992629,Manhattan,1.161
+subway_1_av_l,1 Av,subway,40.730953,-73.981628,Manhattan,0.852
+subway_w_4_st_wash_sq_abcdefm,W 4 St-Wash Sq,subway,40.732338,-74.000495,Manhattan,1.161
+subway_3_av_l,3 Av,subway,40.732849,-73.986122,Manhattan,0.852
+subway_christopher_st_stonewall_1,Christopher St-Stonewall,subway,40.733422,-74.002906,Manhattan,1.161
+subway_14_st_union_sq_456,14 St-Union Sq,subway,40.734673,-73.989951,Manhattan,1.19
+subway_14_st_union_sq_l,14 St-Union Sq,subway,40.734789,-73.99073,Manhattan,0.81
+subway_14_st_union_sq_nqrw,14 St-Union Sq,subway,40.735736,-73.990568,Manhattan,0.81
+subway_6_av_l,6 Av,subway,40.737335,-73.996786,Manhattan,0.81
+subway_14_st_123,14 St,subway,40.737826,-74.000201,Manhattan,0.81
+subway_14_st_fm,14 St,subway,40.738228,-73.996209,Manhattan,0.81
+subway_8_av_l,8 Av,subway,40.739777,-74.002578,Manhattan,0.81
+subway_23_st_baruch_college_6,23 St-Baruch College,subway,40.739864,-73.986599,Manhattan,1.962
+subway_14_st_ace,14 St,subway,40.740893,-74.00169,Manhattan,0.0
+subway_18_st_1,18 St,subway,40.74104,-73.997871,Manhattan,0.0
+subway_23_st_rw,23 St,subway,40.741303,-73.989344,Manhattan,0.0
+subway_23_st_fm,23 St,subway,40.742878,-73.992821,Manhattan,0.0
+subway_28_st_6,28 St,subway,40.74307,-73.984264,Manhattan,1.962
+subway_23_st_1,23 St,subway,40.744081,-73.995657,Manhattan,0.0
+subway_28_st_rw,28 St,subway,40.745494,-73.988691,Manhattan,0.331
+subway_23_st_ce,23 St,subway,40.745906,-73.998041,Manhattan,0.0
+subway_33_st_6,33 St,subway,40.746081,-73.982076,Manhattan,1.962
+subway_28_st_1,28 St,subway,40.747215,-73.993365,Manhattan,0.0
+subway_34_st_herald_sq_nqrw,34 St-Herald Sq,subway,40.749567,-73.98795,Manhattan,1.962
+subway_34_st_herald_sq_bdfm,34 St-Herald Sq,subway,40.749719,-73.987823,Manhattan,1.962
+subway_34_st_penn_station_123,34 St-Penn Station,subway,40.750373,-73.991057,Manhattan,0.0
+subway_grand_central_42_st_7,Grand Central-42 St,subway,40.751431,-73.976041,Manhattan,0.0
+subway_grand_central_42_st_456,Grand Central-42 St,subway,40.751776,-73.976848,Manhattan,0.0
+subway_34_st_penn_station_ace,34 St-Penn Station,subway,40.752287,-73.993391,Manhattan,0.0
+subway_grand_central_42_st_s,Grand Central-42 St,subway,40.752769,-73.979189,Manhattan,0.0
+subway_5_av_7,5 Av,subway,40.753821,-73.981963,Manhattan,0.0
+subway_42_st_bryant_pk_bdfm,42 St-Bryant Pk,subway,40.754222,-73.984569,Manhattan,0.0
+subway_times_sq_42_st_nqrw,Times Sq-42 St,subway,40.754672,-73.986754,Manhattan,0.0
+water_manhattan_sewage_pump_station,Manhattan Sewage Pump Station,water,40.726324,-73.97354,Manhattan,1.175
+water_red_hook_poll_control_plant,Red Hook Poll Control Plant,water,40.703964,-73.978522,Manhattan,0.0
+water_red_hook_pollution_plant,Red Hook Pollution Plant,water,40.702446,-73.979792,Manhattan,0.0
+water_grand_canal_court_park,Grand Canal Court Park,water,40.722303,-74.00504,Manhattan,1.962
+water_brooklyn_navy_yard_admiral_row,Brooklyn Navy Yard-Admiral Row,water,40.698828,-73.979245,Manhattan,0.0
+water_red_hook_wwtp,Red Hook Wwtp,water,40.698639,-73.975396,Manhattan,0.0
+water_newton_creek_wwtp,Newton Creek Wwtp,water,40.733638,-73.947611,Manhattan,0.0
+fuel_station_citgo_000,Citgo (Citgo),fuel,40.700068,-73.961321,Manhattan,0.0
+fuel_station_emporium_001,Emporium,fuel,40.697622,-73.969477,Manhattan,0.0
+fuel_station_citgo_002,Citgo (Citgo),fuel,40.694156,-73.961379,Manhattan,0.0
+fuel_station_bp_003,BP (BP),fuel,40.700769,-73.962546,Manhattan,0.0
+fuel_station_sunoco_004,Sunoco,fuel,40.697967,-73.961749,Manhattan,0.0
+fuel_station_mobil_005,Mobil (Mobil),fuel,40.694496,-73.983465,Manhattan,0.0
+fuel_station_exxon_006,Exxon (Exxon),fuel,40.759698,-74.027426,Manhattan,0.0
+fuel_station_mobil_007,Mobil (Mobil),fuel,40.755974,-73.997876,Manhattan,0.195
+fuel_station_speedway_008,Speedway (Speedway),fuel,40.754082,-74.029288,Manhattan,0.0
+fuel_station_bp_009,BP (BP),fuel,40.753989,-74.028962,Manhattan,0.0
+fuel_station_sunoco_010,Sunoco (Sunoco),fuel,40.753074,-74.029629,Manhattan,0.0
+fuel_station_bp_011,BP (BP),fuel,40.73515,-73.974516,Manhattan,0.331
+fuel_station_mobil_012,Mobil (Mobil),fuel,40.738991,-74.003482,Manhattan,0.81
+fuel_terminal_bayonne_terminal_complex,Bayonne Terminal Complex,fuel,40.662,-74.096,Manhattan,0.0
+fuel_terminal_tremley_point_terminal_linden_nj,"Tremley Point Terminal (Linden, NJ)",fuel,40.628,-74.22,Manhattan,0.0
+fuel_terminal_perth_amboy_terminal,Perth Amboy Terminal,fuel,40.508,-74.264,Manhattan,0.0
+fuel_terminal_bronx_terminal_hunts_point,Bronx Terminal (Hunts Point),fuel,40.81,-73.88,Manhattan,0.0
+fuel_terminal_brooklyn_terminal_gowanus,Brooklyn Terminal (Gowanus),fuel,40.673,-73.99,Manhattan,0.0
+fuel_terminal_staten_island_terminal_howland_hoo,Staten Island Terminal (Howland Hook),fuel,40.642,-74.17,Manhattan,0.0
