@@ -1,0 +1,1280 @@
+node_id,fail_freq,mean_fail_time_h,p50_fail_time_h,p95_fail_time_h,name,infra_type,borough,lat,lon,flood_extreme_2080_depth_m
+subway_saratoga_av_3,1.0,0.0,0,0,Saratoga Av,subway,Brooklyn,40.661453,-73.916327,0.6
+subway_franklin_st_1,1.0,0.0,0,0,Franklin St,subway,Manhattan,40.719318,-74.006886,0.6
+subway_neptune_av_f,1.0,0.0,0,0,Neptune Av,subway,Brooklyn,40.581011,-73.974574,0.6
+subway_pennsylvania_av_3,1.0,0.0,0,0,Pennsylvania Av,subway,Queens,40.664635,-73.894895,0.6
+telecom_cluster_00578,1.0,0.7,0,6,AT&T cluster,telecom,Manhattan,40.7204,-73.96512,0.8
+telecom_cluster_00659,1.0,0.4,0,0,AT&T cluster,telecom,Manhattan,40.73025,-73.9751,0.8
+subway_church_av_25,1.0,0.0,0,0,Church Av,subway,Brooklyn,40.650843,-73.949575,0.6
+subway_knickerbocker_av_m,1.0,0.0,0,0,Knickerbocker Av,subway,Brooklyn,40.698664,-73.919711,0.6
+subway_canal_st_1,1.0,0.0,0,0,Canal St,subway,Manhattan,40.722854,-74.006277,0.6
+subway_157_st_1,1.0,0.0,0,0,157 St,subway,Manhattan,40.834041,-73.94489,0.6
+telecom_cluster_02692,1.0,0.6,0,0,T-Mobile cluster,telecom,Manhattan,40.720644,-73.964144,0.8
+subway_lorimer_st_jm,1.0,0.0,0,0,Lorimer St,subway,Manhattan,40.703869,-73.947408,0.6
+subway_canal_st_rw,1.0,0.0,0,0,Canal St,subway,Manhattan,40.719527,-74.001775,0.6
+subway_canal_st_nq,1.0,0.0,0,0,Canal St,subway,Manhattan,40.718383,-74.00046,0.6
+subway_longwood_av_6,1.0,0.0,0,0,Longwood Av,subway,Bronx,40.816104,-73.896435,0.6
+subway_e_149_st_6,1.0,0.0,0,0,E 149 St,subway,Bronx,40.812118,-73.904098,0.6
+subway_bay_pkwy_d,1.0,0.0,0,0,Bay Pkwy,subway,Brooklyn,40.601875,-73.993728,0.6
+subway_86_st_r,1.0,0.0,0,0,86 St,subway,Brooklyn,40.622687,-74.028398,0.6
+subway_flushing_av_g,1.0,0.0,0,0,Flushing Av,subway,Manhattan,40.700377,-73.950234,0.6
+subway_w_4_st_wash_sq_abcdefm,1.0,0.0,0,0,W 4 St-Wash Sq,subway,Manhattan,40.732338,-74.000495,0.6
+subway_new_lots_av_3,1.0,0.0,0,0,New Lots Av,subway,Queens,40.666235,-73.884079,0.6
+subway_gates_av_jz,1.0,0.0,0,0,Gates Av,subway,Brooklyn,40.68963,-73.92227,0.6
+subway_jackson_av_25,1.0,0.0,0,0,Jackson Av,subway,Bronx,40.81649,-73.907807,0.6
+subway_lexington_av_53_st_ef,1.0,0.0,0,0,Lexington Av/53 St,subway,Manhattan,40.757552,-73.969055,0.6
+subway_canal_st_6,1.0,0.0,0,0,Canal St,subway,Manhattan,40.718803,-74.000193,0.6
+subway_canal_st_ace,1.0,0.0,0,0,Canal St,subway,Manhattan,40.720824,-74.005229,0.6
+subway_bergen_st_fg,1.0,0.0,0,0,Bergen St,subway,Brooklyn,40.686145,-73.990862,0.6
+subway_176_st_4,1.0,0.0,0,0,176 St,subway,Bronx,40.84848,-73.911794,0.6
+subway_80_st_a,1.0,0.0,0,0,80 St,subway,Queens,40.679371,-73.858992,0.6
+subway_newkirk_av_little_haiti_25,1.0,0.0,0,0,Newkirk Av-Little Haiti,subway,Brooklyn,40.639967,-73.948411,0.6
+subway_intervale_av_25,1.0,0.0,0,0,Intervale Av,subway,Bronx,40.822181,-73.896736,0.6
+subway_sutphin_blvd_archer_av_jfk_airport_ejz,1.0,0.0,0,0,Sutphin Blvd-Archer Av-JFK Airport,subway,Queens,40.700486,-73.807969,0.6
+telecom_cluster_02953,0.999,25.5,24,24,T-Mobile cluster,telecom,Manhattan,40.746029,-73.981186,0.0
+telecom_cluster_02984,0.999,3.3,0,24,T-Mobile cluster,telecom,Queens,40.743667,-73.7747,0.6
+telecom_cluster_02897,0.999,25.5,24,24,T-Mobile cluster,telecom,Manhattan,40.73884,-73.98014,0.0
+telecom_cluster_02793,0.999,0.6,0,6,T-Mobile cluster,telecom,Manhattan,40.729846,-73.974677,0.8
+telecom_cluster_00804,0.999,3.8,0,24,AT&T cluster,telecom,Queens,40.74305,-73.7786,0.6
+telecom_cluster_02954,0.999,25.5,24,24,T-Mobile cluster,telecom,Manhattan,40.74477,-73.97417,0.0
+telecom_cluster_02955,0.999,25.5,24,24,T-Mobile cluster,telecom,Manhattan,40.74551,-73.97072,0.0
+telecom_cluster_03017,0.999,25.5,24,24,T-Mobile cluster,telecom,Manhattan,40.751128,-73.975495,0.0
+telecom_cluster_02839,0.999,0.5,0,0,T-Mobile cluster,telecom,Manhattan,40.735088,-73.974529,0.8
+telecom_cluster_02899,0.999,25.5,24,24,T-Mobile cluster,telecom,Manhattan,40.74036,-73.97154,0.0
+telecom_cluster_02898,0.999,25.5,24,24,T-Mobile cluster,telecom,Manhattan,40.740425,-73.974595,0.0
+telecom_cluster_01331,0.999,11.1,0,96,AT&T cluster,telecom,Bronx,40.845,-73.9098,0.6
+telecom_cluster_00616,0.998,1.2,0,6,AT&T cluster,telecom,Manhattan,40.7243,-73.973233,0.6
+telecom_cluster_00805,0.998,4.2,0,24,AT&T cluster,telecom,Queens,40.7436,-73.77485,0.6
+telecom_cluster_02741,0.998,1.6,0,6,T-Mobile cluster,telecom,Manhattan,40.724438,-73.974475,0.6
+telecom_cluster_02694,0.997,1.2,0,6,T-Mobile cluster,telecom,Manhattan,40.7186,-73.9526,0.6
+telecom_cluster_02744,0.997,0.5,0,0,T-Mobile cluster,telecom,Manhattan,40.7243,-73.9619,0.8
+subway_183_st_4,0.996,0.3,0,0,183 St,subway,Bronx,40.858407,-73.903879,0.2
+telecom_cluster_03906,0.995,0.9,0,0,T-Mobile cluster,telecom,Bronx,40.87552,-73.91518,0.8
+subway_norwood_av_jz,0.994,0.2,0,0,Norwood Av,subway,Queens,40.68141,-73.880039,0.2
+telecom_cluster_03261,0.993,0.8,0,0,T-Mobile cluster,telecom,Queens,40.768583,-73.864767,0.8
+telecom_cluster_02639,0.993,11.7,6,24,T-Mobile cluster,telecom,Manhattan,40.7157,-73.951122,0.0
+telecom_cluster_02695,0.993,11.7,6,24,T-Mobile cluster,telecom,Manhattan,40.718583,-73.949933,0.0
+telecom_cluster_00541,0.993,11.7,6,24,AT&T cluster,telecom,Manhattan,40.715156,-73.951,0.0
+telecom_cluster_02636,0.993,11.7,6,24,T-Mobile cluster,telecom,Manhattan,40.716214,-73.965414,0.0
+fuel_station_unknown_gas_station_1150,0.993,2.3,0,6,Unknown Gas Station,fuel,Manhattan,40.718372,-73.947804,0.6
+telecom_cluster_01526,0.993,3.1,0,24,AT&T cluster,telecom,Bronx,40.8854,-73.8979,0.6
+telecom_cluster_03928,0.992,2.7,0,24,T-Mobile cluster,telecom,Bronx,40.88098,-73.90134,0.6
+fuel_station_bp_0509,0.991,2.3,0,6,BP (BP),fuel,Manhattan,40.730907,-73.951345,0.6
+telecom_cluster_02952,0.991,43.0,48,96,T-Mobile cluster,telecom,Manhattan,40.745675,-73.985675,0.2
+telecom_cluster_00656,0.989,11.5,6,24,AT&T cluster,telecom,Manhattan,40.730015,-73.98957,0.0
+telecom_cluster_02838,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.735413,-73.979627,0.0
+water_manhattan_sewage_pump_station,0.989,11.5,6,24,Manhattan Sewage Pump Station,water,Manhattan,40.726324,-73.97354,0.0
+hospital_nyu_langone_hospitals,0.989,48.8,48,48,Nyu Langone Hospitals,hospital,Manhattan,40.741471,-73.973622,0.0
+telecom_cluster_02792,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.730012,-73.980331,0.0
+telecom_cluster_02588,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.7109,-73.94001,0.0
+telecom_cluster_02740,0.989,8.7,6,24,T-Mobile cluster,telecom,Manhattan,40.724193,-73.980693,0.2
+telecom_cluster_02896,0.989,58.2,48,96,T-Mobile cluster,telecom,Manhattan,40.740017,-73.985583,0.0
+telecom_cluster_02687,0.989,58.2,48,96,T-Mobile cluster,telecom,Manhattan,40.719972,-73.989286,0.0
+telecom_cluster_02742,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.72622,-73.97106,0.0
+hospital_mount_sinai_beth_israel,0.989,48.8,48,48,Mount Sinai Beth Israel,hospital,Manhattan,40.732666,-73.981598,0.0
+telecom_cluster_02738,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.724733,-73.98983,0.0
+telecom_cluster_02690,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.719993,-73.975073,0.0
+hospital_nyu_langone_orthopedic_hospital,0.989,48.8,48,48,Nyu Langone Orthopedic Hospital,hospital,Manhattan,40.734389,-73.982971,0.0
+telecom_cluster_00574,0.989,58.2,48,96,AT&T cluster,telecom,Manhattan,40.720543,-73.990357,0.0
+telecom_cluster_02790,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.730273,-73.989905,0.0
+telecom_cluster_02632,0.989,58.2,48,96,T-Mobile cluster,telecom,Manhattan,40.716327,-73.985136,0.0
+telecom_cluster_02739,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.724884,-73.985058,0.0
+telecom_cluster_02688,0.989,58.2,48,96,T-Mobile cluster,telecom,Manhattan,40.72027,-73.985126,0.0
+telecom_cluster_02791,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.729497,-73.984994,0.0
+hospital_bellevue_hospital_center,0.989,48.8,48,48,Bellevue Hospital Center,hospital,Manhattan,40.739245,-73.975488,0.0
+hospital_new_york_eye_and_ear_infirmary_of_mount,0.989,48.8,48,48,New York Eye And Ear Infirmary Of Mount Sinai,hospital,Manhattan,40.731875,-73.984599,0.0
+telecom_cluster_00743,0.989,58.2,48,96,AT&T cluster,telecom,Manhattan,40.740653,-73.984728,0.0
+telecom_cluster_00788,0.989,58.2,48,96,AT&T cluster,telecom,Manhattan,40.744833,-73.9853,0.0
+telecom_cluster_02689,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.720722,-73.980713,0.0
+fuel_station_bp_0850,0.989,1.3,0,6,BP (BP),fuel,Manhattan,40.73515,-73.974516,0.8
+telecom_cluster_02837,0.989,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.734733,-73.984944,0.0
+telecom_cluster_02635,0.988,11.5,6,24,T-Mobile cluster,telecom,Manhattan,40.7141,-73.96838,0.0
+telecom_cluster_00852,0.985,2.3,0,24,AT&T cluster,telecom,Queens,40.7484,-73.7591,0.6
+fuel_station_unknown_gas_station_0549,0.983,10.6,6,48,Unknown Gas Station,fuel,Queens,40.744204,-73.775535,0.0
+telecom_cluster_02813,0.983,2.0,0,0,T-Mobile cluster,telecom,Queens,40.72952,-73.8358,0.8
+telecom_cluster_00762,0.983,31.8,24,96,AT&T cluster,telecom,Queens,40.7376,-73.7664,0.0
+telecom_cluster_00808,0.983,2.6,0,24,AT&T cluster,telecom,Queens,40.7473,-73.7623,0.6
+telecom_cluster_02985,0.983,31.8,24,96,T-Mobile cluster,telecom,Queens,40.7449,-73.77035,0.0
+telecom_cluster_02930,0.983,31.8,24,96,T-Mobile cluster,telecom,Queens,40.7404,-73.7696,0.0
+hospital_new_york_presbyterian_hospital___allen_h,0.983,32.0,24,48,New York-Presbyterian Hospital - Allen Hospital,hospital,Bronx,40.873338,-73.913024,0.0
+water_marble_hill_sewage_pump_statn,0.983,8.0,0,24,Marble Hill Sewage Pump Statn,water,Bronx,40.873513,-73.90926,0.6
+hospital_sbh_health_system,0.983,32.0,24,48,Sbh Health System,hospital,Bronx,40.853362,-73.890845,0.0
+hospital_bronxcare_hospital_center,0.983,32.0,24,48,Bronxcare Hospital Center,hospital,Bronx,40.843477,-73.911034,0.0
+power_alley_park,0.983,10.6,6,48,Alley Park,power,Queens,40.743723,-73.761485,0.0
+telecom_cluster_02145,0.982,2.6,0,24,T-Mobile cluster,telecom,Queens,40.664575,-73.895,0.6
+telecom_cluster_00540,0.981,7.9,6,24,AT&T cluster,telecom,Manhattan,40.7138,-73.95405,0.2
+power_sutphin,0.979,10.7,6,48,Sutphin,power,Queens,40.689023,-73.79547,0.0
+water_well_station_#11,0.979,32.0,24,96,Well Station #11,water,Queens,40.68552,-73.801692,0.0
+telecom_cluster_02343,0.979,2.7,0,24,T-Mobile cluster,telecom,Queens,40.683,-73.8057,0.6
+telecom_cluster_02342,0.979,32.0,24,96,T-Mobile cluster,telecom,Queens,40.6856,-73.80795,0.0
+telecom_cluster_03259,0.978,6.1,0,48,T-Mobile cluster,telecom,Queens,40.77138,-73.87456,0.6
+fuel_station_gulf_0508,0.975,5.6,6,6,Gulf (Gulf),fuel,Manhattan,40.733605,-73.952461,0.2
+subway_metropolitan_av_g,0.973,6.0,6,6,Metropolitan Av,subway,Manhattan,40.712792,-73.951418,0.0
+telecom_cluster_04137,0.973,10.9,6,24,T-Mobile Metro cluster,telecom,Manhattan,40.7147,-73.9443,0.0
+fuel_station_gulf_0275,0.973,6.0,6,6,Gulf (Gulf),fuel,Manhattan,40.728557,-73.950116,0.0
+telecom_cluster_00619,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.724967,-73.949067,0.0
+telecom_cluster_00615,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7235,-73.9788,0.0
+telecom_cluster_00577,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7184,-73.9711,0.0
+telecom_cluster_00581,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.720117,-73.945033,0.0
+subway_lorimer_st_l,0.973,6.0,6,6,Lorimer St,subway,Manhattan,40.714063,-73.950275,0.0
+telecom_cluster_00657,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.730375,-73.9855,0.0
+telecom_cluster_02794,0.973,0.6,0,6,T-Mobile cluster,telecom,Manhattan,40.728625,-73.97195,0.6
+subway_grand_st_l,0.973,6.0,6,6,Grand St,subway,Manhattan,40.711926,-73.94067,0.0
+subway_nassau_av_g,0.973,6.0,6,6,Nassau Av,subway,Manhattan,40.724635,-73.951277,0.0
+telecom_cluster_00658,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7285,-73.9786,0.0
+telecom_cluster_00580,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.72065,-73.9505,0.0
+subway_1_av_l,0.973,6.0,6,6,1 Av,subway,Manhattan,40.730953,-73.981628,0.0
+subway_3_av_l,0.973,6.0,6,6,3 Av,subway,Manhattan,40.732849,-73.986122,0.0
+telecom_cluster_02638,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.713386,-73.953829,0.0
+telecom_cluster_00576,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.719067,-73.976067,0.0
+telecom_cluster_00660,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7298,-73.97045,0.0
+telecom_cluster_00539,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7134,-73.9613,0.0
+telecom_cluster_00702,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7344,-73.9723,0.0
+telecom_cluster_00661,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7277,-73.965,0.0
+telecom_cluster_02691,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.7199,-73.970475,0.0
+telecom_cluster_00579,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7216,-73.960733,0.0
+telecom_cluster_00538,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7158,-73.965575,0.0
+telecom_cluster_02743,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.7264,-73.9664,0.0
+fuel_station_bolla_0409,0.973,6.0,6,6,Bolla,fuel,Manhattan,40.720575,-73.944284,0.0
+telecom_cluster_02840,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.7357,-73.972067,0.0
+telecom_cluster_02745,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.725267,-73.95,0.0
+telecom_cluster_02841,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.7339,-73.9645,0.0
+telecom_cluster_02640,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.714753,-73.9442,0.0
+telecom_cluster_00662,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7275,-73.9499,0.0
+telecom_cluster_02696,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.720129,-73.944486,0.0
+subway_graham_av_l,0.973,6.0,6,6,Graham Av,subway,Manhattan,40.714565,-73.944053,0.0
+subway_bedford_av_l,0.973,6.0,6,6,Bedford Av,subway,Manhattan,40.717304,-73.956872,0.0
+telecom_cluster_00613,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.72385,-73.990025,0.0
+telecom_cluster_02795,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.7291,-73.9671,0.0
+telecom_cluster_00618,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7226,-73.9589,0.0
+telecom_cluster_00537,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.71485,-73.969375,0.0
+telecom_cluster_04139,0.973,10.9,6,24,T-Mobile Metro cluster,telecom,Manhattan,40.722,-73.9811,0.0
+telecom_cluster_02637,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.716,-73.961,0.0
+telecom_cluster_00614,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7247,-73.98705,0.0
+subway_greenpoint_av_g,0.973,6.0,6,6,Greenpoint Av,subway,Manhattan,40.731352,-73.954449,0.0
+telecom_cluster_02796,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.729725,-73.950425,0.0
+power_east_13th_street,0.973,1.6,0,6,East 13Th Street,power,Manhattan,40.727544,-73.974622,0.8
+telecom_cluster_00701,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7366,-73.9792,0.0
+telecom_cluster_02693,0.973,10.9,6,24,T-Mobile cluster,telecom,Manhattan,40.7208,-73.962,0.0
+telecom_cluster_00617,0.973,10.9,6,24,AT&T cluster,telecom,Manhattan,40.7256,-73.9718,0.0
+subway_junius_st_3,0.97,0.0,0,0,Junius St,subway,Brooklyn,40.663515,-73.902447,0.2
+subway_jefferson_st_l,0.97,0.0,0,0,Jefferson St,subway,Queens,40.706607,-73.922913,0.2
+telecom_cluster_03250,0.97,0.3,0,0,T-Mobile cluster,telecom,Manhattan,40.7713,-73.94654,0.8
+subway_court_sq_7,0.969,0.0,0,0,Court Sq,subway,Manhattan,40.747023,-73.945264,0.2
+subway_103_st_corona_plaza_7,0.969,0.1,0,0,103 St-Corona Plaza,subway,Queens,40.749865,-73.8627,0.2
+telecom_cluster_02525,0.969,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.70447,-74.006215,0.8
+telecom_cluster_03371,0.968,0.4,0,0,T-Mobile cluster,telecom,Manhattan,40.784993,-73.94068,0.8
+telecom_cluster_02863,0.968,0.4,0,0,T-Mobile cluster,telecom,Queens,40.7327,-73.8403,0.8
+subway_104_st_jz,0.967,0.0,0,0,104 St,subway,Queens,40.695178,-73.84433,0.2
+telecom_cluster_00626,0.966,3.1,0,48,AT&T cluster,telecom,Queens,40.7227,-73.848,0.6
+subway_woodhaven_blvd_jz,0.966,0.0,0,0,Woodhaven Blvd,subway,Queens,40.693879,-73.851576,0.2
+fuel_station_peninsula_blvd_0003,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.631104,-73.728896,0.0
+fuel_station_conoco_0198,0.965,6.0,6,6,Conoco (Conoco),fuel,Queens,40.62828,-73.73682,0.0
+telecom_cluster_00088,0.965,24.0,24,24,AT&T cluster,telecom,Queens,40.6279,-73.7393,0.0
+fuel_station_peninsula_blvd_0065,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.630981,-73.729304,0.0
+telecom_cluster_00120,0.965,0.0,0,0,AT&T cluster,telecom,Queens,40.64185,-73.744,0.8
+fuel_station_peninsula_blvd_0054,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.633096,-73.72353,0.0
+fuel_station_bay_blvd_0079,0.965,6.0,6,6,Bay Blvd,fuel,Queens,40.628316,-73.737602,0.0
+fuel_station_bay_blvd_0033,0.965,6.0,6,6,Bay Blvd,fuel,Queens,40.628416,-73.737287,0.0
+power_tap135492,0.965,6.0,6,6,Tap135492,power,Queens,40.637483,-73.733018,0.0
+fuel_station_peninsula_blvd_0077,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.629438,-73.734121,0.0
+fuel_station_peninsula_blvd_0012,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.629652,-73.733452,0.0
+fuel_station_peninsula_blvd_0042,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.630331,-73.731339,0.0
+fuel_station_peninsula_blvd_0083,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.632059,-73.725894,0.0
+fuel_station_unknown_gas_station_0256,0.965,6.0,6,6,Unknown Gas Station,fuel,Queens,40.633865,-73.73985,0.0
+fuel_station_peninsula_blvd_0070,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.630834,-73.72977,0.0
+fuel_station_peninsula_blvd_0030,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.629978,-73.732439,0.0
+fuel_station_peninsula_blvd_0064,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.63057,-73.730594,0.0
+fuel_station_peninsula_blvd_0075,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.635224,-73.720981,0.0
+fuel_station_peninsula_blvd_0002,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.632652,-73.724265,0.0
+power_woodmere,0.965,6.0,6,6,Woodmere,power,Queens,40.636997,-73.73267,0.0
+fuel_station_peninsula_blvd_0016,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.631351,-73.728102,0.0
+fuel_station_peninsula_blvd_0051,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.631794,-73.726724,0.0
+fuel_station_peninsula_blvd_0017,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.63233,-73.725062,0.0
+fuel_station_ramp_0078,0.965,6.0,6,6,Ramp,fuel,Queens,40.627752,-73.739177,0.0
+fuel_station_peninsula_blvd_0088,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.628437,-73.737219,0.0
+fuel_station_bay_blvd_0061,0.965,6.0,6,6,Bay Blvd,fuel,Queens,40.628177,-73.738047,0.0
+fuel_station_peninsula_blvd_0050,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.631576,-73.727401,0.0
+subway_55_st_d,0.965,0.0,0,0,55 St,subway,Brooklyn,40.631435,-73.995476,0.2
+fuel_station_peninsula_blvd_0076,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.629786,-73.733036,0.0
+subway_houston_st_1,0.965,0.0,0,0,Houston St,subway,Manhattan,40.728251,-74.005367,0.2
+fuel_station_peninsula_blvd_0089,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.634131,-73.722406,0.0
+fuel_station_peninsula_blvd_0074,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.636354,-73.719525,0.0
+telecom_cluster_01954,0.965,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6388,-73.7545,0.0
+fuel_station_peninsula_blvd_0072,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.629305,-73.734538,0.0
+fuel_station_peninsula_blvd_0052,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.630175,-73.731825,0.0
+fuel_station_peninsula_blvd_0055,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.633611,-73.722938,0.0
+fuel_station_peninsula_blvd_0008,0.965,6.0,6,6,Peninsula Blvd,fuel,Queens,40.628871,-73.73588,0.0
+subway_cortlandt_st_rw,0.964,0.0,0,0,Cortlandt St,subway,Manhattan,40.710668,-74.011029,0.2
+telecom_cluster_02918,0.964,0.2,0,0,T-Mobile cluster,telecom,Queens,40.739267,-73.839233,0.8
+subway_rockaway_av_3,0.964,0.0,0,0,Rockaway Av,subway,Brooklyn,40.662549,-73.908946,0.2
+subway_brighton_beach_bq,0.964,0.0,0,0,Brighton Beach,subway,Brooklyn,40.577621,-73.961376,0.2
+telecom_cluster_03800,0.963,17.6,24,24,T-Mobile cluster,telecom,Bronx,40.853533,-73.907733,0.2
+telecom_cluster_02957,0.963,18.3,24,24,T-Mobile cluster,telecom,Manhattan,40.7443,-73.9578,0.2
+subway_central_av_m,0.963,0.0,0,0,Central Av,subway,Brooklyn,40.697857,-73.927397,0.2
+subway_avenue_n_f,0.963,0.0,0,0,Avenue N,subway,Brooklyn,40.61514,-73.974197,0.2
+subway_chauncey_st_jz,0.962,0.0,0,0,Chauncey St,subway,Brooklyn,40.682893,-73.910456,0.2
+telecom_cluster_03819,0.962,18.0,24,24,T-Mobile cluster,telecom,Bronx,40.85975,-73.92955,0.2
+subway_flushing_main_st_7,0.962,0.0,0,0,Flushing-Main St,subway,Queens,40.7596,-73.83003,0.2
+telecom_cluster_01749,0.961,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6005,-73.9257,0.8
+subway_borough_hall_45,0.961,0.0,0,0,Borough Hall,subway,Brooklyn,40.692404,-73.990151,0.2
+telecom_cluster_03856,0.96,17.9,24,24,T-Mobile cluster,telecom,Bronx,40.8674,-73.8974,0.2
+telecom_cluster_01237,0.96,0.0,0,0,AT&T cluster,telecom,Manhattan,40.8254,-73.9315,0.8
+telecom_cluster_02706,0.96,3.4,0,48,T-Mobile cluster,telecom,Queens,40.721686,-73.849364,0.6
+subway_avenue_x_f,0.96,0.0,0,0,Avenue X,subway,Brooklyn,40.58962,-73.97425,0.2
+subway_34_st_penn_station_ace,0.959,0.0,0,0,34 St-Penn Station,subway,Manhattan,40.752287,-73.993391,0.2
+fuel_station_unknown_gas_station_0679,0.959,1.8,0,6,Unknown Gas Station,fuel,Queens,40.665886,-73.884189,0.6
+subway_kings_hwy_f,0.959,0.0,0,0,Kings Hwy,subway,Brooklyn,40.603217,-73.972361,0.2
+subway_steinway_st_mr,0.959,0.0,0,0,Steinway St,subway,Queens,40.756879,-73.92074,0.2
+subway_104_st_a,0.959,0.0,0,0,104 St,subway,Queens,40.681711,-73.837683,0.2
+subway_85_st_forest_pkwy_j,0.958,0.0,0,0,85 St-Forest Pkwy,subway,Queens,40.692435,-73.86001,0.2
+telecom_cluster_00714,0.958,0.3,0,0,AT&T cluster,telecom,Queens,40.7352,-73.843867,0.8
+telecom_cluster_00832,0.958,0.0,0,0,AT&T cluster,telecom,Manhattan,40.749933,-74.007933,0.8
+telecom_cluster_03010,0.958,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.75022,-74.00786,0.8
+telecom_cluster_01897,0.958,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.63435,-74.195,0.8
+telecom_cluster_00753,0.958,0.2,0,0,AT&T cluster,telecom,Queens,40.739,-73.8399,0.8
+subway_18_st_1,0.958,0.0,0,0,18 St,subway,Manhattan,40.74104,-73.997871,0.2
+telecom_cluster_02226,0.958,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.674941,-73.989909,0.8
+subway_northern_blvd_mr,0.957,0.0,0,0,Northern Blvd,subway,Queens,40.752885,-73.906006,0.2
+telecom_cluster_03768,0.957,17.0,24,24,T-Mobile cluster,telecom,Bronx,40.84956,-73.91098,0.2
+telecom_cluster_02752,0.957,3.5,0,48,T-Mobile cluster,telecom,Queens,40.725769,-73.905177,0.6
+subway_79_st_d,0.957,0.0,0,0,79 St,subway,Brooklyn,40.613501,-74.00061,0.2
+subway_rector_st_1,0.957,0.0,0,0,Rector St,subway,Manhattan,40.707513,-74.013783,0.2
+water_water_storage_tank_#28,0.957,8.5,0,24,Water Storage Tank #28,water,Queens,40.673853,-73.810469,0.6
+subway_36_st_mr,0.957,0.0,0,0,36 St,subway,Queens,40.752039,-73.928781,0.2
+subway_halsey_st_j,0.957,0.0,0,0,Halsey St,subway,Brooklyn,40.68637,-73.916559,0.2
+telecom_cluster_03207,0.956,0.0,0,0,T-Mobile cluster,telecom,Queens,40.76505,-73.8395,0.8
+telecom_cluster_03853,0.956,17.6,24,24,T-Mobile cluster,telecom,Bronx,40.8654,-73.9221,0.2
+telecom_cluster_02980,0.956,0.2,0,0,T-Mobile cluster,telecom,Queens,40.7437,-73.8382,0.8
+subway_6_av_l,0.956,0.0,0,0,6 Av,subway,Manhattan,40.737335,-73.996786,0.2
+subway_18_av_d,0.956,0.0,0,0,18 Av,subway,Brooklyn,40.607954,-74.001736,0.2
+subway_jay_st_metrotech_acf,0.956,0.0,0,0,Jay St-MetroTech,subway,Brooklyn,40.692338,-73.987342,0.2
+telecom_cluster_01383,0.956,17.4,24,24,AT&T cluster,telecom,Manhattan,40.8562,-73.9329,0.2
+telecom_cluster_02225,0.956,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.674528,-73.995072,0.8
+telecom_cluster_02947,0.955,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.745625,-74.0083,0.8
+subway_bronx_park_east_25,0.955,0.0,0,0,Bronx Park East,subway,Bronx,40.848828,-73.868457,0.2
+subway_21_st_queensbridge_m,0.955,0.0,0,0,21 St-Queensbridge,subway,Manhattan,40.754203,-73.942836,0.2
+telecom_cluster_03823,0.955,18.2,24,24,T-Mobile cluster,telecom,Bronx,40.85865,-73.90375,0.2
+subway_23_st_1,0.955,0.0,0,0,23 St,subway,Manhattan,40.744081,-73.995657,0.2
+telecom_cluster_03797,0.954,17.9,24,24,T-Mobile cluster,telecom,Manhattan,40.8565,-73.9326,0.2
+telecom_cluster_03766,0.954,17.8,24,24,T-Mobile cluster,telecom,Bronx,40.849612,-73.92445,0.2
+telecom_cluster_03674,0.954,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.834783,-73.950017,0.8
+telecom_cluster_01868,0.953,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.630767,-74.1907,0.8
+subway_west_farms_sq_e_tremont_av_25,0.953,0.0,0,0,West Farms Sq-E Tremont Av,subway,Bronx,40.840295,-73.880049,0.2
+subway_25_av_d,0.953,0.0,0,0,25 Av,subway,Brooklyn,40.597704,-73.986829,0.2
+telecom_cluster_01750,0.953,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6007,-73.9029,0.8
+subway_49_st_nrw,0.953,0.0,0,0,49 St,subway,Manhattan,40.759901,-73.984139,0.2
+subway_broadway_g,0.953,0.0,0,0,Broadway,subway,Manhattan,40.706092,-73.950308,0.2
+telecom_cluster_01183,0.952,0.0,0,0,AT&T cluster,telecom,Manhattan,40.811133,-73.9347,0.8
+telecom_cluster_02842,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.7361,-73.9533,0.0
+telecom_cluster_03077,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.755158,-73.975037,0.0
+telecom_cluster_00879,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7527,-73.964,0.0
+telecom_cluster_03020,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.7477,-73.9619,0.0
+telecom_cluster_02900,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.74125,-73.9536,0.0
+telecom_cluster_00744,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.739967,-73.981133,0.0
+telecom_cluster_00745,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7397,-73.9732,0.0
+telecom_cluster_00703,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7356,-73.9551,0.0
+telecom_cluster_03076,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.754804,-73.980037,0.0
+subway_grand_central_42_st_456,0.952,6.0,6,6,Grand Central-42 St,subway,Manhattan,40.751776,-73.976848,0.0
+subway_grand_central_42_st_7,0.952,6.0,6,6,Grand Central-42 St,subway,Manhattan,40.751431,-73.976041,0.0
+telecom_cluster_03500,0.952,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.804269,-73.9308,0.8
+subway_vernon_blvd_jackson_av_7,0.952,6.0,6,6,Vernon Blvd-Jackson Av,subway,Manhattan,40.742626,-73.953581,0.0
+telecom_cluster_03015,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.750188,-73.985257,0.0
+telecom_cluster_00790,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7446,-73.9746,0.0
+telecom_cluster_00877,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.75376,-73.97472,0.0
+telecom_cluster_01202,0.952,0.0,0,0,AT&T cluster,telecom,Manhattan,40.81475,-73.93395,0.8
+subway_5_av_7,0.952,6.0,6,6,5 Av,subway,Manhattan,40.753821,-73.981963,0.0
+subway_33_st_6,0.952,6.0,6,6,33 St,subway,Manhattan,40.746081,-73.982076,0.0
+subway_grand_central_42_st_s,0.952,6.0,6,6,Grand Central-42 St,subway,Manhattan,40.752769,-73.979189,0.0
+telecom_cluster_03078,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.75505,-73.971117,0.0
+telecom_cluster_03571,0.952,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8155,-73.8,0.8
+power_east_36th_street,0.952,6.0,6,6,East 36Th Street,power,Manhattan,40.744947,-73.971336,0.0
+telecom_cluster_03018,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.749924,-73.968676,0.0
+subway_28_st_6,0.952,6.0,6,6,28 St,subway,Manhattan,40.74307,-73.984264,0.0
+telecom_cluster_00791,0.952,0.0,0,0,AT&T cluster,telecom,Manhattan,40.744367,-73.971033,0.8
+telecom_cluster_00839,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.751175,-73.976575,0.0
+telecom_cluster_03016,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.750914,-73.979778,0.0
+telecom_cluster_00789,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.745125,-73.981375,0.0
+telecom_cluster_00837,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.749617,-73.984917,0.0
+telecom_cluster_00876,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.754389,-73.980433,0.0
+telecom_cluster_03019,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.750956,-73.966038,0.0
+telecom_cluster_00838,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7522,-73.9801,0.0
+telecom_cluster_00840,0.952,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7477,-73.9684,0.0
+subway_42_st_bryant_pk_bdfm,0.952,6.0,6,6,42 St-Bryant Pk,subway,Manhattan,40.754222,-73.984569,0.0
+telecom_cluster_02956,0.952,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.7449,-73.9638,0.0
+telecom_cluster_00544,0.951,0.0,0,0,AT&T cluster,telecom,Queens,40.7156,-73.9299,0.8
+subway_mosholu_pkwy_4,0.951,0.0,0,0,Mosholu Pkwy,subway,Bronx,40.87975,-73.884655,0.2
+telecom_cluster_03214,0.951,0.0,0,0,T-Mobile cluster,telecom,Queens,40.765325,-73.758625,0.8
+telecom_cluster_01703,0.951,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.5845,-73.9248,0.8
+subway_23_st_ce,0.951,0.0,0,0,23 St,subway,Manhattan,40.745906,-73.998041,0.2
+subway_116_st_23,0.95,0.0,0,0,116 St,subway,Manhattan,40.802098,-73.949625,0.2
+telecom_cluster_01860,0.95,0.0,0,0,T-Mobile cluster,telecom,Queens,40.623,-73.8941,0.8
+subway_canal_st_jz,0.95,0.0,0,0,Canal St,subway,Manhattan,40.718092,-73.999892,0.2
+telecom_cluster_03187,0.95,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.765114,-74.00015,0.8
+telecom_cluster_00292,0.95,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.679967,-74.014967,0.8
+telecom_cluster_02812,0.949,0.3,0,0,T-Mobile cluster,telecom,Queens,40.730967,-73.839433,0.8
+telecom_cluster_00293,0.948,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.68025,-74.0095,0.8
+telecom_cluster_01668,0.948,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.5558,-74.2136,0.8
+subway_rockaway_blvd_a,0.948,0.0,0,0,Rockaway Blvd,subway,Queens,40.680429,-73.843853,0.2
+telecom_cluster_03617,0.947,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.825412,-73.934338,0.8
+telecom_cluster_04011,0.947,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.89535,-73.86205,0.8
+telecom_cluster_00021,0.947,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.579,-73.9724,0.8
+telecom_cluster_00416,0.946,0.0,0,0,AT&T cluster,telecom,Manhattan,40.70098,-74.01168,0.8
+fuel_station_unknown_gas_station_1067,0.946,1.0,0,6,Unknown Gas Station,fuel,Queens,40.594089,-73.789472,0.8
+subway_30_av_nw,0.946,0.0,0,0,30 Av,subway,Queens,40.766779,-73.921479,0.2
+telecom_cluster_03817,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8602,-73.9551,0.0
+telecom_cluster_03882,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8685,-73.9249,0.0
+telecom_cluster_03679,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.835332,-73.921508,0.0
+telecom_cluster_03953,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.88595,-73.89545,0.0
+telecom_cluster_03710,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.841375,-73.916812,0.0
+telecom_cluster_01304,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.839433,-73.929333,0.0
+telecom_cluster_03905,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.875667,-73.919633,0.0
+subway_191_st_1,0.945,6.0,6,6,191 St,subway,Bronx,40.855225,-73.929412,0.0
+telecom_cluster_03885,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8724,-73.9065,0.0
+subway_168_st_ac,0.945,6.0,6,6,168 St,subway,Manhattan,40.840719,-73.939561,0.0
+telecom_cluster_03908,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8747,-73.905375,0.0
+telecom_cluster_01527,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8859,-73.8929,0.0
+telecom_cluster_01465,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8695,-73.9207,0.0
+water_riverdale_park,0.945,24.0,24,24,Riverdale Park,water,Bronx,40.890145,-73.918398,0.0
+telecom_cluster_03949,0.945,24.0,24,24,T-Mobile cluster,telecom,Brooklyn,40.8832,-73.9343,0.0
+telecom_cluster_03824,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.86155,-73.9019,0.0
+telecom_cluster_01439,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8647,-73.9102,0.0
+telecom_cluster_01489,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.87615,-73.90375,0.0
+subway_kingsbridge_rd_4,0.945,6.0,6,6,Kingsbridge Rd,subway,Bronx,40.86776,-73.897174,0.0
+telecom_cluster_03907,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.874025,-73.91085,0.0
+fuel_station_171_0939,0.945,6.0,6,6,171 (Gulf),fuel,Bronx,40.894862,-73.882572,0.0
+telecom_cluster_03820,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.860217,-73.926067,0.0
+telecom_cluster_03737,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.845575,-73.9257,0.0
+telecom_cluster_01329,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.845125,-73.9214,0.0
+telecom_cluster_03881,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8682,-73.9315,0.0
+subway_dyckman_st_a,0.945,6.0,6,6,Dyckman St,subway,Bronx,40.865491,-73.927271,0.0
+telecom_cluster_04034,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.89955,-73.91575,0.0
+telecom_cluster_04006,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8962,-73.916933,0.0
+telecom_cluster_03799,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.854833,-73.919617,0.0
+fuel_station_mobil_0579,0.945,6.0,6,6,Mobil (Mobil),fuel,Bronx,40.849292,-73.916529,0.0
+subway_van_cortlandt_park_242_st_1,0.945,6.0,6,6,Van Cortlandt Park-242 St,subway,Bronx,40.889248,-73.898583,0.0
+telecom_cluster_01402,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.85905,-73.9466,0.0
+telecom_cluster_03951,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8852,-73.9215,0.0
+telecom_cluster_01432,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8671,-73.9543,0.0
+telecom_cluster_01438,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8671,-73.9143,0.0
+fuel_station_sunoco_0834,0.945,6.0,6,6,Sunoco (Sunoco),fuel,Bronx,40.870447,-73.914813,0.0
+telecom_cluster_03706,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8403,-73.94635,0.0
+subway_mt_eden_av_4,0.945,6.0,6,6,Mt Eden Av,subway,Bronx,40.844434,-73.914685,0.0
+telecom_cluster_01434,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8657,-73.9403,0.0
+telecom_cluster_03764,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.848856,-73.939922,0.0
+telecom_cluster_03733,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8442,-73.9539,0.0
+telecom_cluster_03765,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.848167,-73.9363,0.0
+telecom_cluster_03880,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8696,-73.9362,0.0
+telecom_cluster_03677,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.835125,-73.931875,0.0
+telecom_cluster_03767,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.852167,-73.9214,0.0
+telecom_cluster_01403,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.858433,-73.929467,0.0
+fuel_station_mobil_0808,0.945,6.0,6,6,Mobil (Mobil),fuel,Bronx,40.885598,-73.900104,0.0
+subway_238_st_1,0.945,6.0,6,6,238 St,subway,Bronx,40.884667,-73.90087,0.0
+telecom_cluster_03761,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8522,-73.9553,0.0
+subway_inwood_207_st_a,0.945,6.0,6,6,Inwood-207 St,subway,Bronx,40.868072,-73.919899,0.0
+telecom_cluster_01464,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8681,-73.9253,0.0
+telecom_cluster_03904,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8731,-73.9518,0.0
+telecom_cluster_01303,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.83895,-73.9328,0.0
+subway_168_st_washington_hts_1,0.945,6.0,6,6,168 St-Washington Hts,subway,Manhattan,40.840556,-73.940133,0.0
+fuel_station_bp_0180,0.945,6.0,6,6,BP (BP),fuel,Bronx,40.86611,-73.92839,0.0
+fuel_station_shell_0116,0.945,6.0,6,6,Shell (Shell),fuel,Manhattan,40.845196,-73.938519,0.0
+subway_burnside_av_4,0.945,6.0,6,6,Burnside Av,subway,Bronx,40.853453,-73.907684,0.0
+telecom_cluster_01381,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8528,-73.9516,0.0
+subway_175_st_a,0.945,6.0,6,6,175 St,subway,Manhattan,40.847391,-73.939704,0.0
+fuel_station_mobil_0301,0.945,6.0,6,6,Mobil (Mobil),fuel,Manhattan,40.867054,-73.953874,0.0
+fuel_station_unknown_gas_station_1151,0.945,6.0,6,6,Unknown Gas Station,fuel,Bronx,40.869163,-73.907342,0.0
+telecom_cluster_01433,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8653,-73.9434,0.0
+subway_207_st_1,0.945,6.0,6,6,207 St,subway,Bronx,40.864621,-73.918822,0.0
+fuel_station_unknown_gas_station_0613,0.945,6.0,6,6,Unknown Gas Station,fuel,Bronx,40.847358,-73.912228,0.0
+telecom_cluster_03977,0.945,24.0,24,24,T-Mobile cluster,telecom,Brooklyn,40.8917,-73.9388,0.0
+telecom_cluster_03926,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.87828,-73.92142,0.0
+telecom_cluster_01462,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.868,-73.9404,0.0
+telecom_cluster_01598,0.945,24.0,24,24,AT&T cluster,telecom,Brooklyn,40.9022,-73.9364,0.0
+telecom_cluster_03798,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.857067,-73.9305,0.0
+telecom_cluster_03735,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.845675,-73.934733,0.0
+subway_167_st_4,0.945,6.0,6,6,167 St,subway,Bronx,40.835537,-73.9214,0.0
+water_jerome_park_harris_park_annex,0.945,24.0,24,24,Jerome Park/Harris Park Annex,water,Bronx,40.878134,-73.895075,0.0
+telecom_cluster_01405,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.86135,-73.92115,0.0
+telecom_cluster_01218,0.945,0.0,0,0,AT&T cluster,telecom,Manhattan,40.819833,-73.960067,0.8
+telecom_cluster_01525,0.945,24.0,24,24,AT&T cluster,telecom,Brooklyn,40.8864,-73.9387,0.0
+telecom_cluster_03794,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8544,-73.9547,0.0
+telecom_cluster_03851,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.865912,-73.929588,0.0
+telecom_cluster_03854,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.865275,-73.9106,0.0
+telecom_cluster_01507,0.945,24.0,24,24,AT&T cluster,telecom,Brooklyn,40.8819,-73.9362,0.0
+telecom_cluster_01359,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.848167,-73.935033,0.0
+telecom_cluster_01325,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8446,-73.9446,0.0
+water_pumping_station,0.945,24.0,24,24,Pumping Station,water,Bronx,40.893478,-73.906285,0.0
+telecom_cluster_01361,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8504,-73.924625,0.0
+telecom_cluster_01404,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8603,-73.924067,0.0
+telecom_cluster_03796,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.855733,-73.945833,0.0
+telecom_cluster_01461,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8716,-73.9525,0.0
+telecom_cluster_01488,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8736,-73.9374,0.0
+telecom_cluster_01382,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8574,-73.9449,0.0
+telecom_cluster_03795,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8571,-73.9505,0.0
+telecom_cluster_01435,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.865,-73.9282,0.0
+telecom_cluster_03289,0.945,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.7737,-73.9952,0.8
+telecom_cluster_03879,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8703,-73.9375,0.0
+telecom_cluster_01490,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8747,-73.90155,0.0
+telecom_cluster_03707,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.83835,-73.935275,0.0
+telecom_cluster_01326,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8474,-73.9344,0.0
+telecom_cluster_01324,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.845667,-73.9503,0.0
+telecom_cluster_03801,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.85554,-73.90586,0.0
+telecom_cluster_03762,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.851175,-73.9495,0.0
+telecom_cluster_01506,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8792,-73.9376,0.0
+telecom_cluster_01282,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8346,-73.922,0.0
+telecom_cluster_03678,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.834313,-73.923127,0.0
+telecom_cluster_03850,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8636,-73.9344,0.0
+telecom_cluster_01355,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.85124,-73.95366,0.0
+hospital_north_central_bronx_hospital,0.945,48.0,48,48,North Central Bronx Hospital,hospital,Bronx,40.88046,-73.881093,0.0
+telecom_cluster_03821,0.945,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.860767,-73.9215,0.8
+hospital_montefiore_medical_center___henry___lucy,0.945,48.0,48,48,Montefiore Medical Center - Henry & Lucy Moses Div,hospital,Bronx,40.880428,-73.879895,0.0
+telecom_cluster_00066,0.945,0.0,0,0,AT&T cluster,telecom,Staten Island,40.6216,-74.1807,0.8
+telecom_cluster_03738,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8447,-73.9224,0.0
+telecom_cluster_04004,0.945,24.0,24,24,T-Mobile cluster,telecom,Brooklyn,40.8929,-73.9413,0.0
+telecom_cluster_03736,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.844638,-73.93075,0.0
+telecom_cluster_01436,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.86505,-73.925,0.0
+telecom_cluster_01440,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8647,-73.9016,0.0
+telecom_cluster_01553,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8907,-73.8828,0.0
+telecom_cluster_01486,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8754,-73.9505,0.0
+telecom_cluster_03855,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.864758,-73.89975,0.0
+telecom_cluster_01466,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8679,-73.9174,0.0
+telecom_cluster_00238,0.945,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.6709,-73.99935,0.8
+telecom_cluster_01487,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8737,-73.942,0.0
+telecom_cluster_03852,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.86675,-73.92305,0.0
+telecom_cluster_01463,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.86855,-73.93115,0.0
+telecom_cluster_03877,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8699,-73.9533,0.0
+telecom_cluster_03763,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.849157,-73.944986,0.0
+telecom_cluster_03884,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.869912,-73.908788,0.0
+telecom_cluster_03624,0.945,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.82414,-73.88516,0.8
+telecom_cluster_01328,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.845775,-73.92455,0.0
+telecom_cluster_01360,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8484,-73.9317,0.0
+telecom_cluster_03878,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8694,-73.9478,0.0
+telecom_cluster_03978,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8883,-73.9202,0.0
+telecom_cluster_03849,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8657,-73.93795,0.0
+telecom_cluster_01356,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.850583,-73.9492,0.0
+telecom_cluster_03979,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8902,-73.889475,0.0
+telecom_cluster_03927,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.878675,-73.903225,0.0
+fuel_station_unknown_gas_station_0512,0.945,6.0,6,6,Unknown Gas Station,fuel,Manhattan,40.853577,-73.934387,0.0
+subway_231_st_1,0.945,6.0,6,6,231 St,subway,Bronx,40.878856,-73.904834,0.0
+telecom_cluster_01330,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.84455,-73.9145,0.0
+telecom_cluster_01281,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8353,-73.9331,0.0
+subway_215_st_1,0.945,6.0,6,6,215 St,subway,Bronx,40.869444,-73.915279,0.0
+telecom_cluster_01327,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.845014,-73.929529,0.0
+telecom_cluster_01380,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.85305,-73.9568,0.0
+subway_marble_hill_225_st_1,0.945,6.0,6,6,Marble Hill-225 St,subway,Bronx,40.874561,-73.909831,0.0
+fuel_station_unknown_gas_station_0739,0.945,6.0,6,6,Unknown Gas Station,fuel,Bronx,40.842122,-73.92288,0.0
+telecom_cluster_03822,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.86018,-73.915127,0.0
+fuel_station_unknown_gas_station_0985,0.945,6.0,6,6,Unknown Gas Station,fuel,Bronx,40.862994,-73.920241,0.0
+fuel_station_unknown_gas_station_0612,0.945,6.0,6,6,Unknown Gas Station,fuel,Bronx,40.836851,-73.921632,0.0
+subway_dyckman_st_1,0.945,6.0,6,6,Dyckman St,subway,Bronx,40.860531,-73.925536,0.0
+subway_170_st_4,0.945,6.0,6,6,170 St,subway,Bronx,40.840075,-73.917791,0.0
+subway_181_st_1,0.945,6.0,6,6,181 St,subway,Manhattan,40.849505,-73.933596,0.0
+telecom_cluster_03734,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8447,-73.944,0.0
+power_academy,0.945,6.0,6,6,Academy,power,Bronx,40.86002,-73.919142,0.0
+subway_181_st_a,0.945,6.0,6,6,181 St,subway,Manhattan,40.851695,-73.937969,0.0
+fuel_station_citgo_0819,0.945,6.0,6,6,Citgo (Citgo),fuel,Bronx,40.866939,-73.922712,0.0
+fuel_station_bp_0366,0.945,6.0,6,6,BP (BP),fuel,Bronx,40.859938,-73.902536,0.0
+telecom_cluster_03739,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.844444,-73.915056,0.0
+telecom_cluster_01358,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.849,-73.940275,0.0
+telecom_cluster_03818,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8587,-73.9378,0.0
+telecom_cluster_01551,0.945,24.0,24,24,AT&T cluster,telecom,Brooklyn,40.8889,-73.9395,0.0
+fuel_station_bp_0656,0.945,6.0,6,6,BP (BP),fuel,Bronx,40.866324,-73.91799,0.0
+fuel_station_sunoco_0626,0.945,6.0,6,6,Sunoco (Sunoco),fuel,Bronx,40.845769,-73.914133,0.0
+telecom_cluster_03709,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.838971,-73.918686,0.0
+subway_fordham_rd_4,0.945,6.0,6,6,Fordham Rd,subway,Bronx,40.862803,-73.901034,0.0
+telecom_cluster_04005,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8936,-73.918,0.0
+telecom_cluster_03950,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8856,-73.9265,0.0
+telecom_cluster_03708,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.840269,-73.930323,0.0
+telecom_cluster_01357,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.849757,-73.945071,0.0
+telecom_cluster_03705,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8402,-73.952,0.0
+telecom_cluster_04033,0.945,24.0,24,24,T-Mobile cluster,telecom,Brooklyn,40.8984,-73.9382,0.0
+telecom_cluster_01576,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8933,-73.889,0.0
+telecom_cluster_01552,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8881,-73.8946,0.0
+telecom_cluster_01384,0.945,24.0,24,24,AT&T cluster,telecom,Manhattan,40.8555,-73.9324,0.0
+subway_190_st_a,0.945,6.0,6,6,190 St,subway,Manhattan,40.859022,-73.93418,0.0
+telecom_cluster_01385,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8548,-73.91885,0.0
+telecom_cluster_03952,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8828,-73.8981,0.0
+telecom_cluster_03883,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.86905,-73.92135,0.0
+telecom_cluster_03925,0.945,24.0,24,24,T-Mobile cluster,telecom,Bronx,40.8823,-73.9226,0.0
+fuel_station_exxon_0503,0.945,6.0,6,6,Exxon (Exxon),fuel,Manhattan,40.850956,-73.935593,0.0
+telecom_cluster_03848,0.945,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.8657,-73.9434,0.0
+telecom_cluster_01437,0.945,24.0,24,24,AT&T cluster,telecom,Bronx,40.8657,-73.9187,0.0
+telecom_cluster_03400,0.944,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.787967,-73.938167,0.8
+telecom_cluster_02102,0.944,2.9,0,48,T-Mobile cluster,telecom,Brooklyn,40.6602,-73.919855,0.6
+telecom_cluster_03564,0.944,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.814827,-73.934818,0.8
+telecom_cluster_01698,0.943,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.58555,-73.9509,0.8
+fuel_station_unknown_gas_station_1061,0.942,1.0,0,6,Unknown Gas Station,fuel,Queens,40.595797,-73.770982,0.8
+telecom_cluster_03443,0.942,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.795488,-73.9304,0.8
+telecom_cluster_02751,0.942,3.5,0,48,T-Mobile cluster,telecom,Queens,40.726133,-73.90825,0.6
+fuel_station_unknown_gas_station_0849,0.941,1.0,0,6,Unknown Gas Station,fuel,Queens,40.591869,-73.803112,0.8
+telecom_cluster_01827,0.941,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.61785,-74.0671,0.8
+telecom_cluster_02659,0.94,0.4,0,6,T-Mobile cluster,telecom,Queens,40.7165,-73.82006,0.6
+subway_flatbush_av_brooklyn_college_25,0.939,0.0,0,0,Flatbush Av-Brooklyn College,subway,Brooklyn,40.632836,-73.947642,0.2
+telecom_cluster_02179,0.938,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.671575,-73.999575,0.8
+telecom_cluster_02479,0.938,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.7009,-74.0118,0.8
+telecom_cluster_01096,0.938,0.0,0,0,AT&T cluster,telecom,Manhattan,40.78885,-73.9378,0.8
+telecom_cluster_03892,0.936,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.87005,-73.8208,0.8
+telecom_cluster_02859,0.919,1.0,0,0,T-Mobile cluster,telecom,Queens,40.73561,-73.85926,0.6
+telecom_cluster_00853,0.914,17.6,24,24,AT&T cluster,telecom,Queens,40.749933,-73.7544,0.2
+hospital_mount_sinai____behavioral_health_center,0.913,45.5,24,96,Mount Sinai -  Behavioral Health Center,hospital,Manhattan,40.72068,-73.991197,0.0
+telecom_cluster_02853,0.908,0.7,0,0,T-Mobile cluster,telecom,Queens,40.7363,-73.890025,0.6
+telecom_cluster_00627,0.904,0.9,0,0,AT&T cluster,telecom,Queens,40.7252,-73.8421,0.6
+hospital_montefiore_medical_center___montefiore_w,0.903,46.3,24,96,Montefiore Medical Center - Montefiore Westchester Square,hospital,Bronx,40.840678,-73.848402,0.0
+water_zerega_industrial_park,0.903,14.9,0,48,Zerega Industrial Park,water,Bronx,40.833784,-73.841557,0.6
+telecom_cluster_02858,0.903,1.0,0,0,T-Mobile cluster,telecom,Queens,40.734427,-73.8647,0.6
+hospital_calvary_hospital_inc,0.903,46.3,24,96,Calvary Hospital Inc,hospital,Bronx,40.84793,-73.843916,0.0
+telecom_cluster_02855,0.901,0.7,0,0,T-Mobile cluster,telecom,Queens,40.736833,-73.8789,0.6
+telecom_cluster_02912,0.9,1.0,0,0,T-Mobile cluster,telecom,Queens,40.739683,-73.880533,0.6
+telecom_cluster_01777,0.9,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.6082,-74.1567,0.6
+telecom_cluster_03099,0.899,0.0,0,0,T-Mobile cluster,telecom,Queens,40.75534,-73.83542,0.6
+telecom_cluster_00707,0.899,0.6,0,0,AT&T cluster,telecom,Queens,40.7372,-73.8795,0.6
+telecom_cluster_00668,0.897,0.9,0,0,AT&T cluster,telecom,Queens,40.7309,-73.8878,0.6
+telecom_cluster_02248,0.896,16.5,24,24,T-Mobile cluster,telecom,Queens,40.6745,-73.734,0.2
+telecom_cluster_00712,0.896,0.8,0,0,AT&T cluster,telecom,Queens,40.7363,-73.85625,0.6
+telecom_cluster_00027,0.894,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.5865,-73.9378,0.6
+telecom_cluster_00711,0.893,1.0,0,0,AT&T cluster,telecom,Queens,40.734867,-73.860633,0.6
+telecom_cluster_01824,0.892,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.61945,-74.16505,0.6
+telecom_cluster_02227,0.892,0.2,0,0,T-Mobile cluster,telecom,Brooklyn,40.675321,-73.984926,0.6
+telecom_cluster_03031,0.89,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7503,-73.8977,0.6
+telecom_cluster_03440,0.889,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.795556,-73.946022,0.6
+telecom_cluster_02755,0.888,0.8,0,0,T-Mobile cluster,telecom,Queens,40.72641,-73.89008,0.6
+telecom_cluster_01224,0.888,0.0,0,0,AT&T cluster,telecom,Bronx,40.8193,-73.8096,0.6
+telecom_cluster_02987,0.887,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7474,-73.7624,0.6
+telecom_cluster_03406,0.887,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7878,-73.8161,0.6
+telecom_cluster_02451,0.887,0.0,0,0,T-Mobile cluster,telecom,Queens,40.6938,-73.8116,0.6
+telecom_cluster_00806,0.887,24.0,24,24,AT&T cluster,telecom,Queens,40.745625,-73.77005,0.0
+power_oakland,0.887,6.0,6,6,Oakland,power,Queens,40.747901,-73.762057,0.0
+fuel_station_bp_0176,0.887,6.0,6,6,BP (BP),fuel,Queens,40.74829,-73.758376,0.0
+telecom_cluster_00807,0.887,24.0,24,24,AT&T cluster,telecom,Queens,40.74675,-73.76475,0.0
+telecom_cluster_00854,0.887,24.0,24,24,AT&T cluster,telecom,Queens,40.7509,-73.7502,0.0
+telecom_cluster_02986,0.887,24.0,24,24,T-Mobile cluster,telecom,Queens,40.74635,-73.76555,0.0
+telecom_cluster_03045,0.887,24.0,24,24,T-Mobile cluster,telecom,Queens,40.75,-73.7539,0.0
+telecom_cluster_00995,0.886,0.0,0,0,AT&T cluster,telecom,Queens,40.76924,-73.91062,0.6
+telecom_cluster_00131,0.886,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.6462,-73.9841,0.6
+telecom_cluster_02068,0.885,17.4,24,24,T-Mobile cluster,telecom,Brooklyn,40.6573,-73.90045,0.2
+telecom_cluster_00325,0.884,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.68385,-73.93185,0.6
+telecom_cluster_02630,0.884,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.714324,-73.994243,0.6
+telecom_cluster_03657,0.884,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.82828,-73.84508,0.6
+telecom_cluster_01859,0.883,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.62705,-73.92645,0.6
+telecom_cluster_02788,0.883,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.7301,-73.999715,0.6
+telecom_cluster_02392,0.883,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.69098,-73.91356,0.6
+telecom_cluster_01731,0.883,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.5968,-74.0027,0.6
+telecom_cluster_02496,0.883,0.0,0,0,T-Mobile cluster,telecom,Queens,40.701,-73.9021,0.6
+telecom_cluster_03750,0.882,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8433,-73.8374,0.6
+telecom_cluster_03653,0.882,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.83045,-73.87335,0.6
+telecom_cluster_01856,0.882,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6231,-73.9375,0.6
+telecom_cluster_03436,0.881,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.795,-73.9659,0.6
+telecom_cluster_01222,0.881,0.0,0,0,AT&T cluster,telecom,Bronx,40.8224,-73.8195,0.6
+telecom_cluster_03601,0.881,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8191,-73.81,0.6
+telecom_cluster_02273,0.881,0.4,0,0,T-Mobile cluster,telecom,Brooklyn,40.6788,-73.984364,0.6
+telecom_cluster_02156,0.88,24.0,24,24,T-Mobile cluster,telecom,Queens,40.66605,-73.799725,0.0
+telecom_cluster_02246,0.88,0.0,0,0,T-Mobile cluster,telecom,Queens,40.673967,-73.8017,0.6
+telecom_cluster_04143,0.88,0.0,0,0,T-Mobile Metro cluster,telecom,Manhattan,40.760233,-73.990933,0.6
+telecom_cluster_03089,0.88,0.0,0,0,T-Mobile cluster,telecom,Queens,40.754125,-73.89545,0.6
+telecom_cluster_01697,0.88,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.585967,-73.955033,0.6
+telecom_cluster_00390,0.88,0.0,0,0,AT&T cluster,telecom,Queens,40.6934,-73.8112,0.6
+telecom_cluster_02155,0.88,24.0,24,24,T-Mobile cluster,telecom,Queens,40.665933,-73.8053,0.0
+telecom_cluster_00215,0.88,24.0,24,24,AT&T cluster,telecom,Queens,40.6661,-73.8015,0.0
+power_rockaway,0.88,6.0,6,6,Rockaway,power,Queens,40.675328,-73.805438,0.0
+water_pollution_control_facility,0.88,24.0,24,24,Pollution Control Facility,water,Queens,40.664255,-73.807299,0.0
+fuel_station_sunoco_0889,0.88,6.0,6,6,Sunoco (Sunoco),fuel,Queens,40.674777,-73.808761,0.0
+water_well_station_#32,0.88,96.0,96,96,Well Station #32,water,Queens,40.682657,-73.814723,0.0
+telecom_cluster_02291,0.88,24.0,24,24,T-Mobile cluster,telecom,Queens,40.679333,-73.804033,0.0
+fuel_station_unknown_gas_station_1048,0.88,6.0,6,6,Unknown Gas Station,fuel,Queens,40.674736,-73.803528,0.0
+fuel_station_bp_1102,0.88,6.0,6,6,BP (BP),fuel,Queens,40.682542,-73.806354,0.0
+telecom_cluster_03560,0.879,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.8127,-73.9566,0.6
+telecom_cluster_03655,0.879,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.83165,-73.8552,0.6
+telecom_cluster_01285,0.879,0.0,0,0,AT&T cluster,telecom,Bronx,40.8343,-73.8643,0.6
+telecom_cluster_02390,0.879,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.692367,-73.930133,0.6
+telecom_cluster_01334,0.878,0.0,0,0,AT&T cluster,telecom,Bronx,40.843733,-73.895633,0.6
+telecom_cluster_01854,0.878,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6229,-73.9604,0.6
+telecom_cluster_03956,0.878,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8839,-73.8257,0.6
+telecom_cluster_02149,0.877,0.0,0,0,T-Mobile cluster,telecom,Queens,40.666175,-73.83465,0.6
+telecom_cluster_03257,0.877,0.0,0,0,T-Mobile cluster,telecom,Queens,40.768233,-73.883933,0.6
+telecom_cluster_03713,0.877,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8403,-73.88555,0.6
+telecom_cluster_00571,0.877,0.0,0,0,AT&T cluster,telecom,Manhattan,40.720333,-74.005783,0.6
+telecom_cluster_02393,0.877,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.689767,-73.911867,0.6
+telecom_cluster_03362,0.876,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.7855,-73.984133,0.6
+telecom_cluster_00355,0.876,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.6896,-73.9222,0.6
+telecom_cluster_03258,0.876,0.0,0,0,T-Mobile cluster,telecom,Queens,40.770217,-73.87885,0.6
+telecom_cluster_01884,0.876,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.62865,-73.92395,0.6
+telecom_cluster_01307,0.875,0.0,0,0,AT&T cluster,telecom,Bronx,40.839975,-73.885075,0.6
+telecom_cluster_00758,0.875,0.0,0,0,AT&T cluster,telecom,Queens,40.73845,-73.8042,0.6
+telecom_cluster_02020,0.875,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.650489,-73.924578,0.6
+telecom_cluster_00652,0.874,0.0,0,0,AT&T cluster,telecom,Manhattan,40.7301,-74.010467,0.6
+telecom_cluster_02334,0.874,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.685167,-73.921033,0.6
+telecom_cluster_02010,0.873,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.649864,-73.9754,0.6
+telecom_cluster_03216,0.873,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7629,-73.7273,0.6
+telecom_cluster_00496,0.872,0.0,0,0,AT&T cluster,telecom,Manhattan,40.710425,-73.9557,0.6
+telecom_cluster_01261,0.872,0.0,0,0,AT&T cluster,telecom,Bronx,40.8315,-73.855,0.6
+telecom_cluster_03774,0.869,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.849033,-73.8363,0.6
+telecom_cluster_02925,0.869,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7384,-73.8051,0.6
+telecom_cluster_02786,0.868,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.7288,-74.0094,0.6
+telecom_cluster_01201,0.868,0.0,0,0,AT&T cluster,telecom,Manhattan,40.8127,-73.9557,0.6
+telecom_cluster_02398,0.867,0.0,0,0,T-Mobile cluster,telecom,Queens,40.6903,-73.850267,0.6
+telecom_cluster_02339,0.867,0.0,0,0,T-Mobile cluster,telecom,Queens,40.6859,-73.867,0.6
+telecom_cluster_00993,0.867,0.0,0,0,AT&T cluster,telecom,Queens,40.7719,-73.9186,0.6
+telecom_cluster_02922,0.866,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7403,-73.8195,0.6
+telecom_cluster_01717,0.865,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.589933,-73.945733,0.6
+telecom_cluster_02017,0.864,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6495,-73.9402,0.6
+telecom_cluster_00427,0.864,0.0,0,0,AT&T cluster,telecom,Manhattan,40.7009,-73.9546,0.6
+telecom_cluster_02099,0.863,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.65953,-73.93978,0.6
+fuel_station_unknown_gas_station_0628,0.863,6.0,6,6,Unknown Gas Station,fuel,Queens,40.648979,-73.891974,0.0
+fuel_station_bp_1139,0.863,6.0,6,6,BP (BP),fuel,Queens,40.659056,-73.890722,0.0
+telecom_cluster_02027,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.65165,-73.876,0.0
+water_26_ward_water_pollution_cp,0.863,24.0,24,24,26 Ward Water Pollution Cp,water,Queens,40.648125,-73.87584,0.0
+subway_cleveland_st_j,0.863,6.0,6,6,Cleveland St,subway,Queens,40.679947,-73.884639,0.0
+telecom_cluster_02069,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6553,-73.88005,0.0
+telecom_cluster_01986,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.645,-73.87498,0.0
+fuel_station_76_0260,0.863,6.0,6,6,76,fuel,Queens,40.67962,-73.878006,0.0
+telecom_cluster_02734,0.863,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.7238,-74.0113,0.6
+telecom_cluster_02104,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.659786,-73.8993,0.0
+telecom_cluster_01985,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.644733,-73.8781,0.0
+water_26th_ward_wwtp,0.863,24.0,24,24,26Th Ward Wwtp,water,Queens,40.652421,-73.879018,0.0
+subway_van_siclen_av_3,0.863,6.0,6,6,Van Siclen Av,subway,Queens,40.665449,-73.889395,0.0
+hospital_staten_island_university_hosp_north,0.863,96.0,96,96,Staten Island University Hosp-North,hospital,Staten Island,40.58476,-74.086047,0.0
+fuel_station_unknown_gas_station_0627,0.863,6.0,6,6,Unknown Gas Station,fuel,Queens,40.657376,-73.892451,0.0
+fuel_station_bp_1148,0.863,6.0,6,6,BP (BP),fuel,Queens,40.652906,-73.886707,0.0
+subway_east_105_st_l,0.863,6.0,6,6,East 105 St,subway,Queens,40.650573,-73.899485,0.0
+power_livonia_avenue,0.863,6.0,6,6,Livonia Avenue,power,Queens,40.665731,-73.889098,0.0
+subway_crescent_st_jz,0.863,6.0,6,6,Crescent St,subway,Queens,40.683194,-73.873785,0.0
+subway_shepherd_av_c,0.863,6.0,6,6,Shepherd Av,subway,Queens,40.67413,-73.88075,0.0
+telecom_cluster_02146,0.863,0.0,0,0,T-Mobile cluster,telecom,Queens,40.6671,-73.8842,0.6
+telecom_cluster_02070,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6528,-73.8772,0.0
+telecom_cluster_02025,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6506,-73.8906,0.0
+subway_new_lots_av_l,0.863,6.0,6,6,New Lots Av,subway,Queens,40.658733,-73.899232,0.0
+telecom_cluster_02024,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6491,-73.8972,0.0
+fuel_station_bp_0203,0.863,6.0,6,6,BP (BP),fuel,Queens,40.679593,-73.88007,0.0
+telecom_cluster_02026,0.863,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6524,-73.8858,0.0
+fuel_station_mobil_1138,0.863,6.0,6,6,Mobil (Mobil),fuel,Queens,40.658721,-73.891298,0.0
+fuel_station_conoco_1113,0.863,6.0,6,6,Conoco (Conoco),fuel,Queens,40.653115,-73.886256,0.0
+telecom_cluster_02923,0.859,0.0,0,0,T-Mobile cluster,telecom,Queens,40.73886,-73.81404,0.6
+telecom_cluster_03570,0.859,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8155,-73.8362,0.6
+telecom_cluster_00921,0.854,0.0,0,0,AT&T cluster,telecom,Queens,40.7598,-73.8549,0.6
+telecom_cluster_02202,0.853,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6708,-73.7366,0.0
+telecom_cluster_02294,0.853,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6801,-73.72908,0.0
+telecom_cluster_02249,0.853,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6763,-73.7322,0.0
+telecom_cluster_00223,0.853,24.0,24,24,AT&T cluster,telecom,Queens,40.6634,-73.7251,0.0
+telecom_cluster_02167,0.853,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6663,-73.7415,0.0
+fuel_station_citgo_0663,0.853,6.0,6,6,Citgo (Citgo),fuel,Queens,40.673032,-73.724126,0.0
+water_well_station_#60,0.853,96.0,96,96,Well Station #60,water,Queens,40.682088,-73.734322,0.0
+fuel_station_corocan_0699,0.853,6.0,6,6,Corocan,fuel,Queens,40.665194,-73.732574,0.0
+power_rosedale,0.853,6.0,6,6,Rosedale,power,Queens,40.667987,-73.736795,0.0
+fuel_station_bp_0721,0.853,6.0,6,6,BP (BP),fuel,Queens,40.665225,-73.725967,0.0
+telecom_cluster_02203,0.853,24.0,24,24,T-Mobile cluster,telecom,Queens,40.6699,-73.7254,0.0
+fuel_station_amoco_0336,0.853,6.0,6,6,Amoco (Amoco),fuel,Queens,40.66498,-73.735489,0.0
+fuel_station_mobile_0217,0.853,6.0,6,6,Mobile (Mobil),fuel,Queens,40.676179,-73.741718,0.0
+water_well_station_#36,0.853,96.0,96,96,Well Station #36,water,Queens,40.679144,-73.726907,0.0
+telecom_cluster_02201,0.853,0.0,0,0,T-Mobile cluster,telecom,Queens,40.668475,-73.738325,0.6
+fuel_station_bp_0650,0.853,6.0,6,6,BP,fuel,Queens,40.665145,-73.733282,0.0
+water_lew_fidler_park_dep_pier,0.844,0.0,0,0,Lew Fidler Park/Dep Pier,water,Brooklyn,40.583123,-73.931507,0.8
+water_well_station_#55,0.843,12.0,0,48,Well Station #55,water,Queens,40.710159,-73.764733,0.6
+hospital_newyork_presbyterian_brooklyn_methodist,0.824,24.8,24,24,Newyork-Presbyterian Brooklyn Methodist Hospital,hospital,Brooklyn,40.667812,-73.979107,0.0
+water_gowanus_pumping_station,0.824,0.5,0,0,Gowanus Pumping Station,water,Brooklyn,40.681828,-73.987042,0.8
+hospital_nyu_langone_hospital___joseph_s__and_dia,0.824,24.8,24,24,Nyu Langone Hospital - Joseph S. And Diane H. Steinberg Ambulatory Care Center,hospital,Brooklyn,40.690654,-73.997535,0.0
+water_spring_creek_park,0.811,47.2,48,48,Spring Creek Park,water,Queens,40.65704,-73.861479,0.0
+water_destratification_facility,0.807,48.0,48,48,Destratification Facility,water,Queens,40.660945,-73.839964,0.0
+fuel_station_speedway_1103,0.807,0.0,0,0,Speedway (Speedway),fuel,Queens,40.658898,-73.840257,0.8
+water_pier_97,0.803,0.0,0,0,Pier 97,water,Manhattan,40.772299,-73.995946,0.8
+telecom_cluster_03306,0.803,22.6,6,48,T-Mobile cluster,telecom,Queens,40.77405,-73.871962,0.0
+telecom_cluster_03305,0.803,59.8,48,96,T-Mobile cluster,telecom,Queens,40.774671,-73.874729,0.0
+fuel_station_gulf_0991,0.803,1.5,0,6,Gulf (Gulf),fuel,Queens,40.767695,-73.865158,0.6
+telecom_cluster_03260,0.803,22.6,6,48,T-Mobile cluster,telecom,Queens,40.77101,-73.86957,0.0
+hospital_mount_sinai_west,0.803,24.0,24,24,Mount Sinai West,hospital,Manhattan,40.769664,-73.986799,0.0
+fuel_station_speedway_1105,0.795,0.0,0,0,Speedway (Speedway),fuel,Brooklyn,40.578728,-73.984908,0.8
+fuel_station_the_wave_0874,0.79,0.0,0,0,The Wave,fuel,Queens,40.655286,-73.72661,0.8
+fuel_station_allegiance_0536,0.788,0.0,0,0,Allegiance,fuel,Brooklyn,40.578934,-73.987639,0.8
+fuel_station_bp_0591,0.787,0.0,0,0,BP (BP),fuel,Queens,40.585824,-73.822748,0.8
+water_rockaway_water_pollution_cp,0.787,48.0,48,48,Rockaway Water Pollution Cp,water,Queens,40.584255,-73.826193,0.0
+fuel_station_citgo_0937,0.784,0.0,0,0,Citgo (Citgo),fuel,Bronx,40.835912,-73.838907,0.8
+fuel_station_unknown_gas_station_0352,0.783,0.0,0,0,Unknown Gas Station,fuel,Queens,40.582548,-73.834779,0.8
+fuel_station_allegiance_0402,0.782,0.0,0,0,Allegiance (Allegiance),fuel,Brooklyn,40.580912,-73.964076,0.8
+hospital_coney_island_hospital,0.782,96.0,96,96,Coney Island Hospital,hospital,Brooklyn,40.58608,-73.965599,0.0
+fuel_station_mobil_1104,0.781,0.0,0,0,Mobil (Mobil),fuel,Brooklyn,40.578642,-73.985525,0.8
+fuel_station_sunoco_0752,0.779,0.0,0,0,Sunoco (Sunoco),fuel,Queens,40.583048,-73.834932,0.8
+fuel_station_mobil_0695,0.779,0.0,0,0,Mobil (Mobil),fuel,Brooklyn,40.582794,-73.959764,0.8
+fuel_station_unknown_gas_station_0191,0.755,0.0,0,0,Unknown Gas Station,fuel,Queens,40.611434,-73.75299,0.8
+subway_beach_44_st_a,0.716,6.0,6,6,Beach 44 St,subway,Queens,40.592943,-73.776013,0.0
+subway_beach_36_st_a,0.716,6.0,6,6,Beach 36 St,subway,Queens,40.595398,-73.768175,0.0
+subway_beach_67_st_a,0.716,6.0,6,6,Beach 67 St,subway,Queens,40.590927,-73.796924,0.0
+subway_beach_60_st_a,0.716,6.0,6,6,Beach 60 St,subway,Queens,40.592374,-73.788522,0.0
+power_arverne,0.716,0.0,0,0,Arverne,power,Queens,40.592511,-73.78324,0.8
+fuel_station_gas_sale_0691,0.715,0.8,0,6,GAS SALE,fuel,Queens,40.714742,-73.859626,0.6
+telecom_cluster_02761,0.715,39.8,48,48,T-Mobile cluster,telecom,Queens,40.723017,-73.846292,0.0
+telecom_cluster_03039,0.705,39.7,48,48,T-Mobile cluster,telecom,Queens,40.749388,-73.860638,0.0
+fuel_station_gas___diesel_sale_0731,0.705,0.8,0,6,Gas & Diesel Sale,fuel,Queens,40.746842,-73.856526,0.6
+fuel_station_emporium_1084,0.692,0.9,0,6,Emporium,fuel,Queens,40.746496,-73.856375,0.6
+telecom_cluster_02976,0.692,39.6,48,48,T-Mobile cluster,telecom,Queens,40.745183,-73.8601,0.0
+fuel_station_unknown_gas_station_0521,0.659,0.0,0,0,Unknown Gas Station,fuel,Brooklyn,40.622544,-73.937212,0.6
+telecom_cluster_01833,0.659,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.621167,-73.939283,0.0
+water_well_station_#59,0.658,0.0,0,0,Well Station #59,water,Queens,40.682997,-73.751961,0.6
+fuel_station_bp_0597,0.654,0.0,0,0,BP (BP),fuel,Manhattan,40.714063,-73.933554,0.6
+telecom_cluster_02642,0.654,48.0,48,48,T-Mobile cluster,telecom,Manhattan,40.71392,-73.93622,0.0
+fuel_station_shell_0946,0.644,0.0,0,0,Shell (Shell),fuel,Staten Island,40.588703,-74.090507,0.6
+water_well_station_#6,0.642,0.0,0,0,Well Station #6,water,Queens,40.695484,-73.787922,0.6
+water_grand_canal_court_park,0.641,0.0,0,0,Grand Canal Court Park,water,Manhattan,40.722303,-74.00504,0.6
+hospital_lenox_health_greenwich_village,0.641,24.0,24,24,Lenox Health Greenwich Village,hospital,Manhattan,40.737719,-74.000864,0.0
+hospital_new_york_presbyterian_lower_manhattan_ho,0.641,24.0,24,24,New York-Presbyterian/Lower Manhattan Hospital,hospital,Manhattan,40.710293,-74.004951,0.0
+fuel_station_unknown_gas_station_0931,0.641,0.0,0,0,Unknown Gas Station,fuel,Brooklyn,40.698594,-73.90388,0.6
+fuel_station_bp_0693,0.634,0.0,0,0,BP,fuel,Brooklyn,40.631505,-74.002617,0.6
+telecom_cluster_02661,0.633,3.6,6,6,T-Mobile cluster,telecom,Queens,40.71604,-73.81028,0.2
+telecom_cluster_01000,0.633,3.4,6,6,AT&T cluster,telecom,Queens,40.7682,-73.8652,0.2
+telecom_cluster_02762,0.628,68.1,96,96,T-Mobile cluster,telecom,Queens,40.72562,-73.83966,0.0
+fuel_station_exxon_1121,0.626,0.0,0,0,Exxon (Exxon),fuel,Queens,40.726219,-73.789804,0.6
+fuel_station_mobil_0632,0.625,0.0,0,0,Mobil (Mobil),fuel,Bronx,40.868449,-73.833529,0.6
+fuel_station_unknown_gas_station_1111,0.625,0.0,0,0,Unknown Gas Station,fuel,Bronx,40.845062,-73.90217,0.6
+fuel_station_mobil_0574,0.625,0.0,0,0,Mobil (Mobil),fuel,Brooklyn,40.61224,-74.011392,0.6
+telecom_cluster_03742,0.625,48.0,48,48,T-Mobile cluster,telecom,Bronx,40.845267,-73.900422,0.0
+telecom_cluster_02585,0.624,48.0,48,48,T-Mobile cluster,telecom,Manhattan,40.710117,-73.970833,0.0
+telecom_cluster_02534,0.624,48.0,48,48,T-Mobile cluster,telecom,Manhattan,40.705225,-73.958988,0.0
+fuel_station_bp_0169,0.624,0.0,0,0,BP (BP),fuel,Manhattan,40.700769,-73.962546,0.6
+telecom_cluster_00457,0.624,48.0,48,48,AT&T cluster,telecom,Manhattan,40.70565,-73.95936,0.0
+telecom_cluster_02489,0.624,48.0,48,48,T-Mobile cluster,telecom,Manhattan,40.70122,-73.96118,0.0
+telecom_cluster_02634,0.624,48.0,48,48,T-Mobile cluster,telecom,Manhattan,40.714735,-73.975882,0.0
+water_mason_avenue_pumping_station,0.623,48.0,48,48,Mason Avenue Pumping Station,water,Staten Island,40.580979,-74.091523,0.0
+water_well_station_#10,0.623,0.0,0,0,Well Station #10,water,Queens,40.694957,-73.736464,0.6
+fuel_station_citgo_1044,0.623,0.0,0,0,Citgo (Citgo),fuel,Staten Island,40.583606,-74.095008,0.6
+fuel_station_citgo_0839,0.622,0.0,0,0,Citgo (Citgo),fuel,Queens,40.764714,-73.88395,0.6
+fuel_station_shell_0224,0.62,0.0,0,0,Shell (Shell),fuel,Queens,40.713674,-73.75352,0.6
+water_well_station_#5,0.62,48.0,48,48,Well Station #5,water,Queens,40.714069,-73.760116,0.0
+water_well_station_#7,0.62,48.0,48,48,Well Station #7,water,Queens,40.717592,-73.752997,0.0
+telecom_cluster_02920,0.619,3.6,6,6,T-Mobile cluster,telecom,Queens,40.739433,-73.8295,0.2
+telecom_cluster_01909,0.618,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.635091,-73.977991,0.0
+fuel_station_mobil_1019,0.618,0.0,0,0,Mobil (Mobil),fuel,Brooklyn,40.592255,-73.90815,0.6
+telecom_cluster_01940,0.618,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.64065,-73.97963,0.0
+telecom_cluster_01910,0.618,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.635583,-73.97525,0.0
+fuel_station_bp_0542,0.618,0.0,0,0,BP (BP),fuel,Queens,40.726905,-73.907141,0.6
+fuel_station_shell_0593,0.618,0.0,0,0,Shell (Shell),fuel,Brooklyn,40.638049,-73.97934,0.6
+fuel_station_citgo_0915,0.616,0.0,0,0,Citgo (Citgo),fuel,Staten Island,40.630482,-74.107557,0.6
+hospital_richmond_university_medical_center,0.616,96.0,96,96,Richmond University Medical Center,hospital,Staten Island,40.635707,-74.105902,0.0
+fuel_station_exxon_0554,0.611,0.0,0,0,Exxon (Exxon),fuel,Queens,40.728026,-73.906743,0.6
+telecom_cluster_02801,0.611,48.0,48,48,T-Mobile cluster,telecom,Queens,40.730817,-73.915783,0.0
+telecom_cluster_02802,0.611,48.0,48,48,T-Mobile cluster,telecom,Queens,40.728633,-73.910142,0.0
+telecom_cluster_03712,0.61,48.0,48,48,T-Mobile cluster,telecom,Bronx,40.84208,-73.902,0.0
+fuel_station_shell_0373,0.61,0.0,0,0,Shell (Shell),fuel,Brooklyn,40.661234,-73.920604,0.6
+fuel_station_unknown_gas_station_1075,0.61,0.0,0,0,Unknown Gas Station,fuel,Bronx,40.843933,-73.902767,0.6
+telecom_cluster_03711,0.61,48.0,48,48,T-Mobile cluster,telecom,Bronx,40.839464,-73.903991,0.0
+fuel_station_unknown_gas_station_1094,0.605,0.0,0,0,Unknown Gas Station,fuel,Brooklyn,40.607953,-73.925146,0.6
+fuel_station_gulf_0324,0.6,0.0,0,0,Gulf (Gulf),fuel,Brooklyn,40.582388,-73.959617,0.6
+fuel_station_gulf_0735,0.595,0.0,0,0,Gulf,fuel,Queens,40.709721,-73.774478,0.6
+fuel_station_bp_0527,0.59,0.0,0,0,BP (BP),fuel,Brooklyn,40.636858,-73.968454,0.6
+water_well_station_#19,0.511,6.9,6,6,Well Station #19,water,Queens,40.712383,-73.792049,0.0
+water_well_station_#53,0.506,6.0,6,6,Well Station #53,water,Queens,40.724967,-73.807603,0.0
+water_well_station_#52,0.506,6.0,6,6,Well Station #52,water,Queens,40.728786,-73.808552,0.0
+telecom_cluster_02815,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.72845,-73.811438,0.0
+telecom_cluster_02711,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.71945,-73.82695,0.0
+fuel_station_gulf_0703,0.506,6.0,6,6,Gulf (Gulf),fuel,Queens,40.71735,-73.817582,0.0
+telecom_cluster_02814,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.729262,-73.813769,0.0
+fuel_station_mobil_0887,0.506,6.0,6,6,Mobil,fuel,Queens,40.732921,-73.82549,0.0
+telecom_cluster_02709,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.71995,-73.835083,0.0
+telecom_cluster_00586,0.506,6.0,6,6,AT&T cluster,telecom,Queens,40.7209,-73.8312,0.0
+fuel_station_bp_0616,0.506,6.0,6,6,BP (BP),fuel,Queens,40.726869,-73.810422,0.0
+subway_169_st_f,0.506,6.0,6,6,169 St,subway,Queens,40.71047,-73.793604,0.0
+telecom_cluster_02657,0.506,96.0,96,96,T-Mobile cluster,telecom,Queens,40.715175,-73.829225,0.0
+telecom_cluster_00548,0.506,6.0,6,6,AT&T cluster,telecom,Queens,40.71565,-73.81545,0.0
+telecom_cluster_00629,0.506,6.0,6,6,AT&T cluster,telecom,Queens,40.7259,-73.8287,0.0
+hospital_queens_hospital_center,0.506,48.0,48,48,Queens Hospital Center,hospital,Queens,40.717777,-73.805293,0.0
+fuel_station_mobil_0543,0.506,6.0,6,6,Mobil (Mobil),fuel,Queens,40.713974,-73.80749,0.0
+telecom_cluster_02662,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.71605,-73.8056,0.0
+telecom_cluster_02660,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.716,-73.813667,0.0
+telecom_cluster_02868,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.734643,-73.814786,0.0
+water_well_station_#18,0.506,6.0,6,6,Well Station #18,water,Queens,40.715015,-73.803083,0.0
+telecom_cluster_02765,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7274,-73.811,0.0
+water_well_station_#50,0.506,6.0,6,6,Well Station #50,water,Queens,40.723387,-73.809924,0.0
+telecom_cluster_02865,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.73605,-73.8286,0.0
+telecom_cluster_02713,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.718567,-73.794067,0.0
+water_flushing_meadow_corona_park,0.506,6.0,6,6,Flushing Meadow Corona Park,water,Queens,40.723266,-73.827136,0.0
+telecom_cluster_02763,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.724425,-73.8352,0.0
+telecom_cluster_02663,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.716717,-73.801133,0.0
+fuel_station_unknown_gas_station_0737,0.506,6.0,6,6,Unknown Gas Station,fuel,Queens,40.726429,-73.821371,0.0
+fuel_station_hillside_ave_mobil_mart_1009,0.506,6.0,6,6,Hillside Ave Mobil Mart (Mobil),fuel,Queens,40.709452,-73.797482,0.0
+telecom_cluster_02764,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7238,-73.831033,0.0
+power_hillcrest,0.506,0.0,0,0,Hillcrest,power,Queens,40.724261,-73.804405,0.6
+telecom_cluster_02712,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7183,-73.8214,0.0
+fuel_station_shell_0617,0.506,6.0,6,6,Shell (Shell),fuel,Queens,40.718384,-73.815656,0.0
+fuel_station_amoco_0206,0.506,6.0,6,6,Amoco (Amoco),fuel,Queens,40.720095,-73.809448,0.0
+water_well_station_#51,0.506,6.0,6,6,Well Station #51,water,Queens,40.722359,-73.804176,0.0
+telecom_cluster_02710,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.71945,-73.829862,0.0
+telecom_cluster_02867,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7327,-73.8197,0.0
+telecom_cluster_00587,0.506,6.0,6,6,AT&T cluster,telecom,Queens,40.7199,-73.7962,0.0
+telecom_cluster_02866,0.506,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7368,-73.827,0.0
+fuel_station_mobil_0108,0.506,6.0,6,6,Mobil (Mobil),fuel,Queens,40.721891,-73.804106,0.0
+telecom_cluster_03205,0.486,6.0,6,6,T-Mobile cluster,telecom,Queens,40.766767,-73.863567,0.0
+telecom_cluster_03307,0.486,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7748,-73.8667,0.0
+water_tallmans_island_wwtp,0.486,6.0,6,6,Tallmans Island Wwtp,water,Queens,40.794938,-73.839342,0.0
+telecom_cluster_03342,0.486,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7813,-73.8683,0.0
+water_tallman_island_wwtp,0.486,6.0,6,6,Tallman Island Wwtp,water,Queens,40.79403,-73.840255,0.0
+power_chisholm,0.486,0.0,0,0,Chisholm,power,Queens,40.784207,-73.85091,0.6
+telecom_cluster_00999,0.486,6.0,6,6,AT&T cluster,telecom,Queens,40.7706,-73.8704,0.0
+telecom_cluster_03036,0.469,13.7,0,48,T-Mobile cluster,telecom,Queens,40.749827,-73.875793,0.2
+telecom_cluster_02650,0.449,9.5,0,24,T-Mobile cluster,telecom,Queens,40.713,-73.867933,0.2
+telecom_cluster_00710,0.449,10.3,0,24,AT&T cluster,telecom,Queens,40.733375,-73.864725,0.2
+telecom_cluster_00583,0.439,9.6,0,24,AT&T cluster,telecom,Queens,40.721867,-73.847767,0.2
+telecom_cluster_02651,0.432,10.2,0,24,T-Mobile cluster,telecom,Queens,40.715875,-73.8612,0.2
+telecom_cluster_02915,0.425,10.1,0,24,T-Mobile cluster,telecom,Queens,40.740675,-73.858875,0.2
+telecom_cluster_03040,0.424,10.5,0,24,T-Mobile cluster,telecom,Queens,40.750429,-73.855314,0.2
+telecom_cluster_00886,0.421,10.5,0,24,AT&T cluster,telecom,Queens,40.7531,-73.8522,0.2
+telecom_cluster_01912,0.325,8.1,0,48,T-Mobile cluster,telecom,Brooklyn,40.635412,-73.963488,0.2
+telecom_cluster_02333,0.312,6.5,0,48,T-Mobile cluster,telecom,Brooklyn,40.684729,-73.924786,0.2
+telecom_cluster_00148,0.309,7.8,0,48,AT&T cluster,telecom,Brooklyn,40.648932,-73.979368,0.2
+telecom_cluster_02274,0.303,7.8,0,48,T-Mobile cluster,telecom,Brooklyn,40.681075,-73.979925,0.2
+telecom_cluster_03037,0.288,27.8,24,48,T-Mobile cluster,telecom,Queens,40.750138,-73.87075,0.0
+telecom_cluster_03038,0.288,27.8,24,48,T-Mobile cluster,telecom,Queens,40.75005,-73.86375,0.0
+fuel_station_bp_0740,0.288,4.8,6,6,BP,fuel,Queens,40.745228,-73.867739,0.2
+fuel_station_bp_0680,0.287,4.6,6,6,BP (BP),fuel,Queens,40.71969,-73.89107,0.2
+fuel_station_mobile_0681,0.287,4.8,6,6,Mobile (Mobil),fuel,Queens,40.719411,-73.890844,0.2
+fuel_station_gulf_1057,0.285,4.8,6,6,Gulf (Gulf),fuel,Queens,40.738678,-73.849193,0.2
+fuel_station_bp_0277,0.281,4.9,6,6,BP (BP),fuel,Queens,40.736772,-73.856771,0.2
+telecom_cluster_02066,0.279,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6545,-73.9094,0.2
+telecom_cluster_01878,0.277,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.63015,-74.016975,0.2
+telecom_cluster_00663,0.272,0.0,0,0,AT&T cluster,telecom,Queens,40.730933,-73.925167,0.2
+telecom_cluster_03137,0.268,0.0,0,0,T-Mobile cluster,telecom,Queens,40.76165,-73.897,0.2
+telecom_cluster_01782,0.268,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.608475,-74.129475,0.2
+telecom_cluster_03330,0.267,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.778831,-73.981823,0.2
+telecom_cluster_03932,0.267,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8793,-73.8335,0.2
+fuel_station_gulf_0557,0.266,6.0,6,6,Gulf (Gulf),fuel,Queens,40.782234,-73.803454,0.0
+telecom_cluster_03378,0.266,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7861,-73.8006,0.2
+fuel_station_sunoco_0544,0.266,6.0,6,6,Sunoco (Sunoco),fuel,Queens,40.759449,-73.800076,0.0
+fuel_station_unknown_gas_station_1039,0.266,6.0,6,6,Unknown Gas Station,fuel,Queens,40.778627,-73.804978,0.0
+power_auburndale,0.266,6.0,6,6,Auburndale,power,Queens,40.776529,-73.799323,0.0
+telecom_cluster_00960,0.266,24.0,24,24,AT&T cluster,telecom,Queens,40.76445,-73.798,0.0
+telecom_cluster_03154,0.266,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7613,-73.7932,0.0
+fuel_station_unknown_gas_station_0658,0.266,6.0,6,6,Unknown Gas Station,fuel,Queens,40.769739,-73.79291,0.0
+telecom_cluster_03151,0.266,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7623,-73.8086,0.0
+telecom_cluster_03152,0.266,24.0,24,24,T-Mobile cluster,telecom,Queens,40.76185,-73.8041,0.0
+telecom_cluster_03153,0.266,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7614,-73.7987,0.0
+telecom_cluster_03209,0.266,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7626,-73.8116,0.0
+fuel_station_conoco_1158,0.266,6.0,6,6,Conoco (Conoco),fuel,Queens,40.764827,-73.812708,0.0
+telecom_cluster_01786,0.264,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.6106,-74.1101,0.2
+telecom_cluster_00388,0.262,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.6957,-73.933,0.2
+telecom_cluster_02929,0.262,0.0,0,0,T-Mobile cluster,telecom,Queens,40.74135,-73.78505,0.2
+telecom_cluster_02433,0.262,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.696407,-73.979757,0.2
+telecom_cluster_00283,0.261,0.0,0,0,AT&T cluster,telecom,Queens,40.6741,-73.7626,0.2
+telecom_cluster_04130,0.261,0.0,0,0,T-Mobile Metro cluster,telecom,Brooklyn,40.66955,-73.9888,0.2
+telecom_cluster_02112,0.259,0.0,0,0,T-Mobile cluster,telecom,Queens,40.6605,-73.7567,0.2
+telecom_cluster_03128,0.257,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.760492,-73.969682,0.2
+telecom_cluster_02235,0.257,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6766,-73.945,0.2
+telecom_cluster_00569,0.257,0.0,0,0,AT&T cluster,telecom,Manhattan,40.7178,-74.0126,0.2
+telecom_cluster_00383,0.257,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.695846,-73.9844,0.2
+telecom_cluster_03629,0.256,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8273,-73.85075,0.2
+water_lost_battalion_hall_rec_ctr,0.256,22.0,24,24,Lost Battalion Hall Rec Ctr,water,Queens,40.732273,-73.865133,0.2
+hospital_elmhurst_hospital_center,0.256,46.0,48,48,Elmhurst Hospital Center,hospital,Queens,40.73871,-73.878351,0.0
+telecom_cluster_02708,0.255,27.4,24,24,T-Mobile cluster,telecom,Queens,40.719305,-73.840134,0.0
+telecom_cluster_04140,0.255,27.4,24,24,T-Mobile Metro cluster,telecom,Queens,40.721138,-73.844012,0.0
+telecom_cluster_02707,0.255,27.4,24,24,T-Mobile cluster,telecom,Queens,40.721012,-73.844999,0.0
+telecom_cluster_00584,0.255,27.4,24,24,AT&T cluster,telecom,Queens,40.720808,-73.845238,0.0
+telecom_cluster_02596,0.255,90.4,96,96,T-Mobile cluster,telecom,Queens,40.710614,-73.858719,0.0
+telecom_cluster_02949,0.255,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.745809,-73.999836,0.2
+telecom_cluster_02948,0.255,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.74524,-74.00604,0.2
+telecom_cluster_02153,0.254,0.0,0,0,T-Mobile cluster,telecom,Queens,40.6638,-73.8154,0.2
+telecom_cluster_01746,0.254,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.5993,-74.0076,0.2
+telecom_cluster_01696,0.254,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.5847,-73.9609,0.2
+telecom_cluster_00032,0.254,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.5893,-73.95017,0.2
+telecom_cluster_01778,0.253,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.6096,-74.149867,0.2
+telecom_cluster_03625,0.253,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8232,-73.8804,0.2
+telecom_cluster_00926,0.253,0.0,0,0,AT&T cluster,telecom,Queens,40.7612,-73.73075,0.2
+telecom_cluster_03375,0.252,0.0,0,0,T-Mobile cluster,telecom,Queens,40.785833,-73.824367,0.2
+telecom_cluster_03210,0.252,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7638,-73.7812,0.2
+telecom_cluster_01847,0.251,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.6232,-74.0312,0.2
+telecom_cluster_00695,0.25,0.0,0,0,AT&T cluster,telecom,Manhattan,40.735217,-74.010033,0.2
+telecom_cluster_00892,0.25,0.0,0,0,AT&T cluster,telecom,Queens,40.756,-73.7409,0.2
+telecom_cluster_02279,0.25,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.680383,-73.95555,0.2
+telecom_cluster_02658,0.249,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7154,-73.826025,0.2
+telecom_cluster_01774,0.248,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.60265,-73.93375,0.2
+telecom_cluster_00135,0.247,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.6441,-73.96545,0.2
+telecom_cluster_03022,0.247,5.6,0,96,T-Mobile cluster,telecom,Manhattan,40.74965,-73.943512,0.2
+telecom_cluster_03196,0.247,26.6,24,24,T-Mobile cluster,telecom,Manhattan,40.76463,-73.954382,0.0
+telecom_cluster_01265,0.247,0.0,0,0,AT&T cluster,telecom,Bronx,40.8308,-73.8335,0.2
+telecom_cluster_03248,0.247,26.6,24,24,T-Mobile cluster,telecom,Manhattan,40.768323,-73.954544,0.0
+telecom_cluster_03197,0.247,26.6,24,24,T-Mobile cluster,telecom,Manhattan,40.766143,-73.951171,0.0
+telecom_cluster_01857,0.246,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.625533,-73.933633,0.2
+telecom_cluster_00023,0.246,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.5855,-73.9722,0.2
+telecom_cluster_04145,0.246,0.0,0,0,T-Mobile Metro cluster,telecom,Manhattan,40.763,-73.9677,0.2
+telecom_cluster_03628,0.246,0.0,0,0,T-Mobile cluster,telecom,Bronx,40.8266,-73.8557,0.2
+telecom_cluster_00015,0.246,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.5758,-74.009,0.2
+telecom_cluster_02190,0.244,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.669438,-73.94475,0.2
+telecom_cluster_00784,0.244,0.0,0,0,AT&T cluster,telecom,Manhattan,40.745336,-74.0059,0.2
+telecom_cluster_02854,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7346,-73.884625,0.0
+fuel_station_citgo_1117,0.243,6.0,6,6,Citgo (Citgo),fuel,Queens,40.714074,-73.859065,0.0
+subway_middle_village_metropolitan_av_m,0.243,6.0,6,6,Middle Village-Metropolitan Av,subway,Queens,40.711396,-73.889601,0.0
+telecom_cluster_02756,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.725258,-73.869583,0.0
+power_corona,0.243,6.0,6,6,Corona,power,Queens,40.740211,-73.862196,0.0
+telecom_cluster_02860,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.736811,-73.854422,0.0
+telecom_cluster_03141,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7597,-73.8664,0.0
+telecom_cluster_02977,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.743467,-73.855733,0.0
+telecom_cluster_00709,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7333,-73.868,0.0
+telecom_cluster_03090,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.754752,-73.888426,0.0
+fuel_station_mobil_0780,0.243,6.0,6,6,Mobil (Mobil),fuel,Queens,40.730271,-73.861716,0.0
+telecom_cluster_02593,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7124,-73.88405,0.0
+telecom_cluster_00846,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7481,-73.8961,0.0
+subway_elmhurst_av_mr,0.243,6.0,6,6,Elmhurst Av,subway,Queens,40.742454,-73.882017,0.0
+telecom_cluster_02705,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7205,-73.853575,0.0
+telecom_cluster_00675,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7287,-73.8407,0.0
+subway_grand_av_newtown_mr,0.243,6.0,6,6,Grand Av-Newtown,subway,Queens,40.737015,-73.877223,0.0
+telecom_cluster_00625,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7274,-73.8549,0.0
+telecom_cluster_00715,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7342,-73.8368,0.0
+telecom_cluster_02811,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7322,-73.8427,0.0
+subway_woodhaven_blvd_mr,0.243,6.0,6,6,Woodhaven Blvd,subway,Queens,40.733106,-73.869229,0.0
+fuel_station_speedway_1002,0.243,6.0,6,6,Speedway (Speedway),fuel,Queens,40.738813,-73.885953,0.0
+telecom_cluster_00848,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.74975,-73.85045,0.0
+fuel_station_gas_sale_1001,0.243,6.0,6,6,Gas Sale,fuel,Queens,40.737798,-73.880839,0.0
+water_pre_k_center_at_111_street,0.243,24.0,24,24,Pre K Center At 111 Street,water,Queens,40.747262,-73.843333,0.0
+fuel_station_unknown_gas_station_0615,0.243,6.0,6,6,Unknown Gas Station,fuel,Queens,40.761422,-73.86791,0.0
+telecom_cluster_00799,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7454,-73.8477,0.0
+telecom_cluster_00628,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7261,-73.8373,0.0
+telecom_cluster_02810,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7279,-73.8565,0.0
+subway_forest_hills_71_av_efmr,0.243,6.0,6,6,Forest Hills-71 Av,subway,Queens,40.721691,-73.844521,0.0
+subway_69_st_7,0.243,6.0,6,6,69 St,subway,Queens,40.746325,-73.896403,0.0
+fuel_station_american_gas_1099,0.243,6.0,6,6,American Gas,fuel,Queens,40.712451,-73.897528,0.0
+fuel_station_unknown_gas_station_1085,0.243,6.0,6,6,Unknown Gas Station,fuel,Queens,40.752341,-73.852818,0.0
+fuel_station_unknown_gas_station_1131,0.243,6.0,6,6,Unknown Gas Station,fuel,Queens,40.721426,-73.866097,0.0
+fuel_station_sunco_0877,0.243,6.0,6,6,Sunco,fuel,Queens,40.746517,-73.893222,0.0
+subway_82_st_jackson_hts_7,0.243,6.0,6,6,82 St-Jackson Hts,subway,Queens,40.747659,-73.883697,0.0
+fuel_station_bp_0567,0.243,6.0,6,6,BP (BP),fuel,Queens,40.730532,-73.872048,0.0
+subway_junction_blvd_7,0.243,6.0,6,6,Junction Blvd,subway,Queens,40.749145,-73.869527,0.0
+fuel_station_mobil_0730,0.243,6.0,6,6,Mobil (Mobil),fuel,Queens,40.737699,-73.852472,0.0
+subway_74_st_broadway_7,0.243,6.0,6,6,74 St-Broadway,subway,Queens,40.746848,-73.891394,0.0
+fuel_station_speedway_0270,0.243,6.0,6,6,Speedway (Speedway),fuel,Queens,40.757303,-73.870708,0.0
+subway_63_dr_rego_park_mr,0.243,6.0,6,6,63 Dr-Rego Park,subway,Queens,40.729846,-73.861604,0.0
+fuel_station_mobil_1101,0.243,6.0,6,6,Mobil (Mobil),fuel,Queens,40.738061,-73.848355,0.0
+subway_67_av_mr,0.243,6.0,6,6,67 Av,subway,Queens,40.726523,-73.852719,0.0
+fuel_station_sunco_0863,0.243,6.0,6,6,Sunco,fuel,Queens,40.746441,-73.893217,0.0
+subway_90_st_elmhurst_av_7,0.243,6.0,6,6,90 St-Elmhurst Av,subway,Queens,40.748408,-73.876613,0.0
+fuel_station_plato_service_station_0768,0.243,6.0,6,6,Plato Service Station,fuel,Queens,40.730963,-73.885874,0.0
+fuel_station_shell_0599,0.243,6.0,6,6,Shell (Shell),fuel,Queens,40.730396,-73.887821,0.0
+telecom_cluster_03094,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7572,-73.87005,0.0
+fuel_station_gulf_0692,0.243,6.0,6,6,Gulf (Gulf),fuel,Queens,40.742494,-73.869964,0.0
+telecom_cluster_02649,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.713075,-73.875725,0.0
+telecom_cluster_00624,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7243,-73.8923,0.0
+telecom_cluster_02914,0.243,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7388,-73.8641,0.2
+fuel_station_gas_sale_0682,0.243,6.0,6,6,Gas Sale,fuel,Queens,40.722049,-73.88596,0.0
+fuel_station_bp_0756,0.243,6.0,6,6,BP,fuel,Queens,40.726098,-73.897834,0.0
+fuel_station_unknown_gas_station_1134,0.243,6.0,6,6,Unknown Gas Station,fuel,Queens,40.756997,-73.870177,0.0
+subway_111_st_7,0.243,6.0,6,6,111 St,subway,Queens,40.75173,-73.855334,0.0
+telecom_cluster_02909,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7397,-73.89514,0.0
+telecom_cluster_00671,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.730533,-73.874433,0.0
+fuel_station_bp_0799,0.243,6.0,6,6,BP (BP),fuel,Queens,40.755115,-73.89132,0.0
+fuel_station_mobil_0798,0.243,6.0,6,6,Mobil (Mobil),fuel,Queens,40.75522,-73.890543,0.0
+subway_jackson_hts_roosevelt_av_efmr,0.243,6.0,6,6,Jackson Hts-Roosevelt Av,subway,Queens,40.746644,-73.891338,0.0
+telecom_cluster_02758,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7261,-73.85996,0.0
+telecom_cluster_02862,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.73325,-73.8437,0.0
+telecom_cluster_02978,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.746475,-73.8488,0.0
+telecom_cluster_02911,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.738725,-73.885175,0.0
+telecom_cluster_02864,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.735975,-73.836175,0.0
+telecom_cluster_03041,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.750525,-73.849962,0.0
+telecom_cluster_00747,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.738667,-73.889933,0.0
+telecom_cluster_03035,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.75046,-73.87957,0.0
+telecom_cluster_02702,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.71915,-73.891475,0.0
+telecom_cluster_02910,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.738743,-73.890143,0.0
+telecom_cluster_02979,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7429,-73.84665,0.0
+telecom_cluster_02970,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.74655,-73.890508,0.0
+telecom_cluster_02652,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.71505,-73.85505,0.0
+telecom_cluster_02760,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.723459,-73.849629,0.0
+telecom_cluster_02701,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7201,-73.893,0.0
+telecom_cluster_02759,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.726229,-73.854071,0.0
+telecom_cluster_03091,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.754979,-73.885679,0.0
+telecom_cluster_03093,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.756867,-73.874767,0.0
+telecom_cluster_03034,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.750964,-73.884518,0.0
+telecom_cluster_02804,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7281,-73.884817,0.0
+telecom_cluster_00708,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.73515,-73.8729,0.0
+telecom_cluster_02856,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.735075,-73.875462,0.0
+telecom_cluster_02861,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7375,-73.8517,0.0
+telecom_cluster_02972,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7471,-73.8813,0.0
+water_eng_324__div_14,0.243,24.0,24,24,Eng 324  Div 14,water,Queens,40.738018,-73.851842,0.0
+telecom_cluster_02857,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.734275,-73.87065,0.0
+telecom_cluster_02806,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.730645,-73.875818,0.0
+telecom_cluster_02703,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.719733,-73.864633,0.0
+telecom_cluster_03140,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7606,-73.8759,0.0
+telecom_cluster_00800,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7451,-73.8473,0.0
+telecom_cluster_02916,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.737767,-73.850467,0.0
+telecom_cluster_02648,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7128,-73.87855,0.0
+telecom_cluster_02919,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.74145,-73.8355,0.0
+telecom_cluster_03033,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.749957,-73.889719,0.0
+telecom_cluster_00673,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7312,-73.8635,0.0
+telecom_cluster_00847,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7524,-73.8566,0.0
+telecom_cluster_02975,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.745833,-73.8647,0.0
+telecom_cluster_02747,0.243,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.7236,-73.9395,0.2
+telecom_cluster_00674,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7298,-73.86125,0.0
+telecom_cluster_00670,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.729633,-73.879667,0.0
+telecom_cluster_00798,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7427,-73.8966,0.0
+telecom_cluster_02974,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.74405,-73.87055,0.0
+telecom_cluster_00885,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7559,-73.8561,0.0
+telecom_cluster_00752,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.74035,-73.84475,0.0
+telecom_cluster_00669,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7277,-73.8862,0.0
+telecom_cluster_03092,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.755833,-73.879667,0.0
+telecom_cluster_02917,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7397,-73.844862,0.0
+telecom_cluster_00751,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7379,-73.8498,0.0
+telecom_cluster_02808,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.730514,-73.8653,0.0
+telecom_cluster_00746,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.73985,-73.89455,0.0
+telecom_cluster_02645,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7168,-73.8967,0.0
+telecom_cluster_00749,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7413,-73.8813,0.0
+hospital_long_island_jewish_forest_hills,0.243,48.0,48,48,Long Island Jewish Forest Hills,hospital,Queens,40.729001,-73.851684,0.0
+telecom_cluster_03097,0.243,96.0,96,96,T-Mobile cluster,telecom,Queens,40.75362,-73.8438,0.0
+telecom_cluster_03138,0.243,96.0,96,96,T-Mobile cluster,telecom,Queens,40.760038,-73.889725,0.0
+telecom_cluster_02753,0.243,96.0,96,96,T-Mobile cluster,telecom,Queens,40.725567,-73.900367,0.0
+telecom_cluster_03095,0.243,96.0,96,96,T-Mobile cluster,telecom,Queens,40.75692,-73.85334,0.0
+telecom_cluster_02809,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.729374,-73.860635,0.0
+telecom_cluster_02807,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.730087,-73.871,0.0
+telecom_cluster_00713,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.73695,-73.8522,0.0
+telecom_cluster_02754,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.725567,-73.895378,0.0
+telecom_cluster_00750,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.7422,-73.8768,0.0
+telecom_cluster_00748,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.738767,-73.884033,0.0
+telecom_cluster_02805,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.729514,-73.8802,0.0
+telecom_cluster_02647,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.71305,-73.8863,0.0
+telecom_cluster_02757,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.726467,-73.8645,0.0
+telecom_cluster_03032,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.749356,-73.895606,0.0
+telecom_cluster_02971,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7472,-73.887,0.0
+telecom_cluster_02969,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.746358,-73.894583,0.0
+telecom_cluster_02646,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7155,-73.88795,0.0
+telecom_cluster_02704,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7197,-73.859567,0.0
+telecom_cluster_02595,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7123,-73.8668,0.0
+telecom_cluster_02913,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.74215,-73.8768,0.0
+telecom_cluster_00672,0.243,24.0,24,24,AT&T cluster,telecom,Queens,40.73192,-73.8701,0.0
+telecom_cluster_02973,0.243,24.0,24,24,T-Mobile cluster,telecom,Queens,40.7428,-73.8748,0.0
+telecom_cluster_02234,0.242,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.67444,-73.95091,0.2
+telecom_cluster_01915,0.242,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.63555,-73.9247,0.2
+telecom_cluster_00997,0.24,0.0,0,0,AT&T cluster,telecom,Queens,40.7692,-73.882,0.2
+telecom_cluster_03447,0.239,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7935,-73.8248,0.2
+telecom_cluster_02894,0.239,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.739621,-73.994436,0.2
+telecom_cluster_00915,0.239,0.0,0,0,AT&T cluster,telecom,Manhattan,40.760933,-73.969433,0.2
+telecom_cluster_01081,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.783,-73.9476,0.0
+telecom_cluster_03299,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.77557,-73.9442,0.0
+telecom_cluster_00951,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.76385,-73.954,0.0
+telecom_cluster_01082,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7831,-73.9434,0.0
+telecom_cluster_03368,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.784814,-73.95445,0.0
+subway_86_st_q,0.238,6.0,6,6,86 St,subway,Manhattan,40.777891,-73.951787,0.0
+subway_77_st_6,0.238,6.0,6,6,77 St,subway,Manhattan,40.77362,-73.959874,0.0
+telecom_cluster_03336,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.77978,-73.949613,0.0
+telecom_cluster_03398,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.790329,-73.955514,0.0
+telecom_cluster_01083,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.784033,-73.9415,0.0
+telecom_cluster_01025,0.238,96.0,96,96,AT&T cluster,telecom,Manhattan,40.774559,-73.964835,0.0
+telecom_cluster_03246,0.238,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.768749,-73.963856,0.0
+telecom_cluster_00990,0.238,96.0,96,96,AT&T cluster,telecom,Manhattan,40.76985,-73.964912,0.0
+telecom_cluster_03294,0.238,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.775283,-73.969733,0.0
+telecom_cluster_03247,0.238,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.769721,-73.959571,0.0
+telecom_cluster_03295,0.238,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.77451,-73.96488,0.0
+power_rainey,0.238,48.0,48,48,Rainey,power,Manhattan,40.763225,-73.943026,0.0
+telecom_cluster_01054,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.779791,-73.945909,0.0
+telecom_cluster_03249,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.771364,-73.950532,0.0
+fuel_station_mobil_0568,0.238,48.0,48,48,Mobil (Mobil),fuel,Manhattan,40.764824,-73.931758,0.0
+telecom_cluster_03297,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.7741,-73.9545,0.0
+telecom_cluster_01080,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7829,-73.9573,0.0
+telecom_cluster_00992,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.77105,-73.95052,0.0
+telecom_cluster_01027,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7739,-73.9509,0.0
+telecom_cluster_03334,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.780225,-73.960381,0.0
+telecom_cluster_00952,0.238,0.0,0,0,AT&T cluster,telecom,Manhattan,40.7674,-73.9511,0.2
+telecom_cluster_01079,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.783025,-73.959625,0.0
+telecom_cluster_02924,0.238,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7386,-73.8106,0.2
+telecom_cluster_01056,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7785,-73.9348,0.0
+subway_72_st_q,0.238,6.0,6,6,72 St,subway,Manhattan,40.768799,-73.958424,0.0
+telecom_cluster_03367,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.783657,-73.958671,0.0
+telecom_cluster_01052,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.78118,-73.9545,0.0
+telecom_cluster_03333,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.779829,-73.965157,0.0
+telecom_cluster_01051,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.78215,-73.9594,0.0
+telecom_cluster_03370,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.78346,-73.94418,0.0
+telecom_cluster_01053,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.77925,-73.949767,0.0
+telecom_cluster_03296,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.775379,-73.960921,0.0
+telecom_cluster_03335,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.780691,-73.955627,0.0
+subway_86_st_456,0.238,6.0,6,6,86 St,subway,Manhattan,40.779492,-73.955589,0.0
+telecom_cluster_03369,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.786295,-73.951611,0.0
+fuel_station_shell_0327,0.238,6.0,6,6,Shell (Shell),fuel,Manhattan,40.783096,-73.945204,0.0
+subway_96_st_q,0.238,6.0,6,6,96 St,subway,Manhattan,40.784318,-73.947152,0.0
+power_east_75th_street,0.238,6.0,6,6,East 75Th Street,power,Manhattan,40.768436,-73.950459,0.0
+telecom_cluster_01028,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7749,-73.94505,0.0
+subway_96_st_6,0.238,6.0,6,6,96 St,subway,Manhattan,40.785672,-73.95107,0.0
+telecom_cluster_03298,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.774191,-73.949618,0.0
+telecom_cluster_01026,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.775375,-73.960875,0.0
+telecom_cluster_01055,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.7811,-73.9421,0.0
+telecom_cluster_03337,0.238,24.0,24,24,T-Mobile cluster,telecom,Manhattan,40.779534,-73.944303,0.0
+telecom_cluster_01050,0.238,24.0,24,24,AT&T cluster,telecom,Manhattan,40.779643,-73.964271,0.0
+telecom_cluster_02983,0.237,0.0,0,0,T-Mobile cluster,telecom,Queens,40.7426,-73.78,0.2
+telecom_cluster_01780,0.237,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.60785,-74.14025,0.2
+telecom_cluster_01938,0.237,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.64185,-73.988325,0.2
+telecom_cluster_02495,0.235,0.0,0,0,T-Mobile cluster,telecom,Queens,40.70102,-73.91078,0.2
+telecom_cluster_00151,0.234,0.0,0,0,AT&T cluster,telecom,Brooklyn,40.649675,-73.964175,0.2
+telecom_cluster_01917,0.233,0.0,0,0,T-Mobile cluster,telecom,Queens,40.633483,-73.88925,0.2
+telecom_cluster_01858,0.232,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.6251,-73.9294,0.2
+telecom_cluster_00943,0.232,0.0,0,0,AT&T cluster,telecom,Manhattan,40.76365,-73.99885,0.2
+telecom_cluster_03013,0.231,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.751014,-73.99439,0.2
+telecom_cluster_03528,0.228,0.0,0,0,T-Mobile cluster,telecom,Manhattan,40.808488,-73.94855,0.2
+telecom_cluster_00783,0.226,0.0,0,0,AT&T cluster,telecom,Manhattan,40.7438,-74.00865,0.2
+telecom_cluster_02549,0.226,0.0,0,0,T-Mobile cluster,telecom,Queens,40.70355,-73.81685,0.2
+telecom_cluster_01779,0.224,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.60825,-74.14555,0.2
+telecom_cluster_01781,0.222,0.0,0,0,T-Mobile cluster,telecom,Staten Island,40.608,-74.1339,0.2
+telecom_cluster_01801,0.216,0.0,0,0,T-Mobile cluster,telecom,Brooklyn,40.60965,-73.9436,0.2
+fuel_station_citgo_0598,0.081,0.0,0,0,Citgo (Citgo),fuel,Manhattan,40.700068,-73.961321,0.2
+telecom_cluster_00426,0.081,48.0,48,48,AT&T cluster,telecom,Manhattan,40.700871,-73.960957,0.0
+telecom_cluster_00096,0.073,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.6352,-73.961736,0.0
+telecom_cluster_00095,0.073,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.635425,-73.962708,0.0
+telecom_cluster_01879,0.073,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.6309,-73.97595,0.0
+fuel_station_speedway_0570,0.073,0.0,0,0,Speedway (Speedway),fuel,Brooklyn,40.634877,-73.967916,0.2
+telecom_cluster_01911,0.073,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.635717,-73.968983,0.0
+fuel_station_unknown_gas_station_0817,0.071,1.3,0,6,Unknown Gas Station,fuel,Queens,40.705965,-73.876632,0.2
+telecom_cluster_00299,0.071,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.680486,-73.979686,0.0
+telecom_cluster_02229,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.674455,-73.975335,0.0
+telecom_cluster_00319,0.071,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.68517,-73.98997,0.0
+telecom_cluster_02275,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.680362,-73.975133,0.0
+telecom_cluster_00300,0.071,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.680478,-73.974722,0.0
+telecom_cluster_02322,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.685114,-73.978922,0.0
+telecom_cluster_00278,0.071,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.67456,-73.97468,0.0
+telecom_cluster_00321,0.071,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.684875,-73.979888,0.0
+telecom_cluster_02324,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.685275,-73.970062,0.0
+telecom_cluster_00322,0.071,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.683762,-73.975125,0.0
+telecom_cluster_02228,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.67515,-73.980175,0.0
+telecom_cluster_00323,0.071,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.6845,-73.97142,0.0
+telecom_cluster_02320,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.685458,-73.990539,0.0
+telecom_cluster_02381,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.68937,-73.97448,0.0
+telecom_cluster_02272,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.680209,-73.989945,0.0
+telecom_cluster_02183,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.6698,-73.979573,0.0
+telecom_cluster_02323,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.683779,-73.976226,0.0
+telecom_cluster_02321,0.071,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.686033,-73.985517,0.0
+fuel_station_shell_0098,0.071,0.0,0,0,Shell (Shell),fuel,Brooklyn,40.683271,-73.982334,0.2
+fuel_station_unknown_gas_station_0355,0.07,0.0,0,0,Unknown Gas Station,fuel,Brooklyn,40.640974,-73.918996,0.2
+water_spring_creek_park_dep_aux_plnt,0.07,48.0,48,48,Spring Creek Park/Dep Aux Plnt,water,Queens,40.658171,-73.863718,0.0
+fuel_station_allegiance_0745,0.07,0.0,0,0,Allegiance,fuel,Queens,40.672921,-73.871642,0.2
+fuel_station_citgo_0870,0.07,0.0,0,0,Citgo (Citgo),fuel,Queens,40.752312,-73.905076,0.2
+telecom_cluster_01944,0.07,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.64068,-73.92028,0.0
+fuel_station_sunoco_0168,0.069,0.0,0,0,Sunoco (Sunoco),fuel,Brooklyn,40.590262,-73.97493,0.2
+fuel_station_exxon_0705,0.069,0.0,0,0,Exxon (Exxon),fuel,Queens,40.682559,-73.851368,0.2
+telecom_cluster_02009,0.069,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.649628,-73.979666,0.0
+telecom_cluster_00185,0.069,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.6594,-73.981329,0.0
+telecom_cluster_02052,0.069,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.654782,-73.979709,0.0
+telecom_cluster_02092,0.069,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.660296,-73.980213,0.0
+telecom_cluster_00165,0.069,48.0,48,48,AT&T cluster,telecom,Brooklyn,40.655086,-73.979771,0.0
+fuel_station_mobil_0196,0.069,0.0,0,0,Mobil (Mobil),fuel,Brooklyn,40.647597,-73.979764,0.2
+fuel_station_exxon_1020,0.068,0.0,0,0,Exxon (Exxon),fuel,Brooklyn,40.615826,-73.913846,0.2
+telecom_cluster_03649,0.067,48.0,48,48,T-Mobile cluster,telecom,Bronx,40.829767,-73.909967,0.0
+telecom_cluster_03681,0.067,48.0,48,48,T-Mobile cluster,telecom,Bronx,40.835029,-73.906414,0.0
+fuel_station_mobil_0609,0.067,0.0,0,0,Mobil (Mobil),fuel,Staten Island,40.609271,-74.063059,0.2
+telecom_cluster_01765,0.067,48.0,48,48,T-Mobile cluster,telecom,Staten Island,40.603486,-74.054743,0.0
+fuel_station_bp_1141,0.067,0.0,0,0,BP (BP),fuel,Queens,40.743699,-73.717887,0.2
+fuel_station_unknown_gas_station_0764,0.067,0.0,0,0,Unknown Gas Station,fuel,Bronx,40.83207,-73.909996,0.2
+fuel_station_shell_0531,0.066,0.0,0,0,Shell (Shell),fuel,Brooklyn,40.581631,-73.960291,0.2
+fuel_station_shell_0286,0.066,0.0,0,0,Shell (Shell),fuel,Queens,40.754351,-73.895078,0.2
+fuel_station_unknown_gas_station_0576,0.063,0.0,0,0,Unknown Gas Station,fuel,Bronx,40.845944,-73.902346,0.2
+fuel_station_mobil_0895,0.063,0.0,0,0,Mobil (Mobil),fuel,Staten Island,40.578053,-74.101828,0.2
+fuel_station_citgo_0802,0.062,1.0,0,6,Citgo (Citgo),fuel,Manhattan,40.759784,-73.937198,0.2
+fuel_station_unknown_gas_station_0901,0.061,0.0,0,0,Unknown Gas Station,fuel,Staten Island,40.615532,-74.084498,0.2
+water_avenue_v_sewage_pumping_station,0.06,48.0,48,48,Avenue V Sewage Pumping Station,water,Brooklyn,40.59355,-73.981258,0.0
+fuel_station_bp_0770,0.06,0.0,0,0,BP (BP),fuel,Brooklyn,40.596286,-73.984861,0.2
+fuel_station_citgo_0851,0.06,0.0,0,0,Citgo (Citgo),fuel,Staten Island,40.612364,-74.130384,0.2
+fuel_station_unknown_gas_station_1060,0.06,0.0,0,0,Unknown Gas Station,fuel,Queens,40.682828,-73.852389,0.2
+telecom_cluster_02282,0.059,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.679,-73.940075,0.0
+hospital_interfaith_medical_center,0.059,96.0,96,96,Interfaith Medical Center,hospital,Brooklyn,40.67844,-73.937367,0.0
+telecom_cluster_02330,0.059,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.684655,-73.939682,0.0
+telecom_cluster_02329,0.059,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.684788,-73.944794,0.0
+telecom_cluster_02281,0.059,48.0,48,48,T-Mobile cluster,telecom,Brooklyn,40.679825,-73.9453,0.0
+fuel_station_bp_1031,0.059,0.0,0,0,BP (BP),fuel,Brooklyn,40.678427,-73.944488,0.2
+telecom_cluster_02967,0.058,48.0,48,48,T-Mobile cluster,telecom,Queens,40.745733,-73.904389,0.0
+telecom_cluster_02968,0.058,48.0,48,48,T-Mobile cluster,telecom,Queens,40.744738,-73.900625,0.0
+fuel_station_bp_0785,0.058,0.0,0,0,BP (BP),fuel,Queens,40.74182,-73.904022,0.2
+fuel_station_speedy_gas_0204,0.057,0.0,0,0,Speedy Gas,fuel,Brooklyn,40.677492,-73.927847,0.2
+fuel_station_allegiance_0213,0.057,0.0,0,0,Allegiance,fuel,Brooklyn,40.590464,-73.974521,0.2
+fuel_station_shell_0945,0.055,0.0,0,0,Shell (Shell),fuel,Staten Island,40.612721,-74.124919,0.2
+fuel_station_sunoco_1021,0.053,0.0,0,0,Sunoco (Sunoco),fuel,Brooklyn,40.61468,-73.927776,0.2
+fuel_station_mobil_1165,0.051,0.0,0,0,Mobil (Mobil),fuel,Staten Island,40.610342,-74.147311,0.2
+fuel_station_unknown_gas_station_0766,0.05,0.0,0,0,Unknown Gas Station,fuel,Brooklyn,40.64478,-73.910723,0.2
+hospital_kings_county_hospital_center,0.042,24.0,24,24,Kings County Hospital Center,hospital,Brooklyn,40.656638,-73.944933,0.0
+hospital_brookdale_hospital_medical_center,0.042,24.0,24,24,Brookdale Hospital Medical Center,hospital,Brooklyn,40.654951,-73.912419,0.0
+hospital_university_hospital_of_brooklyn,0.042,24.0,24,24,University Hospital Of Brooklyn,hospital,Brooklyn,40.655078,-73.944911,0.0
+hospital_kingsbrook_jewish_medical_village,0.042,24.0,24,24,Kingsbrook Jewish Medical Village,hospital,Brooklyn,40.659394,-73.933754,0.0
+water_paerdegat_pumping_station,0.042,0.0,0,0,Paerdegat Pumping Station,water,Brooklyn,40.631952,-73.91763,0.2
+hospital_mount_sinai_brooklyn,0.042,24.0,24,24,Mount Sinai Brooklyn,hospital,Brooklyn,40.618719,-73.942973,0.0
+water_roosevelt_island_ops_command,0.024,43.5,6,96,Roosevelt Island-Ops Command,water,Manhattan,40.760607,-73.951593,0.0
+fuel_station_sunoco_0869,0.016,6.0,6,6,Sunoco (Sunoco),fuel,Queens,40.710578,-73.852565,0.0
+fuel_station_unknown_gas_station_0734,0.016,6.0,6,6,Unknown Gas Station,fuel,Queens,40.690702,-73.840726,0.0
+telecom_cluster_00498,0.016,6.0,6,6,AT&T cluster,telecom,Queens,40.71085,-73.847,0.0
+telecom_cluster_02594,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7091,-73.8753,0.0
+fuel_station_unknown_gas_station_0707,0.016,6.0,6,6,Unknown Gas Station,fuel,Queens,40.69181,-73.834942,0.0
+telecom_cluster_02544,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.703712,-73.860512,0.0
+telecom_cluster_02447,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.69515,-73.85285,0.0
+telecom_cluster_02497,0.016,96.0,96,96,T-Mobile cluster,telecom,Queens,40.699283,-73.869317,0.0
+telecom_cluster_00497,0.016,6.0,6,6,AT&T cluster,telecom,Queens,40.7101,-73.8489,0.0
+fuel_station_shell_0634,0.016,6.0,6,6,Shell (Shell),fuel,Queens,40.702776,-73.854803,0.0
+telecom_cluster_00585,0.016,96.0,96,96,AT&T cluster,telecom,Queens,40.718454,-73.838885,0.0
+telecom_cluster_00545,0.016,96.0,96,96,AT&T cluster,telecom,Queens,40.71655,-73.843967,0.0
+telecom_cluster_02499,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.699633,-73.853833,0.0
+telecom_cluster_02655,0.016,96.0,96,96,T-Mobile cluster,telecom,Queens,40.715645,-73.841073,0.0
+telecom_cluster_02654,0.016,96.0,96,96,T-Mobile cluster,telecom,Queens,40.7149,-73.844214,0.0
+fuel_station_unknown_gas_station_0812,0.016,6.0,6,6,Unknown Gas Station,fuel,Queens,40.704461,-73.876625,0.0
+telecom_cluster_02598,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.709833,-73.850673,0.0
+fuel_station_bp_0635,0.016,6.0,6,6,BP (BP),fuel,Queens,40.702872,-73.855715,0.0
+power_woodhaven,0.016,0.0,0,0,Woodhaven,power,Queens,40.689826,-73.843957,0.2
+power_160th_avenue,0.016,0.0,0,0,160Th Avenue,power,Queens,40.65659,-73.847598,0.2
+fuel_station_lukoil_1058,0.016,6.0,6,6,Lukoil (Lukoil),fuel,Queens,40.655162,-73.83837,0.0
+telecom_cluster_02545,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.704938,-73.854875,0.0
+telecom_cluster_01987,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.6446,-73.8721,0.0
+telecom_cluster_02028,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.648433,-73.8713,0.0
+telecom_cluster_02073,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.65515,-73.8602,0.0
+telecom_cluster_02105,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.658133,-73.856133,0.0
+telecom_cluster_02072,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.653033,-73.866,0.0
+telecom_cluster_02599,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.709362,-73.84515,0.0
+telecom_cluster_02546,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7068,-73.8497,0.0
+telecom_cluster_02597,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.710712,-73.855138,0.0
+telecom_cluster_02543,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.70315,-73.8637,0.0
+telecom_cluster_02653,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7158,-73.848775,0.0
+telecom_cluster_02498,0.016,6.0,6,6,T-Mobile cluster,telecom,Queens,40.701712,-73.86525,0.0
+telecom_cluster_00949,0.014,96.0,96,96,AT&T cluster,telecom,Manhattan,40.765669,-73.964806,0.0
+hospital_rockefeller_university_hospital,0.014,48.0,48,48,Rockefeller University Hospital,hospital,Manhattan,40.762905,-73.956374,0.0
+telecom_cluster_03131,0.014,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.761237,-73.955995,0.0
+telecom_cluster_03080,0.014,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.755422,-73.960611,0.0
+telecom_cluster_03079,0.014,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.7541,-73.964469,0.0
+telecom_cluster_00917,0.014,96.0,96,96,AT&T cluster,telecom,Manhattan,40.760911,-73.960133,0.0
+telecom_cluster_03130,0.014,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.76053,-73.960135,0.0
+telecom_cluster_03194,0.014,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.765117,-73.965365,0.0
+telecom_cluster_03129,0.014,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.760395,-73.964605,0.0
+hospital_flushing_hospital_medical_center,0.014,0.0,0,0,Flushing Hospital Medical Center,hospital,Queens,40.755531,-73.815475,0.2
+hospital_david_h__koch_center_for_cancer_care,0.014,48.0,48,48,David H. Koch Center For Cancer Care,hospital,Manhattan,40.767034,-73.951039,0.0
+hospital_hospital_for_special_surgery,0.014,48.0,48,48,Hospital For Special Surgery,hospital,Manhattan,40.76505,-73.95256,0.0
+telecom_cluster_03021,0.014,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.7479,-73.9477,0.0
+hospital_new_york_presbyterian_hospital___new_yor,0.014,48.0,48,48,New York-Presbyterian Hospital - New York Weill Cornell Center,hospital,Manhattan,40.764721,-73.953919,0.0
+water_future_cornell_tech_campus,0.014,6.0,6,6,Future Cornell Tech Campus,water,Manhattan,40.753937,-73.957106,0.0
+subway_roosevelt_island_m,0.014,6.0,6,6,Roosevelt Island,subway,Manhattan,40.759145,-73.95326,0.0
+hospital_lenox_hill_hospital,0.014,48.0,48,48,Lenox Hill Hospital,hospital,Manhattan,40.773957,-73.961109,0.0
+telecom_cluster_03082,0.014,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.755267,-73.951267,0.0
+fuel_station_citgo_0833,0.014,6.0,6,6,Citgo (Citgo),fuel,Manhattan,40.744538,-73.950663,0.0
+fuel_station_sunoco_0541,0.014,6.0,6,6,Sunoco (Sunoco),fuel,Manhattan,40.752033,-73.944713,0.0
+telecom_cluster_03081,0.014,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.75615,-73.9549,0.0
+telecom_cluster_03083,0.014,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.754133,-73.945283,0.0
+hospital_memorial_hospital_for_cancer_and_allied,0.014,48.0,48,48,Memorial Hospital For Cancer And Allied Diseases,hospital,Manhattan,40.764395,-73.956852,0.0
+hospital_new_york_presbyterian_david_h__koch_cent,0.014,48.0,48,48,New York-Presbyterian David H. Koch Center,hospital,Manhattan,40.76485,-73.955863,0.0
+power_vernon,0.014,0.0,0,0,Vernon,power,Manhattan,40.758136,-73.94693,0.2
+water_well_station_#33,0.013,6.0,6,6,Well Station #33,water,Queens,40.696269,-73.792539,0.0
+telecom_cluster_02552,0.013,6.0,6,6,T-Mobile cluster,telecom,Queens,40.704533,-73.790067,0.0
+telecom_cluster_02553,0.013,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7059,-73.784533,0.0
+telecom_cluster_02551,0.013,6.0,6,6,T-Mobile cluster,telecom,Queens,40.7035,-73.794733,0.0
+fuel_station_sunoco_0272,0.013,6.0,6,6,Sunoco (Sunoco),fuel,Queens,40.709314,-73.795826,0.0
+fuel_station_bp_0164,0.013,6.0,6,6,BP (BP),fuel,Queens,40.70055,-73.788926,0.0
+power_brinkerhoff,0.013,0.0,0,0,Brinkerhoff,power,Queens,40.694661,-73.788007,0.2
+fuel_station_conoco_0871,0.013,6.0,6,6,Conoco,fuel,Queens,40.697592,-73.785412,0.0
+subway_broadway_nw,0.01,6.0,6,6,Broadway,subway,Queens,40.76182,-73.925508,0.0
+fuel_station_shell_0295,0.01,6.0,6,6,Shell (Shell),fuel,Queens,40.752222,-73.929473,0.0
+power_queensbridge,0.01,0.0,0,0,Queensbridge,power,Manhattan,40.756291,-73.938231,0.2
+fuel_station_bp_0550,0.01,6.0,6,6,BP (BP),fuel,Manhattan,40.75905,-73.937937,0.0
+telecom_cluster_03133,0.01,6.0,6,6,T-Mobile cluster,telecom,Queens,40.761083,-73.92615,0.0
+telecom_cluster_03086,0.01,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.755125,-73.930688,0.0
+subway_36_av_nw,0.01,6.0,6,6,36 Av,subway,Queens,40.756804,-73.929575,0.0
+subway_court_sq_23_st_ef,0.01,6.0,6,6,Court Sq-23 St,subway,Manhattan,40.747846,-73.946,0.0
+subway_queens_plaza_efr,0.01,6.0,6,6,Queens Plaza,subway,Manhattan,40.748973,-73.937243,0.0
+fuel_station_shell_0698,0.01,6.0,6,6,Shell (Shell),fuel,Manhattan,40.757382,-73.939539,0.0
+telecom_cluster_03025,0.01,96.0,96,96,T-Mobile cluster,telecom,Queens,40.7497,-73.9292,0.0
+telecom_cluster_03195,0.01,96.0,96,96,T-Mobile cluster,telecom,Manhattan,40.765715,-73.960044,0.0
+fuel_station_bp_0358,0.01,6.0,6,6,bp (BP),fuel,Queens,40.763477,-73.914445,0.0
+telecom_cluster_03198,0.01,6.0,6,6,T-Mobile cluster,telecom,Queens,40.763767,-73.9239,0.0
+fuel_station_bp_0832,0.01,6.0,6,6,BP (BP),fuel,Queens,40.763458,-73.914612,0.0
+fuel_station_lukoil_0282,0.01,6.0,6,6,Lukoil (Lukoil),fuel,Queens,40.759682,-73.927644,0.0
+subway_queensboro_plaza_7nw,0.01,6.0,6,6,Queensboro Plaza,subway,Manhattan,40.750582,-73.940202,0.0
+telecom_cluster_03085,0.01,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.7532,-73.9333,0.0
+fuel_station_atlantic_0732,0.01,6.0,6,6,Atlantic,fuel,Manhattan,40.756277,-73.939952,0.0
+telecom_cluster_03023,0.01,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.749959,-73.940518,0.0
+telecom_cluster_03199,0.01,6.0,6,6,T-Mobile cluster,telecom,Queens,40.76632,-73.92098,0.0
+fuel_station_bp_0359,0.01,6.0,6,6,bp (BP),fuel,Queens,40.7636,-73.914711,0.0
+subway_46_st_mr,0.01,6.0,6,6,46 St,subway,Queens,40.756312,-73.913333,0.0
+telecom_cluster_03134,0.01,6.0,6,6,T-Mobile cluster,telecom,Queens,40.758,-73.9151,0.0
+telecom_cluster_03084,0.01,6.0,6,6,T-Mobile cluster,telecom,Manhattan,40.7545,-73.9424,0.0
+fuel_station_citgo_0857,0.01,6.0,6,6,Citgo (Citgo),fuel,Queens,40.759857,-73.914269,0.0
+subway_39_av_dutch_kills_nw,0.01,6.0,6,6,39 Av-Dutch Kills,subway,Manhattan,40.752882,-73.932755,0.0
+fuel_station_unknown_gas_station_1004,0.01,6.0,6,6,Unknown Gas Station,fuel,Manhattan,40.752554,-73.93921,0.0
+telecom_cluster_00882,0.01,6.0,6,6,AT&T cluster,telecom,Queens,40.7558,-73.9287,0.0
+telecom_cluster_03132,0.01,6.0,6,6,T-Mobile cluster,telecom,Queens,40.758475,-73.92825,0.0
+fuel_station_mobil_0353,0.01,6.0,6,6,Mobil (Mobil),fuel,Manhattan,40.752464,-73.939091,0.0
