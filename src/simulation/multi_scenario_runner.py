@@ -354,7 +354,7 @@ def format_summary(comparison, amplifiers):
     lines.append("")
 
     # Known limitations
-    lines.append("Known limitations (to document for Dr. Miura):")
+    lines.append("Known limitations :")
     lines.append("  1. DEP flood maps exclude storm surge per their own disclaimer.")
     lines.append("     Surge-exposed infrastructure (FDR corridor hospitals, SI shore) is")
     lines.append("     systematically under-represented in flood footprint.")
