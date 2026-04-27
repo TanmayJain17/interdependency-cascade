@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 """
-multi_scenario_runner.py — Citywide cascade analysis
+multi_scenario_runner.py — Citywide cascade analysis (stochastic buffers)
 
 Orchestrates fragility + Monte Carlo + cascade simulation for the three DEP
 flood scenarios (moderate_current, moderate_2050, extreme_2080) on the
 citywide heterogeneous infrastructure graph.
 
-Approach (Option A): Wraps the existing Week 5 fragility.py and cascade_sim.py
+Approach (Option A): Wraps the existing fragility.py and cascade_sim.py
 WITHOUT modifying them. For each scenario, creates a temporary nodes GeoJSON
 with the appropriate DEP depth column aliased to 'flood_depth_m' and a synthetic
 'gissr_division' column (-1 for external nodes, 0 for NYC nodes).
 
+Week 7 update: Buffer hours on dependency edges are now sampled per Monte Carlo
+iteration from Weibull(median=edge.buffer_hours, shape=config[target_type].shape).
+Engineering medians on the graph are unchanged; only variability is added.
+
 Inputs:
     data/flood/nyc_infra_nodes_dep_flood.geojson  (6,231 nodes with 3 scenarios)
     data/flood/nyc_infra_graph_dep_flood.graphml  (directed graph with buffers)
+    config/buffer_distributions.yaml              (Weibull shape per target type)
 
 Outputs:
     data/simulation/monte_carlo_failures_nyc_{scenario}.json
@@ -39,8 +44,15 @@ import networkx as nx
 
 # Make fragility.py and cascade_sim.py importable
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Make src.cascade.stochastic_buffer importable from project root
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
 from fragility import sample_initial_failures
-from cascade_sim import run_all_scenarios, load_graph, get_cascade_edges
+from cascade_sim import load_graph, get_cascade_edges, simulate_cascade
+from src.cascade.stochastic_buffer import (
+    load_buffer_config,
+    sample_stochastic_graph,
+)
 
 
 # -----------------------------------------------------------------------------
@@ -55,10 +67,15 @@ OUT_DIR = Path("outputs")
 
 SCENARIOS = ["moderate_current", "moderate_2050", "extreme_2080"]
 N_MONTE_CARLO = 1000
+TIME_STEPS = [0, 6, 24, 48, 96]
 
 # Amplifier thresholds (for extreme_2080 analysis)
 AMP_FLOOD_THRESHOLD_M = 0.05  # node is "dry" if depth < 5 cm
 AMP_FREQ_THRESHOLD = 0.50     # node is "amplifier" if it fails in >50% of runs
+
+# RNG seeds — independent streams for fragility vs buffer sampling
+FRAGILITY_SEED = 42
+BUFFER_SEED = 43
 
 
 # -----------------------------------------------------------------------------
@@ -79,7 +96,6 @@ def prepare_scenario_nodes(nodes_gdf, scenario_name, out_path):
 
     temp["flood_depth_m"] = temp[depth_col].fillna(0.0)
 
-    # geopandas sometimes returns bool as string; handle both
     def is_external(x):
         return str(x).lower() in ("true", "1", "yes")
 
@@ -91,7 +107,6 @@ def prepare_scenario_nodes(nodes_gdf, scenario_name, out_path):
         temp["gissr_division"] = 0
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    # Keep file small — drop unused columns
     keep_cols = ["node_id", "infra_type", "lat", "lon", "external",
                  "flood_depth_m", "gissr_division", "geometry"]
     keep_cols = [c for c in keep_cols if c in temp.columns]
@@ -99,11 +114,12 @@ def prepare_scenario_nodes(nodes_gdf, scenario_name, out_path):
 
 
 # -----------------------------------------------------------------------------
-# Per-scenario run
+# Per-scenario run (with inline stochastic-buffer MC loop)
 # -----------------------------------------------------------------------------
 
-def run_scenario(scenario_name, nodes_gdf):
-    """Run fragility + cascade for one DEP scenario. Returns (mc_scenarios, cascade_results)."""
+def run_scenario(scenario_name, nodes_gdf, buffer_config):
+    """Run fragility + stochastic-buffer cascade for one DEP scenario.
+    Returns (mc_scenarios, cascade_results)."""
     print(f"\n{'=' * 75}")
     print(f"SCENARIO: {scenario_name}")
     print(f"{'=' * 75}")
@@ -118,8 +134,8 @@ def run_scenario(scenario_name, nodes_gdf):
     mc_scenarios = sample_initial_failures(
         str(temp_nodes),
         n_scenarios=N_MONTE_CARLO,
-        seed=42,
-        depth_scale=1.0,   # no Sandy-style scaling — each DEP scenario has its own footprint
+        seed=FRAGILITY_SEED,
+        depth_scale=1.0,
     )
 
     n_failed = np.array([s["n_failed"] for s in mc_scenarios])
@@ -131,15 +147,63 @@ def run_scenario(scenario_name, nodes_gdf):
         json.dump(mc_scenarios, f)
     print(f"  Saved: {mc_out}")
 
-    # 3. Cascade simulation
-    print(f"\n  [Cascade] Propagating through graph...")
+    # 3. Cascade simulation — STOCHASTIC BUFFERS
+    print(f"\n  [Cascade] Propagating through graph (Weibull-sampled buffers)...")
+    G = load_graph(str(GRAPH_IN))
+    print(f"  Loaded graph: {G.number_of_nodes():,} nodes, {G.number_of_edges():,} edges")
+
+    # Independent RNG for buffer sampling (fragility uses its own seed inside)
+    buffer_rng = np.random.default_rng(BUFFER_SEED)
+
+    cascade_results = []
+    time_keys = [f"t{t}" for t in TIME_STEPS]
+
+    for run_id, scenario in enumerate(mc_scenarios):
+        # Sample fresh stochastic graph for this MC run
+        G_stoch = sample_stochastic_graph(G, rng=buffer_rng, config=buffer_config)
+
+        # Audit on first iteration
+        if run_id == 0:
+            summary = G_stoch.graph["_stochastic_buffer_summary"]
+            print(f"  Stochastic buffer audit (first MC run):")
+            print(f"    Sampled:          {summary['n_sampled']} edges")
+            print(f"    Zero-buffer kept: {summary['n_zero_buffer']} edges")
+            print(f"    Fallback used:    {summary['n_fallback']} edges")
+            if summary["fallback_target_types"]:
+                print(f"    WARNING — unrecognized target types: "
+                      f"{summary['fallback_target_types']}")
+                print(f"    Add these to config/buffer_distributions.yaml")
+
+        # Run cascade — note: scenario field name may be 'failed_nodes' or
+        # 'initial_failures' depending on your fragility.py version
+        initial_failures = set(scenario.get("failed_nodes",
+                                            scenario.get("initial_failures", [])))
+        cascade = simulate_cascade(G_stoch, initial_failures, time_steps=TIME_STEPS)
+
+        # Format result so summarize() and find_amplifiers_extreme() work unchanged
+        by_timestep = {tk: len(cascade[tk]) for tk in time_keys}
+        cascade_results.append({
+            "scenario_id": scenario.get("scenario_id", run_id),
+            "direct_failures": by_timestep["t0"],
+            "total_failures":  by_timestep[time_keys[-1]],
+            "failed_nodes_t96": list(cascade[time_keys[-1]]),
+            "by_timestep": by_timestep,
+        })
+
+        if (run_id + 1) % 100 == 0:
+            print(f"    Completed {run_id + 1}/{len(mc_scenarios)} MC runs")
+
+    # Save cascade results in the same format run_all_scenarios produced
     cascade_out = SIM_DIR / f"cascade_results_nyc_{scenario_name}.json"
-    cascade_results = run_all_scenarios(
-        graph_path=str(GRAPH_IN),
-        scenarios_path=str(mc_out),
-        output_path=str(cascade_out),
-        label=f"nyc_{scenario_name}",
-    )
+    with open(cascade_out, "w") as f:
+        json.dump(cascade_results, f)
+    print(f"  Saved: {cascade_out}")
+
+    # Quick summary print
+    direct = np.array([r["direct_failures"] for r in cascade_results])
+    total = np.array([r["total_failures"] for r in cascade_results])
+    print(f"  [{scenario_name}] direct: {direct.mean():.1f} +/- {direct.std():.1f}, "
+          f"total: {total.mean():.1f} +/- {total.std():.1f}")
 
     return mc_scenarios, cascade_results
 
@@ -152,7 +216,6 @@ def summarize(all_results, nodes_gdf):
     """Build comparison dict from per-scenario cascade results."""
     node_type = dict(zip(nodes_gdf["node_id"], nodes_gdf["infra_type"]))
 
-    # Also build borough lookup so we can break down failures by borough
     def assign_borough(lat, lon):
         if lat < 40.65 and lon < -74.03:
             return "Staten Island"
@@ -178,7 +241,6 @@ def summarize(all_results, nodes_gdf):
         valid = direct > 0
         amp = total[valid] / direct[valid] if valid.sum() > 0 else np.array([])
 
-        # Per-type failures at t=96
         type_counts = Counter()
         for r in cascade:
             for nid in r["failed_nodes_t96"]:
@@ -189,7 +251,6 @@ def summarize(all_results, nodes_gdf):
             for t in ["power", "telecom", "hospital", "subway", "water", "fuel"]
         }
 
-        # Per-borough failures at t=96
         boro_counts = Counter()
         for r in cascade:
             for nid in r["failed_nodes_t96"]:
@@ -224,8 +285,7 @@ def summarize(all_results, nodes_gdf):
 def find_amplifiers_extreme(nodes_gdf, cascade_results):
     """
     Identify nodes that fail in > threshold % of extreme_2080 cascade runs
-    despite having no direct flood exposure. Includes betweenness centrality
-    to characterize topological importance.
+    despite having no direct flood exposure.
     """
     print(f"\n{'=' * 75}")
     print("AMPLIFIER ANALYSIS (extreme_2080)")
@@ -237,15 +297,12 @@ def find_amplifiers_extreme(nodes_gdf, cascade_results):
     node_lat = dict(zip(nodes_gdf["node_id"], nodes_gdf["lat"]))
     node_lon = dict(zip(nodes_gdf["node_id"], nodes_gdf["lon"]))
 
-    # Count failures per node across all runs
     fail_count = Counter()
     for r in cascade_results:
         for nid in r["failed_nodes_t96"]:
             fail_count[nid] += 1
     n_runs = len(cascade_results)
 
-    # Compute betweenness centrality on cascade subgraph
-    # For 6.2k nodes, approximate betweenness (k=500) is much faster than exact
     print("  Computing approximate betweenness centrality (k=500 samples)...")
     G = load_graph(str(GRAPH_IN))
     G_cascade = nx.DiGraph()
@@ -254,7 +311,6 @@ def find_amplifiers_extreme(nodes_gdf, cascade_results):
         G_cascade.add_edge(u, v, **data)
     bc = nx.betweenness_centrality(G_cascade, k=min(500, G_cascade.number_of_nodes()))
 
-    # Identify amplifiers
     amplifiers = []
     for nid, freq in fail_count.items():
         frac = freq / n_runs
@@ -272,9 +328,9 @@ def find_amplifiers_extreme(nodes_gdf, cascade_results):
 
     amplifiers.sort(key=lambda x: (-x["cascade_fail_freq"], -x["betweenness_centrality"]))
     print(f"  Found {len(amplifiers)} amplifier nodes "
-          f"(dry under extreme_2080 but fail via cascade in >{int(AMP_FREQ_THRESHOLD * 100)}% of runs)")
+          f"(dry under extreme_2080 but fail via cascade in "
+          f">{int(AMP_FREQ_THRESHOLD * 100)}% of runs)")
 
-    # Save
     if amplifiers:
         csv_path = SIM_DIR / "nyc_amplifier_nodes.csv"
         with open(csv_path, "w", newline="") as f:
@@ -293,12 +349,11 @@ def find_amplifiers_extreme(nodes_gdf, cascade_results):
 def format_summary(comparison, amplifiers):
     lines = []
     lines.append("=" * 75)
-    lines.append("WEEK 6 CASCADE ANALYSIS — NYC CITYWIDE (6,231 nodes)")
-    lines.append("DEP Stormwater Flood Map scenarios (pluvial + tidal)")
+    lines.append("WEEK 7 CASCADE ANALYSIS — NYC CITYWIDE (6,231 nodes)")
+    lines.append("DEP scenarios + STOCHASTIC buffers (Weibull)")
     lines.append("=" * 75)
     lines.append("")
 
-    # Main amplification table
     lines.append(f"{'Scenario':<20} | {'Direct':>14} | {'Total (t=96h)':>17} | {'Amplification':>14}")
     lines.append("-" * 75)
     for scenario in SCENARIOS:
@@ -311,7 +366,6 @@ def format_summary(comparison, amplifiers):
         )
     lines.append("")
 
-    # Time-step progression (extreme only — most informative)
     lines.append("Time-step progression (extreme_2080, mean across 1000 MC runs):")
     ts = comparison["extreme_2080"]["by_timestep"]
     prev = 0.0
@@ -323,21 +377,18 @@ def format_summary(comparison, amplifiers):
         prev = val
     lines.append("")
 
-    # Per-type breakdown (extreme)
     lines.append("Per-type failures at t=96h (extreme_2080):")
     type_means = comparison["extreme_2080"]["type_failures_mean"]
     for t in ["power", "telecom", "hospital", "subway", "water", "fuel"]:
         lines.append(f"  {t:<10}: {type_means[t]:>6.1f}")
     lines.append("")
 
-    # Per-borough breakdown (extreme)
     lines.append("Per-borough failures at t=96h (extreme_2080):")
     boro_means = comparison["extreme_2080"]["borough_failures_mean"]
     for b in ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]:
         lines.append(f"  {b:<15}: {boro_means[b]:>6.1f}")
     lines.append("")
 
-    # Amplifier nodes
     lines.append(f"Cascade amplifier nodes (dry but fail via cascade): {len(amplifiers)}")
     if amplifiers:
         lines.append(f"  {'Node ID':<50} | {'Type':<8} | {'Freq':>5} | {'BC':>8}")
@@ -353,8 +404,7 @@ def format_summary(comparison, amplifiers):
             lines.append(f"  ... and {len(amplifiers) - 15} more (see nyc_amplifier_nodes.csv)")
     lines.append("")
 
-    # Known limitations
-    lines.append("Known limitations :")
+    lines.append("Known limitations:")
     lines.append("  1. DEP flood maps exclude storm surge per their own disclaimer.")
     lines.append("     Surge-exposed infrastructure (FDR corridor hospitals, SI shore) is")
     lines.append("     systematically under-represented in flood footprint.")
@@ -364,6 +414,8 @@ def format_summary(comparison, amplifiers):
     lines.append("     failure sampling — they can receive cascade but don't originate it.")
     lines.append("  4. Betweenness centrality is k=500 approximation (not exact) for")
     lines.append("     compute tractability on 6.2k-node graph.")
+    lines.append("  5. Buffer Weibull shape parameters are engineering estimates pending")
+    lines.append("     empirical fitting from expanded Sandy 2012 dataset.")
     lines.append("")
     lines.append("=" * 75)
 
@@ -376,7 +428,7 @@ def format_summary(comparison, amplifiers):
 
 def main():
     print("=" * 75)
-    print("Week 6 Multi-Scenario Cascade Runner (citywide)")
+    print("Week 7 Multi-Scenario Cascade Runner (citywide, stochastic buffers)")
     print("=" * 75)
 
     if not NODES_IN.exists():
@@ -389,41 +441,41 @@ def main():
     SIM_DIR.mkdir(parents=True, exist_ok=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Load buffer distribution config once
+    buffer_config = load_buffer_config()
+    print(f"Loaded buffer Weibull shapes for: "
+          f"{list(buffer_config['defaults'].keys())}")
+
     # Load nodes once
     nodes_gdf = gpd.read_file(NODES_IN)
     print(f"Loaded {len(nodes_gdf):,} nodes from {NODES_IN}")
 
-    # Run all scenarios
     all_results = {}
     for scenario in SCENARIOS:
-        mc, cascade = run_scenario(scenario, nodes_gdf)
+        mc, cascade = run_scenario(scenario, nodes_gdf, buffer_config)
         all_results[scenario] = (mc, cascade)
 
-    # Summarize
     comparison = summarize(all_results, nodes_gdf)
     comparison_path = SIM_DIR / "nyc_scenario_comparison.json"
     with open(comparison_path, "w") as f:
         json.dump(comparison, f, indent=2)
     print(f"\nSaved: {comparison_path}")
 
-    # Amplifier analysis on extreme_2080 only
     _, extreme_cascade = all_results["extreme_2080"]
     amplifiers = find_amplifiers_extreme(nodes_gdf, extreme_cascade)
 
-    # Text summary
     summary_text = format_summary(comparison, amplifiers)
     print("\n" + summary_text)
     summary_path = OUT_DIR / "week6_cascade_summary.txt"
     summary_path.write_text(summary_text)
     print(f"\nSaved: {summary_path}")
 
-    # Cleanup temp files
     for scenario in SCENARIOS:
         temp = SIM_DIR / f"temp_nodes_nyc_{scenario}.geojson"
         if temp.exists():
             temp.unlink()
 
-    print("\nDone. Deliverables ready for Monday meeting prep.")
+    print("\nDone. Stochastic-buffer cascade results ready.")
     return 0
 
 
