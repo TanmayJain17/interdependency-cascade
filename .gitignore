@@ -95,3 +95,9 @@ archive/
 # ============================================================
 *.backup
 .gitignore.backup
+
+# ============================================================
+# Inference outputs — regeneratable from inference scripts
+# ============================================================
+data/inference/
+data/sandy_validation/
