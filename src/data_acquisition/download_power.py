@@ -28,11 +28,11 @@ BASE_URL = "https://oceandata.rad.rutgers.edu/arcgis/rest/services/RenewableEner
 NYC_BBOX = '-74.27,40.49,-73.70,40.92'
 
 # Lower Manhattan filter
-LM_BBOX = {
+""" NYC_BBOX = {
     'min_lat': 40.700, 'max_lat': 40.755,
     'min_lon': -74.020, 'max_lon': -73.970
 }
-
+ """
 # Output directory
 OUTPUT_DIR = 'data/power'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -131,17 +131,17 @@ if len(substations_nyc) > 0:
     # Filter to Lower Manhattan
     if 'LATITUDE' in substations_nyc.columns and 'LONGITUDE' in substations_nyc.columns:
         lm_mask = (
-            (substations_nyc['LATITUDE'] >= LM_BBOX['min_lat']) &
-            (substations_nyc['LATITUDE'] <= LM_BBOX['max_lat']) &
-            (substations_nyc['LONGITUDE'] >= LM_BBOX['min_lon']) &
-            (substations_nyc['LONGITUDE'] <= LM_BBOX['max_lon'])
+            (substations_nyc['LATITUDE'] >= NYC_BBOX['min_lat']) &
+            (substations_nyc['LATITUDE'] <= NYC_BBOX['max_lat']) &
+            (substations_nyc['LONGITUDE'] >= NYC_BBOX['min_lon']) &
+            (substations_nyc['LONGITUDE'] <= NYC_BBOX['max_lon'])
         )
     else:
         lm_mask = (
-            (substations_nyc.geometry.y >= LM_BBOX['min_lat']) &
-            (substations_nyc.geometry.y <= LM_BBOX['max_lat']) &
-            (substations_nyc.geometry.x >= LM_BBOX['min_lon']) &
-            (substations_nyc.geometry.x <= LM_BBOX['max_lon'])
+            (substations_nyc.geometry.y >= NYC_BBOX['min_lat']) &
+            (substations_nyc.geometry.y <= NYC_BBOX['max_lat']) &
+            (substations_nyc.geometry.x >= NYC_BBOX['min_lon']) &
+            (substations_nyc.geometry.x <= NYC_BBOX['max_lon'])
         )
     
     substations_lm = substations_nyc[lm_mask].copy()
@@ -211,8 +211,8 @@ if len(lines_nyc) > 0:
     
     # Filter lines intersecting Lower Manhattan
     from shapely.geometry import box
-    lm_box = box(LM_BBOX['min_lon'], LM_BBOX['min_lat'], 
-                 LM_BBOX['max_lon'], LM_BBOX['max_lat'])
+    lm_box = box(NYC_BBOX['min_lon'], NYC_BBOX['min_lat'], 
+                 NYC_BBOX['max_lon'], NYC_BBOX['max_lat'])
     
     lines_lm = lines_nyc[lines_nyc.geometry.intersects(lm_box)].copy()
     print(f"\nTransmission lines intersecting Lower Manhattan: {len(lines_lm)}")

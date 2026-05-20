@@ -2,91 +2,181 @@
   "moderate_current": {
     "direct_mean": 33.9,
     "direct_std": 2.9,
-    "total_mean": 64.5,
-    "total_std": 24.0,
-    "amplification_mean": 1.9,
-    "amplification_std": 0.68,
+    "total_mean": 64.8,
+    "total_std": 25.2,
+    "amplification_mean": 1.91,
+    "amplification_std": 0.71,
     "type_failures_mean": {
       "power": 1.3,
       "telecom": 35.8,
-      "hospital": 0.6,
+      "hospital": 1.0,
       "subway": 14.9,
-      "water": 2.3,
+      "water": 2.2,
       "fuel": 9.4
     },
     "borough_failures_mean": {
-      "Manhattan": 24.7,
+      "Manhattan": 25.4,
       "Brooklyn": 5.9,
-      "Queens": 25.3,
+      "Queens": 25.2,
       "Bronx": 7.0,
-      "Staten Island": 1.5
+      "Staten Island": 1.2
     },
     "by_timestep": {
       "t0": 33.9,
       "t6": 41.7,
-      "t24": 56.5,
-      "t48": 60.7,
-      "t96": 64.5
+      "t24": 57.0,
+      "t48": 60.2,
+      "t96": 64.8
     }
   },
   "moderate_2050": {
     "direct_mean": 61.5,
     "direct_std": 3.3,
-    "total_mean": 93.9,
-    "total_std": 23.8,
-    "amplification_mean": 1.52,
-    "amplification_std": 0.37,
+    "total_mean": 94.2,
+    "total_std": 24.9,
+    "amplification_mean": 1.53,
+    "amplification_std": 0.39,
     "type_failures_mean": {
       "power": 1.6,
       "telecom": 58.5,
-      "hospital": 1.6,
+      "hospital": 1.9,
       "subway": 17.8,
-      "water": 3.4,
+      "water": 3.3,
       "fuel": 11.0
     },
     "borough_failures_mean": {
-      "Manhattan": 40.5,
+      "Manhattan": 41.1,
       "Brooklyn": 9.2,
       "Queens": 30.0,
       "Bronx": 9.8,
-      "Staten Island": 4.4
+      "Staten Island": 4.1
     },
     "by_timestep": {
       "t0": 61.5,
       "t6": 69.7,
       "t24": 85.6,
-      "t48": 90.2,
-      "t96": 93.9
+      "t48": 89.4,
+      "t96": 94.2
     }
   },
   "extreme_2080": {
     "direct_mean": 298.4,
     "direct_std": 7.3,
-    "total_mean": 796.9,
-    "total_std": 90.3,
+    "total_mean": 796.5,
+    "total_std": 90.7,
     "amplification_mean": 2.67,
-    "amplification_std": 0.29,
+    "amplification_std": 0.3,
     "type_failures_mean": {
       "power": 13.0,
-      "telecom": 496.0,
-      "hospital": 19.9,
-      "subway": 124.7,
-      "water": 28.5,
+      "telecom": 495.8,
+      "hospital": 19.8,
+      "subway": 124.8,
+      "water": 28.3,
       "fuel": 114.8
     },
     "borough_failures_mean": {
-      "Manhattan": 278.2,
-      "Brooklyn": 89.8,
-      "Queens": 273.6,
-      "Bronx": 142.7,
-      "Staten Island": 12.7
+      "Manhattan": 279.4,
+      "Brooklyn": 89.3,
+      "Queens": 273.4,
+      "Bronx": 142.4,
+      "Staten Island": 12.0
     },
     "by_timestep": {
       "t0": 298.4,
-      "t6": 498.6,
-      "t24": 748.1,
-      "t48": 784.6,
-      "t96": 796.9
+      "t6": 471.7,
+      "t24": 748.3,
+      "t48": 772.4,
+      "t96": 796.5
+    }
+  },
+  "geoclaw_2026": {
+    "direct_mean": 364.4,
+    "direct_std": 0.6,
+    "total_mean": 1036.0,
+    "total_std": 5.7,
+    "amplification_mean": 2.84,
+    "amplification_std": 0.01,
+    "type_failures_mean": {
+      "power": 25.5,
+      "telecom": 664.7,
+      "hospital": 37.9,
+      "subway": 93.0,
+      "water": 45.4,
+      "fuel": 169.5
+    },
+    "borough_failures_mean": {
+      "Manhattan": 381.3,
+      "Brooklyn": 257.9,
+      "Queens": 285.5,
+      "Bronx": 56.9,
+      "Staten Island": 35.5
+    },
+    "by_timestep": {
+      "t0": 364.4,
+      "t6": 679.6,
+      "t24": 940.1,
+      "t48": 989.7,
+      "t96": 1036.0
+    }
+  },
+  "geoclaw_2050": {
+    "direct_mean": 494.9,
+    "direct_std": 0.3,
+    "total_mean": 1284.6,
+    "total_std": 6.8,
+    "amplification_mean": 2.6,
+    "amplification_std": 0.01,
+    "type_failures_mean": {
+      "power": 31.4,
+      "telecom": 819.4,
+      "hospital": 43.9,
+      "subway": 136.2,
+      "water": 55.8,
+      "fuel": 198.0
+    },
+    "borough_failures_mean": {
+      "Manhattan": 484.0,
+      "Brooklyn": 327.9,
+      "Queens": 350.3,
+      "Bronx": 61.9,
+      "Staten Island": 41.5
+    },
+    "by_timestep": {
+      "t0": 494.9,
+      "t6": 877.8,
+      "t24": 1171.7,
+      "t48": 1229.4,
+      "t96": 1284.6
+    }
+  },
+  "geoclaw_2080": {
+    "direct_mean": 631.0,
+    "direct_std": 0.2,
+    "total_mean": 1557.1,
+    "total_std": 6.7,
+    "amplification_mean": 2.47,
+    "amplification_std": 0.01,
+    "type_failures_mean": {
+      "power": 34.4,
+      "telecom": 1022.5,
+      "hospital": 49.2,
+      "subway": 167.2,
+      "water": 60.9,
+      "fuel": 223.0
+    },
+    "borough_failures_mean": {
+      "Manhattan": 577.2,
+      "Brooklyn": 349.9,
+      "Queens": 386.7,
+      "Bronx": 177.9,
+      "Staten Island": 46.5
+    },
+    "by_timestep": {
+      "t0": 631.0,
+      "t6": 1032.8,
+      "t24": 1455.8,
+      "t48": 1508.8,
+      "t96": 1557.1
     }
   }
 }

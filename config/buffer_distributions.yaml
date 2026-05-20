@@ -1,0 +1,73 @@
+# Stochastic buffer Weibull parameters per target node type.
+#
+# Each dependency edge in the graph carries a `buffer_hours` value set during
+# graph construction (build_graph_nyc.py) based on the (source_type, target_type)
+# pair — these are engineering medians from NFPA, FCC, etc.
+#
+# This config provides only the SHAPE (variability) parameter per target type.
+# At Monte Carlo time, each edge's buffer is sampled as:
+#
+#     sampled_buffer ~ Weibull(median=edge.buffer_hours, shape=config[target_type].shape)
+#
+# Shape interpretation:
+#   shape > 1: failure rate increases over time (wear-out, fuel depletion) — typical
+#   shape = 1: constant failure rate (memoryless / exponential)
+#   shape < 1: infant mortality (failures cluster early)
+#
+# Edges with buffer_hours == 0 (e.g., subway immediate cascade) stay deterministic.
+
+defaults:
+  hospital:
+    shape: 2.5
+    source: engineering_estimate
+    notes: "Captures variance across hospitals (NYU Langone vs Bellevue showed ~20x range in Sandy)"
+
+  telecom:
+    shape: 3.0
+    source: engineering_estimate
+    notes: "Battery state-of-charge variation across cell sites"
+
+  water_pump:
+    shape: 2.5
+    source: engineering_estimate
+    notes: "Variability in fuel reserves and maintenance state"
+
+  water:
+    shape: 2.5
+    source: engineering_estimate
+    notes: "Alias for water_pump in case graph uses 'water' as type"
+
+  subway:
+    shape: 4.0
+    source: engineering_estimate
+    notes: "Tighter spec; most subway-target buffers are 0h (immediate) and stay deterministic"
+
+  gas_station:
+    shape: 2.0
+    source: engineering_estimate
+    notes: "High variance — many stations have no backup at all"
+
+  fuel:
+    shape: 2.0
+    source: engineering_estimate
+    notes: "Alias for gas_station"
+
+  fuel_terminal:
+    shape: 3.0
+    source: engineering_estimate
+    notes: "Critical infrastructure; lower variance (well-resourced)"
+
+  power:
+    shape: 3.0
+    source: engineering_estimate
+    notes: "Power substation buffer (used by scada_monitoring edges, ~2h)"
+
+# Per-node overrides for facility-specific intelligence.
+# Format: node_id: { shape: <float>, source: <str> }
+# Use this for facilities with known-different specs (e.g., post-Sandy retrofits).
+overrides: {}
+  # Example after NYU Langone's $150M post-Sandy generator retrofit:
+  # hospital_NYU_Langone:
+  #   shape: 4.0
+  #   source: post_sandy_retrofit_2014
+  #   notes: "Tighter buffer distribution after hardening"

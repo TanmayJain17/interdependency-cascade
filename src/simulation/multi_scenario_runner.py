@@ -59,13 +59,30 @@ from src.cascade.stochastic_buffer import (
 # Configuration
 # -----------------------------------------------------------------------------
 
-NODES_IN = Path("data/flood/nyc_infra_nodes_dep_flood.geojson")
-GRAPH_IN = Path("data/flood/nyc_infra_graph_dep_flood.graphml")
+NODES_IN = Path("data/flood/nyc_infra_nodes_all_flood.geojson")
+GRAPH_IN = Path("data/flood/nyc_infra_graph_all_flood.graphml")
 
 SIM_DIR = Path("data/simulation")
 OUT_DIR = Path("outputs")
 
-SCENARIOS = ["moderate_current", "moderate_2050", "extreme_2080"]
+SCENARIOS = [
+    "moderate_current",
+    "moderate_2050",
+    "extreme_2080",
+    "geoclaw_2026",
+    "geoclaw_2050",
+    "geoclaw_2080",
+]
+
+SCENARIO_DEPTH_COL = {
+    "moderate_current": "flood_moderate_current_depth_m",
+    "moderate_2050":    "flood_moderate_2050_depth_m",
+    "extreme_2080":     "flood_extreme_2080_depth_m",
+    "geoclaw_2026":     "gc_2026_depth_m",
+    "geoclaw_2050":     "gc_2050_depth_m",
+    "geoclaw_2080":     "gc_2080_depth_m",
+}
+
 N_MONTE_CARLO = 1000
 TIME_STEPS = [0, 6, 24, 48, 96]
 
@@ -90,7 +107,7 @@ def prepare_scenario_nodes(nodes_gdf, scenario_name, out_path):
       - gissr_division    <- -1 if external (NJ/terminal), 0 otherwise
     """
     temp = nodes_gdf.copy()
-    depth_col = f"flood_{scenario_name}_depth_m"
+    depth_col = SCENARIO_DEPTH_COL[scenario_name] 
     if depth_col not in temp.columns:
         raise ValueError(f"Missing column {depth_col} in nodes GeoJSON")
 
@@ -180,7 +197,15 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config):
                                             scenario.get("initial_failures", [])))
         cascade = simulate_cascade(G_stoch, initial_failures, time_steps=TIME_STEPS)
 
-        # Format result so summarize() and find_amplifiers_extreme() work unchanged
+        # Per-node first-failure timestep (compact form for GNN labels):
+        # iterate timesteps in order, record earliest. Nodes not in dict never failed.
+        fail_time_per_node = {}
+        for tk in time_keys:
+            t_int = int(tk[1:])  # "t6" -> 6
+            for nid in cascade[tk]:
+                if nid not in fail_time_per_node:
+                    fail_time_per_node[nid] = t_int
+
         by_timestep = {tk: len(cascade[tk]) for tk in time_keys}
         cascade_results.append({
             "scenario_id": scenario.get("scenario_id", run_id),
@@ -188,6 +213,7 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config):
             "total_failures":  by_timestep[time_keys[-1]],
             "failed_nodes_t96": list(cascade[time_keys[-1]]),
             "by_timestep": by_timestep,
+            "fail_time_per_node": fail_time_per_node,  # NEW
         })
 
         if (run_id + 1) % 100 == 0:
@@ -350,7 +376,7 @@ def format_summary(comparison, amplifiers):
     lines = []
     lines.append("=" * 75)
     lines.append("WEEK 7 CASCADE ANALYSIS — NYC CITYWIDE (6,231 nodes)")
-    lines.append("DEP scenarios + STOCHASTIC buffers (Weibull)")
+    lines.append("DEP + GeoClaw scenarios + STOCHASTIC buffers (Weibull)")
     lines.append("=" * 75)
     lines.append("")
 
