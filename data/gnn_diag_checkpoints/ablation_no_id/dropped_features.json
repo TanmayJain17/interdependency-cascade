@@ -1,0 +1,90 @@
+{
+  "drop_features_arg": "lat,lon,degree_centrality,tower_count,num_routes,capacity_proxy",
+  "zeroed_columns": [
+    {
+      "node_type": "power",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "power",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "power",
+      "col_idx": 6,
+      "name": "degree_centrality"
+    },
+    {
+      "node_type": "telecom",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "telecom",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "telecom",
+      "col_idx": 4,
+      "name": "tower_count"
+    },
+    {
+      "node_type": "hospital",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "hospital",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "subway",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "subway",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "subway",
+      "col_idx": 4,
+      "name": "num_routes"
+    },
+    {
+      "node_type": "water",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "water",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "water",
+      "col_idx": 6,
+      "name": "capacity_proxy"
+    },
+    {
+      "node_type": "fuel",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "fuel",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "fuel",
+      "col_idx": 5,
+      "name": "capacity_proxy"
+    }
+  ]
+}

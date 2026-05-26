@@ -101,3 +101,9 @@ archive/
 # ============================================================
 data/inference/
 data/sandy_validation/
+
+# ============================================================
+# GNN diagnostic checkpoints — keep history.json, drop heavy files
+# ============================================================
+data/gnn_diag_checkpoints/*/best.pt
+data/gnn_diag_checkpoints/*/*.pt

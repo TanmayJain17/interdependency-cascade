@@ -33,17 +33,62 @@ from src.gnn.model import CascadeGNN, count_parameters
 
 
 CHECKPOINT_DIR = Path("data/gnn_checkpoints")
+DIAG_CHECKPOINT_ROOT = Path("data/gnn_diag_checkpoints")
+FEATURE_SCHEMA_PATH = Path("outputs/diagnostics/feature_schema.json")
+
+
+def apply_feature_drops(base_data, drop_list, schema_path=FEATURE_SCHEMA_PATH):
+    """Zero out columns of base_data[nt].x whose names match any token in drop_list.
+
+    Match is case-insensitive substring; the canonical column names come from
+    outputs/diagnostics/feature_schema.json. The input dimension is preserved
+    so the v1 architecture loads unchanged — the dropped columns simply become
+    constant zeros.
+
+    Returns: list of (node_type, col_idx, name) tuples that were zeroed.
+    """
+    if not drop_list:
+        return []
+    tokens = [t.strip().lower() for t in drop_list.split(",") if t.strip()]
+    if not tokens:
+        return []
+    if not schema_path.exists():
+        raise FileNotFoundError(
+            f"Feature schema not found at {schema_path}. "
+            "Run scripts/inspect_features.py first."
+        )
+    with open(schema_path) as f:
+        schema = json.load(f)
+
+    zeroed = []
+    for nt in base_data.node_types:
+        cols = schema.get(nt, [])
+        for entry in cols:
+            name_lower = entry["name"].lower()
+            if any(tok in name_lower for tok in tokens):
+                idx = entry["idx"]
+                base_data[nt].x[:, idx] = 0.0
+                zeroed.append((nt, idx, entry["name"]))
+    return zeroed
 
 
 # --------------------------------------------------------------------------
 # Single-example training step
 # --------------------------------------------------------------------------
 
-def train_step(model, base_data, run, node_id_index, edge_idx_dict, optimizer, device):
+def train_step(model, base_data, run, node_id_index, edge_idx_dict, optimizer, device,
+               drop_initial_mask=False):
     model.train()
     x_dict, labels = example_from_run(run, base_data, node_id_index)
     x_dict = {nt: x.to(device) for nt, x in x_dict.items()}
     labels = {nt: y.to(device) for nt, y in labels.items()}
+
+    if drop_initial_mask:
+        # Zero the last input column (the t=0 failure indicator appended by
+        # build_input_x_dict). Forces the model to predict cascades blind to
+        # who failed at t=0.
+        for nt in x_dict:
+            x_dict[nt][:, -1] = 0.0
 
     logits = model(x_dict, edge_idx_dict)
 
@@ -62,17 +107,22 @@ def train_step(model, base_data, run, node_id_index, edge_idx_dict, optimizer, d
 
 
 @torch.no_grad()
-def eval_step(model, base_data, run, node_id_index, edge_idx_dict, device):
+def eval_step(model, base_data, run, node_id_index, edge_idx_dict, device,
+              drop_initial_mask=False):
     model.eval()
     x_dict, labels = example_from_run(run, base_data, node_id_index)
     x_dict = {nt: x.to(device) for nt, x in x_dict.items()}
     labels = {nt: y.to(device) for nt, y in labels.items()}
-    logits = model(x_dict, edge_idx_dict)
 
-    # Recover the initial-failure mask from inputs:
-    # build_input_x_dict appends mask as the LAST feature (column index -1).
-    # mask == 1.0 means the node was an initial flood failure.
-    initial_mask = {nt: x_dict[nt][:, -1] for nt in x_dict}
+    # Capture the true initial-failure mask BEFORE optionally zeroing it on the
+    # input, so the CASCADE-only metric still correctly excludes t=0 victims.
+    initial_mask = {nt: x_dict[nt][:, -1].clone() for nt in x_dict}
+
+    if drop_initial_mask:
+        for nt in x_dict:
+            x_dict[nt][:, -1] = 0.0
+
+    logits = model(x_dict, edge_idx_dict)
 
     losses = []
     for nt in logits:
@@ -242,6 +292,18 @@ def run_train(args):
     device = torch.device(args.device)
 
     base_data = load_base_graph()
+
+    # Apply feature ablation (zero out specified columns in place) BEFORE we
+    # build node_id_index / edge_idx_dict / examples. This preserves the
+    # v1 input dim so the architecture is unchanged.
+    zeroed = apply_feature_drops(base_data, args.drop_features)
+    if zeroed:
+        print(f"Dropped (zeroed) {len(zeroed)} feature columns:")
+        for nt, idx, name in zeroed:
+            print(f"  {nt:<10}  col {idx}  '{name}'")
+    else:
+        print("No feature columns dropped (baseline run).")
+
     results = load_cascade_results()
     node_id_index = build_node_id_index(base_data)
     edge_idx_dict = {k: v.to(device) for k, v in edge_index_dict(base_data).items()}
@@ -306,7 +368,25 @@ def run_train(args):
     print(f"Model parameters: {count_parameters(model):,}")
     print(f"Device: {device}")
 
-    CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+    # Route output to a per-run subdir when --run_tag is provided.
+    if args.run_tag:
+        run_dir = DIAG_CHECKPOINT_ROOT / args.run_tag
+    else:
+        run_dir = CHECKPOINT_DIR
+    run_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Run output dir: {run_dir}")
+
+    # Persist a manifest of what was zeroed for this run.
+    with open(run_dir / "dropped_features.json", "w") as f:
+        json.dump({
+            "drop_features_arg": args.drop_features,
+            "zeroed_columns": [
+                {"node_type": nt, "col_idx": idx, "name": name}
+                for nt, idx, name in zeroed
+            ],
+            "drop_initial_mask": bool(args.drop_initial_mask),
+        }, f, indent=2)
+
     history = []
     best_val_loss = float("inf")
 
@@ -316,7 +396,8 @@ def run_train(args):
         train_losses = []
         for i, (_, run) in enumerate(train_examples):
             train_losses.append(train_step(model, base_data, run, node_id_index,
-                                           edge_idx_dict, optimizer, device))
+                                           edge_idx_dict, optimizer, device,
+                                           drop_initial_mask=args.drop_initial_mask))
             if (i + 1) % args.log_every == 0:
                 print(f"  Ep{epoch:02d} step {i+1:>4d}/{len(train_examples)}: "
                       f"loss = {sum(train_losses[-args.log_every:])/args.log_every:.5f}")
@@ -327,7 +408,8 @@ def run_train(args):
         val_aucs_casc_per_t, val_pr_casc_per_t = [], []
         for _, run in val_examples:
             vl, va, vp, vac, vpc = eval_step(model, base_data, run, node_id_index,
-                                              edge_idx_dict, device)
+                                              edge_idx_dict, device,
+                                              drop_initial_mask=args.drop_initial_mask)
             val_losses.append(vl)
             val_aucs_per_t.append(va);   val_pr_per_t.append(vp)
             val_aucs_casc_per_t.append(vac); val_pr_casc_per_t.append(vpc)
@@ -376,7 +458,8 @@ def run_train(args):
     test_aucs_casc_per_t, test_pr_casc_per_t = [], []
     for _, run in test_examples:
         tl, ta, tp, tac, tpc = eval_step(model, base_data, run, node_id_index,
-                                          edge_idx_dict, device)
+                                          edge_idx_dict, device,
+                                          drop_initial_mask=args.drop_initial_mask)
         test_losses.append(tl)
         test_aucs_per_t.append(ta);   test_pr_per_t.append(tp)
         test_aucs_casc_per_t.append(tac); test_pr_casc_per_t.append(tpc)
@@ -401,8 +484,9 @@ def run_train(args):
             "cascade_pr_per_t":  test_prs_casc,
         },
     }
-    with open(CHECKPOINT_DIR / "history.json", "w") as f:
+    with open(run_dir / "history.json", "w") as f:
         json.dump(history_out, f, indent=2)
+    print(f"Wrote {run_dir / 'history.json'}")
 
 
 # --------------------------------------------------------------------------
@@ -429,6 +513,16 @@ def parse_args():
                    help="Cap validation-set size for faster eval")
     p.add_argument("--holdout_scenario", default="geoclaw_2050",
                help="Scenario name held out as test set (no exposure during training)")
+    p.add_argument("--drop_features", default=None,
+                   help="Comma-separated feature names to zero out (case-insensitive "
+                        "substring match against outputs/diagnostics/feature_schema.json). "
+                        "Used for the leakage-ablation diagnostic.")
+    p.add_argument("--run_tag", default=None,
+                   help="If set, routes outputs to data/gnn_diag_checkpoints/<run_tag>/")
+    p.add_argument("--drop_initial_mask", action="store_true",
+                   help="Zero out the appended t=0 failure-mask column on the model "
+                        "input. The CASCADE-only metric still uses the true mask to "
+                        "exclude initial-failure nodes from scoring.")
     return p.parse_args()
 
 

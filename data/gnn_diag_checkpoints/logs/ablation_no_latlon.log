@@ -1,0 +1,64 @@
+=== TRAIN MODE — full training ===
+Dropped (zeroed) 12 feature columns:
+  power       col 0  'lat'
+  power       col 1  'lon'
+  telecom     col 0  'lat'
+  telecom     col 1  'lon'
+  hospital    col 0  'lat'
+  hospital    col 1  'lon'
+  subway      col 0  'lat'
+  subway      col 1  'lon'
+  water       col 0  'lat'
+  water       col 1  'lon'
+  fuel        col 0  'lat'
+  fuel        col 1  'lon'
+Train: 4000  Val: 1000  Test (held-out scenario=geoclaw_2050): 1000
+Subsampled train to 1500
+Subsampled val to 500
+Model parameters: 662,680
+Device: cpu
+Run output dir: data/gnn_diag_checkpoints/ablation_no_latlon
+  Ep00 step  300/1500: loss = 0.11092
+  Ep00 step  600/1500: loss = 0.00987
+  Ep00 step  900/1500: loss = 0.00850
+  Ep00 step 1200/1500: loss = 0.00879
+  Ep00 step 1500/1500: loss = 0.00806
+
+Epoch 00/5 | train=0.02923 val=0.02381 | AUC=['0.999', '1.000', '1.000', '1.000'] PR=['0.995', '1.000', '0.998', '0.997'] | CASCADE-only AUC=['0.998', '1.000', '1.000', '1.000'] PR=['0.972', '0.995', '0.982', '0.994'] | 155s
+
+  Ep01 step  300/1500: loss = 0.00792
+  Ep01 step  600/1500: loss = 0.00839
+  Ep01 step  900/1500: loss = 0.00757
+  Ep01 step 1200/1500: loss = 0.00723
+  Ep01 step 1500/1500: loss = 0.00756
+
+Epoch 01/5 | train=0.00773 val=0.02284 | AUC=['0.999', '1.000', '1.000', '1.000'] PR=['0.995', '1.000', '0.999', '0.999'] | CASCADE-only AUC=['0.998', '1.000', '1.000', '1.000'] PR=['0.972', '0.996', '0.985', '0.996'] | 301s
+
+  Ep02 step  300/1500: loss = 0.00781
+  Ep02 step  600/1500: loss = 0.00732
+  Ep02 step  900/1500: loss = 0.00673
+  Ep02 step 1200/1500: loss = 0.00777
+  Ep02 step 1500/1500: loss = 0.00703
+
+Epoch 02/5 | train=0.00733 val=0.02305 | AUC=['0.999', '1.000', '1.000', '1.000'] PR=['0.995', '1.000', '0.999', '0.998'] | CASCADE-only AUC=['0.998', '1.000', '1.000', '1.000'] PR=['0.972', '0.995', '0.986', '0.996'] | 448s
+
+  Ep03 step  300/1500: loss = 0.00767
+  Ep03 step  600/1500: loss = 0.00705
+  Ep03 step  900/1500: loss = 0.00702
+  Ep03 step 1200/1500: loss = 0.00696
+  Ep03 step 1500/1500: loss = 0.00678
+
+Epoch 03/5 | train=0.00710 val=0.02221 | AUC=['0.999', '1.000', '1.000', '1.000'] PR=['0.995', '1.000', '0.999', '0.999'] | CASCADE-only AUC=['0.998', '1.000', '1.000', '1.000'] PR=['0.972', '0.995', '0.970', '0.996'] | 603s
+
+  Ep04 step  300/1500: loss = 0.00655
+  Ep04 step  600/1500: loss = 0.00815
+  Ep04 step  900/1500: loss = 0.00719
+  Ep04 step 1200/1500: loss = 0.00722
+  Ep04 step 1500/1500: loss = 0.00765
+
+Epoch 04/5 | train=0.00735 val=0.02188 | AUC=['0.999', '1.000', '1.000', '1.000'] PR=['0.995', '1.000', '0.999', '0.999'] | CASCADE-only AUC=['0.998', '1.000', '1.000', '1.000'] PR=['0.972', '0.994', '0.984', '0.997'] | 753s
+
+Held-out test_loss=0.03978
+  ALL-nodes     AUC=[0.997642172574997, 0.9999263103604317, 0.9998298206925392, 0.9999309412240982]  PR=[0.9863319969667038, 0.9996929541089968, 0.9993164156832308, 0.999773402841763]
+  CASCADE-only  AUC=[0.9945920737385749, 0.9998724618554116, 0.9997151787877083, 0.9998887184262276]  PR=[0.9312496670509031, 0.999102126511499, 0.9980999650374357, 0.9994448415177627]
+Wrote data/gnn_diag_checkpoints/ablation_no_latlon/history.json

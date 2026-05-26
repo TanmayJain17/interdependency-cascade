@@ -1,0 +1,65 @@
+{
+  "drop_features_arg": "lat,lon",
+  "zeroed_columns": [
+    {
+      "node_type": "power",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "power",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "telecom",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "telecom",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "hospital",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "hospital",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "subway",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "subway",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "water",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "water",
+      "col_idx": 1,
+      "name": "lon"
+    },
+    {
+      "node_type": "fuel",
+      "col_idx": 0,
+      "name": "lat"
+    },
+    {
+      "node_type": "fuel",
+      "col_idx": 1,
+      "name": "lon"
+    }
+  ]
+}
