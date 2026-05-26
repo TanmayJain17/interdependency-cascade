@@ -318,7 +318,12 @@ def run_train(args):
     print(f"Model parameters: {count_parameters(model):,}")
     print(f"Device: {device}")
 
-    CHECKPOINT_DIR_V2.mkdir(parents=True, exist_ok=True)
+    # If a --run_tag is given, route outputs (history.json + best.pt) to a
+    # per-run subdir so diagnostic runs don't clobber previous results.
+    run_dir = CHECKPOINT_DIR_V2 / args.run_tag if args.run_tag else CHECKPOINT_DIR_V2
+    run_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Run output dir: {run_dir}")
+
     history = []
     best_val_loss = float("inf")
     n_t = len(DEFAULT_TIMESTEPS)
@@ -390,7 +395,7 @@ def run_train(args):
                 "epoch": epoch,
                 "val_loss": mean_val_loss,
                 "fragility_table": learned_table,
-            }, CHECKPOINT_DIR_V2 / "best.pt")
+            }, run_dir / "best.pt")
 
     # Held-out test
     print("\n=== Held-out test evaluation ===")
@@ -419,10 +424,10 @@ def run_train(args):
         },
         "final_fragility": model.fragility.learned_params_table(),
     }
-    with open(CHECKPOINT_DIR_V2 / "history.json", "w") as f:
+    with open(run_dir / "history.json", "w") as f:
         json.dump(history_out, f, indent=2)
-    print(f"\nSaved history -> {CHECKPOINT_DIR_V2 / 'history.json'}")
-    print(f"Saved best checkpoint -> {CHECKPOINT_DIR_V2 / 'best.pt'}")
+    print(f"\nSaved history -> {run_dir / 'history.json'}")
+    print(f"Saved best checkpoint -> {run_dir / 'best.pt'}")
 
 
 # --------------------------------------------------------------------------
@@ -450,6 +455,10 @@ def parse_args():
     p.add_argument("--warm_start", action="store_true", default=True,
                    help="Load v1 GNN checkpoint as starting weights.")
     p.add_argument("--no_warm_start", dest="warm_start", action="store_false")
+    p.add_argument("--run_tag", default=None,
+                   help="If set, routes history.json and best.pt to "
+                        "data/gnn_v2_checkpoints/<run_tag>/ so diagnostic runs "
+                        "don't clobber prior outputs.")
     return p.parse_args()
 
 

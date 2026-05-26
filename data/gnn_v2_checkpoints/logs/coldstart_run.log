@@ -1,0 +1,109 @@
+/opt/miniconda3/lib/python3.12/site-packages/geopandas/array.py:344: UserWarning: Cannot set the CRS, falling back to None. The CRS support requires the 'pyproj' package, but it is not installed or does not import correctly. The functions depending on CRS will raise an error or may produce unexpected results.
+  self.crs = crs
+/opt/miniconda3/lib/python3.12/site-packages/geopandas/geodataframe.py:469: UserWarning: Cannot set the CRS, falling back to None. The CRS support requires the 'pyproj' package, but it is not installed or does not import correctly. The functions depending on CRS will raise an error or may produce unexpected results.
+  level.crs = crs
+=== TRAIN MODE — full v2 training ===
+Train: 4000  Val: 1000  Test (held-out=geoclaw_2050): 1000
+  Subsampled train to 1500
+  Subsampled val to 500
+Model parameters: 662,692
+Device: cpu
+Run output dir: data/gnn_v2_checkpoints/coldstart_run
+  Ep00 step  300/1500: total=0.1374 bce=0.1374 prior=0.0000
+  Ep00 step  600/1500: total=0.0352 bce=0.0352 prior=0.0000
+  Ep00 step  900/1500: total=0.0305 bce=0.0305 prior=0.0000
+  Ep00 step 1200/1500: total=0.0287 bce=0.0287 prior=0.0000
+  Ep00 step 1500/1500: total=0.0262 bce=0.0262 prior=0.0000
+
+Epoch 00/10 | train=0.0516 val=0.0480 | PR=['0.944', '0.944', '0.939', '0.941'] CASCADE-PR=['0.809', '0.872', '0.861', '0.874'] | 145s
+  Fragility:  power=0.600(-0%)  telecom=0.300(+0%)  hospital=0.600(+0%)  subway=0.100(+0%)  water=0.500(+0%)  fuel=0.500(-0%)
+
+  Ep01 step  300/1500: total=0.0259 bce=0.0259 prior=0.0000
+  Ep01 step  600/1500: total=0.0263 bce=0.0263 prior=0.0000
+  Ep01 step  900/1500: total=0.0263 bce=0.0262 prior=0.0000
+  Ep01 step 1200/1500: total=0.0257 bce=0.0257 prior=0.0000
+  Ep01 step 1500/1500: total=0.0270 bce=0.0269 prior=0.0000
+
+Epoch 01/10 | train=0.0262 val=0.0475 | PR=['0.945', '0.945', '0.939', '0.942'] CASCADE-PR=['0.805', '0.862', '0.852', '0.871'] | 290s
+  Fragility:  power=0.599(-0%)  telecom=0.300(+0%)  hospital=0.600(-0%)  subway=0.100(+0%)  water=0.500(-0%)  fuel=0.500(-0%)
+
+  Ep02 step  300/1500: total=0.0266 bce=0.0266 prior=0.0000
+  Ep02 step  600/1500: total=0.0241 bce=0.0241 prior=0.0000
+  Ep02 step  900/1500: total=0.0207 bce=0.0207 prior=0.0000
+  Ep02 step 1200/1500: total=0.0264 bce=0.0264 prior=0.0000
+  Ep02 step 1500/1500: total=0.0263 bce=0.0262 prior=0.0000
+
+Epoch 02/10 | train=0.0248 val=0.0433 | PR=['0.945', '0.948', '0.944', '0.946'] CASCADE-PR=['0.806', '0.871', '0.865', '0.879'] | 436s
+  Fragility:  power=0.601(+0%)  telecom=0.300(+0%)  hospital=0.600(-0%)  subway=0.100(+0%)  water=0.500(-0%)  fuel=0.499(-0%)
+
+  Ep03 step  300/1500: total=0.0248 bce=0.0248 prior=0.0000
+  Ep03 step  600/1500: total=0.0242 bce=0.0242 prior=0.0000
+  Ep03 step  900/1500: total=0.0228 bce=0.0228 prior=0.0000
+  Ep03 step 1200/1500: total=0.0221 bce=0.0221 prior=0.0000
+  Ep03 step 1500/1500: total=0.0252 bce=0.0251 prior=0.0000
+
+Epoch 03/10 | train=0.0238 val=0.0426 | PR=['0.944', '0.946', '0.941', '0.943'] CASCADE-PR=['0.813', '0.877', '0.865', '0.878'] | 583s
+  Fragility:  power=0.601(+0%)  telecom=0.301(+0%)  hospital=0.600(-0%)  subway=0.100(+0%)  water=0.500(+0%)  fuel=0.500(+0%)
+
+  Ep04 step  300/1500: total=0.0236 bce=0.0236 prior=0.0000
+  Ep04 step  600/1500: total=0.0217 bce=0.0217 prior=0.0000
+  Ep04 step  900/1500: total=0.0268 bce=0.0268 prior=0.0000
+  Ep04 step 1200/1500: total=0.0224 bce=0.0224 prior=0.0000
+  Ep04 step 1500/1500: total=0.0233 bce=0.0233 prior=0.0000
+
+Epoch 04/10 | train=0.0236 val=0.0421 | PR=['0.945', '0.947', '0.942', '0.943'] CASCADE-PR=['0.811', '0.873', '0.860', '0.871'] | 728s
+  Fragility:  power=0.600(-0%)  telecom=0.300(+0%)  hospital=0.600(+0%)  subway=0.100(-0%)  water=0.500(+0%)  fuel=0.500(-0%)
+
+  Ep05 step  300/1500: total=0.0225 bce=0.0225 prior=0.0000
+  Ep05 step  600/1500: total=0.0248 bce=0.0248 prior=0.0000
+  Ep05 step  900/1500: total=0.0239 bce=0.0239 prior=0.0000
+  Ep05 step 1200/1500: total=0.0218 bce=0.0218 prior=0.0000
+  Ep05 step 1500/1500: total=0.0239 bce=0.0239 prior=0.0000
+
+Epoch 05/10 | train=0.0234 val=0.0418 | PR=['0.945', '0.947', '0.943', '0.944'] CASCADE-PR=['0.808', '0.871', '0.863', '0.872'] | 886s
+  Fragility:  power=0.600(+0%)  telecom=0.300(-0%)  hospital=0.600(-0%)  subway=0.100(-0%)  water=0.500(-0%)  fuel=0.500(+0%)
+
+  Ep06 step  300/1500: total=0.0238 bce=0.0238 prior=0.0000
+  Ep06 step  600/1500: total=0.0226 bce=0.0226 prior=0.0000
+  Ep06 step  900/1500: total=0.0228 bce=0.0228 prior=0.0000
+  Ep06 step 1200/1500: total=0.0253 bce=0.0253 prior=0.0000
+  Ep06 step 1500/1500: total=0.0210 bce=0.0210 prior=0.0000
+
+Epoch 06/10 | train=0.0231 val=0.0423 | PR=['0.946', '0.948', '0.944', '0.944'] CASCADE-PR=['0.812', '0.876', '0.866', '0.875'] | 1046s
+  Fragility:  power=0.600(-0%)  telecom=0.300(-0%)  hospital=0.600(+0%)  subway=0.100(+0%)  water=0.500(+0%)  fuel=0.500(+0%)
+
+  Ep07 step  300/1500: total=0.0224 bce=0.0224 prior=0.0000
+  Ep07 step  600/1500: total=0.0240 bce=0.0240 prior=0.0000
+  Ep07 step  900/1500: total=0.0231 bce=0.0231 prior=0.0000
+  Ep07 step 1200/1500: total=0.0231 bce=0.0231 prior=0.0000
+  Ep07 step 1500/1500: total=0.0224 bce=0.0224 prior=0.0000
+
+Epoch 07/10 | train=0.0230 val=0.0414 | PR=['0.944', '0.944', '0.940', '0.943'] CASCADE-PR=['0.806', '0.861', '0.855', '0.872'] | 1201s
+  Fragility:  power=0.600(-0%)  telecom=0.300(+0%)  hospital=0.600(-0%)  subway=0.100(-0%)  water=0.500(-0%)  fuel=0.500(+0%)
+
+  Ep08 step  300/1500: total=0.0232 bce=0.0232 prior=0.0000
+  Ep08 step  600/1500: total=0.0237 bce=0.0237 prior=0.0000
+  Ep08 step  900/1500: total=0.0226 bce=0.0226 prior=0.0000
+  Ep08 step 1200/1500: total=0.0230 bce=0.0230 prior=0.0000
+  Ep08 step 1500/1500: total=0.0215 bce=0.0215 prior=0.0000
+
+Epoch 08/10 | train=0.0228 val=0.0421 | PR=['0.946', '0.948', '0.944', '0.947'] CASCADE-PR=['0.807', '0.869', '0.861', '0.879'] | 1351s
+  Fragility:  power=0.601(+0%)  telecom=0.300(+0%)  hospital=0.600(+0%)  subway=0.100(-0%)  water=0.500(-0%)  fuel=0.498(-0%)
+
+  Ep09 step  300/1500: total=0.0229 bce=0.0229 prior=0.0000
+  Ep09 step  600/1500: total=0.0217 bce=0.0217 prior=0.0000
+  Ep09 step  900/1500: total=0.0204 bce=0.0204 prior=0.0000
+  Ep09 step 1200/1500: total=0.0252 bce=0.0252 prior=0.0000
+  Ep09 step 1500/1500: total=0.0236 bce=0.0236 prior=0.0000
+
+Epoch 09/10 | train=0.0228 val=0.0415 | PR=['0.945', '0.944', '0.941', '0.942'] CASCADE-PR=['0.806', '0.860', '0.855', '0.868'] | 1502s
+  Fragility:  power=0.601(+0%)  telecom=0.300(+0%)  hospital=0.600(-0%)  subway=0.100(+0%)  water=0.500(-0%)  fuel=0.500(+0%)
+
+
+=== Held-out test evaluation ===
+  Test loss: 0.0389
+  Test PR per t:         [0.9862083536238331, 0.9996808368509926, 0.9993063393750199, 0.9997741987310081]
+  Test CASCADE-PR per t: [0.9309256912658724, 0.999086991345767, 0.998105289288615, 0.9994785588131396]
+
+Saved history -> data/gnn_v2_checkpoints/coldstart_run/history.json
+Saved best checkpoint -> data/gnn_v2_checkpoints/coldstart_run/best.pt

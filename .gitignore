@@ -107,3 +107,7 @@ data/sandy_validation/
 # ============================================================
 data/gnn_diag_checkpoints/*/best.pt
 data/gnn_diag_checkpoints/*/*.pt
+
+# v2 diagnostic-run checkpoints (subdirs only; keep root data/gnn_v2_checkpoints/best.pt)
+data/gnn_v2_checkpoints/*/best.pt
+data/gnn_v2_checkpoints/*/*.pt
