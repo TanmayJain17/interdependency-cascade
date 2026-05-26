@@ -71,12 +71,26 @@ class CascadeGNNv2(nn.Module):
             for the current NYC heterograph). The fragility column is gone.
         fragility: a LearnableFragility instance. Its output appears only
             in the forward() return dict, not in the GNN input.
+        no_depth_overwrite: if True, the col-3 (flood_depth) overwrite in
+            the GNN input is skipped entirely. The GNN sees col 3 at its
+            base value (constant 0.0 in the saved heterodata), in both
+            training and eval. The fragility head is unaffected — it still
+            receives the real depths_dict, so p_t0 is computed normally.
+            Default False preserves the prior decoupled-v2 behavior.
+            Used to train the "in-distribution graph-only baseline" that
+            mirrors v1 Run D inside the decoupled v2 architecture.
     """
 
-    def __init__(self, gnn: CascadeGNN, fragility: LearnableFragility):
+    def __init__(
+        self,
+        gnn: CascadeGNN,
+        fragility: LearnableFragility,
+        no_depth_overwrite: bool = False,
+    ):
         super().__init__()
         self.gnn = gnn
         self.fragility = fragility
+        self.no_depth_overwrite = bool(no_depth_overwrite)
 
     # -------- Building blocks (also useful for diagnostics / inference) --------
 
@@ -122,14 +136,17 @@ class CascadeGNNv2(nn.Module):
         p_t0 = self.compute_initial_fragility(depths_dict)
 
         # Cascade head — GNN sees the static base with col 3 (flood_depth)
-        # overwritten by `gnn_depths_dict` (defaults to depths_dict). No
-        # fragility column is appended.
+        # optionally overwritten by `gnn_depths_dict` (defaults to depths_dict).
+        # When `self.no_depth_overwrite` is set, the overwrite is skipped
+        # entirely and col 3 stays at its base value (constant 0 in the saved
+        # heterodata). The fragility head above is unaffected.
         gnn_depths = depths_dict if gnn_depths_dict is None else gnn_depths_dict
         input_x_dict = {}
         for nt in x_dict:
             x = x_dict[nt].clone()                                    # [N, 8]
-            depth_col = gnn_depths[nt].unsqueeze(-1)                  # [N, 1]
-            x[:, FLOOD_DEPTH_COL:FLOOD_DEPTH_COL + 1] = depth_col
+            if not self.no_depth_overwrite:
+                depth_col = gnn_depths[nt].unsqueeze(-1)              # [N, 1]
+                x[:, FLOOD_DEPTH_COL:FLOOD_DEPTH_COL + 1] = depth_col
             input_x_dict[nt] = x                                      # still [N, 8]
 
         cascade_logits = self.gnn(input_x_dict, edge_index_dict)

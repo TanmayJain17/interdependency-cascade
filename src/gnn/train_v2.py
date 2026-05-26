@@ -40,7 +40,7 @@ from src.gnn.data_v2 import (
 )
 from src.gnn.learnable_fragility import LearnableFragility
 from src.gnn.model import CascadeGNN, count_parameters
-from src.gnn.model_v2 import CascadeGNNv2
+from src.gnn.model_v2 import CascadeGNNv2, FLOOD_DEPTH_COL
 
 
 CHECKPOINT_DIR_V2 = Path("data/gnn_v2_checkpoints")
@@ -252,7 +252,11 @@ def build_model(args, base_data, device):
         print(f"  Note: --warm_start is incompatible with the decoupled v2 "
               f"architecture (GNN input dim is 8, v1 used 9). Ignoring and "
               f"proceeding with cold-start.")
-    return CascadeGNNv2(gnn=gnn, fragility=fragility).to(device)
+    return CascadeGNNv2(
+        gnn=gnn,
+        fragility=fragility,
+        no_depth_overwrite=args.no_depth_overwrite,
+    ).to(device)
 
 
 def _avg_per_t(per_t_list, n_t):
@@ -280,8 +284,9 @@ def run_smoke(args):
     depths_dict = {nt: t.to(device) for nt, t in depths_per_scenario["extreme_2080"].items()}
 
     model = build_model(args, base_data, device)
-    print(f"  aux_weight:   {args.aux_weight}")
-    print(f"  prior_weight: {args.prior_weight}")
+    print(f"  aux_weight:        {args.aux_weight}")
+    print(f"  prior_weight:      {args.prior_weight}")
+    print(f"  no_depth_overwrite: {model.no_depth_overwrite}")
     print(f"  Total params: {count_parameters(model):,} "
           f"(fragility: {count_parameters(model.fragility)}, "
           f"gnn: {count_parameters(model.gnn):,})")
@@ -302,6 +307,38 @@ def run_smoke(args):
         p = out["p_t0"][nt]
         cl = out["cascade_logits"][nt]
         print(f"    {nt:10s}  p_t0 {list(p.shape)}  cascade_logits {list(cl.shape)}")
+
+    # ---- Correctness check 2: GNN col-3 value matches the no_depth_overwrite flag ----
+    # Reproduce what the model.forward builds for the GNN input and inspect
+    # col FLOOD_DEPTH_COL. When --no_depth_overwrite is True, col 3 MUST be
+    # exactly 0.0 (the base heterodata constant) for every type. This is the
+    # canary check that the conditional in CascadeGNNv2.forward is propagating.
+    print(f"\n  GNN col-{FLOOD_DEPTH_COL} value check (no_depth_overwrite={model.no_depth_overwrite}):")
+    for nt in base_data.node_types:
+        x = base_x_dict[nt].clone()
+        if not model.no_depth_overwrite:
+            x[:, FLOOD_DEPTH_COL:FLOOD_DEPTH_COL + 1] = depths_dict[nt].unsqueeze(-1)
+        col_min = x[:, FLOOD_DEPTH_COL].min().item()
+        col_max = x[:, FLOOD_DEPTH_COL].max().item()
+        flag = " (must be 0.0)" if model.no_depth_overwrite else ""
+        print(f"    {nt:10s}  col {FLOOD_DEPTH_COL} min={col_min:.6f}  max={col_max:.6f}{flag}")
+        if model.no_depth_overwrite:
+            assert col_min == 0.0 and col_max == 0.0, (
+                f"--no_depth_overwrite set but {nt} col {FLOOD_DEPTH_COL} has "
+                f"non-zero values (min={col_min}, max={col_max}). The conditional "
+                f"in CascadeGNNv2.forward is not propagating."
+            )
+
+    # Also sanity-check that fragility's output is unaffected — p_t0 must
+    # still be non-zero where real depths are positive.
+    if model.no_depth_overwrite:
+        sample_nt = "telecom"  # has many flooded nodes in extreme_2080
+        n_flooded = int((depths_dict[sample_nt] > 0).sum().item())
+        n_p_pos = int((out["p_t0"][sample_nt] > 0).sum().item())
+        print(f"\n  Fragility head sanity (still gets real depths):")
+        print(f"    {sample_nt}: flooded depths > 0: {n_flooded}, "
+              f"p_t0 > 0: {n_p_pos}  (must be > 0 — fragility is unaffected by the flag)")
+        assert n_p_pos > 0, "fragility output collapsed to 0 — the flag is incorrectly affecting the fragility head"
 
     # ---- One training step under the existing four-component loss ----
     optimizer = Adam(model.parameters(), lr=args.lr)
@@ -685,6 +722,7 @@ def run_train(args):
     history_out = {
         "config": {
             "architecture": "decoupled_v1",
+            "no_depth_overwrite": bool(args.no_depth_overwrite),
             "aux_weight": float(args.aux_weight),
             "prior_weight": float(args.prior_weight),
             "lr": float(args.lr),
@@ -750,6 +788,12 @@ def parse_args():
     p.add_argument("--aux_weight", type=float, default=0.1,
                    help="BCE weight on the *clean* fragility output vs the "
                         "true t=0 failure indicator. 0.0 disables the aux loss.")
+    p.add_argument("--no_depth_overwrite", action="store_true", default=False,
+                   help="If set, the GNN's col-3 (flood_depth) input is NOT "
+                        "overwritten with scenario depth — it stays at the "
+                        "base constant 0.0 in both training and eval. The "
+                        "fragility head still gets the real depths. Used to "
+                        "train the in-distribution graph-only baseline.")
     p.add_argument("--warm_start", action="store_true", default=True,
                    help="Load v1 GNN checkpoint as starting weights.")
     p.add_argument("--no_warm_start", dest="warm_start", action="store_false")
