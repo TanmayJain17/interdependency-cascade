@@ -1,0 +1,177 @@
+/opt/miniconda3/lib/python3.12/site-packages/geopandas/array.py:344: UserWarning: Cannot set the CRS, falling back to None. The CRS support requires the 'pyproj' package, but it is not installed or does not import correctly. The functions depending on CRS will raise an error or may produce unexpected results.
+  self.crs = crs
+/opt/miniconda3/lib/python3.12/site-packages/geopandas/geodataframe.py:469: UserWarning: Cannot set the CRS, falling back to None. The CRS support requires the 'pyproj' package, but it is not installed or does not import correctly. The functions depending on CRS will raise an error or may produce unexpected results.
+  level.crs = crs
+=== TRAIN MODE — full v2 training ===
+Train: 4000  Val: 1000  Test (held-out=geoclaw_2050): 1000
+  Subsampled train to 1500
+  Subsampled val to 500
+Model parameters: 662,692
+Device: cpu
+Run output dir: data/gnn_v2_checkpoints/noisy_coupled_v1
+  Ep00 step  300/1500: total=0.1525 bce_c=0.1513 bce_t0=0.0123 prior=0.000027
+  Ep00 step  600/1500: total=0.0452 bce_c=0.0439 bce_t0=0.0127 prior=0.000041
+  Ep00 step  900/1500: total=0.0405 bce_c=0.0393 bce_t0=0.0120 prior=0.000017
+  Ep00 step 1200/1500: total=0.0390 bce_c=0.0378 bce_t0=0.0123 prior=0.000033
+  Ep00 step 1500/1500: total=0.0362 bce_c=0.0350 bce_t0=0.0117 prior=0.000025
+
+Epoch 00/10 | train_total=0.0627 bce_c=0.0614 bce_t0=0.0122 prior=0.00003 | val=0.0500 | PR=['0.937', '0.933', '0.928', '0.927'] CASCADE-PR=['0.798', '0.883', '0.861', '0.865'] | 148s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.599492 ( -0.085%)  beta 0.500192 ( +0.038%)
+    telecom     median 0.299429 ( -0.190%)  beta 0.600021 ( +0.003%)
+    hospital    median 0.600003 ( +0.000%)  beta 0.500004 ( +0.001%)
+    subway      median 0.099977 ( -0.023%)  beta 0.399946 ( -0.013%)
+    water       median 0.500115 ( +0.023%)  beta 0.500076 ( +0.015%)
+    fuel        median 0.499392 ( -0.122%)  beta 0.599691 ( -0.052%)
+
+  Ep01 step  300/1500: total=0.0356 bce_c=0.0344 bce_t0=0.0122 prior=0.000026
+  Ep01 step  600/1500: total=0.0355 bce_c=0.0343 bce_t0=0.0120 prior=0.000023
+  Ep01 step  900/1500: total=0.0349 bce_c=0.0337 bce_t0=0.0120 prior=0.000021
+  Ep01 step 1200/1500: total=0.0360 bce_c=0.0347 bce_t0=0.0121 prior=0.000022
+  Ep01 step 1500/1500: total=0.0372 bce_c=0.0359 bce_t0=0.0127 prior=0.000021
+
+Epoch 01/10 | train_total=0.0358 bce_c=0.0346 bce_t0=0.0122 prior=0.00002 | val=0.0457 | PR=['0.925', '0.931', '0.928', '0.928'] CASCADE-PR=['0.805', '0.890', '0.865', '0.873'] | 296s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.598031 ( -0.328%)  beta 0.500230 ( +0.046%)
+    telecom     median 0.299009 ( -0.330%)  beta 0.600014 ( +0.002%)
+    hospital    median 0.599997 ( -0.000%)  beta 0.500006 ( +0.001%)
+    subway      median 0.099997 ( -0.003%)  beta 0.400047 ( +0.012%)
+    water       median 0.499827 ( -0.035%)  beta 0.499933 ( -0.013%)
+    fuel        median 0.499668 ( -0.066%)  beta 0.599916 ( -0.014%)
+
+  Ep02 step  300/1500: total=0.0351 bce_c=0.0338 bce_t0=0.0123 prior=0.000023
+  Ep02 step  600/1500: total=0.0328 bce_c=0.0315 bce_t0=0.0120 prior=0.000022
+  Ep02 step  900/1500: total=0.0280 bce_c=0.0270 bce_t0=0.0107 prior=0.000015
+  Ep02 step 1200/1500: total=0.0350 bce_c=0.0336 bce_t0=0.0131 prior=0.000029
+  Ep02 step 1500/1500: total=0.0356 bce_c=0.0343 bce_t0=0.0129 prior=0.000020
+
+Epoch 02/10 | train_total=0.0333 bce_c=0.0320 bce_t0=0.0122 prior=0.00002 | val=0.0445 | PR=['0.928', '0.930', '0.928', '0.929'] CASCADE-PR=['0.813', '0.878', '0.856', '0.866'] | 445s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.600577 ( +0.096%)  beta 0.499836 ( -0.033%)
+    telecom     median 0.300080 ( +0.027%)  beta 0.599573 ( -0.071%)
+    hospital    median 0.600005 ( +0.001%)  beta 0.500001 ( +0.000%)
+    subway      median 0.099990 ( -0.010%)  beta 0.399889 ( -0.028%)
+    water       median 0.499914 ( -0.017%)  beta 0.499968 ( -0.006%)
+    fuel        median 0.498827 ( -0.235%)  beta 0.599606 ( -0.066%)
+
+  Ep03 step  300/1500: total=0.0342 bce_c=0.0329 bce_t0=0.0131 prior=0.000017
+  Ep03 step  600/1500: total=0.0320 bce_c=0.0308 bce_t0=0.0125 prior=0.000021
+  Ep03 step  900/1500: total=0.0313 bce_c=0.0302 bce_t0=0.0116 prior=0.000024
+  Ep03 step 1200/1500: total=0.0306 bce_c=0.0294 bce_t0=0.0116 prior=0.000023
+  Ep03 step 1500/1500: total=0.0343 bce_c=0.0330 bce_t0=0.0122 prior=0.000026
+
+Epoch 03/10 | train_total=0.0325 bce_c=0.0312 bce_t0=0.0122 prior=0.00002 | val=0.0447 | PR=['0.924', '0.928', '0.926', '0.928'] CASCADE-PR=['0.793', '0.857', '0.839', '0.852'] | 594s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.599581 ( -0.070%)  beta 0.500300 ( +0.060%)
+    telecom     median 0.298492 ( -0.503%)  beta 0.599620 ( -0.063%)
+    hospital    median 0.600007 ( +0.001%)  beta 0.500005 ( +0.001%)
+    subway      median 0.099983 ( -0.017%)  beta 0.399993 ( -0.002%)
+    water       median 0.499848 ( -0.030%)  beta 0.500091 ( +0.018%)
+    fuel        median 0.499388 ( -0.122%)  beta 0.599572 ( -0.071%)
+
+  Ep04 step  300/1500: total=0.0322 bce_c=0.0310 bce_t0=0.0122 prior=0.000019
+  Ep04 step  600/1500: total=0.0297 bce_c=0.0285 bce_t0=0.0113 prior=0.000020
+  Ep04 step  900/1500: total=0.0350 bce_c=0.0337 bce_t0=0.0128 prior=0.000023
+  Ep04 step 1200/1500: total=0.0297 bce_c=0.0285 bce_t0=0.0119 prior=0.000015
+  Ep04 step 1500/1500: total=0.0312 bce_c=0.0300 bce_t0=0.0127 prior=0.000019
+
+Epoch 04/10 | train_total=0.0316 bce_c=0.0303 bce_t0=0.0122 prior=0.00002 | val=0.0434 | PR=['0.937', '0.934', '0.932', '0.934'] CASCADE-PR=['0.820', '0.878', '0.858', '0.872'] | 752s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.599960 ( -0.007%)  beta 0.500166 ( +0.033%)
+    telecom     median 0.299272 ( -0.243%)  beta 0.598854 ( -0.191%)
+    hospital    median 0.599997 ( -0.001%)  beta 0.500009 ( +0.002%)
+    subway      median 0.099989 ( -0.011%)  beta 0.399933 ( -0.017%)
+    water       median 0.500072 ( +0.014%)  beta 0.500088 ( +0.018%)
+    fuel        median 0.499955 ( -0.009%)  beta 0.599801 ( -0.033%)
+
+  Ep05 step  300/1500: total=0.0304 bce_c=0.0292 bce_t0=0.0117 prior=0.000017
+  Ep05 step  600/1500: total=0.0336 bce_c=0.0323 bce_t0=0.0126 prior=0.000026
+  Ep05 step  900/1500: total=0.0320 bce_c=0.0308 bce_t0=0.0124 prior=0.000023
+  Ep05 step 1200/1500: total=0.0289 bce_c=0.0277 bce_t0=0.0119 prior=0.000018
+  Ep05 step 1500/1500: total=0.0314 bce_c=0.0301 bce_t0=0.0124 prior=0.000020
+
+Epoch 05/10 | train_total=0.0313 bce_c=0.0300 bce_t0=0.0122 prior=0.00002 | val=0.0434 | PR=['0.938', '0.934', '0.932', '0.934'] CASCADE-PR=['0.832', '0.880', '0.859', '0.868'] | 921s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.600301 ( +0.050%)  beta 0.500361 ( +0.072%)
+    telecom     median 0.299140 ( -0.287%)  beta 0.599642 ( -0.060%)
+    hospital    median 0.600002 ( +0.000%)  beta 0.500003 ( +0.001%)
+    subway      median 0.099992 ( -0.008%)  beta 0.400018 ( +0.004%)
+    water       median 0.499449 ( -0.110%)  beta 0.500015 ( +0.003%)
+    fuel        median 0.500489 ( +0.098%)  beta 0.599835 ( -0.027%)
+
+  Ep06 step  300/1500: total=0.0322 bce_c=0.0310 bce_t0=0.0124 prior=0.000022
+  Ep06 step  600/1500: total=0.0311 bce_c=0.0299 bce_t0=0.0118 prior=0.000020
+  Ep06 step  900/1500: total=0.0313 bce_c=0.0300 bce_t0=0.0120 prior=0.000018
+  Ep06 step 1200/1500: total=0.0340 bce_c=0.0326 bce_t0=0.0132 prior=0.000021
+  Ep06 step 1500/1500: total=0.0286 bce_c=0.0274 bce_t0=0.0115 prior=0.000018
+
+Epoch 06/10 | train_total=0.0314 bce_c=0.0302 bce_t0=0.0122 prior=0.00002 | val=0.0431 | PR=['0.940', '0.939', '0.935', '0.938'] CASCADE-PR=['0.810', '0.883', '0.857', '0.870'] | 1090s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.599809 ( -0.032%)  beta 0.500064 ( +0.013%)
+    telecom     median 0.298737 ( -0.421%)  beta 0.599933 ( -0.011%)
+    hospital    median 0.600032 ( +0.005%)  beta 0.500007 ( +0.001%)
+    subway      median 0.100019 ( +0.019%)  beta 0.400135 ( +0.034%)
+    water       median 0.500068 ( +0.014%)  beta 0.500054 ( +0.011%)
+    fuel        median 0.499649 ( -0.070%)  beta 0.599930 ( -0.012%)
+
+  Ep07 step  300/1500: total=0.0302 bce_c=0.0290 bce_t0=0.0122 prior=0.000018
+  Ep07 step  600/1500: total=0.0326 bce_c=0.0313 bce_t0=0.0126 prior=0.000016
+  Ep07 step  900/1500: total=0.0313 bce_c=0.0301 bce_t0=0.0122 prior=0.000019
+  Ep07 step 1200/1500: total=0.0307 bce_c=0.0295 bce_t0=0.0123 prior=0.000016
+  Ep07 step 1500/1500: total=0.0309 bce_c=0.0297 bce_t0=0.0117 prior=0.000019
+
+Epoch 07/10 | train_total=0.0311 bce_c=0.0299 bce_t0=0.0122 prior=0.00002 | val=0.0433 | PR=['0.933', '0.933', '0.930', '0.933'] CASCADE-PR=['0.804', '0.867', '0.847', '0.863'] | 1246s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.600159 ( +0.026%)  beta 0.499998 ( -0.000%)
+    telecom     median 0.299570 ( -0.143%)  beta 0.600167 ( +0.028%)
+    hospital    median 0.600002 ( +0.000%)  beta 0.500002 ( +0.000%)
+    subway      median 0.100004 ( +0.004%)  beta 0.399926 ( -0.019%)
+    water       median 0.500013 ( +0.003%)  beta 0.499934 ( -0.013%)
+    fuel        median 0.499753 ( -0.049%)  beta 0.599838 ( -0.027%)
+
+  Ep08 step  300/1500: total=0.0308 bce_c=0.0296 bce_t0=0.0122 prior=0.000017
+  Ep08 step  600/1500: total=0.0319 bce_c=0.0306 bce_t0=0.0126 prior=0.000018
+  Ep08 step  900/1500: total=0.0293 bce_c=0.0281 bce_t0=0.0116 prior=0.000015
+  Ep08 step 1200/1500: total=0.0311 bce_c=0.0298 bce_t0=0.0124 prior=0.000018
+  Ep08 step 1500/1500: total=0.0295 bce_c=0.0283 bce_t0=0.0122 prior=0.000019
+
+Epoch 08/10 | train_total=0.0305 bce_c=0.0293 bce_t0=0.0122 prior=0.00002 | val=0.0436 | PR=['0.933', '0.938', '0.935', '0.938'] CASCADE-PR=['0.807', '0.871', '0.849', '0.864'] | 1399s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.600585 ( +0.098%)  beta 0.500384 ( +0.077%)
+    telecom     median 0.299335 ( -0.222%)  beta 0.600295 ( +0.049%)
+    hospital    median 0.599997 ( -0.000%)  beta 0.500001 ( +0.000%)
+    subway      median 0.100025 ( +0.025%)  beta 0.400045 ( +0.011%)
+    water       median 0.499724 ( -0.055%)  beta 0.500016 ( +0.003%)
+    fuel        median 0.499361 ( -0.128%)  beta 0.599960 ( -0.007%)
+
+  Ep09 step  300/1500: total=0.0317 bce_c=0.0304 bce_t0=0.0122 prior=0.000024
+  Ep09 step  600/1500: total=0.0289 bce_c=0.0277 bce_t0=0.0120 prior=0.000018
+  Ep09 step  900/1500: total=0.0270 bce_c=0.0258 bce_t0=0.0118 prior=0.000013
+  Ep09 step 1200/1500: total=0.0329 bce_c=0.0315 bce_t0=0.0128 prior=0.000021
+  Ep09 step 1500/1500: total=0.0319 bce_c=0.0306 bce_t0=0.0121 prior=0.000022
+
+Epoch 09/10 | train_total=0.0305 bce_c=0.0292 bce_t0=0.0122 prior=0.00002 | val=0.0428 | PR=['0.928', '0.933', '0.930', '0.933'] CASCADE-PR=['0.814', '0.871', '0.850', '0.861'] | 1571s
+  Fragility (6-decimal precision, drift% vs HAZUS):
+    power       median 0.600946 ( +0.158%)  beta 0.500016 ( +0.003%)
+    telecom     median 0.299587 ( -0.138%)  beta 0.599385 ( -0.102%)
+    hospital    median 0.600003 ( +0.001%)  beta 0.500000 ( +0.000%)
+    subway      median 0.100006 ( +0.006%)  beta 0.400058 ( +0.015%)
+    water       median 0.499452 ( -0.110%)  beta 0.500009 ( +0.002%)
+    fuel        median 0.499974 ( -0.005%)  beta 0.599921 ( -0.013%)
+
+
+=== Held-out test evaluation ===
+  Test loss: 0.0393
+  Test PR per t:         [0.9861519524352675, 0.9996627785797682, 0.9993463851036373, 0.9997206345872486]
+  Test CASCADE-PR per t: [0.9308400099193399, 0.999028840132455, 0.9982092608806844, 0.9993545286027349]
+
+  Fragility output variance per node type (eval mode, extreme_2080 example 0):
+    power       N=  203  flooded=   10  p_t0 var=8.561302e-03  p_t0 mean=0.014771  p_t0 max=0.716405
+    telecom     N= 4150  flooded=  274  p_t0 var=3.335899e-02  p_t0 mean=0.043435  p_t0 max=0.949361
+    hospital    N=   61  flooded=    1  p_t0 var=3.213949e-06  p_t0 mean=0.000230  p_t0 max=0.014002
+    subway      N=  493  flooded=   76  p_t0 var=1.240857e-01  p_t0 mean=0.150193  p_t0 max=0.999996
+    water       N=  137  flooded=   13  p_t0 var=3.625520e-02  p_t0 mean=0.056154  p_t0 max=0.826951
+    fuel        N= 1187  flooded=   84  p_t0 var=1.760763e-02  p_t0 mean=0.028711  p_t0 max=0.783342
+
+Saved history -> data/gnn_v2_checkpoints/noisy_coupled_v1/history.json
+Saved best checkpoint -> data/gnn_v2_checkpoints/noisy_coupled_v1/best.pt

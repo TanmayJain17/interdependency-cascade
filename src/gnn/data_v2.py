@@ -150,6 +150,44 @@ def build_base_x_dict(base_data) -> dict:
 # Per-example construction
 # --------------------------------------------------------------------------
 
+def t0_labels_from_run(run: dict, base_data, node_id_index: dict) -> dict:
+    """Per-node-type binary t=0 failure labels for one MC run.
+
+    The cascade_results JSON stores fail_time_per_node as a dict
+    {node_id (str): fail_time (int)}. Only failed nodes appear in the dict;
+    nodes missing from the dict implicitly never fail. A value of 0 (or 0.0)
+    means initial failure — that is the supervision target for the v2 aux
+    BCE on LearnableFragility's clean output.
+
+    Args:
+        run: a single MC run dict containing 'fail_time_per_node'.
+        base_data: PyG HeteroData (for tensor shapes per type).
+        node_id_index: {node_id: (node_type, local_idx)} from
+            build_node_id_index(base_data).
+
+    Returns:
+        dict {node_type: tensor [N] of float32} with 1.0 at positions where
+        the node was an initial failure, 0.0 elsewhere.
+    """
+    out = {
+        nt: torch.zeros(base_data[nt].num_nodes, dtype=torch.float32)
+        for nt in base_data.node_types
+    }
+    ftn = run.get("fail_time_per_node", {})
+    for nid, t in ftn.items():
+        if nid not in node_id_index:
+            continue
+        # Tolerate float fail_times in case of future runner changes.
+        try:
+            if int(t) != 0:
+                continue
+        except (TypeError, ValueError):
+            continue
+        nt, local_idx = node_id_index[nid]
+        out[nt][local_idx] = 1.0
+    return out
+
+
 def example_v2_from_run(
     run: dict,
     depths_dict: dict,
