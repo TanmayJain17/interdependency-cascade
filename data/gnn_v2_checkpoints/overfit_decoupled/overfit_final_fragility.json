@@ -1,0 +1,50 @@
+{
+  "power": {
+    "median_m": 0.6000252962112427,
+    "beta": 0.5000004172325134,
+    "hazus_median_m": 0.6000000238418579,
+    "hazus_beta": 0.5,
+    "median_drift_log": 4.208087921142578e-05,
+    "beta_drift_log": 8.940696716308594e-07
+  },
+  "telecom": {
+    "median_m": 0.29997286200523376,
+    "beta": 0.5999946594238281,
+    "hazus_median_m": 0.30000001192092896,
+    "hazus_beta": 0.6000000238418579,
+    "median_drift_log": -9.047985076904297e-05,
+    "beta_drift_log": -9.000301361083984e-06
+  },
+  "hospital": {
+    "median_m": 0.6000015735626221,
+    "beta": 0.4999985992908478,
+    "hazus_median_m": 0.6000000238418579,
+    "hazus_beta": 0.5,
+    "median_drift_log": 2.6226043701171875e-06,
+    "beta_drift_log": -2.8014183044433594e-06
+  },
+  "subway": {
+    "median_m": 0.10000094771385193,
+    "beta": 0.400002658367157,
+    "hazus_median_m": 0.09999999403953552,
+    "hazus_beta": 0.4000000059604645,
+    "median_drift_log": 9.5367431640625e-06,
+    "beta_drift_log": 6.616115570068359e-06
+  },
+  "water": {
+    "median_m": 0.49999430775642395,
+    "beta": 0.49999669194221497,
+    "hazus_median_m": 0.5,
+    "hazus_beta": 0.5,
+    "median_drift_log": -1.138448715209961e-05,
+    "beta_drift_log": -6.616115570068359e-06
+  },
+  "fuel": {
+    "median_m": 0.5000023245811462,
+    "beta": 0.6000014543533325,
+    "hazus_median_m": 0.5,
+    "hazus_beta": 0.6000000238418579,
+    "median_drift_log": 4.649162292480469e-06,
+    "beta_drift_log": 2.3245811462402344e-06
+  }
+}

@@ -163,12 +163,18 @@ def train_step(model, base_x_dict, run, depths_dict, edge_idx_dict,
 
 @torch.no_grad()
 def eval_step(model, base_x_dict, run, depths_dict, edge_idx_dict,
-              node_id_index, base_data, device):
+              node_id_index, base_data, device, zero_depth_col: bool = False):
     """Eval forward + AUC/PR per timestep (all-nodes and cascade-only).
 
     Cascade-only excludes the *true* t=0 failure nodes (from
     fail_time_per_node), NOT the fragility-thresholded ones — matching the
     v1 convention so the metric is comparable across runs.
+
+    When zero_depth_col=True, the GNN sees an all-zeros depth column
+    instead of the scenario depths (col 3 overwrite is forced to 0). The
+    fragility head still receives the real depths, so p_t0 is unchanged.
+    This measures how much of the model's cascade prediction comes from
+    the explicit depth signal vs the graph structure / other features.
     """
     model.eval()
     _, labels = example_v2_from_run(run, depths_dict, base_data, node_id_index)
@@ -176,7 +182,11 @@ def eval_step(model, base_x_dict, run, depths_dict, edge_idx_dict,
     labels_t0 = t0_labels_from_run(run, base_data, node_id_index)
     labels_t0 = {nt: l.to(device) for nt, l in labels_t0.items()}
 
-    out = model(base_x_dict, depths_dict, edge_idx_dict)
+    if zero_depth_col:
+        gnn_depths = {nt: torch.zeros_like(d) for nt, d in depths_dict.items()}
+        out = model(base_x_dict, depths_dict, edge_idx_dict, gnn_depths_dict=gnn_depths)
+    else:
+        out = model(base_x_dict, depths_dict, edge_idx_dict)
     logits = out["cascade_logits"]
 
     losses_per_nt = [
@@ -220,7 +230,7 @@ def build_model(args, base_data, device):
         infra_types=tuple(base_data.node_types),
         prior_weight=args.prior_weight,
     )
-    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 for nt in base_data.node_types}
+    node_in_dims = {nt: base_data[nt].x.shape[1] for nt in base_data.node_types}
     gnn = CascadeGNN(
         node_types=base_data.node_types,
         edge_types=list(base_data.edge_types),
@@ -231,16 +241,18 @@ def build_model(args, base_data, device):
         num_timesteps=len(DEFAULT_TIMESTEPS),
         dropout=args.dropout,
     )
-    if args.warm_start and V1_CHECKPOINT.exists():
-        print(f"  Warm-starting GNN from {V1_CHECKPOINT}")
-        ckpt = torch.load(V1_CHECKPOINT, map_location="cpu", weights_only=False)
-        gnn.load_state_dict(ckpt["model_state"])
-    elif args.warm_start:
-        print(f"  --warm_start requested but {V1_CHECKPOINT} not found; "
-              f"starting from random init")
-    return CascadeGNNv2(
-        gnn=gnn, fragility=fragility, noise_sigma=args.noise_sigma,
-    ).to(device)
+    if args.warm_start:
+        # v1's GNN was built with node_in_dim = 9 (8 base features + binary
+        # initial-failure mask column). The decoupled v2 GNN uses 8 inputs,
+        # so a direct state_dict load would crash on the input projection.
+        # Warm-starting from v1 also doesn't make conceptual sense here —
+        # the whole point of decoupling is to eliminate the fragility/mask
+        # column that v1's weights were trained around. Print a one-line
+        # notice and proceed with cold-init.
+        print(f"  Note: --warm_start is incompatible with the decoupled v2 "
+              f"architecture (GNN input dim is 8, v1 used 9). Ignoring and "
+              f"proceeding with cold-start.")
+    return CascadeGNNv2(gnn=gnn, fragility=fragility).to(device)
 
 
 def _avg_per_t(per_t_list, n_t):
@@ -256,7 +268,7 @@ def _avg_per_t(per_t_list, n_t):
 # --------------------------------------------------------------------------
 
 def run_smoke(args):
-    print("=== SMOKE MODE — v2 noise-perturbed coupled sanity checks ===")
+    print("=== SMOKE MODE — v2 DECOUPLED architecture sanity checks ===")
     device = torch.device(args.device)
     base_data = load_base_graph()
     depths_per_scenario = build_per_scenario_depth_tensors(base_data)
@@ -268,14 +280,20 @@ def run_smoke(args):
     depths_dict = {nt: t.to(device) for nt, t in depths_per_scenario["extreme_2080"].items()}
 
     model = build_model(args, base_data, device)
-    print(f"  noise_sigma:  {model.noise_sigma}")
     print(f"  aux_weight:   {args.aux_weight}")
     print(f"  prior_weight: {args.prior_weight}")
     print(f"  Total params: {count_parameters(model):,} "
           f"(fragility: {count_parameters(model.fragility)}, "
           f"gnn: {count_parameters(model.gnn):,})")
 
-    # ---- shape check on the new forward return ----
+    # ---- Correctness check 1: GNN input is [N, 8], not 9 ----
+    print(f"\n  GNN input shape per type (must be [N, 8] — fragility column gone):")
+    for nt in base_data.node_types:
+        print(f"    {nt:10s}  base_x {list(base_x_dict[nt].shape)}")
+        assert base_x_dict[nt].shape[-1] == 8, \
+            f"{nt} base feature dim is {base_x_dict[nt].shape[-1]}, expected 8"
+
+    # ---- Forward return-shape check ----
     model.eval()
     out = model(base_x_dict, depths_dict, edge_idx_dict)
     assert set(out.keys()) == {"p_t0", "cascade_logits"}, out.keys()
@@ -285,29 +303,7 @@ def run_smoke(args):
         cl = out["cascade_logits"][nt]
         print(f"    {nt:10s}  p_t0 {list(p.shape)}  cascade_logits {list(cl.shape)}")
 
-    # ---- noise behavior: train mode stochastic, eval mode deterministic ----
-    torch.manual_seed(0)
-    model.train()
-    out_a = model(base_x_dict, depths_dict, edge_idx_dict)
-    out_b = model(base_x_dict, depths_dict, edge_idx_dict)
-    diffs_train = {nt: (out_a["cascade_logits"][nt] - out_b["cascade_logits"][nt]).abs().max().item()
-                   for nt in base_data.node_types}
-    model.eval()
-    out_c = model(base_x_dict, depths_dict, edge_idx_dict)
-    out_d = model(base_x_dict, depths_dict, edge_idx_dict)
-    diffs_eval = {nt: (out_c["cascade_logits"][nt] - out_d["cascade_logits"][nt]).abs().max().item()
-                  for nt in base_data.node_types}
-    print(f"\n  Noise determinism check (max abs diff between two forward passes):")
-    print(f"    train mode (should be > 0, fresh noise each call):")
-    for nt, d in diffs_train.items():
-        print(f"      {nt:10s}: {d:.6f}")
-    print(f"    eval  mode (should be == 0, deterministic):")
-    for nt, d in diffs_eval.items():
-        print(f"      {nt:10s}: {d:.6f}")
-    assert all(d > 0 for d in diffs_train.values()), "noise not applied in train mode"
-    assert all(d == 0 for d in diffs_eval.values()),  "eval mode is not deterministic"
-
-    # ---- one training step under the new four-component loss ----
+    # ---- One training step under the existing four-component loss ----
     optimizer = Adam(model.parameters(), lr=args.lr)
     one_run = results["extreme_2080"][0]
     total, bce_c, bce_t0, prior = train_step(
@@ -321,28 +317,64 @@ def run_smoke(args):
     print(f"    prior:       {prior:.6f}  (prior_weight * prior = {args.prior_weight * prior:.6f})")
     print(f"    total:       {total:.4f}")
 
-    # ---- gradient sanity: log_mu / log_beta must have grads on all 6 types ----
-    # The previous optimizer.step() zeroed them when it ran zero_grad. Re-run
-    # one backward to inspect grads explicitly.
+    # ---- Build labels needed for the decoupling tests ----
     labels_t0 = t0_labels_from_run(one_run, base_data, node_id_index)
     labels_t0 = {nt: l.to(device) for nt, l in labels_t0.items()}
     _, labels_casc = example_v2_from_run(one_run, depths_dict, base_data, node_id_index)
     labels_casc = {nt: l.to(device) for nt, l in labels_casc.items()}
-    model.train()
-    out2 = model(base_x_dict, depths_dict, edge_idx_dict)
-    total2, _, _, _ = compute_v2_loss(
-        out2, labels_t0, labels_casc, model, args.aux_weight, args.prior_weight,
-    )
+
+    def _grad_max(p):
+        # PyTorch's set_to_none=True default leaves grads = None when no gradient
+        # ever flowed. Treat that as 0 for reporting / assertion purposes.
+        return p.grad.abs().max().item() if p.grad is not None else 0.0
+
+    # ---- Correctness check 2 (THE decoupling test) ----
+    # Test A: cascade loss alone — fragility grads must be EXACTLY 0
+    print("\n  Test A (decoupling): backprop through cascade BCE only")
+    print("       expected: all fragility grads == 0  (no path from cascade loss to fragility)")
     model.zero_grad()
-    total2.backward()
+    out_a = model(base_x_dict, depths_dict, edge_idx_dict)
+    total_a, _, _, _ = compute_v2_loss(
+        out_a, labels_t0, labels_casc, model,
+        aux_weight=0.0, prior_weight=0.0,
+    )
+    total_a.backward()
+    for name, p in model.fragility.named_parameters():
+        g = _grad_max(p)
+        print(f"    fragility.{name:<10s}  max |grad| = {g:.3e}")
+        assert g == 0.0, (
+            f"Decoupling broken: cascade-only loss leaked gradient into "
+            f"fragility.{name} (max |grad|={g:.3e}). Check that the GNN "
+            f"input never sees fragility output."
+        )
+
+    # Test B: aux loss alone — fragility grads must be NON-ZERO (at least
+    # on signal-rich types). prior weight 0 so the prior doesn't contribute.
+    print("\n  Test B (aux-loss connectivity): backprop through aux BCE only")
+    print("       expected: fragility grads > 0 on types with flooded nodes")
+    model.zero_grad()
+    out_b = model(base_x_dict, depths_dict, edge_idx_dict)
+    _, _, bce_t0_b, _ = compute_v2_loss(
+        out_b, labels_t0, labels_casc, model,
+        aux_weight=1.0, prior_weight=0.0,
+    )
+    bce_t0_b.backward()
     mu_grad = model.fragility.log_mu.grad
     beta_grad = model.fragility.log_beta.grad
-    print(f"\n  Fragility gradient norms after one backward (all six types should be > 0):")
+    nonzero_mu_types = []
     for i, nt in enumerate(model.fragility.infra_types):
-        print(f"    {nt:10s}  |grad log_mu|={mu_grad[i].abs().item():.3e}  "
-              f"|grad log_beta|={beta_grad[i].abs().item():.3e}")
-    assert (mu_grad.abs() > 0).all(),   "log_mu grad is zero on some type"
-    assert (beta_grad.abs() > 0).all(), "log_beta grad is zero on some type"
+        g_mu = mu_grad[i].abs().item()
+        g_be = beta_grad[i].abs().item()
+        print(f"    {nt:10s}  |grad log_mu|={g_mu:.3e}  |grad log_beta|={g_be:.3e}")
+        if g_mu > 0:
+            nonzero_mu_types.append(nt)
+    # We only assert that *at least one* type with realistic flood signal
+    # received non-zero gradient. Hospital may legitimately be zero on a
+    # given example if no hospitals were flooded in that scenario.
+    assert len(nonzero_mu_types) >= 3, (
+        f"Aux loss did not produce non-zero gradient on enough types "
+        f"(only {nonzero_mu_types}); aux BCE may be disconnected from fragility."
+    )
 
     print("\nSmoke test passed.")
 
@@ -369,6 +401,16 @@ def run_overfit(args):
     model = build_model(args, base_data, device)
     optimizer = Adam(model.parameters(), lr=args.lr)
     print(f"  Total params: {count_parameters(model):,}")
+
+    # One-shot decoupling check inside the actual training loop (not just
+    # smoke): confirm the static base going into the model is [N, 8] for
+    # every type. The forward only clones and overwrites col 3; it never
+    # changes the last dim. So [N, 8] in = [N, 8] reaching the GNN.
+    print(f"\n  GNN input shape per type (training-mode check):")
+    for nt in base_data.node_types:
+        print(f"    {nt:10s}  {list(base_x_dict[nt].shape)}")
+        assert base_x_dict[nt].shape[-1] == 8, \
+            f"{nt} base feature dim is {base_x_dict[nt].shape[-1]}, expected 8"
 
     print(f"\n  Training on {len(examples)} fixed examples for {args.epochs} epochs...")
     t0 = time.time()
@@ -470,6 +512,15 @@ def run_train(args):
     print(f"Model parameters: {count_parameters(model):,}")
     print(f"Device: {device}")
 
+    # One-shot decoupling check inside the actual training loop (not just
+    # smoke): confirm the static base going into the model is [N, 8] for
+    # every type. Same rationale as in run_overfit.
+    print(f"\n  GNN input shape per type (training-mode check):")
+    for nt in base_data.node_types:
+        print(f"    {nt:10s}  {list(base_x_dict[nt].shape)}")
+        assert base_x_dict[nt].shape[-1] == 8, \
+            f"{nt} base feature dim is {base_x_dict[nt].shape[-1]}, expected 8"
+
     # If a --run_tag is given, route outputs (history.json + best.pt) to a
     # per-run subdir so diagnostic runs don't clobber previous results.
     run_dir = CHECKPOINT_DIR_V2 / args.run_tag if args.run_tag else CHECKPOINT_DIR_V2
@@ -560,14 +611,15 @@ def run_train(args):
                 "fragility_table": learned_table,
             }, run_dir / "best.pt")
 
-    # Held-out test
-    print("\n=== Held-out test evaluation ===")
+    # Held-out test — Eval 1: WITH scenario depth in col 3 (primary metric).
+    print("\n=== Held-out test eval 1/2: WITH depth in col 3 ===")
     test_losses, test_pr_t, test_pr_casc_t = [], [], []
     for s, run in test:
         depths_dict = {nt: t.to(device) for nt, t in depths_per_scenario[s].items()}
         tl, _, tp, _, tpc = eval_step(
             model, base_x_dict, run, depths_dict, edge_idx_dict,
-            node_id_index, base_data, device
+            node_id_index, base_data, device,
+            zero_depth_col=False,
         )
         test_losses.append(tl); test_pr_t.append(tp); test_pr_casc_t.append(tpc)
     mean_test_loss = sum(test_losses) / len(test_losses)
@@ -576,6 +628,31 @@ def run_train(args):
     print(f"  Test loss: {mean_test_loss:.4f}")
     print(f"  Test PR per t:         {test_prs}")
     print(f"  Test CASCADE-PR per t: {test_prs_casc}")
+
+    # Held-out test — Eval 2: col 3 zeroed at eval time (information-flow
+    # diagnostic). Same trained weights; the only change is the GNN's depth
+    # column is forced to 0. The gap between eval 1 and eval 2 quantifies
+    # how much of the model's cascade prediction comes from explicit depth
+    # vs graph structure + other features.
+    print("\n=== Held-out test eval 2/2: col 3 ZEROED (no depth signal to GNN) ===")
+    test_nd_losses, test_nd_pr_t, test_nd_pr_casc_t = [], [], []
+    for s, run in test:
+        depths_dict = {nt: t.to(device) for nt, t in depths_per_scenario[s].items()}
+        tl, _, tp, _, tpc = eval_step(
+            model, base_x_dict, run, depths_dict, edge_idx_dict,
+            node_id_index, base_data, device,
+            zero_depth_col=True,
+        )
+        test_nd_losses.append(tl); test_nd_pr_t.append(tp); test_nd_pr_casc_t.append(tpc)
+    mean_test_nd_loss = sum(test_nd_losses) / len(test_nd_losses)
+    test_nd_prs = _avg_per_t(test_nd_pr_t, n_t)
+    test_nd_prs_casc = _avg_per_t(test_nd_pr_casc_t, n_t)
+    print(f"  Test loss (no depth):           {mean_test_nd_loss:.4f}")
+    print(f"  Test PR per t (no depth):         {test_nd_prs}")
+    print(f"  Test CASCADE-PR per t (no depth): {test_nd_prs_casc}")
+    if not any(x != x for x in test_prs_casc + test_nd_prs_casc):
+        print(f"  Gap (Cascade-PR with depth − without depth) @ t=[6,24,48,96]: "
+              f"{[round(a - b, 4) for a, b in zip(test_prs_casc, test_nd_prs_casc)]}")
 
     # Post-training fragility-output variance diagnostic. Run on extreme_2080
     # (high-flooding scenario) so we see signal on every infra type — the
@@ -607,7 +684,7 @@ def run_train(args):
 
     history_out = {
         "config": {
-            "noise_sigma": float(args.noise_sigma),
+            "architecture": "decoupled_v1",
             "aux_weight": float(args.aux_weight),
             "prior_weight": float(args.prior_weight),
             "lr": float(args.lr),
@@ -625,6 +702,19 @@ def run_train(args):
             "loss": mean_test_loss,
             "pr_per_t": test_prs,
             "cascade_pr_per_t": test_prs_casc,
+        },
+        "test_no_depth": {
+            "scenario": holdout,
+            "description": (
+                "Same trained weights, but the GNN's col-3 depth input is "
+                "zeroed at eval time. Fragility's input depths are unchanged. "
+                "Quantifies how much of the model's cascade prediction signal "
+                "comes from the explicit depth column vs graph structure + "
+                "other features."
+            ),
+            "loss": mean_test_nd_loss,
+            "pr_per_t": test_nd_prs,
+            "cascade_pr_per_t": test_nd_prs_casc,
         },
         "final_fragility": model.fragility.learned_params_table(),
         "fragility_variance_extreme_2080": fragility_variance,
@@ -657,10 +747,6 @@ def parse_args():
     p.add_argument("--holdout_scenario", default="geoclaw_2050")
     p.add_argument("--prior_weight", type=float, default=1.0,
                    help="Weight for HAZUS-prior regularization term.")
-    p.add_argument("--noise_sigma", type=float, default=0.15,
-                   help="Std of Gaussian noise added to fragility output "
-                        "before it enters the GNN (training only). "
-                        "0.0 disables noise (degrades to old v2).")
     p.add_argument("--aux_weight", type=float, default=0.1,
                    help="BCE weight on the *clean* fragility output vs the "
                         "true t=0 failure indicator. 0.0 disables the aux loss.")

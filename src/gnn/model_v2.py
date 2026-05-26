@@ -2,39 +2,47 @@
 src/gnn/model_v2.py
 ===================
 
-CascadeGNNv2: noise-perturbed coupled architecture.
+CascadeGNNv2: decoupled fragility + cascade architecture.
 
-Architecture (after the leakage diagnostic — feat/v2-leakage-fix):
+Architecture:
 
-    depths ─→ LearnableFragility ─→ p_t0  (clean, in [0,1])
-                                     │
-                                     ├──→ aux BCE vs t=0 labels (calibration; computed in trainer)
-                                     │
-                                     └──→ + Gaussian noise (train only) ──→ clamp[0,1] ──→ p_noisy
-                                                                                              │
-    base features (8) ──→ col 3 (constant flood_depth) replaced by scenario depth ──→ concat as col 8
-                                                                                              │
-    edge_index ──────────────────────────────────────────────────────────────────────────→ CascadeGNN
-                                                                                              │
-                                                                                              ↓
-                                                                              per-timestep failure logits
+                  ┌── LearnableFragility ──→ p_t0  (per-node P(fail at t=0))
+                  │                            │
+                  │                            └── aux BCE vs true t=0 labels
+    depths_dict ──┤                            └── L2 prior to HAZUS
+                  │
+                  └── feature col 3 (flood_depth, base value 0) is overwritten
+                      with scenario depth before the GNN consumes it.
+                                  │
+    features (cols 0,1,2,4-7) ────┤
+                                  │
+    edge_index ─────────────────── CascadeGNN ──→ cascade_logits ── main BCE vs t>0 labels
 
-Why the noise: at HAZUS init the lognormal CDF saturates near 0 or 1 for the
-flood depths in NYC scenarios, so the continuous p_t0 looks binary to the GNN.
-v1 (binary mask) and v2 (saturated continuous P) gave the same test
-Cascade-PR ≈ 0.93 — both used "input col 8" as the oracle for failure. Adding
-fresh per-step Gaussian noise on p_noisy prevents the GNN from trusting any
-single forward pass as oracle; it must learn to extract the underlying
-probability. Cascade-loss gradient still reaches fragility via the noisy
-column (the noise is non-parametric so it doesn't block backprop where the
-clamp isn't active).
+GNN input shape: [N, 8]   (NOT 9 — fragility output is no longer concatenated)
 
-Forward returns a dict with two keys:
-    "p_t0":            dict {node_type: tensor [N]}      clean fragility output
-    "cascade_logits":  dict {node_type: tensor [N, T]}   per-timestep failure logits
+The GNN never sees fragility's output, anywhere. The two heads share only
+the depths input and the combined training loss. Fragility's parameters
+receive gradient *only* from the aux BCE and the prior. Cascade gradient
+stays inside the GNN + the shared depth-overwrite feature.
 
-The clean p_t0 is what the aux loss supervises against true t=0 labels. The
-GNN never sees the clean version during training — only the noisy version.
+Why this architecture
+---------------------
+The three prior coupled v2 attempts (warm-start, cold-start, noisy-coupled
+with σ=0.15) all landed at test Cascade-PR @ t=6 = 0.9309 ± 0.0001, despite
+each cutting a different hypothesized leakage path. See
+outputs/diagnostics/v2_noisy_coupled_report.md for the converging-null
+analysis.
+
+The mechanism the coupled architecture exposes: as long as fragility's
+output is an input column to the GNN, the GNN can extract enough of the
+underlying P (even through noise, even after warm-start removal) to
+reconstruct cascades via reachability on the static graph. The path
+through which cascade gradient reaches fragility is dominated by signal
+the GNN can just as easily get from depth or graph structure, so fragility
+receives no committed pressure. Three converging nulls established that
+the coupled pattern itself is the failure mode, not any specific knob in
+it. The principled fix is to remove the architectural connection from
+fragility to the GNN entirely.
 """
 
 from typing import Dict
@@ -46,43 +54,36 @@ from src.gnn.learnable_fragility import LearnableFragility
 from src.gnn.model import CascadeGNN
 
 
-# Input column ordering inside the 9-feature GNN input. Documented here so any
-# downstream consumer (eval, inference) can find it without reading forward().
-FLOOD_DEPTH_COL = 3      # base col that gets overwritten with scenario depth
-FRAGILITY_COL = 8        # appended (noisy) fragility column
+# Column index inside the static 8-feature base that holds flood_depth.
+# In the saved heterodata this column is a constant 0.0 (flood_depth had no
+# variance at graph-build time and got min-max normalized to 0). The forward
+# pass overwrites it per example with the scenario-specific depth so the GNN
+# has a depth signal even though fragility is no longer fed into it.
+FLOOD_DEPTH_COL = 3
 
 
 class CascadeGNNv2(nn.Module):
-    """Noise-perturbed coupled LearnableFragility + CascadeGNN.
+    """Decoupled LearnableFragility + CascadeGNN.
 
     Args:
-        gnn: a CascadeGNN whose node_in_dims are base_features + 1 (= 9 for v1
-            schema). Same architecture as v1; the input col 8 carries fragility
-            instead of a binary mask.
-        fragility: a LearnableFragility instance.
-        noise_sigma: stddev of zero-mean Gaussian noise added to fragility
-            output during training. 0.0 disables noise (and the model degrades
-            to the previous v2 behavior). Default 0.15.
+        gnn: a CascadeGNN whose `node_in_dims` MUST be exactly the static
+            base-feature count per type (i.e. base_data[nt].x.shape[1], = 8
+            for the current NYC heterograph). The fragility column is gone.
+        fragility: a LearnableFragility instance. Its output appears only
+            in the forward() return dict, not in the GNN input.
     """
 
-    def __init__(
-        self,
-        gnn: CascadeGNN,
-        fragility: LearnableFragility,
-        noise_sigma: float = 0.15,
-    ):
+    def __init__(self, gnn: CascadeGNN, fragility: LearnableFragility):
         super().__init__()
         self.gnn = gnn
         self.fragility = fragility
-        self.noise_sigma = float(noise_sigma)
 
     # -------- Building blocks (also useful for diagnostics / inference) --------
 
     def compute_initial_fragility(self, depths_dict: dict) -> dict:
-        """Apply LearnableFragility per node type to get clean P(fail).
+        """Apply LearnableFragility per node type to get P(fail at t=0).
 
-        Kept as a public alias for backward compatibility with inference code
-        and the previous v2 API.
+        Kept as a public alias for downstream consumers (inference, audit).
         """
         return {
             nt: self.fragility.forward_for_type(depths_dict[nt], nt)
@@ -96,53 +97,41 @@ class CascadeGNNv2(nn.Module):
         x_dict: dict,
         depths_dict: dict,
         edge_index_dict: dict,
+        gnn_depths_dict: dict = None,
     ) -> Dict[str, dict]:
-        """Full forward.
+        """Decoupled forward.
 
         Args:
-            x_dict: dict {node_type: tensor [N, 8]} — the static 8-feature
-                base. Col index FLOOD_DEPTH_COL is overwritten in a cloned
-                copy with the scenario-specific depths.
-            depths_dict: dict {node_type: tensor [N]} of flood depths in
-                meters (raw, NOT normalized).
+            x_dict: dict {node_type: tensor [N, 8]} static base features.
+            depths_dict: dict {node_type: tensor [N]} scenario flood depths (m).
+                Used by the fragility head.
             edge_index_dict: dict {(src, rel, dst): tensor [2, E]}.
+            gnn_depths_dict: optional override for the depth tensor used to
+                overwrite col 3 of the GNN input. If None (default), the
+                same depths_dict is used for both fragility and the GNN.
+                Set to all-zeros at eval time to measure how much of the
+                model's cascade-prediction signal flows through col 3 vs
+                graph structure / other features.
 
         Returns:
             dict with two keys:
-                "p_t0":            dict {node_type: tensor [N]}     clean fragility output
-                "cascade_logits":  dict {node_type: tensor [N, T]}  per-timestep failure logits
+                "p_t0":            dict {node_type: tensor [N]}      — fragility output
+                "cascade_logits":  dict {node_type: tensor [N, T]}  — per-timestep logits
         """
-        # 1. Clean fragility output — supervised by aux BCE in the trainer.
+        # Fragility head — always uses the true depths.
         p_t0 = self.compute_initial_fragility(depths_dict)
 
-        # 2. Noisy version for GNN input (train-only). Eval is deterministic.
-        if self.training and self.noise_sigma > 0:
-            p_input = {}
-            for nt, p in p_t0.items():
-                noise = torch.randn_like(p) * self.noise_sigma
-                p_input[nt] = (p + noise).clamp(0.0, 1.0)
-        else:
-            p_input = p_t0
-
-        # 3. Build the GNN's 9-column input.
-        #    - clone the base so we never mutate the shared static tensor
-        #    - col 3 (flood_depth, constant 0 in the heterodata) ← scenario depth
-        #    - append p_input as col 8
+        # Cascade head — GNN sees the static base with col 3 (flood_depth)
+        # overwritten by `gnn_depths_dict` (defaults to depths_dict). No
+        # fragility column is appended.
+        gnn_depths = depths_dict if gnn_depths_dict is None else gnn_depths_dict
         input_x_dict = {}
         for nt in x_dict:
-            x = x_dict[nt].clone()                              # [N, 8]
-            depth_col = depths_dict[nt].unsqueeze(-1)           # [N, 1]
-            # Stage 2 ablation (feat/v2-leakage-fix): col 3 stays at its base
-            # constant 0.0 so the GNN's only flood-related signal is the noisy
-            # fragility output in col 8. Leaving the line commented (not
-            # deleted) so we can restore it if Stage 2 shows fragility drift
-            # — at that point depth-in-col-3 is the suspected second leakage
-            # path and we'll know whether to keep it out permanently.
-            # x[:, FLOOD_DEPTH_COL:FLOOD_DEPTH_COL + 1] = depth_col
-            p_col = p_input[nt].unsqueeze(-1)                   # [N, 1]
-            input_x_dict[nt] = torch.cat([x, p_col], dim=-1)    # [N, 9]
+            x = x_dict[nt].clone()                                    # [N, 8]
+            depth_col = gnn_depths[nt].unsqueeze(-1)                  # [N, 1]
+            x[:, FLOOD_DEPTH_COL:FLOOD_DEPTH_COL + 1] = depth_col
+            input_x_dict[nt] = x                                      # still [N, 8]
 
-        # 4. Run the GNN.
         cascade_logits = self.gnn(input_x_dict, edge_index_dict)
 
         return {"p_t0": p_t0, "cascade_logits": cascade_logits}
@@ -150,11 +139,11 @@ class CascadeGNNv2(nn.Module):
     # -------- Regularization --------
 
     def prior_loss(self) -> torch.Tensor:
-        """L2 penalty pulling fragility parameters toward HAZUS priors.
+        """L2 penalty pulling fragility parameters toward HAZUS init.
 
-        Note: LearnableFragility.prior_loss already multiplies by its internal
-        prior_weight; the trainer may multiply by an outer prior_weight too.
-        This preserves the pre-existing v2 scaling so cross-run comparisons
-        stay apples-to-apples.
+        Same convention as in the coupled versions: LearnableFragility
+        already folds its internal `prior_weight` into the returned value;
+        the trainer may multiply by an outer prior_weight. Kept identical
+        so cross-run prior comparisons remain apples-to-apples.
         """
         return self.fragility.prior_loss()
