@@ -101,3 +101,4 @@ archive/
 # ============================================================
 data/inference/
 data/sandy_validation/
+data/gnn_v2_checkpoints/
