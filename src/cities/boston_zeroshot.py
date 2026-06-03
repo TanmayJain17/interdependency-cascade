@@ -290,6 +290,26 @@ def save_artifact(base, results, path=None):
     with open(path, "w") as f:
         json.dump(out, f, indent=2)
     print(f"\nSaved artifact → {path}")
+
+    # Per-node per-timestep predictions (for downstream post-processing, e.g.
+    # the interactive map). Lightweight: 483 nodes x 6 scenarios x 4 timesteps.
+    # node_id -> [depth_m, p_t6, p_t24, p_t48, p_t96]; deterministic at seed=42.
+    pernode_path = boston.SIMULATION_DIR / "zeroshot_per_node.json"
+    TS = list(TIMESTEPS)
+    pn = {"timesteps": TS, "scenarios": {}}
+    for scn in boston.CRB_SCENARIOS:
+        r = results[scn["name"]]
+        depths = r["depths"]
+        recs = {}
+        for nt in INFRA_TYPES:
+            P = r["res"]["probabilities"][nt]
+            for i, nid in enumerate(base[nt].node_ids):
+                recs[nid] = [round(depths.get(nid, 0.0), 3)] + \
+                            [round(float(P[i, t]), 4) for t in range(len(TS))]
+        pn["scenarios"][scn["name"]] = recs
+    with open(pernode_path, "w") as f:
+        json.dump(pn, f)
+    print(f"Saved per-node artifact → {pernode_path}")
     return path
 
 

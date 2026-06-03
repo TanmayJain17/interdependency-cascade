@@ -51,6 +51,7 @@ data/boston/**/*.geojson
 data/boston/**/*.zip
 data/boston/**/*.tif
 data/boston/**/*.pt
+data/boston/**/*.html
 data/boston/raw/_logs/
 data/telecom/310.csv.gz
 data/telecom/cell_towers_nyc.*
