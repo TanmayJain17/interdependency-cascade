@@ -1,0 +1,277 @@
+{
+  "_framing": "Directional zero-shot, leaky v1 (t=0 mask inflation), extent\u2192discrete-depth ladder, pluvial regime, NO real Boston labels. Not a validated accuracy claim.",
+  "ladder_depths_m": {
+    "slr09_aep10": 0.2,
+    "slr09_aep01": 0.30000000000000004,
+    "slr21_aep10": 0.6,
+    "slr21_aep01": 0.7,
+    "slr36_aep10": 0.8,
+    "slr36_aep01": 0.9
+  },
+  "scenarios": {
+    "slr09_aep10": {
+      "nodes_in_extent": 49,
+      "E_fail_t0": 4.35,
+      "E_fail_t96": 14.7,
+      "amplification": 3.378,
+      "fail_fraction_by_type_t96": {
+        "power": 0.0176,
+        "telecom": 0.0379,
+        "hospital": 0.0323,
+        "subway": 0.026,
+        "water": 0.0722,
+        "fuel": 0.0196
+      }
+    },
+    "slr09_aep01": {
+      "nodes_in_extent": 76,
+      "E_fail_t0": 25.4,
+      "E_fail_t96": 59.78,
+      "amplification": 2.353,
+      "fail_fraction_by_type_t96": {
+        "power": 0.0493,
+        "telecom": 0.1587,
+        "hospital": 0.0839,
+        "subway": 0.109,
+        "water": 0.2925,
+        "fuel": 0.0904
+      }
+    },
+    "slr21_aep10": {
+      "nodes_in_extent": 90,
+      "E_fail_t0": 66.12,
+      "E_fail_t96": 132.6,
+      "amplification": 2.005,
+      "fail_fraction_by_type_t96": {
+        "power": 0.1428,
+        "telecom": 0.2936,
+        "hospital": 0.2978,
+        "subway": 0.2073,
+        "water": 0.7426,
+        "fuel": 0.2047
+      }
+    },
+    "slr21_aep01": {
+      "nodes_in_extent": 97,
+      "E_fail_t0": 79.37,
+      "E_fail_t96": 150.76,
+      "amplification": 1.9,
+      "fail_fraction_by_type_t96": {
+        "power": 0.2073,
+        "telecom": 0.3285,
+        "hospital": 0.3575,
+        "subway": 0.2421,
+        "water": 0.8211,
+        "fuel": 0.2217
+      }
+    },
+    "slr36_aep10": {
+      "nodes_in_extent": 107,
+      "E_fail_t0": 92.84,
+      "E_fail_t96": 158.16,
+      "amplification": 1.704,
+      "fail_fraction_by_type_t96": {
+        "power": 0.2226,
+        "telecom": 0.3469,
+        "hospital": 0.3768,
+        "subway": 0.2501,
+        "water": 0.8455,
+        "fuel": 0.2387
+      }
+    },
+    "slr36_aep01": {
+      "nodes_in_extent": 146,
+      "E_fail_t0": 133.07,
+      "E_fail_t96": 207.54,
+      "amplification": 1.56,
+      "fail_fraction_by_type_t96": {
+        "power": 0.3491,
+        "telecom": 0.4678,
+        "hospital": 0.4638,
+        "subway": 0.3998,
+        "water": 0.8891,
+        "fuel": 0.299
+      }
+    }
+  },
+  "hospital_ranking_slr36_aep01": [
+    {
+      "hospital": "tufts_medical_center",
+      "p_fail_t96": 1.0,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "boston_medical_center___menino_campus",
+      "p_fail_t96": 1.0,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "spaulding_rehabilitation_hospital",
+      "p_fail_t96": 1.0,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "boston_medical_center___east_newton_camp",
+      "p_fail_t96": 0.9999,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "dr_solomon_carter_fuller_mental_health_c",
+      "p_fail_t96": 0.9999,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "shriners__for_children",
+      "p_fail_t96": 0.9967,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "st__elizabeth_s_medical_center",
+      "p_fail_t96": 0.9718,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "massachusetts_general_hospital",
+      "p_fail_t96": 0.9298,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "massachusetts_eye_and_ear_infirmary",
+      "p_fail_t96": 0.9275,
+      "flooded_t0": true
+    },
+    {
+      "hospital": "mount_auburn_hospital",
+      "p_fail_t96": 0.9214,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "franciscan_children_s___rehab_c",
+      "p_fail_t96": 0.9012,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "kindred_boston",
+      "p_fail_t96": 0.9012,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "arbour_human_resource_institute",
+      "p_fail_t96": 0.9004,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "spaulding_for_continuing_med_ca",
+      "p_fail_t96": 0.8595,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "cambridge_health_alliance___cambridge_ca",
+      "p_fail_t96": 0.8593,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "caritas_carney_hospital",
+      "p_fail_t96": 0.758,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "beth_israel_deaconess_milton",
+      "p_fail_t96": 0.4413,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "mclean_corporation",
+      "p_fail_t96": 0.3204,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "bournewood_hospital",
+      "p_fail_t96": 0.0237,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "hebrew_rehabilitation_center_at_dedham",
+      "p_fail_t96": 0.0225,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "va_medical_center___west_roxbury_divisio",
+      "p_fail_t96": 0.0218,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "cambridge_health_alliance___somerville_c",
+      "p_fail_t96": 0.003,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "hebrew_rehabilitation_center",
+      "p_fail_t96": 0.0013,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "faulkner_hospital",
+      "p_fail_t96": 0.0011,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "dana_farber_cancer_institute",
+      "p_fail_t96": 0.0011,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "children_s_boston",
+      "p_fail_t96": 0.0011,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "brigham_and_women_s_hospital",
+      "p_fail_t96": 0.001,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "beth_israel_deaconess_medical_center___w",
+      "p_fail_t96": 0.001,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "beth_israel_deaconess_medical_center___e",
+      "p_fail_t96": 0.001,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "new_england_baptist_hospital",
+      "p_fail_t96": 0.0008,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "va_boston_healthcare_system___jamaica_pl",
+      "p_fail_t96": 0.0008,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "arbour__the",
+      "p_fail_t96": 0.0007,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "quincy_medical_center",
+      "p_fail_t96": 0.0004,
+      "flooded_t0": false
+    },
+    {
+      "hospital": "lemuel_sattuck_hospital",
+      "p_fail_t96": 0.0004,
+      "flooded_t0": false
+    }
+  ],
+  "hospitals_in_extent_by_scenario": {
+    "slr09_aep10": 0,
+    "slr09_aep01": 0,
+    "slr21_aep10": 1,
+    "slr21_aep01": 1,
+    "slr36_aep10": 4,
+    "slr36_aep01": 8
+  }
+}
