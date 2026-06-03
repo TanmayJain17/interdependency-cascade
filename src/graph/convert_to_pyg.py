@@ -9,6 +9,18 @@ normalization. Different input/output paths.
 
 Input:  data/graph/nyc_infra_graph.graphml
 Output: data/graph/nyc_infra_heterodata.pt
+
+------------------------------------------------------------------------------
+Week 12-cont. additive refactor (no behavior change for NYC):
+  The conversion logic that previously ran as a top-level script body is now
+  wrapped in importable functions — `graph_to_heterodata(G)` plus the pure
+  helpers/constants it uses — and the NYC script orchestration moved under a
+  `main()` / `if __name__ == "__main__"` guard. This lets the Boston pilot
+  (src/cities/boston_graph.py) reuse the EXACT same feature extractors,
+  edge-type mapping, and normalization by import, guaranteeing schema parity.
+  Verified byte-identical: re-running this script reproduces the same
+  nyc_infra_heterodata.pt (node x tensors + edge_index hashes unchanged).
+------------------------------------------------------------------------------
 """
 
 import os
@@ -17,27 +29,9 @@ import networkx as nx
 import torch
 from torch_geometric.data import HeteroData
 
-os.makedirs("data/graph", exist_ok=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 1. LOAD NETWORKX GRAPH
-# ══════════════════════════════════════════════════════════════════════════════
-
-print("Loading NetworkX graph (citywide)...")
-G = nx.read_graphml("data/graph/nyc_infra_graph.graphml")
-print(f"  Nodes: {G.number_of_nodes():,}, Edges: {G.number_of_edges():,}")
-
-nodes_by_type = {}
-for nid, attrs in G.nodes(data=True):
-    itype = attrs.get("infra_type", "unknown")
-    nodes_by_type.setdefault(itype, []).append((nid, attrs))
-
-for itype, nlist in sorted(nodes_by_type.items()):
-    print(f"  {itype:10s}: {len(nlist):,} nodes")
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 2. DEFAULT VALUES FOR MISSING FEATURES
+# DEFAULT VALUES FOR MISSING FEATURES  (importable constants)
 # ══════════════════════════════════════════════════════════════════════════════
 
 DEFAULTS = {
@@ -60,147 +54,6 @@ VOLT_CLASS_KV = {
     "UNDER 100": 69.0, "NOT AVAILABLE": 138.0, "500": 500.0,
 }
 
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 3. COMPUTE DERIVED FEATURES FROM GRAPH STRUCTURE
-# ══════════════════════════════════════════════════════════════════════════════
-
-print("\nComputing derived features...")
-
-# Degree centrality is O(V+E), fine for 6k nodes
-degree_centrality = nx.degree_centrality(G)
-print(f"  Computed degree centrality for {len(degree_centrality):,} nodes")
-
-# Max voltage of connected transmission lines per power node
-power_max_volt = {}
-for u, v, d in G.edges(data=True):
-    if d.get("edge_type") == "power_line":
-        volt_class = str(d.get("volt_class", "NOT AVAILABLE"))
-        kv = VOLT_CLASS_KV.get(volt_class, 138.0)
-        for node in [u, v]:
-            power_max_volt[node] = max(power_max_volt.get(node, 0), kv)
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 4. FEATURE EXTRACTORS
-# ══════════════════════════════════════════════════════════════════════════════
-
-print("\nBuilding feature vectors...")
-
-
-def safe_float(val, default=0.0):
-    if val is None:
-        return default
-    try:
-        f = float(val)
-        return default if np.isnan(f) else f
-    except (ValueError, TypeError):
-        return default
-
-
-def power_features(nid, attrs):
-    return [
-        safe_float(attrs.get("lat"), 40.72),
-        safe_float(attrs.get("lon"), -73.99),
-        DEFAULTS["elevation"],
-        DEFAULTS["flood_depth"],
-        1.0 if attrs.get("status") == "IN SERVICE" else 0.0,
-        power_max_volt.get(nid, DEFAULTS["max_volt_connected"]),
-        degree_centrality.get(nid, 0.0),
-        1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
-    ]
-
-
-def telecom_features(nid, attrs):
-    radio = str(attrs.get("radio_types", ""))
-    return [
-        safe_float(attrs.get("lat"), 40.72),
-        safe_float(attrs.get("lon"), -73.99),
-        DEFAULTS["elevation"],
-        DEFAULTS["flood_depth"],
-        safe_float(attrs.get("tower_count"), 1.0),
-        1.0 if "LTE" in radio else 0.0,
-        1.0 if "NR" in radio or "5G" in radio else 0.0,
-        DEFAULTS["battery_backup_hrs"],
-    ]
-
-
-def hospital_features(nid, attrs):
-    return [
-        safe_float(attrs.get("lat"), 40.72),
-        safe_float(attrs.get("lon"), -73.99),
-        DEFAULTS["elevation"],
-        DEFAULTS["flood_depth"],
-        DEFAULTS["bed_count"],
-        DEFAULTS["generator_fuel_hrs"],
-        DEFAULTS["water_storage_days"],
-        1.0,
-    ]
-
-
-def subway_features(nid, attrs):
-    routes = str(attrs.get("routes", ""))
-    num_routes = len(routes.split()) if routes else 0
-    ada = safe_float(attrs.get("ada"), 0.0)
-    return [
-        safe_float(attrs.get("lat"), 40.72),
-        safe_float(attrs.get("lon"), -73.99),
-        DEFAULTS["elevation"],
-        DEFAULTS["flood_depth"],
-        float(num_routes),
-        1.0 if ada >= 1 else 0.0,
-        DEFAULTS["depth_below_surface"],
-        DEFAULTS["has_flood_gates"],
-    ]
-
-
-def water_features(nid, attrs):
-    subtype = str(attrs.get("subtype", "")).upper()
-    is_treatment = 1.0 if "TREATMENT" in subtype or "CONTROL" in subtype else 0.0
-    is_pump = 1.0 if "PUMP" in subtype else 0.0
-    return [
-        safe_float(attrs.get("lat"), 40.72),
-        safe_float(attrs.get("lon"), -73.99),
-        DEFAULTS["elevation"],
-        DEFAULTS["flood_depth"],
-        is_treatment,
-        is_pump,
-        DEFAULTS["pump_capacity"],
-        1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
-    ]
-
-
-def fuel_features(nid, attrs):
-    subtype = str(attrs.get("subtype", "")).upper()
-    is_terminal = 1.0 if "TERMINAL" in subtype else 0.0
-
-    if is_terminal > 0:
-        capacity = safe_float(attrs.get("capacity_bbl"), DEFAULTS["terminal_capacity"])
-    else:
-        capacity = DEFAULTS["fuel_capacity"]
-    has_backup = 1.0 if is_terminal > 0 else 0.0
-
-    return [
-        safe_float(attrs.get("lat"), 40.72),
-        safe_float(attrs.get("lon"), -73.99),
-        DEFAULTS["elevation"],
-        DEFAULTS["flood_depth"],
-        is_terminal,
-        capacity,
-        has_backup,
-        1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
-    ]
-
-
-FEATURE_EXTRACTORS = {
-    "power": power_features,
-    "telecom": telecom_features,
-    "hospital": hospital_features,
-    "subway": subway_features,
-    "water": water_features,
-    "fuel": fuel_features,
-}
-
 FEATURE_NAMES = {
     "power": ["lat", "lon", "elevation", "flood_depth", "is_active", "max_volt_kv", "degree_centrality", "is_external"],
     "telecom": ["lat", "lon", "elevation", "flood_depth", "tower_count", "has_lte", "has_5g", "battery_backup_hrs"],
@@ -209,46 +62,6 @@ FEATURE_NAMES = {
     "water": ["lat", "lon", "elevation", "flood_depth", "is_treatment_plant", "is_pump", "capacity_proxy", "is_external"],
     "fuel": ["lat", "lon", "elevation", "flood_depth", "is_terminal", "capacity_proxy", "has_backup_power", "is_external"],
 }
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 5. BUILD PyG HeteroData
-# ══════════════════════════════════════════════════════════════════════════════
-
-print("\nBuilding PyG HeteroData...")
-data = HeteroData()
-node_id_to_idx = {}
-
-for itype, nlist in nodes_by_type.items():
-    if itype == "unknown":
-        continue
-    extractor = FEATURE_EXTRACTORS.get(itype)
-    if extractor is None:
-        print(f"  WARNING: No feature extractor for type '{itype}', skipping")
-        continue
-
-    features = []
-    node_ids_ordered = []
-    for local_idx, (nid, attrs) in enumerate(nlist):
-        feat = extractor(nid, attrs)
-        features.append(feat)
-        node_id_to_idx[nid] = (itype, local_idx)
-        node_ids_ordered.append(nid)
-
-    feat_tensor = torch.tensor(features, dtype=torch.float32)
-    data[itype].x = feat_tensor
-    data[itype].node_ids = node_ids_ordered
-    data[itype].num_nodes = len(nlist)
-
-    print(
-        f"  {itype:10s}: x.shape = {str(list(feat_tensor.shape)):>12}   "
-        f"features = {FEATURE_NAMES.get(itype, [])}"
-    )
-
-
-# ══════════════════════════════════════════════════════════════════════════════
-# 6. EDGE CONSTRUCTION
-# ══════════════════════════════════════════════════════════════════════════════
 
 EDGE_TYPE_MAP = {
     "power_line":        ("power",   "power_line",        "power"),
@@ -262,127 +75,307 @@ EDGE_TYPE_MAP = {
     "fuel_supplies":     ("fuel",    "fuel_supplies",     None),
 }
 
-pyg_edges = {}
 
-for u, v, d in G.edges(data=True):
-    et = d.get("edge_type", "unknown")
-    if u not in node_id_to_idx or v not in node_id_to_idx:
-        continue
-
-    src_type, src_idx = node_id_to_idx[u]
-    dst_type, dst_idx = node_id_to_idx[v]
-
-    mapping = EDGE_TYPE_MAP.get(et)
-    rel_name = mapping[1] if mapping else et
-    triplet = (src_type, rel_name, dst_type)
-
-    if triplet not in pyg_edges:
-        pyg_edges[triplet] = {"src": [], "dst": [], "features": []}
-
-    pyg_edges[triplet]["src"].append(src_idx)
-    pyg_edges[triplet]["dst"].append(dst_idx)
-
-    edge_feat = [
-        safe_float(d.get("weight"), 1.0),
-        safe_float(d.get("distance_m"), 0.0),
-        safe_float(d.get("buffer_hours"), 0.0),
-        1.0 / (1.0 + safe_float(d.get("buffer_hours"), 0.0)),
-    ]
-    pyg_edges[triplet]["features"].append(edge_feat)
-
-print(f"\n  Edge types in HeteroData:")
-for triplet, edge_data in sorted(pyg_edges.items(), key=lambda x: str(x[0])):
-    src_indices = torch.tensor(edge_data["src"], dtype=torch.long)
-    dst_indices = torch.tensor(edge_data["dst"], dtype=torch.long)
-
-    data[triplet].edge_index = torch.stack([src_indices, dst_indices], dim=0)
-    data[triplet].edge_attr = torch.tensor(edge_data["features"], dtype=torch.float32)
-
-    is_recovery = triplet[1] == "repair_access"
-    data[triplet].is_recovery = is_recovery
-    layer_tag = " [RECOVERY]" if is_recovery else " [CASCADE]"
-    print(
-        f"    {str(triplet):<55}  edges={len(edge_data['src']):>6,}  "
-        f"edge_attr={list(data[triplet].edge_attr.shape)}{layer_tag}"
-    )
+def safe_float(val, default=0.0):
+    if val is None:
+        return default
+    try:
+        f = float(val)
+        return default if np.isnan(f) else f
+    except (ValueError, TypeError):
+        return default
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 7. NORMALIZATION
+# Feature extractor factory
+#
+# The extractors close over two graph-derived lookups (degree_centrality,
+# power_max_volt), so they are produced by a factory rather than defined at
+# module scope. Logic is byte-for-byte the original.
 # ══════════════════════════════════════════════════════════════════════════════
 
-print("\nNormalizing features...")
+def make_feature_extractors(degree_centrality, power_max_volt):
+    def power_features(nid, attrs):
+        return [
+            safe_float(attrs.get("lat"), 40.72),
+            safe_float(attrs.get("lon"), -73.99),
+            DEFAULTS["elevation"],
+            DEFAULTS["flood_depth"],
+            1.0 if attrs.get("status") == "IN SERVICE" else 0.0,
+            power_max_volt.get(nid, DEFAULTS["max_volt_connected"]),
+            degree_centrality.get(nid, 0.0),
+            1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
+        ]
 
-for itype in nodes_by_type:
-    if itype == "unknown" or not hasattr(data[itype], "x"):
-        continue
-    x = data[itype].x
-    x_min = x.min(dim=0).values
-    x_max = x.max(dim=0).values
-    x_range = x_max - x_min
-    x_range[x_range == 0] = 1.0
-    data[itype].x_raw = x.clone()
-    data[itype].x = (x - x_min) / x_range
-    print(f"  {itype:10s}: normalized {x.shape[1]} features to [0,1]")
+    def telecom_features(nid, attrs):
+        radio = str(attrs.get("radio_types", ""))
+        return [
+            safe_float(attrs.get("lat"), 40.72),
+            safe_float(attrs.get("lon"), -73.99),
+            DEFAULTS["elevation"],
+            DEFAULTS["flood_depth"],
+            safe_float(attrs.get("tower_count"), 1.0),
+            1.0 if "LTE" in radio else 0.0,
+            1.0 if "NR" in radio or "5G" in radio else 0.0,
+            DEFAULTS["battery_backup_hrs"],
+        ]
 
-for triplet in pyg_edges:
-    if hasattr(data[triplet], "edge_attr"):
-        ea = data[triplet].edge_attr
-        ea_min = ea.min(dim=0).values
-        ea_max = ea.max(dim=0).values
-        ea_range = ea_max - ea_min
-        ea_range[ea_range == 0] = 1.0
-        data[triplet].edge_attr_raw = ea.clone()
-        data[triplet].edge_attr = (ea - ea_min) / ea_range
+    def hospital_features(nid, attrs):
+        return [
+            safe_float(attrs.get("lat"), 40.72),
+            safe_float(attrs.get("lon"), -73.99),
+            DEFAULTS["elevation"],
+            DEFAULTS["flood_depth"],
+            DEFAULTS["bed_count"],
+            DEFAULTS["generator_fuel_hrs"],
+            DEFAULTS["water_storage_days"],
+            1.0,
+        ]
+
+    def subway_features(nid, attrs):
+        routes = str(attrs.get("routes", ""))
+        num_routes = len(routes.split()) if routes else 0
+        ada = safe_float(attrs.get("ada"), 0.0)
+        return [
+            safe_float(attrs.get("lat"), 40.72),
+            safe_float(attrs.get("lon"), -73.99),
+            DEFAULTS["elevation"],
+            DEFAULTS["flood_depth"],
+            float(num_routes),
+            1.0 if ada >= 1 else 0.0,
+            DEFAULTS["depth_below_surface"],
+            DEFAULTS["has_flood_gates"],
+        ]
+
+    def water_features(nid, attrs):
+        subtype = str(attrs.get("subtype", "")).upper()
+        is_treatment = 1.0 if "TREATMENT" in subtype or "CONTROL" in subtype else 0.0
+        is_pump = 1.0 if "PUMP" in subtype else 0.0
+        return [
+            safe_float(attrs.get("lat"), 40.72),
+            safe_float(attrs.get("lon"), -73.99),
+            DEFAULTS["elevation"],
+            DEFAULTS["flood_depth"],
+            is_treatment,
+            is_pump,
+            DEFAULTS["pump_capacity"],
+            1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
+        ]
+
+    def fuel_features(nid, attrs):
+        subtype = str(attrs.get("subtype", "")).upper()
+        is_terminal = 1.0 if "TERMINAL" in subtype else 0.0
+
+        if is_terminal > 0:
+            capacity = safe_float(attrs.get("capacity_bbl"), DEFAULTS["terminal_capacity"])
+        else:
+            capacity = DEFAULTS["fuel_capacity"]
+        has_backup = 1.0 if is_terminal > 0 else 0.0
+
+        return [
+            safe_float(attrs.get("lat"), 40.72),
+            safe_float(attrs.get("lon"), -73.99),
+            DEFAULTS["elevation"],
+            DEFAULTS["flood_depth"],
+            is_terminal,
+            capacity,
+            has_backup,
+            1.0 if str(attrs.get("external", "false")).lower() == "true" else 0.0,
+        ]
+
+    return {
+        "power": power_features,
+        "telecom": telecom_features,
+        "hospital": hospital_features,
+        "subway": subway_features,
+        "water": water_features,
+        "fuel": fuel_features,
+    }
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 8. SAVE
+# Core conversion (importable — reused by the Boston pilot)
 # ══════════════════════════════════════════════════════════════════════════════
 
-outpath = "data/graph/nyc_infra_heterodata.pt"
-torch.save(data, outpath)
-size_mb = os.path.getsize(outpath) / (1024 * 1024)
-print(f"\nSaved → {outpath}  ({size_mb:.1f} MB)")
+def graph_to_heterodata(G, *, verbose=True, force_edge_types=None):
+    """Convert a NetworkX DiGraph (infra_type-tagged nodes, edge_type-tagged
+    edges) to a normalized PyG HeteroData with the NYC schema.
+
+    Args:
+        G: NetworkX DiGraph with node attr 'infra_type' and edge attr 'edge_type'.
+        verbose: print build progress.
+        force_edge_types: optional iterable of canonical (src, rel, dst) triplets
+            to guarantee present in the output even if G has zero such edges.
+            Used by the Boston pilot to keep the 19-relation schema intact when
+            a relation (e.g. water_flow) has no edges due to a data gap — the
+            relation is created with an empty [2, 0] edge_index. NYC passes None.
+    """
+    nodes_by_type = {}
+    for nid, attrs in G.nodes(data=True):
+        itype = attrs.get("infra_type", "unknown")
+        nodes_by_type.setdefault(itype, []).append((nid, attrs))
+
+    if verbose:
+        for itype, nlist in sorted(nodes_by_type.items()):
+            print(f"  {itype:10s}: {len(nlist):,} nodes")
+
+    # ── Derived features from graph structure ──
+    degree_centrality = nx.degree_centrality(G)
+    power_max_volt = {}
+    for u, v, d in G.edges(data=True):
+        if d.get("edge_type") == "power_line":
+            volt_class = str(d.get("volt_class", "NOT AVAILABLE"))
+            kv = VOLT_CLASS_KV.get(volt_class, 138.0)
+            for node in [u, v]:
+                power_max_volt[node] = max(power_max_volt.get(node, 0), kv)
+
+    extractors = make_feature_extractors(degree_centrality, power_max_volt)
+
+    # ── Build HeteroData node tensors ──
+    data = HeteroData()
+    node_id_to_idx = {}
+
+    for itype, nlist in nodes_by_type.items():
+        if itype == "unknown":
+            continue
+        extractor = extractors.get(itype)
+        if extractor is None:
+            if verbose:
+                print(f"  WARNING: No feature extractor for type '{itype}', skipping")
+            continue
+
+        features = []
+        node_ids_ordered = []
+        for local_idx, (nid, attrs) in enumerate(nlist):
+            feat = extractor(nid, attrs)
+            features.append(feat)
+            node_id_to_idx[nid] = (itype, local_idx)
+            node_ids_ordered.append(nid)
+
+        feat_tensor = torch.tensor(features, dtype=torch.float32)
+        data[itype].x = feat_tensor
+        data[itype].node_ids = node_ids_ordered
+        data[itype].num_nodes = len(nlist)
+        if verbose:
+            print(f"  {itype:10s}: x.shape = {str(list(feat_tensor.shape)):>12}   "
+                  f"features = {FEATURE_NAMES.get(itype, [])}")
+
+    # ── Edge construction ──
+    pyg_edges = {}
+    for u, v, d in G.edges(data=True):
+        et = d.get("edge_type", "unknown")
+        if u not in node_id_to_idx or v not in node_id_to_idx:
+            continue
+        src_type, src_idx = node_id_to_idx[u]
+        dst_type, dst_idx = node_id_to_idx[v]
+        mapping = EDGE_TYPE_MAP.get(et)
+        rel_name = mapping[1] if mapping else et
+        triplet = (src_type, rel_name, dst_type)
+        if triplet not in pyg_edges:
+            pyg_edges[triplet] = {"src": [], "dst": [], "features": []}
+        pyg_edges[triplet]["src"].append(src_idx)
+        pyg_edges[triplet]["dst"].append(dst_idx)
+        edge_feat = [
+            safe_float(d.get("weight"), 1.0),
+            safe_float(d.get("distance_m"), 0.0),
+            safe_float(d.get("buffer_hours"), 0.0),
+            1.0 / (1.0 + safe_float(d.get("buffer_hours"), 0.0)),
+        ]
+        pyg_edges[triplet]["features"].append(edge_feat)
+
+    for triplet, edge_data in sorted(pyg_edges.items(), key=lambda x: str(x[0])):
+        src_indices = torch.tensor(edge_data["src"], dtype=torch.long)
+        dst_indices = torch.tensor(edge_data["dst"], dtype=torch.long)
+        data[triplet].edge_index = torch.stack([src_indices, dst_indices], dim=0)
+        data[triplet].edge_attr = torch.tensor(edge_data["features"], dtype=torch.float32)
+        is_recovery = triplet[1] == "repair_access"
+        data[triplet].is_recovery = is_recovery
+        if verbose:
+            layer_tag = " [RECOVERY]" if is_recovery else " [CASCADE]"
+            print(f"    {str(triplet):<55}  edges={len(edge_data['src']):>6,}  "
+                  f"edge_attr={list(data[triplet].edge_attr.shape)}{layer_tag}")
+
+    # ── Force-create empty relations to preserve the schema contract ──
+    if force_edge_types:
+        for triplet in force_edge_types:
+            if triplet in data.edge_types:
+                continue
+            data[triplet].edge_index = torch.zeros((2, 0), dtype=torch.long)
+            data[triplet].edge_attr = torch.zeros((0, 4), dtype=torch.float32)
+            data[triplet].is_recovery = triplet[1] == "repair_access"
+            if verbose:
+                print(f"    {str(triplet):<55}  edges=     0  [EMPTY — schema placeholder]")
+
+    # ── Normalization (per-feature min-max to [0,1]) ──
+    for itype in nodes_by_type:
+        if itype == "unknown" or not hasattr(data[itype], "x"):
+            continue
+        x = data[itype].x
+        x_min = x.min(dim=0).values
+        x_max = x.max(dim=0).values
+        x_range = x_max - x_min
+        x_range[x_range == 0] = 1.0
+        data[itype].x_raw = x.clone()
+        data[itype].x = (x - x_min) / x_range
+
+    for triplet in list(data.edge_types):
+        if hasattr(data[triplet], "edge_attr") and data[triplet].edge_attr.shape[0] > 0:
+            ea = data[triplet].edge_attr
+            ea_min = ea.min(dim=0).values
+            ea_max = ea.max(dim=0).values
+            ea_range = ea_max - ea_min
+            ea_range[ea_range == 0] = 1.0
+            data[triplet].edge_attr_raw = ea.clone()
+            data[triplet].edge_attr = (ea - ea_min) / ea_range
+
+    return data
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 9. SUMMARY
+# NYC script orchestration (unchanged behavior; now under main guard)
 # ══════════════════════════════════════════════════════════════════════════════
 
-print("\n" + "=" * 72)
-print("PyG HeteroData SCHEMA SUMMARY")
-print("=" * 72)
+def main(graphml_path="data/graph/nyc_infra_graph.graphml",
+         out_path="data/graph/nyc_infra_heterodata.pt"):
+    os.makedirs("data/graph", exist_ok=True)
 
-print(f"\nNode types: {data.node_types}")
-print(f"Edge types: {len(data.edge_types)}")
+    print("Loading NetworkX graph (citywide)...")
+    G = nx.read_graphml(graphml_path)
+    print(f"  Nodes: {G.number_of_nodes():,}, Edges: {G.number_of_edges():,}")
 
-print(f"\n{'Type':<12} {'Nodes':>8} {'Features':>8}")
-print("-" * 35)
-for ntype in data.node_types:
-    n = data[ntype].num_nodes
-    f = data[ntype].x.shape[1]
-    print(f"{ntype:<12} {n:>8,} {f:>8}")
+    print("\nBuilding PyG HeteroData...")
+    data = graph_to_heterodata(G, verbose=True)
 
-print(f"\n{'Edge Type':<55} {'Edges':>8} {'Layer':>10}")
-print("-" * 80)
-for etype in data.edge_types:
-    ne = data[etype].edge_index.shape[1]
-    is_rec = getattr(data[etype], "is_recovery", False)
-    layer = "RECOVERY" if is_rec else "CASCADE"
-    print(f"{str(etype):<55} {ne:>8,} {layer:>10}")
+    torch.save(data, out_path)
+    size_mb = os.path.getsize(out_path) / (1024 * 1024)
+    print(f"\nSaved → {out_path}  ({size_mb:.1f} MB)")
 
-total_nodes = sum(data[nt].num_nodes for nt in data.node_types)
-total_edges = sum(data[et].edge_index.shape[1] for et in data.edge_types)
-print(f"\nTotal: {total_nodes:,} nodes, {total_edges:,} directed edges")
+    print("\n" + "=" * 72)
+    print("PyG HeteroData SCHEMA SUMMARY")
+    print("=" * 72)
+    print(f"\nNode types: {data.node_types}")
+    print(f"Edge types: {len(data.edge_types)}")
+    print(f"\n{'Type':<12} {'Nodes':>8} {'Features':>8}")
+    print("-" * 35)
+    for ntype in data.node_types:
+        print(f"{ntype:<12} {data[ntype].num_nodes:>8,} {data[ntype].x.shape[1]:>8}")
+    print(f"\n{'Edge Type':<55} {'Edges':>8} {'Layer':>10}")
+    print("-" * 80)
+    for etype in data.edge_types:
+        ne = data[etype].edge_index.shape[1]
+        is_rec = getattr(data[etype], "is_recovery", False)
+        layer = "RECOVERY" if is_rec else "CASCADE"
+        print(f"{str(etype):<55} {ne:>8,} {layer:>10}")
+    total_nodes = sum(data[nt].num_nodes for nt in data.node_types)
+    total_edges = sum(data[et].edge_index.shape[1] for et in data.edge_types)
+    print(f"\nTotal: {total_nodes:,} nodes, {total_edges:,} directed edges")
 
-# Verification
-print(f"\nVerification: loading saved HeteroData...")
-data_loaded = torch.load(outpath, weights_only=False)
-print(f"  Loaded successfully: {len(data_loaded.node_types)} node types, "
-      f"{len(data_loaded.edge_types)} edge types")
-print(f"  Power features shape:    {list(data_loaded['power'].x.shape)}")
-print(f"  Telecom features shape:  {list(data_loaded['telecom'].x.shape)}")
-print(f"  Fuel features shape:     {list(data_loaded['fuel'].x.shape)}")
+    print(f"\nVerification: loading saved HeteroData...")
+    data_loaded = torch.load(out_path, weights_only=False)
+    print(f"  Loaded successfully: {len(data_loaded.node_types)} node types, "
+          f"{len(data_loaded.edge_types)} edge types")
+    print("\nDone. Next: run flood_overlay_v3.py with NODES_IN=nyc_infra_nodes.geojson")
 
-print("\nDone. Next: run flood_overlay_v3.py with NODES_IN=nyc_infra_nodes.geojson")
+
+if __name__ == "__main__":
+    main()

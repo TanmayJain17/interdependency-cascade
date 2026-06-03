@@ -22,6 +22,7 @@ from src.cities.boston_ingest import (
     flood_crb,
     flood_fema,
     fuel,
+    healthcare,
     power,
     subway,
     telecom,
@@ -37,6 +38,7 @@ LAYER_REGISTRY: dict[str, Callable[..., list[dict]]] = {
     "fuel":     fuel.download,
     "water":    water.download,
     "telecom":  telecom.download,
+    "healthcare": healthcare.download,
     "flood_crb": flood_crb.download,
     "flood_fema": flood_fema.download,
 }

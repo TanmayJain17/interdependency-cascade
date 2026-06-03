@@ -46,10 +46,11 @@ nyc-flood-layers/
 # Large raw data files — regeneratable from download scripts
 # ============================================================
 data/raw/
-# Boston: ignore bulk data file types, but TRACK provenance docs (md/json/txt)
+# Boston: ignore bulk + derived data file types, but TRACK provenance docs (md/json/txt)
 data/boston/**/*.geojson
 data/boston/**/*.zip
 data/boston/**/*.tif
+data/boston/**/*.pt
 data/boston/raw/_logs/
 data/telecom/310.csv.gz
 data/telecom/cell_towers_nyc.*

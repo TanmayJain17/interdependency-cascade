@@ -35,10 +35,13 @@ Output: `subway/mbta_gtfs.zip`, `subway/stops.geojson`.
 Filter: `location_type ∈ {0, 1}` ∩ Boston bbox ∩ `vehicle_type ≠ 3` (drop bus).
 All 19 GTFS columns preserved including `parent_station`.
 
-### power — HIFLD substations (Rutgers public mirror)
-Output: `power/hifld_substations.geojson`. All 23 HIFLD columns preserved.
-Schema note: HIFLD revision uses `MAX_INFER`/`MIN_INFER` as Y/N flags
-(not kV); no `OPERATOR` column. NYC's existing file uses the same schema.
+### power — HIFLD substations + transmission lines (Rutgers public mirror)
+Outputs: `power/hifld_substations.geojson` (layer 0, 23 cols),
+`power/hifld_transmission_lines.geojson` (layer 1, with `SUB_1`/`SUB_2`
+endpoint names + `VOLT_CLASS`). The lines feed the
+`(power, power_line, power)` relation in the Boston graph via the same
+SUB_1/SUB_2 name-matching rule NYC uses. Schema note: HIFLD revision uses
+`MAX_INFER`/`MIN_INFER` as Y/N flags (not kV); no `OPERATOR` column.
 
 ### fuel — Chelsea Creek bulk petroleum terminals + OSM
 Outputs: `fuel/major_terminals.geojson`, `fuel/osm_stations.geojson`.
@@ -58,6 +61,15 @@ MassDEP and EPA R1 cross-validate within ±1 per operating agency.
 Output: `telecom/fcc_asr_towers.geojson`. All 21 ASR columns preserved.
 OpenCelliD is key-gated; if `OPENCELLID_API_KEY` is not set at run time,
 `telecom/opencellid_TODO.txt` is written with backfill instructions.
+
+### healthcare — HIFLD Hospitals (6th node type for the cascade model)
+Output: `healthcare/hospitals.geojson`. All 36 HIFLD columns preserved,
+including `BEDS` (bed count) for provenance. Schema note: the cascade
+model does NOT consume `BEDS` — NYC's `convert_to_pyg.py` hardcodes
+`bed_count=200` for every hospital, so the Boston graph builder feeds the
+same constant to keep the feature distribution identical to NYC (a
+transfer-compatibility requirement). The NYC-equivalent fields are
+`NAME` (↔ FACNAME), `TYPE` (↔ FACTYPE), `LATITUDE`, `LONGITUDE`, `ADDRESS`.
 
 ### flood (CRB primary) — Climate Ready Boston SLR scenarios
 Outputs: 6 files under `../flood/` named `crb_slr<NN>_aep<NN>.geojson`

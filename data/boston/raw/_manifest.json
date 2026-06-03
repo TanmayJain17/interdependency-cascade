@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-03T01:08:23Z",
+  "generated_utc": "2026-06-03T03:37:34Z",
   "project_root": "/Users/tanmayjain/Desktop/RA",
   "bbox": [
     -71.2,
@@ -7,7 +7,7 @@
     -70.92,
     42.4
   ],
-  "n_records": 19,
+  "n_records": 21,
   "records": [
     {
       "layer": "subway",
@@ -25,7 +25,7 @@
       "sub_layer": null,
       "path": "data/boston/raw/subway/stops.geojson",
       "source_url": "https://cdn.mbta.com/MBTA_GTFS.zip",
-      "downloaded_utc": "2026-06-03T01:07:28Z",
+      "downloaded_utc": "2026-06-03T03:36:41Z",
       "sha256": "e071853512d5476bddb1fa830f3d0cc1a0762d77da78e5aded7303aabb0991a2",
       "size_bytes": 324344,
       "record_count": 505,
@@ -58,6 +58,32 @@
         "ymin": 4375501.012800001,
         "xmax": -7458776.416099999,
         "ymax": 6000054.8486,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "power",
+      "sub_layer": "transmission_lines",
+      "path": "data/boston/raw/power/hifld_transmission_lines.geojson",
+      "source_url": "https://oceandata.rad.rutgers.edu/arcgis/rest/services/RenewableEnergy/HIFLD_Electric_SubstationsTransmissionLines/MapServer",
+      "downloaded_utc": "2026-06-03T03:13:25Z",
+      "sha256": "078cff610cc132a3378b3df1339d1a633e64a821fb79396bf18d8fbbf4e1f56e",
+      "size_bytes": 50429,
+      "record_count": 52,
+      "bbox": [
+        -71.26315247643359,
+        42.141613004173415,
+        -70.90563100003814,
+        42.462321411108
+      ],
+      "arcgis_layer_id": 1,
+      "server_count": 52,
+      "server_extent": {
+        "xmin": -9282483.3318,
+        "ymin": 4375361.555500001,
+        "xmax": -7489882.1011,
+        "ymax": 6000386.499799997,
         "wkid": 3857
       },
       "count_match": true
@@ -177,7 +203,7 @@
       "sub_layer": "_gap_note",
       "path": "data/boston/raw/water/_BWSC_GAP.md",
       "source_url": null,
-      "downloaded_utc": "2026-06-03T01:07:28Z",
+      "downloaded_utc": "2026-06-03T03:36:41Z",
       "sha256": "368c62664ea3bb54f12e1b1bdf81d2bfcc5c324ee284f4a5d229d449d7050ac3",
       "size_bytes": 1476,
       "record_count": null,
@@ -214,11 +240,37 @@
       "sub_layer": "opencellid_skipped",
       "path": "data/boston/raw/telecom/opencellid_TODO.txt",
       "source_url": "https://opencellid.org/cell/getInArea",
-      "downloaded_utc": "2026-06-03T01:07:28Z",
+      "downloaded_utc": "2026-06-03T03:36:41Z",
       "sha256": "ebc11a767012883895ab76191b3665168443314e7782f00d8d73f382009335b4",
       "size_bytes": 859,
       "record_count": null,
       "bbox": null
+    },
+    {
+      "layer": "healthcare",
+      "sub_layer": "hifld_hospitals",
+      "path": "data/boston/raw/healthcare/hospitals.geojson",
+      "source_url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Hospitals/FeatureServer",
+      "downloaded_utc": "2026-06-03T02:50:56Z",
+      "sha256": "2eacfc61ed228620b32a9546afe1adc94541cbdc66cbcd7d1b8661c310e6f49b",
+      "size_bytes": 38003,
+      "record_count": 34,
+      "bbox": [
+        -71.195022427,
+        42.2509000000001,
+        -71.0138,
+        42.393730209
+      ],
+      "arcgis_layer_id": 0,
+      "server_count": 34,
+      "server_extent": {
+        "xmin": -19663382.57042257,
+        "ymin": -1607536.442424721,
+        "xmax": 16221957.543874016,
+        "ymax": 11503154.606468676,
+        "wkid": 3857
+      },
+      "count_match": true
     },
     {
       "layer": "flood_crb",
@@ -381,7 +433,7 @@
       "sub_layer": "_limitation_doc",
       "path": "data/boston/flood/_CRB_KNOWN_LIMITATIONS.md",
       "source_url": null,
-      "downloaded_utc": "2026-06-03T01:07:33Z",
+      "downloaded_utc": "2026-06-03T03:36:46Z",
       "sha256": "48df4c37b01a958f21721cdd390cf557235ab899ae1be4e2b9bf82c3e82fda1d",
       "size_bytes": 8170,
       "record_count": null,

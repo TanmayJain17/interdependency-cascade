@@ -78,6 +78,12 @@ SOURCES = {
         "oeca__echo__npdes_facilities_outfalls/FeatureServer"
     ),
 
+    # -------- Healthcare (hospitals — 6th node type for the cascade model) --------
+    "healthcare_hifld_hospitals": (
+        "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/"
+        "Hospitals/FeatureServer"
+    ),
+
     # -------- Telecom --------
     # DEPRECATED — HIFLD's surviving public Cellular Towers layer
     # (Federal_User_Community / Cellular_Towers_in_the_United_States) is

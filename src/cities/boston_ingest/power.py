@@ -1,12 +1,19 @@
 """
-C2 — HIFLD electric substations via the Rutgers public mirror.
+C2 — HIFLD electric substations + transmission lines via the Rutgers mirror.
 
 Same MapServer endpoint NYC's download_power.py uses
 (src/data_acquisition/download_power.py:25). Substations live on layer 0;
-transmission lines on layer 1 (we fetch only substations here).
+transmission lines on layer 1.
 
-Output:
-    data/boston/raw/power/hifld_substations.geojson
+Outputs:
+    data/boston/raw/power/hifld_substations.geojson        (layer 0)
+    data/boston/raw/power/hifld_transmission_lines.geojson (layer 1)
+
+The transmission lines carry SUB_1 / SUB_2 endpoint names + VOLT_CLASS,
+which the Boston graph builder uses to form the (power, power_line, power)
+relation via the same SUB_1/SUB_2 name-matching rule NYC's build_graph.py
+uses. (Added in Week 12-cont. Phase 2 — the substations-only ingest left
+power_line with no input.)
 
 Tripwire: greater Boston should yield ~30-80 substations. We hard-fail
 on counts outside [10, 150] because the Rutgers MapServer is known to
@@ -31,9 +38,11 @@ SOURCE_URL = (
     "RenewableEnergy/HIFLD_Electric_SubstationsTransmissionLines/MapServer"
 )
 SUBSTATIONS_LAYER_ID = 0
+LINES_LAYER_ID = 1
 OUT_DIR = boston.RAW_DIR / "power"
 SUBSTATIONS_PATH = OUT_DIR / "hifld_substations.geojson"
 SUBSTATIONS_TRIPWIRE_PATH = OUT_DIR / "hifld_substations.tripwire.geojson"
+LINES_PATH = OUT_DIR / "hifld_transmission_lines.geojson"
 
 # Expected range: 30-80. Tripwire range: 10-150 (3x margin each side).
 EXPECTED_RANGE = (30, 80)
@@ -55,12 +64,45 @@ def _record_existing(path) -> list[dict]:
     }]
 
 
+def _download_lines(force: bool) -> dict:
+    """Fetch transmission lines (layer 1) — endpoints for the power_line relation."""
+    if LINES_PATH.exists() and not force:
+        size_kb = LINES_PATH.stat().st_size / 1024
+        log.info("hifld_transmission_lines.geojson already present (%.1f KB) — skipping", size_kb)
+        return {
+            "layer": LAYER,
+            "path": str(LINES_PATH),
+            "source_url": SOURCE_URL,
+            "record_count": len(gpd.read_file(LINES_PATH)),
+            "sub_layer": "transmission_lines",
+            "arcgis_layer_id": LINES_LAYER_ID,
+        }
+
+    log.info("Fetching HIFLD transmission lines for Boston bbox %s", boston.BBOX)
+    gdf = arcgis.query_layer(SOURCE_URL, layer_id=LINES_LAYER_ID, bbox=boston.BBOX)
+    n = len(gdf)
+    log.info("HIFLD transmission lines returned: %d feature(s); cols: %s",
+             n, list(gdf.columns))
+    if LINES_PATH.exists():
+        LINES_PATH.unlink()
+    gdf.to_file(LINES_PATH, driver="GeoJSON")
+    log.info("Saved %d transmission line(s) → %s", n, LINES_PATH)
+    return {
+        "layer": LAYER,
+        "path": str(LINES_PATH),
+        "source_url": SOURCE_URL,
+        "record_count": n,
+        "sub_layer": "transmission_lines",
+        "arcgis_layer_id": LINES_LAYER_ID,
+    }
+
+
 def download(force: bool = False) -> list[dict]:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     if SUBSTATIONS_PATH.exists() and not force:
         size_kb = SUBSTATIONS_PATH.stat().st_size / 1024
         log.info("hifld_substations.geojson already present (%.1f KB) — skipping", size_kb)
-        return _record_existing(SUBSTATIONS_PATH)
+        return _record_existing(SUBSTATIONS_PATH) + [_download_lines(force)]
 
     log.info("Fetching HIFLD substations for Boston bbox %s", boston.BBOX)
     gdf = arcgis.query_layer(
@@ -104,13 +146,16 @@ def download(force: bool = False) -> list[dict]:
     gdf.to_file(SUBSTATIONS_PATH, driver="GeoJSON")
     log.info("Saved %d substation(s) → %s", n, SUBSTATIONS_PATH)
 
-    return [{
-        "layer": LAYER,
-        "path": str(SUBSTATIONS_PATH),
-        "source_url": SOURCE_URL,
-        "record_count": n,
-        "arcgis_layer_id": SUBSTATIONS_LAYER_ID,
-    }]
+    return [
+        {
+            "layer": LAYER,
+            "path": str(SUBSTATIONS_PATH),
+            "source_url": SOURCE_URL,
+            "record_count": n,
+            "arcgis_layer_id": SUBSTATIONS_LAYER_ID,
+        },
+        _download_lines(force),
+    ]
 
 
 if __name__ == "__main__":
