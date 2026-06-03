@@ -25,30 +25,82 @@ ALL_DIRS = [RAW_DIR, FLOOD_DIR, GRAPH_DIR, SIMULATION_DIR]
 # Data sources — URLs / endpoints per layer
 # Confirmed URLs are filled in; TBDs will be set when we wire up downloads.
 # -----------------------------------------------------------------------------
+#
+# DEPRECATED markers carry a one-line reason and (where applicable) a
+# pointer to the replacement source we actually use. Full audit trail
+# is in data/boston/raw/_manifest.json and data/boston/raw/README.md.
+#
 SOURCES = {
-    # Flood (primary): Climate Ready Boston SLR scenarios from data.boston.gov
-    "flood_climate_ready": None,         # TBD — data.boston.gov landing page
-
-    # Flood (cross-check): FEMA NFHL via MassGIS
-    "flood_fema_nfhl": None,             # TBD — MassGIS ArcGIS endpoint
-
-    # Subway: MBTA GTFS feed (~153 stations)
+    # -------- Subway --------
     "subway_mbta_gtfs": "https://cdn.mbta.com/MBTA_GTFS.zip",
 
-    # Power: HIFLD substations via Rutgers ArcGIS (same source as NYC)
-    "power_hifld_substations": None,     # TBD — Rutgers ArcGIS FeatureServer
+    # -------- Power --------
+    "power_hifld_substations": (
+        "https://oceandata.rad.rutgers.edu/arcgis/rest/services/"
+        "RenewableEnergy/HIFLD_Electric_SubstationsTransmissionLines/MapServer"
+    ),
 
-    # Water: BWSC (pumping stations, outfalls, tide gates) + MWRA + MassGIS
-    "water_bwsc": None,                  # TBD
-    "water_mwra": None,                  # TBD
-
-    # Fuel: EIA Petroleum Terminals + OSM (Chelsea Creek terminal cluster)
-    "fuel_eia_terminals": None,          # TBD — EIA ArcGIS FeatureServer
+    # -------- Fuel --------
+    # DEPRECATED — EIA's canonical FeatureServer was auth-gated some time
+    # after NYC's last pull (HTTP 499 Token Required on the org-level
+    # service URL). Replaced by operator-verified hardcoded entries.
+    "fuel_eia_terminals": None,
+    # Replacement: EPA Region 1 Chelsea Creek NPDES permit index, plus
+    # operator-page geocodes for the 5 named terminals. The 5 records
+    # carry per-row source_url pointing at the EPA permit PDF.
+    "fuel_chelsea_creek_terminals": (
+        "https://www.epa.gov/npdes-permits/chelsea-river-bulk-petroleum-storage-facilities-npdes-permits"
+    ),
     "fuel_osm_overpass": "https://overpass-api.de/api/interpreter",
 
-    # Telecom: OpenCelliD + HIFLD cellular towers
-    "telecom_opencellid": None,          # TBD — OpenCelliD download
-    "telecom_hifld_towers": None,        # TBD — HIFLD cellular towers
+    # -------- Water --------
+    # DEPRECATED — BWSC's operational pumping/tide-gate/MS4-outfall
+    # layers are not publicly served on data.boston.gov, BWSC's own
+    # ArcGIS org, BostonGIS, or MassGIS. The handoff numbers
+    # (9 pumping / 267 outfalls / 201 tide gates) are consistent with
+    # BWSC's internal GIS — pending a data-sharing agreement to release.
+    "water_bwsc": None,
+    # DEPRECATED — MWRA's own ArcGIS org (community ID COM_0018) does
+    # not publicly serve regional pumping/headworks layers. MWRA Deer
+    # Island Treatment Plant and 11 MWRA-permitted outfalls show up via
+    # the NPDES / MassDEP layers below.
+    "water_mwra": None,
+    "water_massdep_cso": (
+        "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/"
+        "MassDEP_CSOs_2/FeatureServer"
+    ),
+    "water_epa_r1_cso": (
+        "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/"
+        "R1_Combined_Sewer_Outfall__CSO__Locations__2022/FeatureServer"
+    ),
+    "water_npdes_facilities": (
+        "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/"
+        "oeca__echo__npdes_facilities_outfalls/FeatureServer"
+    ),
+
+    # -------- Telecom --------
+    # DEPRECATED — HIFLD's surviving public Cellular Towers layer
+    # (Federal_User_Community / Cellular_Towers_in_the_United_States) is
+    # now a single FCC ULS Cellular Service band-class extract that
+    # returns only 3 records for the Boston bbox (all Cellco Partnership
+    # / Verizon). Replaced by FCC ASR which is the broader federal
+    # antenna structure registry (~85 records for Boston).
+    "telecom_hifld_towers": None,
+    "telecom_fcc_asr": (
+        "https://services.arcgis.com/B7X7NCOKKXditlwZ/arcgis/rest/services/"
+        "FCC_Antenna_Structures/FeatureServer"
+    ),
+    "telecom_opencellid": "https://opencellid.org/cell/getInArea",  # key-gated; skipped if OPENCELLID_API_KEY unset
+
+    # -------- Flood --------
+    "flood_climate_ready": (
+        "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/"
+        "Climate_Ready_Boston_Sea_Level_Rise_Inundation/FeatureServer"
+    ),
+    "flood_fema_nfhl": (
+        "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/"
+        "FEMA/FEMA_National_Flood_Hazard_Layer/FeatureServer"
+    ),
 }
 
 # -----------------------------------------------------------------------------

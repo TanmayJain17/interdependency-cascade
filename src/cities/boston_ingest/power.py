@@ -51,6 +51,7 @@ def _record_existing(path) -> list[dict]:
         "path": str(path),
         "source_url": SOURCE_URL,
         "record_count": n,
+        "arcgis_layer_id": SUBSTATIONS_LAYER_ID,
     }]
 
 
@@ -108,6 +109,7 @@ def download(force: bool = False) -> list[dict]:
         "path": str(SUBSTATIONS_PATH),
         "source_url": SOURCE_URL,
         "record_count": n,
+        "arcgis_layer_id": SUBSTATIONS_LAYER_ID,
     }]
 
 

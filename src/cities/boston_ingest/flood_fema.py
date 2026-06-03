@@ -58,6 +58,7 @@ def download(force: bool = False) -> list[dict]:
             "source_url": SOURCE_URL,
             "record_count": n,
             "sub_layer": "fema_nfhl",
+            "arcgis_layer_id": LAYER_ID,
         }]
 
     log.info("Fetching FEMA NFHL for Boston bbox %s", boston.BBOX)
@@ -96,6 +97,7 @@ def download(force: bool = False) -> list[dict]:
         "source_url": SOURCE_URL,
         "record_count": n,
         "sub_layer": "fema_nfhl",
+        "arcgis_layer_id": LAYER_ID,
     }]
 
 

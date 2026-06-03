@@ -1,0 +1,417 @@
+{
+  "generated_utc": "2026-06-03T01:08:23Z",
+  "project_root": "/Users/tanmayjain/Desktop/RA",
+  "bbox": [
+    -71.2,
+    42.22,
+    -70.92,
+    42.4
+  ],
+  "n_records": 19,
+  "records": [
+    {
+      "layer": "subway",
+      "sub_layer": null,
+      "path": "data/boston/raw/subway/mbta_gtfs.zip",
+      "source_url": "https://cdn.mbta.com/MBTA_GTFS.zip",
+      "downloaded_utc": "2026-05-29T09:04:37Z",
+      "sha256": "72b1bc0f33370d2bb75c41604fd62a385994a70cd9abdb515eacba6bd7235e66",
+      "size_bytes": 18376856,
+      "record_count": null,
+      "bbox": null
+    },
+    {
+      "layer": "subway",
+      "sub_layer": null,
+      "path": "data/boston/raw/subway/stops.geojson",
+      "source_url": "https://cdn.mbta.com/MBTA_GTFS.zip",
+      "downloaded_utc": "2026-06-03T01:07:28Z",
+      "sha256": "e071853512d5476bddb1fa830f3d0cc1a0762d77da78e5aded7303aabb0991a2",
+      "size_bytes": 324344,
+      "record_count": 505,
+      "bbox": [
+        -71.192622,
+        42.22105,
+        -70.930427,
+        42.399889
+      ]
+    },
+    {
+      "layer": "power",
+      "sub_layer": null,
+      "path": "data/boston/raw/power/hifld_substations.geojson",
+      "source_url": "https://oceandata.rad.rutgers.edu/arcgis/rest/services/RenewableEnergy/HIFLD_Electric_SubstationsTransmissionLines/MapServer",
+      "downloaded_utc": "2026-05-29T09:14:30Z",
+      "sha256": "ed75afeccade00196b097505eb84a957cf0e03ecf764e6f5ea96e08de9ca90bd",
+      "size_bytes": 23530,
+      "record_count": 34,
+      "bbox": [
+        -71.17925671358518,
+        42.22011441969336,
+        -70.92053862122985,
+        42.39956600000964
+      ],
+      "arcgis_layer_id": 0,
+      "server_count": 34,
+      "server_extent": {
+        "xmin": -9282090.5419,
+        "ymin": 4375501.012800001,
+        "xmax": -7458776.416099999,
+        "ymax": 6000054.8486,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "fuel",
+      "sub_layer": null,
+      "path": "data/boston/raw/fuel/major_terminals.geojson",
+      "source_url": "https://www.epa.gov/npdes-permits/chelsea-river-bulk-petroleum-storage-facilities-npdes-permits",
+      "downloaded_utc": "2026-05-29T10:10:21Z",
+      "sha256": "c13a75323ff97262c3277fb23f72ad5641408bf5f342fe355ca1d5b412a3bdf0",
+      "size_bytes": 3883,
+      "record_count": 5,
+      "bbox": [
+        -71.044494,
+        42.381352,
+        -71.0066,
+        42.396807
+      ]
+    },
+    {
+      "layer": "fuel",
+      "sub_layer": null,
+      "path": "data/boston/raw/fuel/osm_stations.geojson",
+      "source_url": "overpass-api.de (amenity=fuel + man_made=storage_tank)",
+      "downloaded_utc": "2026-05-29T10:10:33Z",
+      "sha256": "325f8679322369471e92cd24aaa735168b97517d180b54be142369bf00d7191a",
+      "size_bytes": 572623,
+      "record_count": 377,
+      "bbox": [
+        -71.1998379,
+        42.2241882,
+        -70.9377769,
+        42.399867
+      ]
+    },
+    {
+      "layer": "water",
+      "sub_layer": "massdep_cso",
+      "path": "data/boston/raw/water/massdep_cso_outfalls.geojson",
+      "source_url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MassDEP_CSOs_2/FeatureServer",
+      "downloaded_utc": "2026-05-29T13:23:42Z",
+      "sha256": "08e4f5f781e7a30b2f954004993168e8f2b97f10834a8d7d15416674ca7063dd",
+      "size_bytes": 26802,
+      "record_count": 45,
+      "bbox": [
+        -71.1440630482883,
+        42.3268086853718,
+        -71.0191554889659,
+        42.3982523770601
+      ],
+      "arcgis_layer_id": 0,
+      "server_count": 45,
+      "server_extent": {
+        "xmin": -8086364.40784396,
+        "ymin": 5100909.866967164,
+        "xmax": -7864588.37336057,
+        "ymax": 5278271.906841078,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "water",
+      "sub_layer": "epa_r1_cso",
+      "path": "data/boston/raw/water/epa_r1_cso_outfalls.geojson",
+      "source_url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/R1_Combined_Sewer_Outfall__CSO__Locations__2022/FeatureServer",
+      "downloaded_utc": "2026-05-29T13:23:44Z",
+      "sha256": "5e1a22ebba2899044721f653d1505338054bec2dc345057e9f39d13a230045bf",
+      "size_bytes": 21045,
+      "record_count": 47,
+      "bbox": [
+        -71.1440624269999,
+        42.326800018,
+        -71.019154909,
+        42.3982436970001
+      ],
+      "arcgis_layer_id": 1,
+      "server_count": 47,
+      "server_extent": {
+        "xmin": -8154855.126594193,
+        "ymin": 5034996.596784388,
+        "xmax": -7486462.44986432,
+        "ymax": 6000808.400003733,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "water",
+      "sub_layer": "npdes_facilities",
+      "path": "data/boston/raw/water/npdes_facilities_outfalls.geojson",
+      "source_url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/oeca__echo__npdes_facilities_outfalls/FeatureServer",
+      "downloaded_utc": "2026-05-29T13:23:45Z",
+      "sha256": "65d4b3cbc4133891a44746427eb71dfb3d7691cdef8e2bc06d67964bf4a4236c",
+      "size_bytes": 12913,
+      "record_count": 9,
+      "bbox": [
+        -71.1111387680397,
+        42.2359333416505,
+        -70.9683812857676,
+        42.3848188043444
+      ],
+      "arcgis_layer_id": 0,
+      "server_count": 9,
+      "server_extent": {
+        "xmin": null,
+        "ymin": null,
+        "xmax": null,
+        "ymax": null,
+        "wkid": null
+      },
+      "count_match": true
+    },
+    {
+      "layer": "water",
+      "sub_layer": "_gap_note",
+      "path": "data/boston/raw/water/_BWSC_GAP.md",
+      "source_url": null,
+      "downloaded_utc": "2026-06-03T01:07:28Z",
+      "sha256": "368c62664ea3bb54f12e1b1bdf81d2bfcc5c324ee284f4a5d229d449d7050ac3",
+      "size_bytes": 1476,
+      "record_count": null,
+      "bbox": null
+    },
+    {
+      "layer": "telecom",
+      "sub_layer": "fcc_asr",
+      "path": "data/boston/raw/telecom/fcc_asr_towers.geojson",
+      "source_url": "https://services.arcgis.com/B7X7NCOKKXditlwZ/arcgis/rest/services/FCC_Antenna_Structures/FeatureServer",
+      "downloaded_utc": "2026-05-29T13:57:04Z",
+      "sha256": "d84b8c2e7a3c8ec7a55b22fc8bd213a2fa7f4789527e8bf09cb29242a8872b06",
+      "size_bytes": 53015,
+      "record_count": 85,
+      "bbox": [
+        -71.1997000002548,
+        42.2281000002149,
+        -70.9211000002647,
+        42.3996000003398
+      ],
+      "arcgis_layer_id": 0,
+      "server_count": 85,
+      "server_extent": {
+        "xmin": -19670766.28039583,
+        "ymin": -1706493.1881276,
+        "xmax": 16224047.678673752,
+        "ymax": 11509249.615799582,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "telecom",
+      "sub_layer": "opencellid_skipped",
+      "path": "data/boston/raw/telecom/opencellid_TODO.txt",
+      "source_url": "https://opencellid.org/cell/getInArea",
+      "downloaded_utc": "2026-06-03T01:07:28Z",
+      "sha256": "ebc11a767012883895ab76191b3665168443314e7782f00d8d73f382009335b4",
+      "size_bytes": 859,
+      "record_count": null,
+      "bbox": null
+    },
+    {
+      "layer": "flood_crb",
+      "sub_layer": "slr09_aep10",
+      "path": "data/boston/flood/crb_slr09_aep10.geojson",
+      "source_url": "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Climate_Ready_Boston_Sea_Level_Rise_Inundation/FeatureServer",
+      "downloaded_utc": "2026-05-29T14:18:18Z",
+      "sha256": "7044577b3aa61d9a6cf25959ef37bf1c102ea6c5b8e3cb5507be5207fecd54ad",
+      "size_bytes": 12041254,
+      "record_count": 1,
+      "bbox": [
+        -71.1825158865513,
+        42.2655836643176,
+        -70.8724751391579,
+        42.4225527058273
+      ],
+      "arcgis_layer_id": 6,
+      "server_count": 1,
+      "server_extent": {
+        "xmin": -7924054.173628224,
+        "ymin": 5200721.642611708,
+        "xmax": -7889407.220455467,
+        "ymax": 5224504.09052548,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "flood_crb",
+      "sub_layer": "slr09_aep01",
+      "path": "data/boston/flood/crb_slr09_aep01.geojson",
+      "source_url": "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Climate_Ready_Boston_Sea_Level_Rise_Inundation/FeatureServer",
+      "downloaded_utc": "2026-05-29T14:18:38Z",
+      "sha256": "c0dcd1bb7d9fb155f58e5db7b38c83c4c818fdfa8a3070d6ad4839355994342f",
+      "size_bytes": 16672705,
+      "record_count": 1,
+      "bbox": [
+        -71.1825158865513,
+        42.2655836643176,
+        -70.8724735951785,
+        42.4225527058273
+      ],
+      "arcgis_layer_id": 7,
+      "server_count": 1,
+      "server_extent": {
+        "xmin": -7924054.173636294,
+        "ymin": 5200721.641162512,
+        "xmax": -7889407.020778018,
+        "ymax": 5224504.0905457325,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "flood_crb",
+      "sub_layer": "slr21_aep10",
+      "path": "data/boston/flood/crb_slr21_aep10.geojson",
+      "source_url": "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Climate_Ready_Boston_Sea_Level_Rise_Inundation/FeatureServer",
+      "downloaded_utc": "2026-05-29T14:18:55Z",
+      "sha256": "a05f2d7d0c05e7b5613641292e56b015672a059ce05d10edee3fc70142c961d0",
+      "size_bytes": 17202436,
+      "record_count": 1,
+      "bbox": [
+        -71.1825158865513,
+        42.2655836643176,
+        -70.8724735951785,
+        42.4225527058273
+      ],
+      "arcgis_layer_id": 0,
+      "server_count": 1,
+      "server_extent": {
+        "xmin": -7924054.173636294,
+        "ymin": 5200721.641162512,
+        "xmax": -7889407.020778018,
+        "ymax": 5224504.0905457325,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "flood_crb",
+      "sub_layer": "slr21_aep01",
+      "path": "data/boston/flood/crb_slr21_aep01.geojson",
+      "source_url": "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Climate_Ready_Boston_Sea_Level_Rise_Inundation/FeatureServer",
+      "downloaded_utc": "2026-05-29T14:19:07Z",
+      "sha256": "5d243ef336ff85363efd23a25007bd44053fa945ec81bde2e45c7efc638bc2c7",
+      "size_bytes": 19018266,
+      "record_count": 1,
+      "bbox": [
+        -71.1825158865513,
+        42.2655836643176,
+        -70.9231925463008,
+        42.4225527058273
+      ],
+      "arcgis_layer_id": 1,
+      "server_count": 1,
+      "server_extent": {
+        "xmin": -7924054.173652486,
+        "ymin": 5200761.288503354,
+        "xmax": -7895021.99657711,
+        "ymax": 5224504.0905862525,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "flood_crb",
+      "sub_layer": "slr36_aep10",
+      "path": "data/boston/flood/crb_slr36_aep10.geojson",
+      "source_url": "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Climate_Ready_Boston_Sea_Level_Rise_Inundation/FeatureServer",
+      "downloaded_utc": "2026-05-29T14:19:22Z",
+      "sha256": "d96d5c8a21e61a7d4d7fadf565024191f18b02613436d8e6087cab90c49c17d2",
+      "size_bytes": 20404692,
+      "record_count": 1,
+      "bbox": [
+        -71.1825158865513,
+        42.2655836643176,
+        -70.8724735951785,
+        42.4225527058273
+      ],
+      "arcgis_layer_id": 3,
+      "server_count": 1,
+      "server_extent": {
+        "xmin": -7924054.173644396,
+        "ymin": 5200721.641182207,
+        "xmax": -7889407.020777876,
+        "ymax": 5224504.090565996,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "flood_crb",
+      "sub_layer": "slr36_aep01",
+      "path": "data/boston/flood/crb_slr36_aep01.geojson",
+      "source_url": "https://services.arcgis.com/sFnw0xNflSi8J0uh/arcgis/rest/services/Climate_Ready_Boston_Sea_Level_Rise_Inundation/FeatureServer",
+      "downloaded_utc": "2026-05-29T14:20:28Z",
+      "sha256": "04d2b22502749c878abcfce4aed39f2553f095fb4f10e85e6bb54a5328e15499",
+      "size_bytes": 63740944,
+      "record_count": 1,
+      "bbox": [
+        -71.1825158865513,
+        42.2655836643176,
+        -70.9231925463008,
+        42.4225527058273
+      ],
+      "arcgis_layer_id": 4,
+      "server_count": 1,
+      "server_extent": {
+        "xmin": -7924054.173630352,
+        "ymin": 5200761.288481872,
+        "xmax": -7895021.9966438785,
+        "ymax": 5224504.090550758,
+        "wkid": 3857
+      },
+      "count_match": true
+    },
+    {
+      "layer": "flood_crb",
+      "sub_layer": "_limitation_doc",
+      "path": "data/boston/flood/_CRB_KNOWN_LIMITATIONS.md",
+      "source_url": null,
+      "downloaded_utc": "2026-06-03T01:07:33Z",
+      "sha256": "48df4c37b01a958f21721cdd390cf557235ab899ae1be4e2b9bf82c3e82fda1d",
+      "size_bytes": 8170,
+      "record_count": null,
+      "bbox": null
+    },
+    {
+      "layer": "flood_fema",
+      "sub_layer": "fema_nfhl",
+      "path": "data/boston/flood/fema_nfhl.geojson",
+      "source_url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/FEMA/FEMA_National_Flood_Hazard_Layer/FeatureServer",
+      "downloaded_utc": "2026-06-03T00:30:03Z",
+      "sha256": "a30d2c597614510a5fce5e549f08f0db211bf09924ce21eaa6d894b5c7ad42cf",
+      "size_bytes": 31542377,
+      "record_count": 1597,
+      "bbox": [
+        -71.31016889640085,
+        42.15714922926197,
+        -70.90726432671379,
+        42.46483209020837
+      ],
+      "arcgis_layer_id": 0,
+      "server_count": 1597,
+      "server_extent": {
+        "xmin": 69730.2547968552,
+        "ymin": 777408.373242062,
+        "xmax": 331074.90793229605,
+        "ymax": 959673.78326026,
+        "wkid": 26986
+      },
+      "count_match": true
+    }
+  ]
+}

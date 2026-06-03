@@ -262,6 +262,7 @@ Environment Department through the Climate Ready Boston initiative
 
 def _save_one_scenario(slr_in: int, aep_pct: int, name: str, force: bool) -> dict:
     out_path = OUT_DIR / f"crb_{name}.geojson"
+    layer_id = LAYER_ID_FOR_SCENARIO[(slr_in, aep_pct)]
     if out_path.exists() and not force:
         size_kb = out_path.stat().st_size / 1024
         log.info("%s already present (%.1f KB) — skipping", out_path.name, size_kb)
@@ -274,9 +275,8 @@ def _save_one_scenario(slr_in: int, aep_pct: int, name: str, force: bool) -> dic
             "sub_layer": name,
             "slr_in": slr_in,
             "aep_pct": aep_pct,
+            "arcgis_layer_id": layer_id,
         }
-
-    layer_id = LAYER_ID_FOR_SCENARIO[(slr_in, aep_pct)]
     log.info("CRB %s: SLR=%d\" AEP=%d%%, ArcGIS layer %d", name, slr_in, aep_pct, layer_id)
     # One huge MultiPolygon per layer — fetch by OBJECTID
     gdf = arcgis.query_by_object_id(
@@ -304,6 +304,7 @@ def _save_one_scenario(slr_in: int, aep_pct: int, name: str, force: bool) -> dic
         "sub_layer": name,
         "slr_in": slr_in,
         "aep_pct": aep_pct,
+        "arcgis_layer_id": layer_id,
     }
 
 

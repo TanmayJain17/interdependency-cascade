@@ -103,6 +103,7 @@ def _fetch_fcc_asr(force: bool) -> dict:
             "source_url": FCC_ASR_URL,
             "record_count": n,
             "sub_layer": "fcc_asr",
+            "arcgis_layer_id": FCC_ASR_LAYER_ID,
         }
 
     log.info("Fetching FCC ASR antenna structures for Boston bbox %s", boston.BBOX)
@@ -136,6 +137,7 @@ def _fetch_fcc_asr(force: bool) -> dict:
         "source_url": FCC_ASR_URL,
         "record_count": n,
         "sub_layer": "fcc_asr",
+        "arcgis_layer_id": FCC_ASR_LAYER_ID,
     }
 
 

@@ -1,0 +1,18 @@
+OpenCelliD coverage layer is not present.
+
+Reason: the OPENCELLID_API_KEY environment variable was not set when
+the Week 12 telecom ingestion ran. OpenCelliD requires a free API key
+for bulk and bbox queries.
+
+To backfill:
+  1. Register at https://opencellid.org/register (free account).
+  2. Generate an API key from your account settings.
+  3. Export it:  export OPENCELLID_API_KEY='your-key-here'
+  4. Re-run:     python -m src.cities.boston_ingest.telecom --force
+     (Or run the orchestrator with --layers telecom --force.)
+
+Until then, FCC ASR (fcc_asr_towers.geojson) is the only telecom
+source in this folder. ASR covers registered macro structures
+(cellular, broadcast, microwave) and is sufficient for cascade graph
+construction at the structure-level. OpenCelliD adds per-cell
+crowdsourced observations useful for carrier-level coverage analysis.

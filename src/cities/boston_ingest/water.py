@@ -90,6 +90,7 @@ def _fetch_one(sub: dict, force: bool) -> dict:
             "source_url": sub["url"],
             "record_count": n,
             "sub_layer": sub["key"],
+            "arcgis_layer_id": sub["layer_id"],
         }
 
     log.info("Fetching %s for Boston bbox %s", sub["key"], boston.BBOX)
@@ -126,6 +127,7 @@ def _fetch_one(sub: dict, force: bool) -> dict:
         "source_url": sub["url"],
         "record_count": n,
         "sub_layer": sub["key"],
+        "arcgis_layer_id": sub["layer_id"],
     }
 
 
