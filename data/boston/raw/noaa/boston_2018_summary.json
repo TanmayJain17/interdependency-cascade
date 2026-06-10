@@ -1,0 +1,28 @@
+{
+  "datum": "NAVD",
+  "n_obs": 1680,
+  "window": [
+    "20180101",
+    "20180107"
+  ],
+  "peak_observed": {
+    "value_m": 2.944,
+    "value_ft": 9.659,
+    "timestamp_utc": "2018-01-04T17:42:00+00:00"
+  },
+  "peak_surge": {
+    "value_m": 1.023,
+    "timestamp_utc": "2018-01-04T17:54:00+00:00"
+  },
+  "astro_high_near_peak": {
+    "value_m": 1.929,
+    "timestamp_utc": "2018-01-04T17:36:00+00:00"
+  },
+  "surge_lag_after_astro_high_hr": 0.3,
+  "record_crosscheck": {
+    "published_mllw_ft": 15.16,
+    "published_navd88_ft": 9.66,
+    "published_navd88_from_mllw_m": 2.9428,
+    "observed_peak_navd88_m": 2.944
+  }
+}
