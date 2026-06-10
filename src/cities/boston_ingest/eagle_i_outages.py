@@ -116,23 +116,35 @@ def _model_power_curve() -> pd.DataFrame:
     rows = [{"hours": t, "clock": STORM_PEAK + pd.Timedelta(hours=t),
              "exp_power_failures": sum(v[1 + i] for v in power.values())}
             for i, t in enumerate(ts)]
-    return pd.DataFrame(rows)
+    return pd.DataFrame(rows), len(power)
 
 
-def _overlay_plot(outages: pd.DataFrame, model: pd.DataFrame, out) -> None:
+def _overlay_plot(outages: pd.DataFrame, model: pd.DataFrame, n_power: int, out) -> None:
     fig, ax1 = plt.subplots(figsize=(12, 5.5))
     ax1.plot(outages["run_start_time"], outages["customers_out"], color="#444444", lw=1.2,
              label="Suffolk County customers out (EAGLE-I, real)")
     ax1.set_ylabel("customers without power (county)", color="#444444")
-    ax1.set_xlabel("Jan 2018 (UTC-naive)")
+    ax1.set_xlabel("Jan 2018 (UTC)")
     ax1.axvline(STORM_PEAK, color="#1f5fa8", ls=":", lw=1.2)
     ax1.annotate("storm peak\n(record water level)", xy=(STORM_PEAK, ax1.get_ylim()[1] * 0.9),
                  fontsize=8, color="#1f5fa8", ha="left")
 
+    # Annotate the real (non-flood) peak, pulled from the data.
+    if len(outages):
+        pk = outages.loc[outages["customers_out"].idxmax()]
+        ax1.annotate(f"real peak ~{int(pk['customers_out'])} customers, ~3 days post-flood\n"
+                     "→ wind/snow, not flood-driven",
+                     xy=(pk["run_start_time"], pk["customers_out"]),
+                     xytext=(-10, -28), textcoords="offset points", fontsize=8, color="#444444",
+                     ha="right", arrowprops=dict(arrowstyle="->", color="#888888", lw=0.8))
+
     ax2 = ax1.twinx()
     ax2.plot(model["clock"], model["exp_power_failures"], "o-", color="#d1495b", lw=1.6,
-             label="model expected power-node failures (slr09_aep01)")
-    ax2.set_ylabel("model expected power-node failures", color="#d1495b")
+             label=f"model expected power-node failures (slr09_aep01, of {n_power})")
+    # Anchor the model axis at 0..N power nodes so the trivial flood-driven response reads as small,
+    # rather than auto-scaling to a narrow band that visually mimics the real outage ramp.
+    ax2.set_ylim(0, n_power)
+    ax2.set_ylabel(f"model expected power-node failures (of {n_power} power nodes)", color="#d1495b")
 
     ax1.xaxis.set_major_formatter(mdates.DateFormatter("%b-%d %H:%M"))
     fig.autofmt_xdate()
@@ -179,8 +191,8 @@ def _readme(outages: pd.DataFrame, out) -> None:
 def download(force: bool = False) -> list[dict]:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     outages = acquire(force)
-    model = _model_power_curve()
-    _overlay_plot(outages, model, OUT_DIR / "eagle_i_vs_model_power_timing.png")
+    model, n_power = _model_power_curve()
+    _overlay_plot(outages, model, n_power, OUT_DIR / "eagle_i_vs_model_power_timing.png")
     _readme(outages, OUT_DIR / "README.md")
     outages.to_csv(OUT_DIR / "suffolk_2018_outages.csv", index=False)
     peak = outages.loc[outages["customers_out"].idxmax()] if len(outages) else None
