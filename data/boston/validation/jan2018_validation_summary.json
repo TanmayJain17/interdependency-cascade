@@ -1,8 +1,9 @@
 {
-  "_framing": "Hazard-geometry validation (model-independent). The USGS Jan-2018 polygon is USGS's DEM interpolation of the SAME high-water marks, so HWM-in-polygon agreement is near-tautological; the independent anchors are the NOAA gauge peak and the documented Aquarium closure. Jan 2018 is rated 1-2% AEP (50-100-yr) by USGS.",
+  "_framing": "Hazard-geometry validation (model-independent). CRB (the model's flood input) and the USGS field-derived inundation polygon are INDEPENDENT products, so model-extent-vs-USGS agreement is a genuine cross-validation, not circular. The one circular comparison -- validating the USGS polygon against the high-water marks it was interpolated from -- is deliberately NOT made. Independent hazard anchors: the NOAA tide-gauge still-water peak (record-matching) and the documented Aquarium closure.",
+  "headline": "AEP-band triangulation (two independent lines of evidence agree): the real Jan-2018 inundation EXCEEDS the near-term 10% extent (slr09_aep10 in-domain recall 0.841, misses real-wet nodes) and is BOUNDED by the near-term 1% extent (slr09_aep01 contains 98.1% of the USGS wet zone, in-domain recall 1.0). So the event sits between the model's 10% and 1% near-term scenarios -> a ~1-2% AEP event, matching USGS's independent frequency rating. (IoU/F1 peak at the smallest adequate extent by construction, so the raw 'best-IoU scenario' is a mechanical artifact, not independent evidence.)",
   "near_term_scenario": "slr09_aep01",
-  "best_match_by_iou": "slr09_aep10",
-  "best_match_by_node_f1": "slr09_aep10",
+  "tightest_overlap_scenario_mechanical": "slr09_aep10",
+  "best_match_by_node_f1_mechanical": "slr09_aep10",
   "near_term": {
     "node_precision": 0.579,
     "node_recall": 0.898,

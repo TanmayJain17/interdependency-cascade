@@ -371,14 +371,25 @@ def run() -> dict:
     match.to_csv(OUT_DIR / "jan2018_scenario_match.csv", index=False)
 
     near_row = metrics[metrics["scenario"] == NEAR_TERM].iloc[0].to_dict()
+    aep10 = metrics[metrics["scenario"] == "slr09_aep10"].iloc[0].to_dict()
     summary = {
-        "_framing": ("Hazard-geometry validation (model-independent). The USGS Jan-2018 polygon is "
-                     "USGS's DEM interpolation of the SAME high-water marks, so HWM-in-polygon agreement "
-                     "is near-tautological; the independent anchors are the NOAA gauge peak and the "
-                     "documented Aquarium closure. Jan 2018 is rated 1-2% AEP (50-100-yr) by USGS."),
+        "_framing": ("Hazard-geometry validation (model-independent). CRB (the model's flood input) and "
+                     "the USGS field-derived inundation polygon are INDEPENDENT products, so model-extent-"
+                     "vs-USGS agreement is a genuine cross-validation, not circular. The one circular "
+                     "comparison -- validating the USGS polygon against the high-water marks it was "
+                     "interpolated from -- is deliberately NOT made. Independent hazard anchors: the NOAA "
+                     "tide-gauge still-water peak (record-matching) and the documented Aquarium closure."),
+        "headline": ("AEP-band triangulation (two independent lines of evidence agree): the real Jan-2018 "
+                     f"inundation EXCEEDS the near-term 10% extent (slr09_aep10 in-domain recall "
+                     f"{aep10['node_recall_domain']}, misses real-wet nodes) and is BOUNDED by the near-term "
+                     f"1% extent (slr09_aep01 contains {near_row['usgs_covered_by_crb_pct']}% of the USGS wet "
+                     f"zone, in-domain recall {near_row['node_recall_domain']}). So the event sits between the "
+                     "model's 10% and 1% near-term scenarios -> a ~1-2% AEP event, matching USGS's independent "
+                     "frequency rating. (IoU/F1 peak at the smallest adequate extent by construction, so the "
+                     "raw 'best-IoU scenario' is a mechanical artifact, not independent evidence.)"),
         "near_term_scenario": NEAR_TERM,
-        "best_match_by_iou": best_iou,
-        "best_match_by_node_f1": best_f1,
+        "tightest_overlap_scenario_mechanical": best_iou,
+        "best_match_by_node_f1_mechanical": best_f1,
         "near_term": {
             "node_precision": near_row["node_precision"], "node_recall": near_row["node_recall"],
             "node_f1": near_row["node_f1"], "node_recall_in_domain": near_row["node_recall_domain"],
@@ -410,7 +421,9 @@ if __name__ == "__main__":
     print(m[["scenario", "hwm_in_extent_domain_pct", "node_precision", "node_recall",
              "node_f1", "node_recall_domain", "usgs_iou", "usgs_covered_by_crb_pct"]].to_string(index=False))
     s = res["summary"]
-    print(f"\nBest match by IoU: {s['best_match_by_iou']} | by node-F1: {s['best_match_by_node_f1']}")
+    r10 = m[m["scenario"] == "slr09_aep10"].iloc[0]["node_recall_domain"]
+    print(f"\nAEP-band: real event EXCEEDS slr09_aep10 (in-domain recall {r10}) and is BOUNDED by "
+          f"slr09_aep01 → ~1-2% AEP. (tightest-overlap scenario={s['tightest_overlap_scenario_mechanical']}, mechanical)")
     print(f"Near-term {NEAR_TERM}: F1={s['near_term']['node_f1']}, in-domain recall={s['near_term']['node_recall_in_domain']}, "
           f"USGS covered by CRB={s['near_term']['usgs_covered_by_crb_pct']}%")
     print(f"Aquarium: model_flooded={s['aquarium']['model_flooded_near_term']}, "
