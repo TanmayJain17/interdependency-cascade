@@ -1,0 +1,76 @@
+{
+  "_framing": "Hazard-geometry validation (model-independent). The USGS Jan-2018 polygon is USGS's DEM interpolation of the SAME high-water marks, so HWM-in-polygon agreement is near-tautological; the independent anchors are the NOAA gauge peak and the documented Aquarium closure. Jan 2018 is rated 1-2% AEP (50-100-yr) by USGS.",
+  "near_term_scenario": "slr09_aep01",
+  "best_match_by_iou": "slr09_aep10",
+  "best_match_by_node_f1": "slr09_aep10",
+  "near_term": {
+    "node_precision": 0.579,
+    "node_recall": 0.898,
+    "node_f1": 0.704,
+    "node_recall_in_domain": 1.0,
+    "usgs_iou": 0.422,
+    "usgs_covered_by_crb_pct": 98.1,
+    "hwm_in_extent_domain_pct": 93.8
+  },
+  "n_hwm_in_bbox": 35,
+  "n_hwm_in_crb_domain": 16,
+  "aquarium": {
+    "found": true,
+    "node_id": "subway_aquarium_place_aqucl",
+    "lat": 42.35978,
+    "lon": -71.05165,
+    "model_flooded_near_term": true,
+    "model_depth_m": 0.3,
+    "p_fail_t96": 1.0,
+    "inside_usgs_jan2018_zone": true,
+    "note": "Blue Line Aquarium station closed by flooding on Jan 4, 2018 (documented)."
+  },
+  "domain_misses_near_term": [
+    {
+      "node_id": "power_field_street",
+      "infra_type": "power",
+      "lat": 42.2544,
+      "lon": -70.992,
+      "in_crb_domain": false
+    },
+    {
+      "node_id": "telecom_asr_00060",
+      "infra_type": "telecom",
+      "lat": 42.2598,
+      "lon": -70.9762,
+      "in_crb_domain": false
+    },
+    {
+      "node_id": "subway_chelsea_place_chels",
+      "infra_type": "subway",
+      "lat": 42.397,
+      "lon": -71.0413,
+      "in_crb_domain": false
+    },
+    {
+      "node_id": "subway_north_quincy_place_nqncy",
+      "infra_type": "subway",
+      "lat": 42.2753,
+      "lon": -71.0296,
+      "in_crb_domain": false
+    },
+    {
+      "node_id": "fuel_station_none_0376",
+      "infra_type": "fuel",
+      "lat": 42.2553,
+      "lon": -70.9955,
+      "in_crb_domain": false
+    }
+  ],
+  "stillwater_100yr_comparator": {
+    "slr09_aep01": {
+      "iou": 0.443,
+      "covered_pct": 95.0
+    },
+    "slr36_aep01": {
+      "iou": 0.373,
+      "covered_pct": 94.6
+    }
+  },
+  "crb_domain_note": "CRB models the City of Boston + immediate harbor only (domain starts ~lat 42.27); Quincy / south shore / outer harbor islands are outside it, so ~half the HWMs and all recall misses fall outside CRB's domain \u2014 a coverage gap, not a model error."
+}
