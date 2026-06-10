@@ -115,3 +115,6 @@ data/boston/raw/usgs_hwm/inundation/
 
 # USGS inundation clipped wet-zone polygons (regeneratable from usgs_inundation.py; ~8 MB each)
 data/boston/validation/*.gpkg
+
+# EAGLE-I full-year national file if dropped as a fallback (~1 GB; staged Suffolk slice is tiny + committed)
+data/boston/raw/eagle_i/eaglei_outages_*.csv
