@@ -1,0 +1,31 @@
+# Intra-cascade (within-network) configuration - Week-14 Step 3.
+# ===========================================================================
+# Cascade WITHIN one infrastructure (the inter-cascade across types is separate,
+# in cascade_sim.py). Scope = the networks with REAL within-type topology:
+#   subway -> Motter-Lai overload (load redistribution) on subway_line edges
+#   water  -> directed flow  (plant/trunk failure backs up to feeding pumps)
+#   fuel   -> directed flow  (terminal failure starves downstream stations)
+# telecom is DEFERRED: 0 within-type edges (docs/telecom_intra_design_note.md).
+# power is Jesse's (pandapower). Telecom/fuel failures are ALSO reached by the
+# inter-cascade; this models the distinct WITHIN-network peer/supply spread.
+#
+# alpha = Motter-Lai tolerance (slack): capacity = (1+alpha)*initial_load.
+# Smaller alpha -> less slack -> bigger cascade. The sensitivity knob, swept
+# for the evidence plot. directed_flow has no capacity test (alpha unused).
+# ===========================================================================
+
+graph_path: data/flood/nyc_infra_graph_all_flood.graphml
+fragility_fire_threshold: 0.5    # P(fail) at which a flooded node is an initial failure
+alpha_sweep: [0.1, 0.2, 0.4]     # overload-mode sensitivity sweep (the Dr. Lin plot)
+
+networks:
+  subway:
+    mode: undirected_overload      # Motter-Lai load redistribution
+    load: betweenness              # raw shortest-path betweenness (redistributes on removal)
+    alpha: 0.2
+  water:
+    mode: directed_flow
+    flow_propagation: against_edges  # water_flow is pump->plant; plant(sink) fails -> upstream pumps back up
+  fuel:
+    mode: directed_flow
+    flow_propagation: with_edges     # fuel_distribution is terminal->station; terminal fails -> downstream stations
