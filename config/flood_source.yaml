@@ -1,0 +1,37 @@
+# Flood hazard source for the depth(node, t) interface.
+# ---------------------------------------------------------------------------
+# This is the ONLY file that changes when we swap the static overlay for
+# Gwen's dynamic 6 h flood maps next week. Every downstream module imports
+# src/hazard/depth_interface.py and never touches a raw overlay directly.
+#
+# THIS WEEK  (source: static)  -> a single timestep t=0 from the static map.
+# NEXT WEEK  (source: dynamic) -> the 6 h depth(node, t) table; flip the flag.
+
+source: static            # "static" (now) | "dynamic" (next week)
+timestep_hours: 6         # dynamic-map cadence; used when source == "dynamic"
+
+# --- Static source (this week) ---------------------------------------------
+# Which scenario column is t=0 depth. gc_2026 = present-day GeoClaw, CONTINUOUS
+# metres (0.32-3.72 m) -> carries the depth magnitude that fragility and the
+# downtime physics (volume / pumping) need. The DEP columns are quantized to
+# {0, 0.2, 0.6, 0.8} m and are too coarse for downtime, so they are not the
+# default. Override here to run any other scenario through the same interface.
+static_scenario: gc_2026
+
+# Per-node hazard product carrying every scenario's depth column.
+nodes_path: data/flood/nyc_infra_nodes_all_flood.geojson
+
+# scenario id -> depth column in nodes_path.
+scenario_depth_columns:
+  gc_2026: gc_2026_depth_m
+  gc_2050: gc_2050_depth_m
+  gc_2080: gc_2080_depth_m
+  moderate_current: flood_moderate_current_depth_m
+  moderate_2050: flood_moderate_2050_depth_m
+  extreme_2080: flood_extreme_2080_depth_m
+
+# --- Dynamic source (next week) --------------------------------------------
+# When source flips to "dynamic", point depth_ts_path at Gwen's long table
+# [node_id, t_step, t_hours, depth_m]. Nothing else in the repo changes.
+dynamic:
+  depth_ts_path: null
