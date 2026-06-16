@@ -1,0 +1,37 @@
+# Infra-type -> economic-sector (LODES WAC CNS01..CNS20) dependence weights.
+# ===========================================================================
+# This is the MODELING JUDGMENT Sami + Dr. Miura will tune - NOT authoritative.
+# dependence_weight in [0,1] = how strongly a CNS sector's operability leans on
+# this infrastructure (1 = fully dependent, 0 = none). Sami multiplies node q0
+# by this weight when aggregating node inoperability to block x sector.
+#
+# Sector vocabulary = LODES WAC CNS01..CNS20 (standard; lives on Sami's side).
+# Defaults follow the Week-14 brief and the Miura subway-paper interdependence
+# ratio; refine against Sami's real per-sector dependence before any results.
+#
+# Encoding: 'ALL' = baseline weight for EVERY sector; an explicit CNSxx key
+# OVERRIDES the baseline for that one sector. So {ALL: 0.2, CNS08: 1.0} means
+# every sector gets 0.2 except transportation (CNS08) gets 1.0.
+# ===========================================================================
+
+cns_sectors: [CNS01, CNS02, CNS03, CNS04, CNS05, CNS06, CNS07, CNS08, CNS09,
+              CNS10, CNS11, CNS12, CNS13, CNS14, CNS15, CNS16, CNS17, CNS18,
+              CNS19, CNS20]
+
+infra_sector_dependence:
+  # power / telecom: every sector depends on them. Default UNIFORM across all
+  # sectors (TODO: replace with real per-sector dependence from Sami/Miura).
+  power:    {ALL: 1.0}
+  telecom:  {ALL: 0.8}
+  # subway: transportation accessibility - CNS08 directly, plus a commuting-
+  # access baseline on all sectors (subway-paper interdependence ratio).
+  subway:   {ALL: 0.2, CNS08: 1.0}
+  # water (drinking + wastewater): basic operability for all, heavier on
+  # manufacturing (CNS05) and accommodation/food services (CNS18).
+  water:    {ALL: 0.5, CNS05: 0.9, CNS18: 0.9}
+  # fuel: energy / transport fuel - all sectors, heavier on transportation
+  # (CNS08) and manufacturing (CNS05).
+  fuel:     {ALL: 0.3, CNS08: 0.8, CNS05: 0.7}
+  # hospital: health care & social assistance (CNS16) primarily, small baseline
+  # to all sectors (emergency capacity).
+  hospital: {ALL: 0.1, CNS16: 1.0}
