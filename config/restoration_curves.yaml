@@ -1,0 +1,45 @@
+# Restoration / time-to-recover parameters for Step 1 downtime.
+# ===========================================================================
+# VERIFY every value against the HAZUS *Flood* Technical Manual restoration
+# tables before any results leave the lab - these are PLACEHOLDERS, not
+# authoritative. They are HAZUS-FL FLOOD restoration anchors, NOT the
+# earthquake DS1-4 lognormal fragility in src/simulation/fragility.py.
+# ===========================================================================
+#
+# Two distinct things live here:
+#   1. depth_to_damage_state - HAZUS-FL flood depth bands -> DS1..DS4. The DS
+#      is an interpretable REPORTING overlay; it does NOT itself carry the
+#      signal (downtime.py builds a continuous curve through the anchors).
+#   2. restoration[infra] - mean days-to-functional at each DS + a recovery
+#      curve shape. downtime.py builds a MONOTONE CONTINUOUS depth->restore_days
+#      curve through these anchors (no jumps at bucket edges) so a 3.7 m node
+#      recovers slower than a 2.1 m one even where the fragility CDF saturates.
+#
+# SEPARATION: this is time-to-RECOVER. It is orthogonal to the Weibull
+# time-to-FAIL buffer framework (src/cascade/stochastic_buffer.py +
+# config/buffer_distributions.yaml) and must never read or write buffer_hours.
+
+depth_to_damage_state:
+  # Upper depth bound (m above ground) of DS1, DS2, DS3; above the last = DS4.
+  # Placeholder HAZUS-FL bands; DS3/DS4 split kept above 2 m so GeoClaw ~3 m
+  # depths do not all collapse into Complete. VERIFY against HAZUS-FL.
+  thresholds_m: [0.5, 1.5, 3.0]
+  # Anchor depth (m) where the DS4 restore-time sits on the continuous curve,
+  # and the cap on extrapolation beyond it (x times the DS4 value) so very deep
+  # (e.g. gc_2080 ~6 m) nodes don't run away.
+  ds4_reference_depth_m: 4.0
+  extrapolation_cap_factor: 1.5
+
+restoration:
+  # mean days-to-functional per damage state; curve = recovery shape over time.
+  # Keys are the six canonical infra_type strings (fragility.py FRAGILITY_PARAMS).
+  power:    {DS1: 1, DS2: 3, DS3: 7,  DS4: 30, curve: lognormal}
+  telecom:  {DS1: 1, DS2: 2, DS3: 7,  DS4: 21, curve: lognormal}
+  water:    {DS1: 1, DS2: 3, DS3: 14, DS4: 45, curve: lognormal}
+  subway:   {DS1: 1, DS2: 3, DS3: 10, DS4: 30, curve: stepped}
+  hospital: {DS1: 1, DS2: 5, DS3: 20, DS4: 90, curve: lognormal}
+  fuel:     {DS1: 2, DS2: 5, DS3: 14, DS4: 45, curve: lognormal}
+
+# Steps per day for T_total_steps (6 h timesteps -> 4/day); matches
+# config/flood_source.yaml timestep_hours = 6.
+steps_per_day: 4
