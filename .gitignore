@@ -46,6 +46,13 @@ nyc-flood-layers/
 # Large raw data files — regeneratable from download scripts
 # ============================================================
 data/raw/
+# Boston: ignore bulk + derived data file types, but TRACK provenance docs (md/json/txt)
+data/boston/**/*.geojson
+data/boston/**/*.zip
+data/boston/**/*.tif
+data/boston/**/*.pt
+data/boston/**/*.html
+data/boston/raw/_logs/
 data/telecom/310.csv.gz
 data/telecom/cell_towers_nyc.*
 data/telecom/cell_towers_lower_manhattan.csv
@@ -101,3 +108,13 @@ archive/
 # ============================================================
 data/inference/
 data/sandy_validation/
+data/gnn_v2_checkpoints/
+
+# USGS inundation map raw download + full-NE extracted shapefile (regeneratable; clipped output lives in data/boston/validation/)
+data/boston/raw/usgs_hwm/inundation/
+
+# USGS inundation clipped wet-zone polygons (regeneratable from usgs_inundation.py; ~8 MB each)
+data/boston/validation/*.gpkg
+
+# EAGLE-I full-year national file if dropped as a fallback (~1 GB; staged Suffolk slice is tiny + committed)
+data/boston/raw/eagle_i/eaglei_outages_*.csv
