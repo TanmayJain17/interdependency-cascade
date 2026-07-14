@@ -41,7 +41,7 @@ from collections import Counter
 import numpy as np
 import geopandas as gpd
 import networkx as nx
-
+from cascade_joint import build_intra_context, simulate_cascade_joint
 # Make fragility.py and cascade_sim.py importable
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # Make src.cascade.stochastic_buffer importable from project root
@@ -83,7 +83,7 @@ SCENARIO_DEPTH_COL = {
     "geoclaw_2080":     "gc_2080_depth_m",
 }
 
-N_MONTE_CARLO = 1000
+N_MONTE_CARLO = int(os.environ.get("N_MC", "1000"))
 TIME_STEPS = [0, 6, 24, 48, 96]
 
 # Amplifier thresholds (for extreme_2080 analysis)
@@ -168,6 +168,7 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config):
     print(f"\n  [Cascade] Propagating through graph (Weibull-sampled buffers)...")
     G = load_graph(str(GRAPH_IN))
     print(f"  Loaded graph: {G.number_of_nodes():,} nodes, {G.number_of_edges():,} edges")
+    intra_ctx = build_intra_context(G)
 
     # Independent RNG for buffer sampling (fragility uses its own seed inside)
     buffer_rng = np.random.default_rng(BUFFER_SEED)
@@ -195,7 +196,7 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config):
         # 'initial_failures' depending on your fragility.py version
         initial_failures = set(scenario.get("failed_nodes",
                                             scenario.get("initial_failures", [])))
-        cascade = simulate_cascade(G_stoch, initial_failures, time_steps=TIME_STEPS)
+        """ cascade = simulate_cascade(G_stoch, initial_failures, time_steps=TIME_STEPS)
 
         # Per-node first-failure timestep (compact form for GNN labels):
         # iterate timesteps in order, record earliest. Nodes not in dict never failed.
@@ -204,12 +205,19 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config):
             t_int = int(tk[1:])  # "t6" -> 6
             for nid in cascade[tk]:
                 if nid not in fail_time_per_node:
-                    fail_time_per_node[nid] = t_int
+                    fail_time_per_node[nid] = t_int """
+                    
+        cascade, fail_time, cause = simulate_cascade_joint(
+            G_stoch, initial_failures, intra_ctx, time_steps=TIME_STEPS)
+
+        fail_time_per_node = {nid: int(t) for nid, t in fail_time.items()}
+        cause_counts = dict(Counter(cause.values()))
 
         by_timestep = {tk: len(cascade[tk]) for tk in time_keys}
         cascade_results.append({
             "scenario_id": scenario.get("scenario_id", run_id),
             "direct_failures": by_timestep["t0"],
+            "cause_counts": cause_counts,
             "total_failures":  by_timestep[time_keys[-1]],
             "failed_nodes_t96": list(cascade[time_keys[-1]]),
             "by_timestep": by_timestep,
