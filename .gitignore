@@ -118,3 +118,9 @@ data/boston/validation/*.gpkg
 
 # EAGLE-I full-year national file if dropped as a fallback (~1 GB; staged Suffolk slice is tiny + committed)
 data/boston/raw/eagle_i/eaglei_outages_*.csv
+
+# ============================================================
+# Flood-map deliverables for Jesse — handed off out-of-band, keep out of git
+# ============================================================
+exports/flood_map*
+data/export/
