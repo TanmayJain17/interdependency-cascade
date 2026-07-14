@@ -1,4 +1,5 @@
 node_id,infra_type,lat,lon,flood_depth_m,cascade_fail_freq,betweenness_centrality
+subway_2_av_f,subway,40.7234,-73.98994,0.0,1.0,0.0
 telecom_cluster_02897,telecom,40.73884,-73.98014,0.0,0.999,0.0
 telecom_cluster_02953,telecom,40.74603,-73.98119,0.0,0.999,0.0
 telecom_cluster_02954,telecom,40.74477,-73.97417,0.0,0.999,0.0
@@ -93,6 +94,8 @@ telecom_cluster_02840,telecom,40.7357,-73.97207,0.0,0.973,0.0
 telecom_cluster_02841,telecom,40.7339,-73.9645,0.0,0.973,0.0
 telecom_cluster_04137,telecom,40.7147,-73.9443,0.0,0.973,0.0
 telecom_cluster_04139,telecom,40.722,-73.9811,0.0,0.973,0.0
+water_spring_creek_park,water,40.65704,-73.86148,0.0,0.971,0.0
+power_woodmere,power,40.637,-73.73267,0.0,0.965,1e-05
 fuel_station_bay_blvd_0033,fuel,40.62842,-73.73729,0.0,0.965,0.0
 fuel_station_bay_blvd_0061,fuel,40.62818,-73.73805,0.0,0.965,0.0
 fuel_station_bay_blvd_0079,fuel,40.62832,-73.7376,0.0,0.965,0.0
@@ -124,9 +127,10 @@ fuel_station_peninsula_blvd_0089,fuel,40.63413,-73.72241,0.0,0.965,0.0
 fuel_station_ramp_0078,fuel,40.62775,-73.73918,0.0,0.965,0.0
 fuel_station_unknown_gas_station_0256,fuel,40.63387,-73.73985,0.0,0.965,0.0
 power_tap135492,power,40.63748,-73.73302,0.0,0.965,0.0
-power_woodmere,power,40.637,-73.73267,0.0,0.965,0.0
 telecom_cluster_00088,telecom,40.6279,-73.7393,0.0,0.965,0.0
 telecom_cluster_01954,telecom,40.6388,-73.7545,0.0,0.965,0.0
+subway_avenue_u_q,subway,40.5993,-73.95593,0.0,0.964,0.0
+subway_rector_st_rw,subway,40.70722,-74.01334,0.0,0.964,0.0
 power_east_36th_street,power,40.74495,-73.97134,0.0,0.952,0.0
 subway_28_st_6,subway,40.74307,-73.98426,0.0,0.952,0.0
 subway_33_st_6,subway,40.74608,-73.98208,0.0,0.952,0.0
@@ -346,6 +350,13 @@ telecom_cluster_02155,telecom,40.66593,-73.8053,0.0,0.88,0.0
 telecom_cluster_02156,telecom,40.66605,-73.79972,0.0,0.88,0.0
 telecom_cluster_02291,telecom,40.67933,-73.80403,0.0,0.88,0.0
 water_pollution_control_facility,water,40.66425,-73.8073,0.0,0.88,0.0
+hospital_montefiore_medical_center___montefiore_w,hospital,40.84068,-73.8484,0.0,0.873,0.0
+hospital_calvary_hospital_inc,hospital,40.84793,-73.84392,0.0,0.872,0.0
+hospital_brookdale_hospital_medical_center,hospital,40.65495,-73.91242,0.0,0.865,0.0
+hospital_kings_county_hospital_center,hospital,40.65664,-73.94493,0.0,0.865,0.0
+hospital_kingsbrook_jewish_medical_village,hospital,40.65939,-73.93375,0.0,0.865,0.0
+hospital_mount_sinai_brooklyn,hospital,40.61872,-73.94297,0.0,0.865,0.0
+hospital_university_hospital_of_brooklyn,hospital,40.65508,-73.94491,0.0,0.865,0.0
 fuel_station_76_0260,fuel,40.67962,-73.87801,0.0,0.863,0.0
 fuel_station_bp_0203,fuel,40.67959,-73.88007,0.0,0.863,0.0
 fuel_station_bp_1139,fuel,40.65906,-73.89072,0.0,0.863,0.0
@@ -372,6 +383,8 @@ telecom_cluster_02070,telecom,40.6528,-73.8772,0.0,0.863,0.0
 telecom_cluster_02104,telecom,40.65979,-73.8993,0.0,0.863,0.0
 water_26_ward_water_pollution_cp,water,40.64813,-73.87584,0.0,0.863,0.0
 water_26th_ward_wwtp,water,40.65242,-73.87902,0.0,0.863,0.0
+water_paerdegat_basin_park_addition,water,40.62706,-73.91022,0.0,0.863,0.0
+water_well_station_#32,water,40.68266,-73.81472,0.0,0.859,0.0
 fuel_station_amoco_0336,fuel,40.66498,-73.73549,0.0,0.853,0.0
 fuel_station_bp_0650,fuel,40.66514,-73.73328,0.0,0.853,0.0
 fuel_station_bp_0721,fuel,40.66522,-73.72597,0.0,0.853,0.0
@@ -385,7 +398,9 @@ telecom_cluster_02202,telecom,40.6708,-73.7366,0.0,0.853,0.0
 telecom_cluster_02203,telecom,40.6699,-73.7254,0.0,0.853,0.0
 telecom_cluster_02249,telecom,40.6763,-73.7322,0.0,0.853,0.0
 telecom_cluster_02294,telecom,40.6801,-73.72908,0.0,0.853,0.0
-water_well_station_#32,water,40.68266,-73.81472,0.0,0.853,0.0
+water_avenue_v_sewage_pumping_station,water,40.59355,-73.98126,0.0,0.853,0.0
+hospital_maimonides_midwood_community_hospital,hospital,40.61392,-73.94849,0.0,0.844,0.0
+water_pumping_stn_sewage_disposal,water,40.5913,-73.93386,0.0,0.844,0.0
 hospital_mount_sinai____behavioral_health_center,hospital,40.72068,-73.9912,0.0,0.832,0.0
 water_well_station_#36,water,40.67914,-73.72691,0.0,0.824,0.0
 hospital_newyork_presbyterian_brooklyn_methodist,hospital,40.66781,-73.97911,0.0,0.818,0.0
@@ -395,11 +410,8 @@ hospital_mount_sinai_west,hospital,40.76966,-73.9868,0.0,0.803,0.0
 telecom_cluster_03260,telecom,40.77101,-73.86957,0.0,0.802,0.0
 telecom_cluster_03306,telecom,40.77405,-73.87196,0.0,0.802,0.0
 telecom_cluster_03305,telecom,40.77467,-73.87473,0.0,0.799,0.0
-water_spring_creek_park,water,40.65704,-73.86148,0.0,0.795,0.0
 water_destratification_facility,water,40.66094,-73.83996,0.0,0.793,0.0
 water_rockaway_water_pollution_cp,water,40.58425,-73.82619,0.0,0.767,0.0
-hospital_montefiore_medical_center___montefiore_w,hospital,40.84068,-73.8484,0.0,0.763,0.0
-hospital_calvary_hospital_inc,hospital,40.84793,-73.84392,0.0,0.761,0.0
 subway_beach_36_st_a,subway,40.5954,-73.76817,0.0,0.716,0.0
 subway_beach_44_st_a,subway,40.59294,-73.77601,0.0,0.716,0.0
 subway_beach_60_st_a,subway,40.59237,-73.78852,0.0,0.716,0.0
@@ -431,13 +443,13 @@ water_well_station_#7,water,40.71759,-73.753,0.0,0.607,0.0
 telecom_cluster_03711,telecom,40.83946,-73.90399,0.0,0.604,0.0
 hospital_staten_island_university_hosp_north,hospital,40.58476,-74.08605,0.0,0.522,0.0
 water_well_station_#19,water,40.71238,-73.79205,0.0,0.511,0.0
+fuel_station_mobil_0887,fuel,40.73292,-73.82549,0.0,0.506,1e-06
 fuel_station_amoco_0206,fuel,40.7201,-73.80945,0.0,0.506,0.0
 fuel_station_bp_0616,fuel,40.72687,-73.81042,0.0,0.506,0.0
 fuel_station_gulf_0703,fuel,40.71735,-73.81758,0.0,0.506,0.0
 fuel_station_hillside_ave_mobil_mart_1009,fuel,40.70945,-73.79748,0.0,0.506,0.0
 fuel_station_mobil_0108,fuel,40.72189,-73.80411,0.0,0.506,0.0
 fuel_station_mobil_0543,fuel,40.71397,-73.80749,0.0,0.506,0.0
-fuel_station_mobil_0887,fuel,40.73292,-73.82549,0.0,0.506,0.0
 fuel_station_shell_0617,fuel,40.71838,-73.81566,0.0,0.506,0.0
 fuel_station_unknown_gas_station_0737,fuel,40.72643,-73.82137,0.0,0.506,0.0
 hospital_queens_hospital_center,hospital,40.71778,-73.80529,0.0,0.506,0.0
