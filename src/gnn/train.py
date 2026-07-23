@@ -368,6 +368,25 @@ def run_train(args):
             "elapsed_s": elapsed,
         })
 
+        # --- Checkpoint saving (weights were previously discarded at exit) ---
+        # last.pt = final-epoch weights: matches the model that produces the
+        # held-out test numbers below. best.pt = lowest-val-loss weights.
+        ckpt = {
+            "model_state": model.state_dict(),
+            "args": vars(args),
+            "epoch": epoch,
+            "val_loss": mean_val_loss,
+            "node_in_dims": node_in_dims,
+            "node_types": list(base_data.node_types),
+            "edge_types": [list(et) for et in base_data.edge_types],
+            "timesteps": list(DEFAULT_TIMESTEPS),
+        }
+        torch.save(ckpt, CHECKPOINT_DIR / "last.pt")
+        if mean_val_loss < best_val_loss:
+            best_val_loss = mean_val_loss
+            torch.save(ckpt, CHECKPOINT_DIR / "best.pt")
+            print(f"  [checkpoint] best.pt updated (epoch {epoch}, val_loss={mean_val_loss:.5f})")
+
     # === END OF EPOCH LOOP ===
 
     # Held-out test evaluation (runs ONCE after all training)
