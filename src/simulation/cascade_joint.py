@@ -32,6 +32,8 @@ import networkx as nx
 import yaml
 
 from cascade_sim import get_cascade_edges
+from intra_telecom import build_telecom_entry, telecom_closure
+from intra_hospital import build_hospital_entry, hospital_closure
 
 INTRA_CONFIG = Path("config/intra_cascade.yaml")
 
@@ -69,6 +71,13 @@ def build_intra_context(G: nx.DiGraph, config_path=INTRA_CONFIG) -> dict:
             print(f"  [intra:{infra}] {H.number_of_nodes()} nodes, "
                   f"{H.number_of_edges()} within-edges, directed_flow "
                   f"({net_cfg['flow_propagation']})")
+        elif net_cfg["mode"] == "capacity_redistribution":
+            # telecom: derived Voronoi failover adjacency (no stored edges);
+            # entry carries its own nodes/mode keys — replace the stub.
+            entry = build_telecom_entry(G, net_cfg)
+        elif net_cfg["mode"] == "patient_redistribution":
+            # hospital: gravity transfers + diversion strain + collapse
+            entry = build_hospital_entry(G, net_cfg)
         else:
             raise ValueError(f"unknown intra mode '{net_cfg['mode']}'")
         ctx[infra] = entry
@@ -112,8 +121,12 @@ def _flow_closure(H: nx.DiGraph, dead_local: set, direction: str) -> set:
     return failed
 
 
-def intra_closure(dead: set, ctx: dict) -> dict:
-    """Given the global dead set, return {node_id: cause} of NEW intra kills."""
+def intra_closure(dead: set, ctx: dict, t: float = 0.0) -> dict:
+    """Given the global dead set, return {node_id: cause} of NEW intra kills.
+
+    `t` (hours since event) is needed only by time-dependent closures
+    (telecom demand surge m(t)); flow/overload closures ignore it.
+    """
     new = {}
     for infra, entry in ctx.items():
         dead_local = dead & entry["nodes"]
@@ -122,6 +135,10 @@ def intra_closure(dead: set, ctx: dict) -> dict:
         if entry["mode"] == "undirected_overload":
             closure = _overload_closure(entry, frozenset(dead_local))
             #cause = "intra_overload"
+        elif entry["mode"] == "capacity_redistribution":
+            closure = telecom_closure(entry, frozenset(dead_local), t)
+        elif entry["mode"] == "patient_redistribution":
+            closure = hospital_closure(entry, frozenset(dead_local))
         else:
             closure = _flow_closure(entry["H"], dead_local, entry["direction"])
             #cause = "intra_flow"
@@ -176,8 +193,8 @@ def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict
                             cause[node] = "inter"
                             changed = True
                             break
-            # (b) intra closure on the shared dead set
-            new_intra = intra_closure(set(fail_time), intra_ctx)
+            # (b) intra closure on the shared dead set (t drives telecom m(t))
+            new_intra = intra_closure(set(fail_time), intra_ctx, t=float(t))
             if not new_intra:
                 break
             for nid, c in new_intra.items():

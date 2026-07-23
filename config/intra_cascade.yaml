@@ -5,7 +5,10 @@
 #   subway -> Motter-Lai overload (load redistribution) on subway_line edges
 #   water  -> directed flow  (plant/trunk failure backs up to feeding pumps)
 #   fuel   -> directed flow  (terminal failure starves downstream stations)
-# telecom is DEFERRED: 0 within-type edges (docs/telecom_intra_design_note.md).
+#   telecom -> capacity_redistribution (Week 17): DERIVED per-carrier Voronoi
+#              failover adjacency + local load redistribution with disaster
+#              demand surge m(t). No stored within-type edges needed —
+#              see src/simulation/intra_telecom.py.
 # power is Jesse's (pandapower). Telecom/fuel failures are ALSO reached by the
 # inter-cascade; this models the distinct WITHIN-network peer/supply spread.
 #
@@ -29,3 +32,30 @@ networks:
   fuel:
     mode: directed_flow
     flow_propagation: with_edges     # fuel_distribution is terminal->station; terminal fails -> downstream stations
+  telecom:
+    mode: capacity_redistribution    # Voronoi failover + local load shed (intra_telecom.py)
+    demand: tower_count              # L0 = site tower_count (deployment as revealed demand) | 'uniform'
+    rho: 0.6                         # busy-hour utilization; blocking capacity = L0/rho (alpha = 1/rho - 1 = 0.67)
+    rho_sweep: [0.5, 0.6, 0.7]       # sensitivity (Dr. Lin plot); rho=0.7 matches Sami's 1/rho ~ 1.43 threshold
+    crash_factor: 3.0                # site physically crashes at 3x blocking capacity (signaling-storm
+    crash_factor_sweep: [1.5, 2.0, 3.0]  # overload). 1.5 = crash-contagion regime boundary (the bifurcation plot)
+    surge_peak: 1.5                  # m(0); sweep [1.0, 1.5, 2.0] — 2.0 = Sami's peak. Regimes:
+    surge_tau_h: 12.0                #   m(t) > 1/rho => mass blocking (9/11 mode, service denial, towers up);
+    surge_peak_sweep: [1.0, 1.5, 2.0]  # m(t) > crash_factor/rho (=5.0) => mass crash — never reached at peak 2.0
+    max_reassign_km: 3.0             # phones can only fail over to towers whose signal reaches them
+    max_spill_hops: 2                # rejected phones retry within 2 Voronoi tiers of the user, then unserved
+    roaming_enabled: false           # true = FCC MDRI "roaming under disaster" (merges carrier layers)
+    operator_aliases:
+      "T-Mobile Metro": "T-Mobile"   # MVNO/brand rides the host network
+    # Known data gap: OpenCelliD pull was MCC=310 only; Verizon (mostly MCC=311)
+    # is absent from the node set. Fix = ingest 311.csv.gz and rebuild clusters.
+  hospital:
+    mode: patient_redistribution     # gravity transfers + diversion + collapse (intra_hospital.py)
+    beds_csv: data/healthcare/hospital_beds.csv     # OFFICIAL NYS DOH certified beds (join_hospital_beds.py)
+    facdb_geojson: data/healthcare/hospitals_nyc.geojson  # OPNAME -> system affiliation (FacDB, official)
+    baseline_occupancy: 0.75         # pre-event census fraction; NYC acute care runs ~75-80%
+    divert_frac: 0.95                # stops accepting transfers (ambulance diversion) — strain, not death
+    collapse_frac: 1.20              # surge capacity blown -> functional failure (cause intra_hospital).
+    distance_decay_km: 5.0           #   Sandy anchor: Beth Israel peaked ~1.15x BASELINE census (~0.88x
+    affiliation_bonus: 2.0           #   certified beds): heavy strain, kept accepting, no collapse (Tran 2014).
+    max_transfer_km: 40              # bonus=2.0 encodes Lee 2015 public->public routing above proximity

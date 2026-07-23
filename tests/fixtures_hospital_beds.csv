@@ -1,0 +1,62 @@
+node_id,node_name,hfis_name,beds_total,match_method,match_score,bed_breakdown_json
+hospital_bellevue_hospital_center,Bellevue Hospital Center,FIXTURE,830,fixture,,{}
+hospital_north_central_bronx_hospital,North Central Bronx Hospital,FIXTURE,250,fixture,,{}
+hospital_woodhull_medical_and_mental_health_cente,Woodhull Medical And Mental Health Center,FIXTURE,370,fixture,,{}
+hospital_kings_county_hospital_center,Kings County Hospital Center,FIXTURE,630,fixture,,{}
+hospital_queens_hospital_center,Queens Hospital Center,FIXTURE,250,fixture,,{}
+hospital_coney_island_hospital,Coney Island Hospital,FIXTURE,370,fixture,,{}
+hospital_metropolitan_hospital_center,Metropolitan Hospital Center,FIXTURE,340,fixture,,{}
+hospital_harlem_hospital_center,Harlem Hospital Center,FIXTURE,280,fixture,,{}
+hospital_lincoln_medical_and_mental_health_center,Lincoln Medical And Mental Health Center,FIXTURE,360,fixture,,{}
+hospital_jacobi_medical_center,Jacobi Medical Center,FIXTURE,460,fixture,,{}
+hospital_elmhurst_hospital_center,Elmhurst Hospital Center,FIXTURE,545,fixture,,{}
+hospital_richmond_university_medical_center,Richmond University Medical Center,FIXTURE,250,fixture,,{}
+hospital_mount_sinai_beth_israel,Mount Sinai Beth Israel,FIXTURE,700,fixture,,{}
+hospital_new_york_presbyterian_david_h__koch_cent,New York-Presbyterian David H. Koch Center,FIXTURE,700,fixture,,{}
+hospital_maimonides_medical_center,Maimonides Medical Center,FIXTURE,710,fixture,,{}
+hospital_mount_sinai_hospital___mount_sinai_hospi,Mount Sinai Hospital - Mount Sinai Hospital Of Queens,FIXTURE,1130,fixture,,{}
+hospital_david_h__koch_center_for_cancer_care,David H. Koch Center For Cancer Care,FIXTURE,250,fixture,,{}
+hospital_mount_sinai_hospital,Mount Sinai Hospital,FIXTURE,1130,fixture,,{}
+hospital_brooklyn_hospital_center___downtown_camp,Brooklyn Hospital Center - Downtown Campus,FIXTURE,250,fixture,,{}
+hospital_nyu_langone_hospital___joseph_s__and_dia,Nyu Langone Hospital - Joseph S. And Diane H. Steinberg Ambulatory Care Center,FIXTURE,250,fixture,,{}
+hospital_new_york_presbyterian_hospital___new_yor,New York-Presbyterian Hospital - New York Weill Cornell Center,FIXTURE,700,fixture,,{}
+hospital_interfaith_medical_center,Interfaith Medical Center,FIXTURE,250,fixture,,{}
+hospital_mount_sinai_morningside,Mount Sinai Morningside,FIXTURE,250,fixture,,{}
+hospital_newyork_presbyterian_brooklyn_methodist,Newyork-Presbyterian Brooklyn Methodist Hospital,FIXTURE,700,fixture,,{}
+hospital_staten_island_university_hosp_north,Staten Island University Hosp-North,FIXTURE,660,fixture,,{}
+hospital_new_york_presbyterian_hospital___allen_h,New York-Presbyterian Hospital - Allen Hospital,FIXTURE,700,fixture,,{}
+hospital_kingsbrook_jewish_medical_village,Kingsbrook Jewish Medical Village,FIXTURE,250,fixture,,{}
+hospital_wyckoff_heights_medical_center,Wyckoff Heights Medical Center,FIXTURE,250,fixture,,{}
+hospital_new_york_presbyterian_hospital___columbi,New York-Presbyterian Hospital - Columbia Presbyterian Center,FIXTURE,700,fixture,,{}
+hospital_montefiore_medical_center___montefiore_w,Montefiore Medical Center - Montefiore Westchester Square,FIXTURE,700,fixture,,{}
+hospital_montefiore_medical_center_wakefield_hosp,Montefiore Medical Center-Wakefield Hospital,FIXTURE,700,fixture,,{}
+hospital_newyork_presbyterian_queens,Newyork-Presbyterian/Queens,FIXTURE,700,fixture,,{}
+hospital_rockefeller_university_hospital,Rockefeller University Hospital,FIXTURE,250,fixture,,{}
+hospital_long_island_jewish_medical_center,Long Island Jewish Medical Center,FIXTURE,250,fixture,,{}
+hospital_henry_j__carter_specialty_hospital,Henry J. Carter Specialty Hospital,FIXTURE,250,fixture,,{}
+hospital_new_york_presbyterian_lower_manhattan_ho,New York-Presbyterian/Lower Manhattan Hospital,FIXTURE,700,fixture,,{}
+hospital_hospital_for_special_surgery,Hospital For Special Surgery,FIXTURE,250,fixture,,{}
+hospital_mount_sinai_west,Mount Sinai West,FIXTURE,250,fixture,,{}
+hospital_sbh_health_system,Sbh Health System,FIXTURE,250,fixture,,{}
+hospital_mount_sinai____behavioral_health_center,Mount Sinai -  Behavioral Health Center,FIXTURE,250,fixture,,{}
+hospital_calvary_hospital_inc,Calvary Hospital Inc,FIXTURE,250,fixture,,{}
+hospital_nyu_langone_orthopedic_hospital,Nyu Langone Orthopedic Hospital,FIXTURE,250,fixture,,{}
+hospital_memorial_hospital_for_cancer_and_allied,Memorial Hospital For Cancer And Allied Diseases,FIXTURE,250,fixture,,{}
+hospital_calvary_hospital,Calvary Hospital,FIXTURE,250,fixture,,{}
+hospital_mount_sinai_brooklyn,Mount Sinai Brooklyn,FIXTURE,250,fixture,,{}
+hospital_montefiore_medical_center___henry___lucy,Montefiore Medical Center - Henry & Lucy Moses Div,FIXTURE,700,fixture,,{}
+hospital_new_york_eye_and_ear_infirmary_of_mount,New York Eye And Ear Infirmary Of Mount Sinai,FIXTURE,250,fixture,,{}
+hospital_rumc_bayley_seton,Rumc-Bayley Seton,FIXTURE,250,fixture,,{}
+hospital_university_hospital_of_brooklyn,University Hospital Of Brooklyn,FIXTURE,250,fixture,,{}
+hospital_brookdale_hospital_medical_center,Brookdale Hospital Medical Center,FIXTURE,250,fixture,,{}
+hospital_jamaica_hospital_medical_center,Jamaica Hospital Medical Center,FIXTURE,250,fixture,,{}
+hospital_lenox_health_greenwich_village,Lenox Health Greenwich Village,FIXTURE,250,fixture,,{}
+hospital_lenox_hill_hospital,Lenox Hill Hospital,FIXTURE,450,fixture,,{}
+hospital_maimonides_midwood_community_hospital,Maimonides Midwood Community Hospital,FIXTURE,710,fixture,,{}
+hospital_nyu_langone_hospitals,Nyu Langone Hospitals,FIXTURE,725,fixture,,{}
+hospital_st_johns_episcopal_hospital_so_shore,St Johns Episcopal Hospital So Shore,FIXTURE,250,fixture,,{}
+hospital_flushing_hospital_medical_center,Flushing Hospital Medical Center,FIXTURE,250,fixture,,{}
+hospital_staten_island_university_hospital_prince,Staten Island University Hospital Prince'S Bay,FIXTURE,660,fixture,,{}
+hospital_bronxcare_hospital_center,Bronxcare Hospital Center,FIXTURE,250,fixture,,{}
+hospital_montefiore_med_center___jack_d_weiler_ho,Montefiore Med Center - Jack D Weiler Hosp Of A Einstein College Div,FIXTURE,700,fixture,,{}
+hospital_long_island_jewish_forest_hills,Long Island Jewish Forest Hills,FIXTURE,250,fixture,,{}
