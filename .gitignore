@@ -124,3 +124,9 @@ data/boston/raw/eagle_i/eaglei_outages_*.csv
 # ============================================================
 exports/flood_map*
 data/export/
+
+# ============================================================
+# Local MC archives — regeneratable; runner overwrites data/simulation,
+# so archives live on disk only (data/simulation/ itself stays tracked)
+# ============================================================
+data/simulation_*/
