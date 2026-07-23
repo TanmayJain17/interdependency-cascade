@@ -1,0 +1,62 @@
+match_method,score,graph_node_name,hfis_facility_name,beds_total
+closed_not_in_hfis,1.0,Mount Sinai Beth Israel,(closed — not in HFIS),0
+exact_normalized,1.0,Bellevue Hospital Center,Bellevue Hospital Center,898
+exact_normalized,1.0,North Central Bronx Hospital,North Central Bronx Hospital,213
+exact_normalized,1.0,Woodhull Medical And Mental Health Center,Woodhull Medical & Mental Health Center,310
+exact_normalized,1.0,Kings County Hospital Center,Kings County Hospital Center,624
+exact_normalized,1.0,Queens Hospital Center,Queens Hospital Center,269
+exact_normalized,1.0,Metropolitan Hospital Center,Metropolitan Hospital Center,338
+exact_normalized,1.0,Harlem Hospital Center,Harlem Hospital Center,268
+exact_normalized,1.0,Lincoln Medical And Mental Health Center,Lincoln Medical & Mental Health Center,362
+exact_normalized,1.0,Jacobi Medical Center,Jacobi Medical Center,457
+exact_normalized,1.0,Elmhurst Hospital Center,Elmhurst Hospital Center,545
+exact_normalized,1.0,Richmond University Medical Center,Richmond University Medical Center,448
+exact_normalized,1.0,New York-Presbyterian David H. Koch Center,New York-Presbyterian David H. Koch Center,135
+exact_normalized,1.0,Maimonides Medical Center,Maimonides Medical Center,711
+exact_normalized,1.0,Mount Sinai Hospital - Mount Sinai Hospital Of Queens,Mount Sinai Hospital - Mount Sinai Hospital of Queens,228
+exact_normalized,1.0,David H. Koch Center For Cancer Care,David H. Koch Center For Cancer Care,16
+exact_normalized,1.0,Mount Sinai Hospital,Mount Sinai Hospital,1121
+exact_normalized,1.0,Brooklyn Hospital Center - Downtown Campus,Brooklyn Hospital Center - Downtown Campus,464
+exact_normalized,1.0,Nyu Langone Hospital - Joseph S. And Diane H. Steinberg Ambulatory Care Center,NYU Langone Hospital - Joseph S. and Diane H. Steinberg Ambulatory Care Center,2
+exact_normalized,1.0,New York-Presbyterian Hospital - New York Weill Cornell Center,New York-Presbyterian Hospital - New York Weill Cornell Center,744
+exact_normalized,1.0,Interfaith Medical Center,Interfaith Medical Center,287
+exact_normalized,1.0,Mount Sinai Morningside,Mount Sinai Morningside,501
+exact_normalized,1.0,Newyork-Presbyterian Brooklyn Methodist Hospital,NewYork-Presbyterian Brooklyn Methodist Hospital,577
+exact_normalized,1.0,Staten Island University Hosp-North,Staten Island University Hosp-North,487
+exact_normalized,1.0,New York-Presbyterian Hospital - Allen Hospital,New York-Presbyterian Hospital - Allen Hospital,196
+exact_normalized,1.0,Wyckoff Heights Medical Center,Wyckoff Heights Medical Center,324
+exact_normalized,1.0,New York-Presbyterian Hospital - Columbia Presbyterian Center,New York-Presbyterian Hospital - Columbia Presbyterian Center,1022
+exact_normalized,1.0,Montefiore Medical Center-Wakefield Hospital,Montefiore Medical Center-Wakefield Hospital,321
+exact_normalized,1.0,Newyork-Presbyterian/Queens,NewYork-Presbyterian/Queens,535
+exact_normalized,1.0,Rockefeller University Hospital,Rockefeller University Hospital,40
+exact_normalized,1.0,Long Island Jewish Medical Center,Long Island Jewish Medical Center,1014
+exact_normalized,1.0,Henry J. Carter Specialty Hospital,Henry J. Carter Specialty Hospital,201
+exact_normalized,1.0,New York-Presbyterian/Lower Manhattan Hospital,New York-Presbyterian/Lower Manhattan Hospital,180
+exact_normalized,1.0,Hospital For Special Surgery,Hospital for Special Surgery,215
+exact_normalized,1.0,Mount Sinai West,Mount Sinai West,514
+exact_normalized,1.0,Sbh Health System,SBH Health System,422
+exact_normalized,1.0,Mount Sinai -  Behavioral Health Center,Mount Sinai -  Behavioral Health Center,115
+exact_normalized,1.0,Nyu Langone Orthopedic Hospital,NYU Langone Orthopedic Hospital,225
+exact_normalized,1.0,Memorial Hospital For Cancer And Allied Diseases,Memorial Hospital for Cancer and Allied Diseases,514
+exact_normalized,1.0,Mount Sinai Brooklyn,Mount Sinai Brooklyn,212
+exact_normalized,1.0,Montefiore Medical Center - Henry & Lucy Moses Div,Montefiore Medical Center - Henry & Lucy Moses Div,816
+exact_normalized,1.0,New York Eye And Ear Infirmary Of Mount Sinai,New York Eye and Ear Infirmary of Mount Sinai,69
+exact_normalized,1.0,Rumc-Bayley Seton,RUMC-Bayley Seton,10
+exact_normalized,1.0,University Hospital Of Brooklyn,University Hospital of Brooklyn,342
+exact_normalized,1.0,Brookdale Hospital Medical Center,Brookdale Hospital Medical Center,530
+exact_normalized,1.0,Jamaica Hospital Medical Center,Jamaica Hospital Medical Center,384
+exact_normalized,1.0,Lenox Hill Hospital,Lenox Hill Hospital,626
+exact_normalized,1.0,Maimonides Midwood Community Hospital,Maimonides Midwood Community Hospital,134
+exact_normalized,1.0,Nyu Langone Hospitals,NYU Langone Hospitals,813
+exact_normalized,1.0,St Johns Episcopal Hospital So Shore,St Johns Episcopal Hospital So Shore,252
+exact_normalized,1.0,Flushing Hospital Medical Center,Flushing Hospital Medical Center,293
+exact_normalized,1.0,Staten Island University Hospital Prince'S Bay,Staten Island University Hospital Prince's Bay,172
+exact_normalized,1.0,Bronxcare Hospital Center,BronxCare Hospital Center,585
+exact_normalized,1.0,Montefiore Med Center - Jack D Weiler Hosp Of A Einstein College Div,Montefiore Med Center - Jack D Weiler Hosp of A Einstein College Div,421
+exact_normalized,1.0,Long Island Jewish Forest Hills,Long Island Jewish Forest Hills,312
+exact_normalized_AMBIGUOUS,1.0,Calvary Hospital Inc,Calvary Hospital Inc,200
+exact_normalized_AMBIGUOUS,1.0,Calvary Hospital,Calvary Hospital Inc,200
+fuzzy,0.8,Lenox Health Greenwich Village,Northwell Greenwich Village Hospital,8
+manual,1.0,Coney Island Hospital,South Brooklyn Health,351
+manual_hfis_zero_certified_beds,1.0,Kingsbrook Jewish Medical Village,Kingsbrook Jewish Medical Village,0
+manual_hfis_zero_certified_beds,1.0,Montefiore Medical Center - Montefiore Westchester Square,Montefiore Medical Center - Montefiore Westchester Square,0
