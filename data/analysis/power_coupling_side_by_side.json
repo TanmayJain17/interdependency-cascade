@@ -1,0 +1,623 @@
+{
+ "baseline_dir": "data/simulation_side_by_side_baseline_100",
+ "coupled_dir": "data/simulation_side_by_side_coupled_100",
+ "identity_check_dep": {
+  "moderate_current": {
+   "n": 100,
+   "runs_differing": 0,
+   "pass": true
+  },
+  "moderate_2050": {
+   "n": 100,
+   "runs_differing": 0,
+   "pass": true
+  },
+  "extreme_2080": {
+   "n": 100,
+   "runs_differing": 0,
+   "pass": true
+  }
+ },
+ "gc": {
+  "geoclaw_2026": {
+   "n_pairs": 100,
+   "direct_delta": {
+    "mean": -7.95,
+    "std": 0.83
+   },
+   "total_delta": {
+    "mean": -28.3,
+    "std": 153.92,
+    "up": 10,
+    "down": 90,
+    "zero": 0
+   },
+   "per_cause": {
+    "flood": {
+     "baseline": 206.5,
+     "coupled": 198.55,
+     "delta": -7.95
+    },
+    "inter": {
+     "baseline": 940.5,
+     "coupled": 905.0,
+     "delta": -35.5
+    },
+    "intra_fuel": {
+     "baseline": 295.8,
+     "coupled": 310.62,
+     "delta": 14.82
+    },
+    "intra_power": {
+     "baseline": 0.0,
+     "coupled": 1.08,
+     "delta": 1.08
+    },
+    "intra_subway": {
+     "baseline": 34.77,
+     "coupled": 31.83,
+     "delta": -2.94
+    },
+    "intra_telecom": {
+     "baseline": 467.3,
+     "coupled": 469.74,
+     "delta": 2.44
+    },
+    "intra_water": {
+     "baseline": 28.91,
+     "coupled": 28.66,
+     "delta": -0.25
+    }
+   },
+   "per_type_t96_delta": {
+    "power": {
+     "mean": -5.29,
+     "std": 5.21,
+     "up": 7,
+     "down": 92
+    },
+    "telecom": {
+     "mean": -1.81,
+     "std": 93.19,
+     "up": 13,
+     "down": 86
+    },
+    "hospital": {
+     "mean": -0.6,
+     "std": 1.56,
+     "up": 5,
+     "down": 32
+    },
+    "subway": {
+     "mean": -21.05,
+     "std": 33.16,
+     "up": 16,
+     "down": 84
+    },
+    "water": {
+     "mean": -0.62,
+     "std": 2.14,
+     "up": 7,
+     "down": 36
+    },
+    "fuel": {
+     "mean": 1.07,
+     "std": 36.92,
+     "up": 2,
+     "down": 19
+    }
+   },
+   "power_movers_top15": [
+    {
+     "node": "power_hell_gate",
+     "base_seed": 0.98,
+     "coup_seed": 0.0,
+     "base_t96": 0.98,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_livonia_avenue",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.98,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_rockaway_beach",
+     "base_seed": 0.82,
+     "coup_seed": 0.0,
+     "base_t96": 0.82,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_farragut",
+     "base_seed": 0.99,
+     "coup_seed": 0.0,
+     "base_t96": 0.99,
+     "coup_t96": 0.2
+    },
+    {
+     "node": "power_plymouth",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.53,
+     "coup_t96": 0.24
+    },
+    {
+     "node": "power_water_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.53,
+     "coup_t96": 0.24
+    },
+    {
+     "node": "power_hudson_avenue",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.53,
+     "coup_t96": 0.24
+    },
+    {
+     "node": "power_cherry_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.5,
+     "coup_t96": 0.27
+    },
+    {
+     "node": "power_north_queens",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.19,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_east_astoria",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.19,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_bruckner",
+     "base_seed": 0.19,
+     "coup_seed": 0.0,
+     "base_t96": 0.19,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_west_astoria",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.19,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_unknown124169",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.19,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_centerville",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.97
+    },
+    {
+     "node": "power_howard_beach",
+     "base_seed": 1.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.97
+    }
+   ],
+   "power_mean_dead_t96": {
+    "baseline": 22.6,
+    "coupled": 17.31
+   }
+  },
+  "geoclaw_2050": {
+   "n_pairs": 100,
+   "direct_delta": {
+    "mean": -11.05,
+    "std": 1.28
+   },
+   "total_delta": {
+    "mean": 12.29,
+    "std": 336.56,
+    "up": 16,
+    "down": 84,
+    "zero": 0
+   },
+   "per_cause": {
+    "flood": {
+     "baseline": 295.78,
+     "coupled": 284.73,
+     "delta": -11.05
+    },
+    "inter": {
+     "baseline": 1125.95,
+     "coupled": 1049.17,
+     "delta": -76.78
+    },
+    "intra_fuel": {
+     "baseline": 242.31,
+     "coupled": 289.43,
+     "delta": 47.12
+    },
+    "intra_power": {
+     "baseline": 0.0,
+     "coupled": 4.69,
+     "delta": 4.69
+    },
+    "intra_subway": {
+     "baseline": 20.87,
+     "coupled": 23.38,
+     "delta": 2.51
+    },
+    "intra_telecom": {
+     "baseline": 467.74,
+     "coupled": 513.93,
+     "delta": 46.19
+    },
+    "intra_water": {
+     "baseline": 28.9,
+     "coupled": 28.51,
+     "delta": -0.39
+    }
+   },
+   "per_type_t96_delta": {
+    "power": {
+     "mean": -7.97,
+     "std": 9.39,
+     "up": 15,
+     "down": 85
+    },
+    "telecom": {
+     "mean": 31.0,
+     "std": 214.9,
+     "up": 17,
+     "down": 83
+    },
+    "hospital": {
+     "mean": -1.88,
+     "std": 2.48,
+     "up": 11,
+     "down": 68
+    },
+    "subway": {
+     "mean": -24.75,
+     "std": 34.45,
+     "up": 22,
+     "down": 78
+    },
+    "water": {
+     "mean": -1.64,
+     "std": 5.19,
+     "up": 17,
+     "down": 76
+    },
+    "fuel": {
+     "mean": 17.53,
+     "std": 87.62,
+     "up": 15,
+     "down": 74
+    }
+   },
+   "power_movers_top15": [
+    {
+     "node": "power_hell_gate",
+     "base_seed": 1.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_livonia_avenue",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.01
+    },
+    {
+     "node": "power_rockaway_beach",
+     "base_seed": 0.97,
+     "coup_seed": 0.0,
+     "base_t96": 0.97,
+     "coup_t96": 0.01
+    },
+    {
+     "node": "power_east_astoria",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.86,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_bruckner",
+     "base_seed": 0.73,
+     "coup_seed": 0.0,
+     "base_t96": 0.86,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_north_queens",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.86,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_west_astoria",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.86,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_unknown124169",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.86,
+     "coup_t96": 0.02
+    },
+    {
+     "node": "power_farragut",
+     "base_seed": 0.99,
+     "coup_seed": 0.0,
+     "base_t96": 0.99,
+     "coup_t96": 0.24
+    },
+    {
+     "node": "power_plymouth",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.91,
+     "coup_t96": 0.33
+    },
+    {
+     "node": "power_hudson_avenue",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.91,
+     "coup_t96": 0.33
+    },
+    {
+     "node": "power_water_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.91,
+     "coup_t96": 0.33
+    },
+    {
+     "node": "power_cherry_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.87,
+     "coup_t96": 0.31
+    },
+    {
+     "node": "power_east_64th_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.49,
+     "coup_t96": 0.25
+    },
+    {
+     "node": "power_avenue_n",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.54,
+     "coup_t96": 0.36
+    }
+   ],
+   "power_mean_dead_t96": {
+    "baseline": 33.37,
+    "coupled": 25.4
+   }
+  },
+  "geoclaw_2080": {
+   "n_pairs": 100,
+   "direct_delta": {
+    "mean": -15.9,
+    "std": 1.23
+   },
+   "total_delta": {
+    "mean": 49.81,
+    "std": 432.42,
+    "up": 22,
+    "down": 78,
+    "zero": 0
+   },
+   "per_cause": {
+    "flood": {
+     "baseline": 415.84,
+     "coupled": 399.94,
+     "delta": -15.9
+    },
+    "inter": {
+     "baseline": 1337.02,
+     "coupled": 1294.59,
+     "delta": -42.43
+    },
+    "intra_fuel": {
+     "baseline": 220.35,
+     "coupled": 278.2,
+     "delta": 57.85
+    },
+    "intra_power": {
+     "baseline": 0.0,
+     "coupled": 7.47,
+     "delta": 7.47
+    },
+    "intra_subway": {
+     "baseline": 6.19,
+     "coupled": 11.01,
+     "delta": 4.82
+    },
+    "intra_telecom": {
+     "baseline": 505.04,
+     "coupled": 541.5,
+     "delta": 36.46
+    },
+    "intra_water": {
+     "baseline": 25.35,
+     "coupled": 26.89,
+     "delta": 1.54
+    }
+   },
+   "per_type_t96_delta": {
+    "power": {
+     "mean": -3.71,
+     "std": 13.2,
+     "up": 21,
+     "down": 78
+    },
+    "telecom": {
+     "mean": 46.14,
+     "std": 270.35,
+     "up": 22,
+     "down": 78
+    },
+    "hospital": {
+     "mean": -1.5,
+     "std": 2.33,
+     "up": 10,
+     "down": 66
+    },
+    "subway": {
+     "mean": -32.52,
+     "std": 47.16,
+     "up": 16,
+     "down": 82
+    },
+    "water": {
+     "mean": 0.39,
+     "std": 9.7,
+     "up": 22,
+     "down": 77
+    },
+    "fuel": {
+     "mean": 41.01,
+     "std": 110.13,
+     "up": 22,
+     "down": 74
+    }
+   },
+   "power_movers_top15": [
+    {
+     "node": "power_rockaway_beach",
+     "base_seed": 0.99,
+     "coup_seed": 0.0,
+     "base_t96": 0.99,
+     "coup_t96": 0.02
+    },
+    {
+     "node": "power_livonia_avenue",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.21
+    },
+    {
+     "node": "power_farragut",
+     "base_seed": 1.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.27
+    },
+    {
+     "node": "power_vernon",
+     "base_seed": 0.72,
+     "coup_seed": 0.0,
+     "base_t96": 0.72,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_queensbridge",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.72,
+     "coup_t96": 0.03
+    },
+    {
+     "node": "power_plymouth",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.38
+    },
+    {
+     "node": "power_hudson_avenue",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.38
+    },
+    {
+     "node": "power_cherry_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.97,
+     "coup_t96": 0.35
+    },
+    {
+     "node": "power_water_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 1.0,
+     "coup_t96": 0.38
+    },
+    {
+     "node": "power_flushing",
+     "base_seed": 0.44,
+     "coup_seed": 0.0,
+     "base_t96": 0.44,
+     "coup_t96": 0.03
+    },
+    {
+     "node": "power_253rd_place",
+     "base_seed": 0.57,
+     "coup_seed": 0.0,
+     "base_t96": 0.91,
+     "coup_t96": 0.61
+    },
+    {
+     "node": "power_east_63rd_street",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.28,
+     "coup_t96": 0.0
+    },
+    {
+     "node": "power_causeway",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.26,
+     "coup_t96": 0.03
+    },
+    {
+     "node": "power_east_64th_street",
+     "base_seed": 0.04,
+     "coup_seed": 0.0,
+     "base_t96": 0.71,
+     "coup_t96": 0.48
+    },
+    {
+     "node": "power_avenue_n",
+     "base_seed": 0.0,
+     "coup_seed": 0.0,
+     "base_t96": 0.73,
+     "coup_t96": 0.5
+    }
+   ],
+   "power_mean_dead_t96": {
+    "baseline": 43.16,
+    "coupled": 39.45
+   }
+  }
+ }
+}
