@@ -132,3 +132,4 @@ data/export/
 data/simulation_*/
 data/gnn_checkpoints*/*.pt
 data/graph/*failover*.pt
+data/external/jesse_power/**/*.html

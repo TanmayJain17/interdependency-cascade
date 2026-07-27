@@ -1,0 +1,176 @@
+osi_node_id,osi_name,osi_asset_type,Rutgers_data,match_type,distance_m,ward_pp_bus_idx,ward_bus_name,n_times_failed,n_converged_runs,pct_failed
+S9,Clifton,substation,True,staten_island_override,10556.13,570,UNKNOWN129920,173,1000,17.3
+S36,Howland Hook,substation,True,staten_island_override,2939.04,570,UNKNOWN129920,173,1000,17.3
+S28,Westerleigh,substation,True,staten_island_override,5624.85,570,UNKNOWN129920,173,1000,17.3
+S25,Wadsworth,substation,True,staten_island_override,11045.71,570,UNKNOWN129920,173,1000,17.3
+S27,Naughton,substation,True,staten_island_override,9317.72,570,UNKNOWN129920,173,1000,17.3
+S22,New Brighton,substation,True,staten_island_override,9258.78,570,UNKNOWN129920,173,1000,17.3
+S24,Port Richmond,substation,True,staten_island_override,6074.75,570,UNKNOWN129920,173,1000,17.3
+S37,Seaside,substation,True,staten_island_override,10380.41,570,UNKNOWN129920,173,1000,17.3
+S92,Clove Lakes,substation,True,staten_island_override,6665.17,570,UNKNOWN129920,173,1000,17.3
+S114,Fresh Kills,substation,True,staten_island_override,3087.08,570,UNKNOWN129920,173,1000,17.3
+S106,Fox Hill,substation,True,staten_island_override,10059.51,570,UNKNOWN129920,173,1000,17.3
+S66,Dongan Hills,substation,True,staten_island_override,9893.84,570,UNKNOWN129920,173,1000,17.3
+S75,Willowbrook,substation,True,staten_island_override,4332.89,570,UNKNOWN129920,173,1000,17.3
+S82,Silver Lake,substation,True,staten_island_override,9431.82,570,UNKNOWN129920,173,1000,17.3
+S51,Odin,substation,True,staten_island_override,7863.25,570,UNKNOWN129920,173,1000,17.3
+P27,Pouch,plant,False,staten_island_override,10812.51,570,UNKNOWN129920,173,1000,17.3
+P62,Fox Hills Battery,plant,False,staten_island_override,10052.1,570,UNKNOWN129920,173,1000,17.3
+TR1,Tr1,transformer,False,staten_island_override,11033.77,570,UNKNOWN129920,173,1000,17.3
+TR2,Tr2,transformer,False,staten_island_override,11097.39,570,UNKNOWN129920,173,1000,17.3
+TR3,Tr3,transformer,False,staten_island_override,11063.9,570,UNKNOWN129920,173,1000,17.3
+S145,Unknown140881,substation,True,staten_island_override,3833.23,570,UNKNOWN129920,173,1000,17.3
+S141,Unknown129920,substation,True,staten_island_override,0.04,570,UNKNOWN129920,173,1000,17.3
+S147,Unknown140894,substation,True,staten_island_override,7971.34,570,UNKNOWN129920,173,1000,17.3
+S83,Woodrow,substation,True,staten_island_override,7096.29,570,UNKNOWN129920,173,1000,17.3
+TR4,Tr4,transformer,False,staten_island_override,11018.05,570,UNKNOWN129920,173,1000,17.3
+P36,Kinder Morgan Fordham,plant,False,staten_island_override,8889.11,570,UNKNOWN129920,173,1000,17.3
+P37,Arthur Kill Power Plant,plant,False,staten_island_override,2855.28,570,UNKNOWN129920,173,1000,17.3
+S108,Farragut,substation,True,coincident,0.04,1131,FARRAGUT,151,1000,15.1
+S76,Cherry Street,substation,True,nearest_neighbor,869.91,1131,FARRAGUT,151,1000,15.1
+S328,Farragut,substation,False,nearest_neighbor,100.68,1131,FARRAGUT,151,1000,15.1
+P13,Joseph J Seymour Power Project,plant,False,nearest_neighbor,291.05,1128,GOWANUS,94,1000,9.4
+P16,Narrows Gas Turbines Generating,plant,False,nearest_neighbor,2249.84,1128,GOWANUS,94,1000,9.4
+S77,East 64Th Street,substation,True,nearest_neighbor,8611.75,1128,GOWANUS,94,1000,9.4
+S118,Gowanus,substation,True,coincident,0.04,1128,GOWANUS,94,1000,9.4
+P34,P34,plant,False,nearest_neighbor,9194.96,1128,GOWANUS,94,1000,9.4
+S226,S226,substation,False,nearest_neighbor,2290.82,1128,GOWANUS,94,1000,9.4
+P29,Gowanus Power Plant,plant,False,nearest_neighbor,236.57,1128,GOWANUS,94,1000,9.4
+S61,Mill Avenue,substation,True,nearest_neighbor,9231.66,1128,GOWANUS,94,1000,9.4
+S159,Unknown124209,substation,True,nearest_neighbor,306.57,1128,GOWANUS,94,1000,9.4
+S14,East 83Rd Street,substation,True,nearest_neighbor,9268.62,1128,GOWANUS,94,1000,9.4
+S21,Bensonhurst,substation,True,nearest_neighbor,5034.38,1128,GOWANUS,94,1000,9.4
+S5,Avenue N,substation,True,nearest_neighbor,7811.88,1128,GOWANUS,94,1000,9.4
+S1,Greenwood,substation,True,nearest_neighbor,835.01,1128,GOWANUS,94,1000,9.4
+S184,S184,substation,False,nearest_neighbor,1893.29,78,EAST 13TH STREET,81,1000,8.1
+S32,East 36Th Street,substation,True,nearest_neighbor,1951.81,78,EAST 13TH STREET,81,1000,8.1
+S31,West 19Th Street,substation,True,nearest_neighbor,2447.31,78,EAST 13TH STREET,81,1000,8.1
+P3,Con Edison East River Generating,plant,False,nearest_neighbor,73.01,78,EAST 13TH STREET,81,1000,8.1
+P31,North 1St Power,plant,False,nearest_neighbor,1351.12,78,EAST 13TH STREET,81,1000,8.1
+S219,S219,substation,False,nearest_neighbor,1348.84,78,EAST 13TH STREET,81,1000,8.1
+S183,S183,substation,True,nearest_neighbor,44.53,78,EAST 13TH STREET,81,1000,8.1
+S307,11Th Street Conduit,substation,False,nearest_neighbor,2231.13,78,EAST 13TH STREET,81,1000,8.1
+S42,Water Street,substation,True,nearest_neighbor,50.27,1130,HUDSON AVENUE,48,1000,4.8
+S107,Hudson Avenue,substation,True,coincident,0.05,1130,HUDSON AVENUE,48,1000,4.8
+S50,Plymouth,substation,True,nearest_neighbor,144.38,1130,HUDSON AVENUE,48,1000,4.8
+P11,Brooklyn Navy Yard Cogeneration,plant,False,nearest_neighbor,676.12,1130,HUDSON AVENUE,48,1000,4.8
+S327,Farragut,substation,False,nearest_neighbor,96.01,1130,HUDSON AVENUE,48,1000,4.8
+P6,Astoria Energy Combined Cycle Plant,plant,False,nearest_neighbor,30.14,25,UNKNOWN124169,18,1000,1.8
+S162,Unknown124169,substation,True,coincident,0.05,25,UNKNOWN124169,18,1000,1.8
+S45,Chisholm,substation,True,nearest_neighbor,3990.77,25,UNKNOWN124169,18,1000,1.8
+S33,Cambria,substation,True,nearest_neighbor,3170.01,569,UNKNOWN129913,14,1000,1.4
+S34,Hillcrest,substation,True,nearest_neighbor,2897.31,627,JAMAICA,14,1000,1.4
+S43,Fresh Meadows,substation,True,nearest_neighbor,4689.37,627,JAMAICA,14,1000,1.4
+S232,S232,substation,False,nearest_neighbor,5924.64,569,UNKNOWN129913,14,1000,1.4
+S18,Corona,substation,True,coincident,0.04,600,CORONA,14,1000,1.4
+S23,Rockaway,substation,True,nearest_neighbor,2743.51,627,JAMAICA,14,1000,1.4
+S26,Cunningham,substation,True,nearest_neighbor,4070.13,627,JAMAICA,14,1000,1.4
+S16,Whitestone,substation,True,nearest_neighbor,6851.54,600,CORONA,14,1000,1.4
+S29,Linden,substation,True,nearest_neighbor,3075.47,569,UNKNOWN129913,14,1000,1.4
+S10,Springfield,substation,True,nearest_neighbor,1518.78,569,UNKNOWN129913,14,1000,1.4
+S3,Aqueduct,substation,True,nearest_neighbor,3263.26,627,JAMAICA,14,1000,1.4
+S2,Rosedale,substation,True,nearest_neighbor,1120.16,569,UNKNOWN129913,14,1000,1.4
+S11,151St Avenue,substation,True,nearest_neighbor,4997.1,627,JAMAICA,14,1000,1.4
+S13,Montefiore,substation,True,nearest_neighbor,1750.97,569,UNKNOWN129913,14,1000,1.4
+S15,146Th Avenue,substation,True,nearest_neighbor,985.93,569,UNKNOWN129913,14,1000,1.4
+S8,Jamaica,substation,True,coincident,0.05,627,JAMAICA,14,1000,1.4
+S47,Woodhaven,substation,True,nearest_neighbor,2743.45,627,JAMAICA,14,1000,1.4
+S41,Brinkerhoff,substation,True,nearest_neighbor,2245.43,627,JAMAICA,14,1000,1.4
+S44,Auburndale,substation,True,nearest_neighbor,6665.37,600,CORONA,14,1000,1.4
+S39,160Th Avenue,substation,True,nearest_neighbor,5519.89,627,JAMAICA,14,1000,1.4
+S151,Unknown135527,substation,True,nearest_neighbor,3252.71,627,JAMAICA,14,1000,1.4
+S60,Centerville,substation,True,nearest_neighbor,3327.66,627,JAMAICA,14,1000,1.4
+S62,Hollis,substation,True,nearest_neighbor,5042.3,569,UNKNOWN129913,14,1000,1.4
+S49,Livonia Avenue,substation,True,nearest_neighbor,7360.33,627,JAMAICA,14,1000,1.4
+S53,Causeway,substation,True,nearest_neighbor,4623.28,600,CORONA,14,1000,1.4
+S56,Sutphin,substation,True,nearest_neighbor,1923.58,627,JAMAICA,14,1000,1.4
+S74,Union,substation,True,nearest_neighbor,6037.9,627,JAMAICA,14,1000,1.4
+S87,Lefferts,substation,True,nearest_neighbor,2548.72,627,JAMAICA,14,1000,1.4
+S63,Brownsville,substation,True,nearest_neighbor,7878.94,627,JAMAICA,14,1000,1.4
+S52,Cedar Manor,substation,True,nearest_neighbor,2681.27,627,JAMAICA,14,1000,1.4
+S57,Flushing,substation,True,nearest_neighbor,3466.44,600,CORONA,14,1000,1.4
+S189,S189,substation,False,nearest_neighbor,1749.69,627,JAMAICA,14,1000,1.4
+S71,Howard Beach,substation,True,nearest_neighbor,4596.7,627,JAMAICA,14,1000,1.4
+S65,253Rd Place,substation,True,nearest_neighbor,1779.52,569,UNKNOWN129913,14,1000,1.4
+S299,S299,substation,False,nearest_neighbor,3804.57,600,CORONA,14,1000,1.4
+S12,Cedarhurst,substation,True,nearest_neighbor,1881.5,626,WOODMERE,12,1000,1.2
+S97,Woodmere,substation,True,coincident,0.04,626,WOODMERE,12,1000,1.2
+T3,Tap135492,tap,True,coincident,0.03,620,TAP135492,12,1000,1.2
+S163,Unknown129540,substation,True,nearest_neighbor,1996.29,626,WOODMERE,12,1000,1.2
+S223,S223,substation,False,nearest_neighbor,918.8,621,TAP135493,10,1000,1.0
+T2,Tap135491,tap,True,nearest_neighbor,573.67,621,TAP135493,10,1000,1.0
+S321,S321,substation,False,nearest_neighbor,159.0,622,FAR ROCKAWAY,10,1000,1.0
+T4,Tap135493,tap,True,coincident,0.05,621,TAP135493,10,1000,1.0
+P25,Jamaica Bay Peaking,plant,False,nearest_neighbor,173.75,622,FAR ROCKAWAY,10,1000,1.0
+S115,Hewlett,substation,True,coincident,0.02,623,HEWLETT,10,1000,1.0
+S111,Far Rockaway,substation,True,coincident,0.01,622,FAR ROCKAWAY,10,1000,1.0
+S48,Arverne,substation,True,nearest_neighbor,2792.63,622,FAR ROCKAWAY,10,1000,1.0
+P24,Bayswater Peaking Facility Llc,plant,False,nearest_neighbor,167.93,622,FAR ROCKAWAY,10,1000,1.0
+P26,P26,plant,False,nearest_neighbor,164.97,622,FAR ROCKAWAY,10,1000,1.0
+S208,S208,substation,False,nearest_neighbor,1718.7,623,HEWLETT,10,1000,1.0
+S79,Rockaway Beach,substation,True,nearest_neighbor,6953.46,622,FAR ROCKAWAY,10,1000,1.0
+S149,Unknown135537,substation,True,nearest_neighbor,278.48,623,HEWLETT,10,1000,1.0
+S88,Central Avenue,substation,True,nearest_neighbor,1892.01,621,TAP135493,10,1000,1.0
+P4,Vernon Boulevard Power Project,plant,False,nearest_neighbor,581.43,1132,VERNON,4,1000,0.4
+P5,Ravenswood Generating,plant,False,nearest_neighbor,238.54,1132,VERNON,4,1000,0.4
+S104,Vernon,substation,True,coincident,0.03,1132,VERNON,4,1000,0.4
+S59,East 63Rd Street,substation,True,nearest_neighbor,1298.67,1132,VERNON,4,1000,0.4
+S70,Queensbridge,substation,True,coincident,0.05,628,QUEENSBRIDGE,4,1000,0.4
+S136,East Astoria,substation,True,coincident,0.06,556,EAST ASTORIA,4,1000,0.4
+S84,Rainey,substation,True,coincident,0.02,1129,RAINEY,4,1000,0.4
+S35,East 75Th Street,substation,True,nearest_neighbor,853.38,1129,RAINEY,4,1000,0.4
+S7,Newtown,substation,True,nearest_neighbor,1581.26,628,QUEENSBRIDGE,4,1000,0.4
+S181,S181,substation,True,nearest_neighbor,10.52,555,WEST ASTORIA,4,1000,0.4
+S308,11Th Street Conduit,substation,False,nearest_neighbor,1595.49,1132,VERNON,4,1000,0.4
+S220,S220,substation,False,nearest_neighbor,606.42,1132,VERNON,4,1000,0.4
+S323,S323,substation,False,nearest_neighbor,7.84,1455,UNKNOWN172523,4,1000,0.4
+P20,New York Power Authority,plant,False,nearest_neighbor,243.5,555,WEST ASTORIA,4,1000,0.4
+P12,74Th Street Power Plant,plant,False,nearest_neighbor,818.79,1129,RAINEY,4,1000,0.4
+S325,S325,substation,False,nearest_neighbor,732.3,1133,LEONARD STREET,3,1000,0.3
+S322,S322,substation,False,nearest_neighbor,6.72,1456,UNKNOWN172524,3,1000,0.3
+S326,Port Morris Power,substation,False,nearest_neighbor,919.04,594,BRUCKNER,3,1000,0.3
+P33,Harlem River Yard Power,plant,False,nearest_neighbor,379.98,594,BRUCKNER,3,1000,0.3
+S221,S221,substation,False,nearest_neighbor,332.76,594,BRUCKNER,3,1000,0.3
+P19,Astoria Generating,plant,False,nearest_neighbor,82.78,1456,UNKNOWN172524,3,1000,0.3
+P32,Hell Gate Power,plant,False,nearest_neighbor,149.79,594,BRUCKNER,3,1000,0.3
+S19,Parkview,substation,True,nearest_neighbor,2354.75,594,BRUCKNER,3,1000,0.3
+S68,West 49Th Street,substation,True,coincident,0.01,1135,WEST 49TH STREET,3,1000,0.3
+S54,Hell Gate,substation,True,nearest_neighbor,95.72,594,BRUCKNER,3,1000,0.3
+S80,Leonard Street,substation,True,coincident,0.04,1133,LEONARD STREET,3,1000,0.3
+S113,Bruckner,substation,True,coincident,0.05,594,BRUCKNER,3,1000,0.3
+S129,West 65Th Street,substation,True,coincident,0.03,1134,WEST 65TH STREET,3,1000,0.3
+S124,Mott Haven,substation,True,nearest_neighbor,1074.78,594,BRUCKNER,3,1000,0.3
+S146,Unknown141001,substation,True,nearest_neighbor,635.7,1135,WEST 49TH STREET,3,1000,0.3
+S126,North Queens,substation,True,coincident,0.03,596,NORTH QUEENS,3,1000,0.3
+S186,S186,substation,False,nearest_neighbor,66.74,1135,WEST 49TH STREET,3,1000,0.3
+P10,West 59Th Street Generating,plant,False,nearest_neighbor,553.02,1134,WEST 65TH STREET,3,1000,0.3
+S187,Building 6,substation,False,nearest_neighbor,4110.74,594,BRUCKNER,3,1000,0.3
+S185,Murray Hill,substation,False,nearest_neighbor,2249.96,1135,WEST 49TH STREET,3,1000,0.3
+S188,Peck Slip,substation,False,nearest_neighbor,1263.02,1133,LEONARD STREET,3,1000,0.3
+S190,S190,substation,False,nearest_neighbor,1074.85,598,PARKCHESTER,1,1000,0.1
+S6,Parkway,substation,True,nearest_neighbor,5409.52,597,GREAT NECK,0,1000,0.0
+S4,Clearview,substation,True,nearest_neighbor,5227.66,597,GREAT NECK,0,1000,0.0
+S46,North Hills,substation,True,nearest_neighbor,4672.21,597,GREAT NECK,0,1000,0.0
+S40,Douglaston,substation,True,nearest_neighbor,3189.71,597,GREAT NECK,0,1000,0.0
+S38,Creedmoor,substation,True,nearest_neighbor,5765.74,560,UNKNOWN129558,0,1000,0.0
+S30,Cedar Street,substation,True,nearest_neighbor,7060.6,1499,DUNWOODIE,0,1000,0.0
+S20,Alley Park,substation,True,nearest_neighbor,6075.92,597,GREAT NECK,0,1000,0.0
+S55,Bayside,substation,True,nearest_neighbor,5326.84,597,GREAT NECK,0,1000,0.0
+S58,Floral Park,substation,True,nearest_neighbor,4331.85,560,UNKNOWN129558,0,1000,0.0
+S64,Floral Park,substation,True,nearest_neighbor,5092.84,560,UNKNOWN129558,0,1000,0.0
+S125,Lake Success,substation,True,nearest_neighbor,2964.81,560,UNKNOWN129558,0,1000,0.0
+S123,Tremont,substation,True,coincident,0.06,595,TREMONT,0,1000,0.0
+S101,Glen Oaks,substation,True,nearest_neighbor,4614.99,560,UNKNOWN129558,0,1000,0.0
+S100,Great Neck,substation,True,coincident,0.05,597,GREAT NECK,0,1000,0.0
+S72,East 179Th Street,substation,True,coincident,0.05,599,EAST 179TH STREET,0,1000,0.0
+S69,Academy,substation,True,nearest_neighbor,2473.35,599,EAST 179TH STREET,0,1000,0.0
+S67,Beechhurst,substation,True,nearest_neighbor,6318.53,597,GREAT NECK,0,1000,0.0
+S73,Oakland,substation,True,nearest_neighbor,5729.76,597,GREAT NECK,0,1000,0.0
+S207,Sherman Creek,substation,False,nearest_neighbor,2593.87,599,EAST 179TH STREET,0,1000,0.0
+S206,Washington Street,substation,False,nearest_neighbor,4271.08,1499,DUNWOODIE,0,1000,0.0
+S217,S217,substation,False,nearest_neighbor,4974.56,625,VALLEY STREAM,0,1000,0.0
+S192,East 179Th Street,substation,False,nearest_neighbor,74.12,599,EAST 179TH STREET,0,1000,0.0
+S236,Kings Point,substation,False,nearest_neighbor,3258.24,597,GREAT NECK,0,1000,0.0
+S233,S233,substation,False,nearest_neighbor,4985.69,560,UNKNOWN129558,0,1000,0.0
+P30,Riverbay Power,plant,False,nearest_neighbor,4469.97,595,TREMONT,0,1000,0.0
+P61,P61,plant,False,nearest_neighbor,1899.04,597,GREAT NECK,0,1000,0.0

@@ -1,0 +1,176 @@
+osi_node_id,osi_name,osi_state,osi_asset_type,osi_voltage_kv_max,osi_operator,osi_generator,Rutgers_data,osi_lat,osi_lon,match_type,distance_m,ward_pp_bus_idx,ward_bus_number,ward_bus_name,ward_bus_type,ward_tied_pp_bus_idxs
+S1,Greenwood,NY,substation,138,con edison,,True,40.65929113181749,-73.99378148,nearest_neighbor,835.01,1128,1129,GOWANUS,internal,1128;1527
+S2,Rosedale,NY,substation,27,con edison,,True,40.667987140273915,-73.73679467,nearest_neighbor,1120.16,569,570,UNKNOWN129913,internal,569
+S3,Aqueduct,NY,substation,27,con edison,,True,40.67020317970847,-73.82035326,nearest_neighbor,3263.26,627,628,JAMAICA,internal,627;1505
+S4,Clearview,NY,substation,27,con edison,,True,40.777060669297946,-73.78057744,nearest_neighbor,5227.66,597,598,GREAT NECK,internal,597
+S5,Avenue N,NY,substation,27,con edison,,True,40.618498128200386,-73.93035981,nearest_neighbor,7811.88,1128,1129,GOWANUS,internal,1128;1527
+S6,Parkway,NY,substation,27,con edison,,True,40.740315202003984,-73.7275565,nearest_neighbor,5409.52,597,598,GREAT NECK,internal,597
+S7,Newtown,NY,substation,138,con edison,,True,40.74298485396437,-73.93154858,nearest_neighbor,1581.26,628,629,QUEENSBRIDGE,internal,628
+S8,Jamaica,NY,substation,138,con edison,,True,40.69918522034024,-73.81390751,coincident,0.05,627,628,JAMAICA,internal,627;1505
+S9,Clifton,NY,substation,33,con edison,,True,40.619703729753816,-74.0714447,staten_island_override,10556.13,570,571,UNKNOWN129920,internal,570
+S10,Springfield,NY,substation,27,con edison,,True,40.67900468,-73.76087762,nearest_neighbor,1518.78,569,570,UNKNOWN129913,internal,569
+S11,151St Avenue,NY,substation,27,con edison,,True,40.66686019173748,-73.85505537,nearest_neighbor,4997.1,627,628,JAMAICA,internal,627;1505
+S12,Cedarhurst,NY,substation,69,long island power authority,,True,40.62027546476485,-73.72904784,nearest_neighbor,1881.5,626,627,WOODMERE,internal,626
+S13,Montefiore,NY,substation,27,con edison,,True,40.68385011968346,-73.75084528,nearest_neighbor,1750.97,569,570,UNKNOWN129913,internal,569
+S14,East 83Rd Street,NY,substation,27,con edison,,True,40.62886794970684,-73.90238142,nearest_neighbor,9268.62,1128,1129,GOWANUS,internal,1128;1527
+S15,146Th Avenue,NY,substation,27,con edison,,True,40.659924964009655,-73.75463203,nearest_neighbor,985.93,569,570,UNKNOWN129913,internal,569
+S16,Whitestone,NY,substation,27,con edison,,True,40.788769358779376,-73.81209837,nearest_neighbor,6851.54,600,601,CORONA,internal,600
+S18,Corona,NY,substation,138,con edison,,True,40.740210720251085,-73.86219632,coincident,0.04,600,601,CORONA,internal,600
+S19,Parkview,NY,substation,138,con edison,,True,40.80774607,-73.93655631,nearest_neighbor,2354.75,594,595,BRUCKNER,internal,594
+S20,Alley Park,NY,substation,27,con edison,,True,40.74372325415416,-73.76148466,nearest_neighbor,6075.92,597,598,GREAT NECK,internal,597
+S21,Bensonhurst,NY,substation,138,con edison,,True,40.62156961413464,-73.97592909,nearest_neighbor,5034.38,1128,1129,GOWANUS,internal,1128;1527
+S22,New Brighton,NY,substation,,con edison,,True,40.64513311277476,-74.09311899,staten_island_override,9258.78,570,571,UNKNOWN129920,internal,570
+S23,Rockaway,NY,substation,27,con edison,,True,40.67532842873355,-73.8054379,nearest_neighbor,2743.51,627,628,JAMAICA,internal,627;1505
+S24,Port Richmond,NY,substation,33,con edison,,True,40.63895900332974,-74.13038874,staten_island_override,6074.75,570,571,UNKNOWN129920,internal,570
+S25,Wadsworth,NY,substation,33,con edison,,True,40.60552066280219,-74.06649522,staten_island_override,11045.71,570,571,UNKNOWN129920,internal,570
+S26,Cunningham,NY,substation,27,con edison,,True,40.72795676120681,-73.78404695,nearest_neighbor,4070.13,627,628,JAMAICA,internal,627;1505
+S27,Naughton,NY,substation,33,con edison,,True,40.58481175772886,-74.09449118,staten_island_override,9317.72,570,571,UNKNOWN129920,internal,570
+S28,Westerleigh,NY,substation,33,con edison,,True,40.62794496394068,-74.13125165,staten_island_override,5624.85,570,571,UNKNOWN129920,internal,570
+S29,Linden,NY,substation,27,con edison,,True,40.69281629725786,-73.73363745,nearest_neighbor,3075.47,569,570,UNKNOWN129913,internal,569
+S30,Cedar Street,NY,substation,138,con edison,,True,40.91505478605755,-73.78033732,nearest_neighbor,7060.6,1499,1500,DUNWOODIE,boundary,1499;1500
+S31,West 19Th Street,NY,substation,69,con edison,,True,40.741239279869085,-73.9973319,nearest_neighbor,2447.31,78,79,EAST 13TH STREET,internal,78
+S32,East 36Th Street,NY,substation,138,con edison,,True,40.744947028795934,-73.97133635,nearest_neighbor,1951.81,78,79,EAST 13TH STREET,internal,78
+S33,Cambria,NY,substation,27,con edison,,True,40.69653368914646,-73.74675334,nearest_neighbor,3170.01,569,570,UNKNOWN129913,internal,569
+S34,Hillcrest,NY,substation,27,con edison,,True,40.72426097724348,-73.80440516,nearest_neighbor,2897.31,627,628,JAMAICA,internal,627;1505
+S35,East 75Th Street,NY,substation,138,con edison,,True,40.76843606495536,-73.95045862,nearest_neighbor,853.38,1129,1130,RAINEY,internal,1129;1528
+S36,Howland Hook,NY,substation,33,con edison,,True,40.64125525166748,-74.18220741,staten_island_override,2939.04,570,571,UNKNOWN129920,internal,570
+S37,Seaside,NY,substation,33,con edison,,True,40.582018505986845,-74.08242265,staten_island_override,10380.41,570,571,UNKNOWN129920,internal,570
+S38,Creedmoor,NY,substation,27,con edison,,True,40.73404071326817,-73.72519344,nearest_neighbor,5765.74,560,561,UNKNOWN129558,boundary,560
+S39,160Th Avenue,NY,substation,27,con edison,,True,40.656590155930715,-73.84759835,nearest_neighbor,5519.89,627,628,JAMAICA,internal,627;1505
+S40,Douglaston,NY,substation,27,con edison,,True,40.765242064668904,-73.74229739,nearest_neighbor,3189.71,597,598,GREAT NECK,internal,597
+S41,Brinkerhoff,NY,substation,27,con edison,,True,40.69466081108056,-73.78800704,nearest_neighbor,2245.43,627,628,JAMAICA,internal,627;1505
+S42,Water Street,NY,substation,138,con edison,,True,40.70337027186088,-73.98188321,nearest_neighbor,50.27,1130,1131,HUDSON AVENUE,internal,1130
+S43,Fresh Meadows,NY,substation,27,con edison,,True,40.73931470728924,-73.79658075,nearest_neighbor,4689.37,627,628,JAMAICA,internal,627;1505
+S44,Auburndale,NY,substation,27,con edison,,True,40.77652888380453,-73.79932326,nearest_neighbor,6665.37,600,601,CORONA,internal,600
+S45,Chisholm,NY,substation,27,con edison,,True,40.78420666488941,-73.85090958,nearest_neighbor,3990.77,25,26,UNKNOWN124169,internal,25;1467
+S46,North Hills,NY,substation,27,con edison,,True,40.74865482623261,-73.73738487,nearest_neighbor,4672.21,597,598,GREAT NECK,internal,597
+S47,Woodhaven,NY,substation,27,con edison,,True,40.68982619420145,-73.84395696,nearest_neighbor,2743.45,627,628,JAMAICA,internal,627;1505
+S48,Arverne,NY,substation,33,long island power authority,,True,40.59251137909414,-73.78324021,nearest_neighbor,2792.63,622,623,FAR ROCKAWAY,internal,622
+S49,Livonia Avenue,NY,substation,27,con edison,,True,40.6657308,-73.8890982,nearest_neighbor,7360.33,627,628,JAMAICA,internal,627;1505
+S50,Plymouth,NY,substation,138,con edison,,True,40.70398658710508,-73.98342898,nearest_neighbor,144.38,1130,1131,HUDSON AVENUE,internal,1130
+S51,Odin,NY,substation,33,con edison,,True,40.57583010209587,-74.12058159,staten_island_override,7863.25,570,571,UNKNOWN129920,internal,570
+S52,Cedar Manor,NY,substation,27,con edison,,True,40.688970232661454,-73.78515471,nearest_neighbor,2681.27,627,628,JAMAICA,internal,627;1505
+S53,Causeway,NY,substation,27,con edison,,True,40.77887284778197,-73.84184222,nearest_neighbor,4623.28,600,601,CORONA,internal,600
+S54,Hell Gate,NY,substation,138,con edison,,True,40.79911681397293,-73.90995204,nearest_neighbor,95.72,594,595,BRUCKNER,internal,594
+S55,Bayside,NY,substation,27,con edison,,True,40.75970038527506,-73.77080117,nearest_neighbor,5326.84,597,598,GREAT NECK,internal,597
+S56,Sutphin,NY,substation,27,con edison,,True,40.689023104682704,-73.79546982,nearest_neighbor,1923.58,627,628,JAMAICA,internal,627;1505
+S57,Flushing,NY,substation,27,con edison,,True,40.76432025604117,-73.83610451,nearest_neighbor,3466.44,600,601,CORONA,internal,600
+S58,Floral Park,NY,substation,27,con edison,,True,40.73733783,-73.70695173,nearest_neighbor,4331.85,560,561,UNKNOWN129558,boundary,560
+S59,East 63Rd Street,NY,substation,69,,,True,40.762890968198725,-73.96098641,nearest_neighbor,1298.67,1132,1133,VERNON,internal,1132
+S60,Centerville,NY,substation,27,con edison,,True,40.674595116692686,-73.8364252,nearest_neighbor,3327.66,627,628,JAMAICA,internal,627;1505
+S61,Mill Avenue,NY,substation,27,con edison,,True,40.61453716828362,-73.91334017,nearest_neighbor,9231.66,1128,1129,GOWANUS,internal,1128;1527
+S62,Hollis,NY,substation,27,,,True,40.71335921468527,-73.7548791,nearest_neighbor,5042.3,569,570,UNKNOWN129913,internal,569
+S63,Brownsville,NY,substation,138,con edison,,True,40.66966294129295,-73.8986889,nearest_neighbor,7878.94,627,628,JAMAICA,internal,627;1505
+S64,Floral Park,NY,substation,,long island power authority,,True,40.72530034310887,-73.70209398,nearest_neighbor,5092.84,560,561,UNKNOWN129558,boundary,560
+S65,253Rd Place,NY,substation,27,con edison,,True,40.65670489375756,-73.73522798,nearest_neighbor,1779.52,569,570,UNKNOWN129913,internal,569
+S66,Dongan Hills,NY,substation,33,con edison,,True,40.58883571,-74.08524994,staten_island_override,9893.84,570,571,UNKNOWN129920,internal,570
+S67,Beechhurst,NY,substation,27,con edison,,True,40.785512577684734,-73.79532695,nearest_neighbor,6318.53,597,598,GREAT NECK,internal,597
+S68,West 49Th Street,NY,substation,345,con edison,,True,40.766002939292036,-73.9958839,coincident,0.01,1135,1136,WEST 49TH STREET,internal,1135;1531
+S69,Academy,NY,substation,345,con edison,,True,40.86002009,-73.91914229,nearest_neighbor,2473.35,599,600,EAST 179TH STREET,internal,599
+S70,Queensbridge,NY,substation,138,con edison,,True,40.75629073625873,-73.93823055,coincident,0.05,628,629,QUEENSBRIDGE,internal,628
+S71,Howard Beach,NY,substation,27,con edison,,True,40.662861189316594,-73.84001439,nearest_neighbor,4596.7,627,628,JAMAICA,internal,627;1505
+S72,East 179Th Street,NY,substation,138,con edison,,True,40.849448517275796,-73.89331408,coincident,0.05,599,600,EAST 179TH STREET,internal,599
+S73,Oakland,NY,substation,27,con edison,,True,40.74790075524391,-73.76205683,nearest_neighbor,5729.76,597,598,GREAT NECK,internal,597
+S74,Union,NY,substation,27,con edison,,True,40.73350680419883,-73.75846061,nearest_neighbor,6037.9,627,628,JAMAICA,internal,627;1505
+S75,Willowbrook,NY,substation,138,con edison,,True,40.61077952377829,-74.14562505,staten_island_override,4332.89,570,571,UNKNOWN129920,internal,570
+S76,Cherry Street,NY,substation,69,con edison,,True,40.711369850307356,-73.99068594,nearest_neighbor,869.91,1131,1132,FARRAGUT,internal,1131;1529
+S77,East 64Th Street,NY,substation,27,con edison,,True,40.61974366514908,-73.91757725,nearest_neighbor,8611.75,1128,1129,GOWANUS,internal,1128;1527
+S79,Rockaway Beach,NY,substation,33,long island power authority,,True,40.58274806575856,-73.83380486,nearest_neighbor,6953.46,622,623,FAR ROCKAWAY,internal,622
+S80,Leonard Street,NY,substation,69,con edison,,True,40.71840475588082,-74.00649936,coincident,0.04,1133,1134,LEONARD STREET,internal,1133;1530
+S82,Silver Lake,NY,substation,33,con edison,,True,40.632144911162996,-74.08645759,staten_island_override,9431.82,570,571,UNKNOWN129920,internal,570
+S83,Woodrow,NY,substation,138,con edison,,True,40.554765425676294,-74.21525795,staten_island_override,7096.29,570,571,UNKNOWN129920,internal,570
+S84,Rainey,NY,substation,345,con edison,,True,40.76322512008952,-73.94302611,coincident,0.02,1129,1130,RAINEY,internal,1129;1528
+S87,Lefferts,NY,substation,27,con edison,,True,40.67657204365974,-73.81911655,nearest_neighbor,2548.72,627,628,JAMAICA,internal,627;1505
+S88,Central Avenue,NY,substation,33,long island power authority,,True,40.67709715487205,-73.70971227,nearest_neighbor,1892.01,621,622,TAP135493,internal,621
+S92,Clove Lakes,NY,substation,33,con edison,,True,40.613745032815125,-74.11751276,staten_island_override,6665.17,570,571,UNKNOWN129920,internal,570
+S97,Woodmere,NY,substation,,long island power authority,,True,40.63699681886745,-73.73267035,coincident,0.04,626,627,WOODMERE,internal,626
+S100,Great Neck,NY,substation,,long island power authority,,True,40.788750259217984,-73.72056851,coincident,0.05,597,598,GREAT NECK,internal,597
+S101,Glen Oaks,NY,substation,27,con edison,,True,40.743868730122614,-73.7171852,nearest_neighbor,4614.99,560,561,UNKNOWN129558,boundary,560
+S104,Vernon,NY,substation,138,con edison,,True,40.758135703201205,-73.94693,coincident,0.03,1132,1133,VERNON,internal,1132
+S106,Fox Hill,NY,substation,138,con edison,,True,40.61044414973186,-74.07758699,staten_island_override,10059.51,570,571,UNKNOWN129920,internal,570
+S107,Hudson Avenue,NY,substation,138,con edison,,True,40.70380855295966,-73.98173628,coincident,0.05,1130,1131,HUDSON AVENUE,internal,1130
+S108,Farragut,NY,substation,345,con edison,,True,40.705098648748674,-73.98451119,coincident,0.04,1131,1132,FARRAGUT,internal,1131;1529
+S111,Far Rockaway,NY,substation,69,long island power authority,,True,40.61045706329573,-73.7601131,coincident,0.01,622,623,FAR ROCKAWAY,internal,622
+S113,Bruckner,NY,substation,138,con edison,,True,40.79907046792145,-73.91108504,coincident,0.05,594,595,BRUCKNER,internal,594
+S114,Fresh Kills,NY,substation,345,con edison,,True,40.589217247942436,-74.19719854,staten_island_override,3087.08,570,571,UNKNOWN129920,internal,570
+S115,Hewlett,NY,substation,69,long island power authority,,True,40.637035146048376,-73.7060318,coincident,0.02,623,624,HEWLETT,internal,623
+S118,Gowanus,NY,substation,345,con edison,,True,40.661951725698465,-74.0030203,coincident,0.04,1128,1129,GOWANUS,internal,1128;1527
+S123,Tremont,NY,substation,345,con edison,,True,40.84268252070151,-73.86333756,coincident,0.06,595,596,TREMONT,internal,595;1502
+S124,Mott Haven,NY,substation,345,con edison,,True,40.80801790504809,-73.9062209,nearest_neighbor,1074.78,594,595,BRUCKNER,internal,594
+S125,Lake Success,NY,substation,,,,True,40.75322673409478,-73.70145528,nearest_neighbor,2964.81,560,561,UNKNOWN129558,boundary,560
+S126,North Queens,NY,substation,138,con edison,,True,40.78203031,-73.90642004,coincident,0.03,596,597,NORTH QUEENS,internal,596
+S129,West 65Th Street,NY,substation,138,con edison,,True,40.77583801432321,-73.9880883,coincident,0.03,1134,1135,WEST 65TH STREET,internal,1134
+S136,East Astoria,NY,substation,345,new york power authority,,True,40.78383449614344,-73.90340388,coincident,0.06,556,557,EAST ASTORIA,internal,556;1492
+S141,Unknown129920,NY,substation,345,con edison,,True,40.617016338092036,-74.19618602,staten_island_override,0.04,570,571,UNKNOWN129920,internal,570
+S145,Unknown140881,NY,substation,33,con edison,,True,40.625811169032794,-74.15236306,staten_island_override,3833.23,570,571,UNKNOWN129920,internal,570
+S146,Unknown141001,NY,substation,,,,True,40.76869228590108,-73.98923462,nearest_neighbor,635.7,1135,1136,WEST 49TH STREET,internal,1135;1531
+S147,Unknown140894,NY,substation,33,con edison,,True,40.64485272130389,-74.10930363,staten_island_override,7971.34,570,571,UNKNOWN129920,internal,570
+S149,Unknown135537,NY,substation,,,,True,40.638353664976464,-73.70323095,nearest_neighbor,278.48,623,624,HEWLETT,internal,623
+S151,Unknown135527,NY,substation,27,con edison,,True,40.675856952105704,-73.7906206,nearest_neighbor,3252.71,627,628,JAMAICA,internal,627;1505
+S159,Unknown124209,NY,substation,,,TRUE,True,40.662756541025665,-73.99955078,nearest_neighbor,306.57,1128,1129,GOWANUS,internal,1128;1527
+S162,Unknown124169,NY,substation,,,TRUE,True,40.78178567889918,-73.89809361,coincident,0.05,25,26,UNKNOWN124169,internal,25;1467
+S163,Unknown129540,NY,substation,,,,True,40.61906673283455,-73.73088716,nearest_neighbor,1996.29,626,627,WOODMERE,internal,626
+T2,Tap135491,NY,tap,,,,True,40.66288109232316,-73.7086018,nearest_neighbor,573.67,621,622,TAP135493,internal,621
+T3,Tap135492,NY,tap,,,,True,40.63748275727461,-73.73301801,coincident,0.03,620,621,TAP135492,internal,620
+T4,Tap135493,NY,tap,,,,True,40.66102542,-73.70226896,coincident,0.05,621,622,TAP135493,internal,621
+S181,S181,NY,substation,138,,,True,40.787735012419006,-73.90920131,nearest_neighbor,10.52,555,556,WEST ASTORIA,internal,555
+P3,Con Edison East River Generating,NY,plant,,con edison,TRUE,False,40.72771197696301,-73.97378622,nearest_neighbor,73.01,78,79,EAST 13TH STREET,internal,78
+P4,Vernon Boulevard Power Project,NY,plant,,new york power authority,TRUE,False,40.753795929644724,-73.95078504,nearest_neighbor,581.43,1132,1133,VERNON,internal,1132
+P5,Ravenswood Generating,NY,plant,,ls power helix ravenswood llc,TRUE,False,40.75999525011152,-73.94551353,nearest_neighbor,238.54,1132,1133,VERNON,internal,1132
+P6,Astoria Energy Combined Cycle Plant,NY,plant,,astoria energy,TRUE,False,40.78164720408721,-73.897787,nearest_neighbor,30.14,25,26,UNKNOWN124169,internal,25;1467
+S183,S183,NY,substation,69,con edison,,True,40.72734151214316,-73.9741669,nearest_neighbor,44.53,78,79,EAST 13TH STREET,internal,78
+S184,S184,NY,substation,,con edison,,False,40.74331762,-73.9831465,nearest_neighbor,1893.29,78,79,EAST 13TH STREET,internal,78
+S185,Murray Hill,NY,substation,,con edison,,False,40.74678467,-73.98742098,nearest_neighbor,2249.96,1135,1136,WEST 49TH STREET,internal,1135;1531
+S186,S186,NY,substation,138,,,False,40.76571025970958,-73.99519336,nearest_neighbor,66.74,1135,1136,WEST 49TH STREET,internal,1135;1531
+P10,West 59Th Street Generating,NY,plant,,con edison,TRUE,False,40.771898158539436,-73.9920979,nearest_neighbor,553.02,1134,1135,WEST 65TH STREET,internal,1134
+S187,Building 6,NY,substation,,,,False,40.83061510003243,-73.9366069,nearest_neighbor,4110.74,594,595,BRUCKNER,internal,594
+S188,Peck Slip,NY,substation,,con edison,,False,40.707893148324494,-74.00077962,nearest_neighbor,1263.02,1133,1134,LEONARD STREET,internal,1133;1530
+P11,Brooklyn Navy Yard Cogeneration,NY,plant,,brooklyn navy yard cogen plp,TRUE,False,40.69930668884629,-73.97634671,nearest_neighbor,676.12,1130,1131,HUDSON AVENUE,internal,1130
+S189,S189,NY,substation,,,,False,40.68472076273103,-73.80568451,nearest_neighbor,1749.69,627,628,JAMAICA,internal,627;1505
+S190,S190,NY,substation,,wcs,,False,40.84222395,-73.87611667,nearest_neighbor,1074.85,598,599,PARKCHESTER,internal,598
+P12,74Th Street Power Plant,NY,plant,,con edison,TRUE,False,40.76772008493592,-73.95071673,nearest_neighbor,818.79,1129,1130,RAINEY,internal,1129;1528
+P13,Joseph J Seymour Power Project,NY,plant,,new york power authority,TRUE,False,40.663023156569366,-73.99987752,nearest_neighbor,291.05,1128,1129,GOWANUS,internal,1128;1527
+S192,East 179Th Street,NY,substation,138,con edison,,False,40.84962337310494,-73.89416268,nearest_neighbor,74.12,599,600,EAST 179TH STREET,internal,599
+P16,Narrows Gas Turbines Generating,NY,plant,,u s power generating company llc,TRUE,False,40.65103325318699,-74.02543919,nearest_neighbor,2249.84,1128,1129,GOWANUS,internal,1128;1527
+P19,Astoria Generating,NY,plant,,u s power generating company llc,TRUE,False,40.787202427335835,-73.91307502,nearest_neighbor,82.78,1456,1457,UNKNOWN172524,internal,1456
+P20,New York Power Authority,NY,plant,,new york power authority,,False,40.78924667723295,-73.90727612,nearest_neighbor,243.5,555,556,WEST ASTORIA,internal,555
+S206,Washington Street,NY,substation,138,con edison,,False,40.90960363314539,-73.82669759,nearest_neighbor,4271.08,1499,1500,DUNWOODIE,boundary,1499;1500
+S207,Sherman Creek,NY,substation,,con edison,,False,40.86059039951963,-73.92036163,nearest_neighbor,2593.87,599,600,EAST 179TH STREET,internal,599
+S208,S208,NY,substation,,,,False,40.62493435006492,-73.7187063,nearest_neighbor,1718.7,623,624,HEWLETT,internal,623
+S217,S217,NY,substation,,,,False,40.70615275697036,-73.71069697,nearest_neighbor,4974.56,625,626,VALLEY STREAM,boundary,625
+P24,Bayswater Peaking Facility Llc,NY,plant,,bayswater peaking facility llc,TRUE,False,40.61123576519164,-73.76181461,nearest_neighbor,167.93,622,623,FAR ROCKAWAY,internal,622
+P25,Jamaica Bay Peaking,NY,plant,,jamaica bay peaking facility llc,TRUE,False,40.61003735216043,-73.76209142,nearest_neighbor,173.75,622,623,FAR ROCKAWAY,internal,622
+P26,P26,NY,plant,,,,False,40.61068864,-73.76203897,nearest_neighbor,164.97,622,623,FAR ROCKAWAY,internal,622
+P27,Pouch,NY,plant,,new york power authority,,False,40.618223993240434,-74.0683753,staten_island_override,10812.51,570,571,UNKNOWN129920,internal,570
+P29,Gowanus Power Plant,NY,plant,,u s power generating company llc,TRUE,False,40.663321117284916,-74.00516454,nearest_neighbor,236.57,1128,1129,GOWANUS,internal,1128;1527
+P30,Riverbay Power,NY,plant,,riverbay corp,TRUE,False,40.87009361989349,-73.82449573,nearest_neighbor,4469.97,595,596,TREMONT,internal,595;1502
+S219,S219,NY,substation,,,TRUE,False,40.71726551222387,-73.96610598,nearest_neighbor,1348.84,78,79,EAST 13TH STREET,internal,78
+P31,North 1St Power,NY,plant,,new york power authority,TRUE,False,40.71707065912854,-73.96647348,nearest_neighbor,1351.12,78,79,EAST 13TH STREET,internal,78
+S220,S220,NY,substation,,,TRUE,False,40.753877268877496,-73.95142861,nearest_neighbor,606.42,1132,1133,VERNON,internal,1132
+P32,Hell Gate Power,NY,plant,,new york power authority,TRUE,False,40.79896955554103,-73.9093144,nearest_neighbor,149.79,594,595,BRUCKNER,internal,594
+S221,S221,NY,substation,,,TRUE,False,40.79911516170343,-73.91502881,nearest_neighbor,332.76,594,595,BRUCKNER,internal,594
+P33,Harlem River Yard Power,NY,plant,,new york power authority,TRUE,False,40.79910623147467,-73.91558874,nearest_neighbor,379.98,594,595,BRUCKNER,internal,594
+P34,P34,NY,plant,,,,False,40.58214100947085,-73.97394702,nearest_neighbor,9194.96,1128,1129,GOWANUS,internal,1128;1527
+S223,S223,NY,substation,,,,False,40.662230748551906,-73.71302094,nearest_neighbor,918.8,621,622,TAP135493,internal,621
+P36,Kinder Morgan Fordham,NY,plant,,entersolar,,False,40.543317438570526,-74.23726145,staten_island_override,8889.11,570,571,UNKNOWN129920,internal,570
+S226,S226,NY,substation,,,,False,40.68072056013765,-74.01428529,nearest_neighbor,2290.82,1128,1129,GOWANUS,internal,1128;1527
+P37,Arthur Kill Power Plant,NY,plant,,nrg arthur kill operations inc,,False,40.59147721166921,-74.20019972,staten_island_override,2855.28,570,571,UNKNOWN129920,internal,570
+S232,S232,NY,substation,,,,False,40.71834760139113,-73.72646587,nearest_neighbor,5924.64,569,570,UNKNOWN129913,internal,569
+S233,S233,NY,substation,,,,False,40.72629406,-73.70177208,nearest_neighbor,4985.69,560,561,UNKNOWN129558,boundary,560
+S236,Kings Point,NY,substation,,long island power authority,,False,40.814304027790534,-73.73956121,nearest_neighbor,3258.24,597,598,GREAT NECK,internal,597
+S299,S299,NY,substation,,,,False,40.73829991042802,-73.81721075,nearest_neighbor,3804.57,600,601,CORONA,internal,600
+S307,11Th Street Conduit,NY,substation,,con edison,,False,40.73841566416845,-73.95240111,nearest_neighbor,2231.13,78,79,EAST 13TH STREET,internal,78
+S308,11Th Street Conduit,NY,substation,,con edison,,False,40.74406162076407,-73.95075449,nearest_neighbor,1595.49,1132,1133,VERNON,internal,1132
+P61,P61,NY,plant,,,,False,40.781040837191355,-73.70048013,nearest_neighbor,1899.04,597,598,GREAT NECK,internal,597
+P62,Fox Hills Battery,NY,plant,,con edison,TRUE,False,40.609485614381086,-74.07777384,staten_island_override,10052.1,570,571,UNKNOWN129920,internal,570
+S321,S321,NY,substation,,,TRUE,False,40.61077383,-73.76194574,nearest_neighbor,159.0,622,623,FAR ROCKAWAY,internal,622
+S322,S322,NY,substation,,,TRUE,False,40.78651509218505,-73.91261531,nearest_neighbor,6.72,1456,1457,UNKNOWN172524,internal,1456
+S323,S323,NY,substation,,,TRUE,False,40.786267404857945,-73.9129401,nearest_neighbor,7.84,1455,1456,UNKNOWN172523,internal,1455
+S325,S325,NY,substation,138,con edison,,False,40.71347781329761,-74.01226322,nearest_neighbor,732.3,1133,1134,LEONARD STREET,internal,1133;1530
+S326,Port Morris Power,NY,substation,,,TRUE,False,40.8045454,-73.9029142,nearest_neighbor,919.04,594,595,BRUCKNER,internal,594
+TR1,Tr1,NY,transformer,,,,False,40.5214905,-74.2322089,staten_island_override,11033.77,570,571,UNKNOWN129920,internal,570
+TR2,Tr2,NY,transformer,,,,False,40.52097359999999,-74.2325707,staten_island_override,11097.39,570,571,UNKNOWN129920,internal,570
+TR3,Tr3,NY,transformer,,,,False,40.5209604,-74.2310561,staten_island_override,11063.9,570,571,UNKNOWN129920,internal,570
+TR4,Tr4,NY,transformer,,,,False,40.521462500000005,-74.2314009,staten_island_override,11018.05,570,571,UNKNOWN129920,internal,570
+S327,Farragut,NY,substation,345,con edison,,False,40.70429620022398,-73.9826749,nearest_neighbor,96.01,1130,1131,HUDSON AVENUE,internal,1130
+S328,Farragut,NY,substation,345,con edison,,False,40.70419752086302,-73.98438029,nearest_neighbor,100.68,1131,1132,FARRAGUT,internal,1131;1529
