@@ -9,8 +9,11 @@
 #              failover adjacency + local load redistribution with disaster
 #              demand surge m(t). No stored within-type edges needed —
 #              see src/simulation/intra_telecom.py.
-# power is Jesse's (pandapower). Telecom/fuel failures are ALSO reached by the
-# inter-cascade; this models the distinct WITHIN-network peer/supply spread.
+# power intra is Jesse's pandapower library, consumed via the RUNNER-level
+# power_coupling block below (not a closure in the networks loop: his state is
+# a function of the MC run index, not of the current dead set).
+# Telecom/fuel failures are ALSO reached by the inter-cascade; this models the
+# distinct WITHIN-network peer/supply spread.
 #
 # alpha = Motter-Lai tolerance (slack): capacity = (1+alpha)*initial_load.
 # Smaller alpha -> less slack -> bigger cascade. The sensitivity knob, swept
@@ -20,6 +23,28 @@
 graph_path: data/flood/nyc_infra_graph_all_flood.graphml
 fragility_fire_threshold: 0.5    # P(fail) at which a flooded node is an initial failure
 alpha_sweep: [0.1, 0.2, 0.4]     # overload-mode sensitivity sweep (the Dr. Lin plot)
+
+# ---------------------------------------------------------------------------
+# Week 19 — Jesse intra-power coupling (empirical resampler, intra_power.py)
+# ADVISOR-GATED: enabled stays false until the Miura/Lin sign-off. When true:
+#   * power nodes joined to Jesse's OSI set (name + coordinate disambiguation,
+#     500 m spatial fallback) SKIP legacy HAZUS seeding for scenarios present
+#     in his library (currently gc_2026/2050/2080; dep_extreme_2080 pending
+#     his rerun on the fixed raster);
+#   * our MC run i receives Jesse run (i mod 1000)'s final out-of-service
+#     state at the t=6 floor, cause 'intra_power' (replace-not-union — his
+#     state already contains the flood);
+#   * inter-layer dependency edges INTO power remain live at every timestep;
+#   * uncovered nodes (81 NJ / out-of-footprint) keep legacy behavior.
+# Validation: validate_intra_power.py reproduces his pct_failed exactly on
+# 172/175 OSI nodes; name-level decode is conservative only on the 3
+# FARRAGUT-bus nodes (+9.8/+11.2/+12.3pp) until final_bus_oos_idx ships.
+# tied_rule matched == any_tied on the current library (empirically moot).
+# ---------------------------------------------------------------------------
+power_coupling:
+  enabled: false
+  jesse_dir: data/external/jesse_power
+  tied_rule: matched
 
 networks:
   subway:

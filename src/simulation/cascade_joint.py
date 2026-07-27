@@ -21,6 +21,15 @@ parameters. Motter-Lai capacity = (1+alpha) * pristine load, computed ONCE
 redistributes per closure. Subway closures are memoized by frozen dead set —
 deterministic given the dead set — for MC tractability.
 
+Week 19: `scheduled_failures` hook — precomputed-mechanism failures injected
+when their time arrives. Used by the power coupling: Jesse's sampled final
+grid state lands at the t=6 floor with cause 'intra_power' (his library
+already contains flood seeding + intra-power cascade, so covered nodes skip
+HAZUS seeding upstream in the runner — replace, not union). Floor semantics:
+a scheduled node already dead earlier keeps its earlier fail_time/cause, and
+scheduled nodes remain reachable by inter/intra kills like any other node
+(inter-layer edges INTO power stay live).
+
 Output schema is a superset of cascade_sim.simulate_cascade: same per-timestep
 lists, plus per-node fail_time and cause ('flood'|'inter'|'intra_overload'|
 'intra_flow').
@@ -154,8 +163,17 @@ def intra_closure(dead: set, ctx: dict, t: float = 0.0) -> dict:
 # --------------------------------------------------------------------------- #
 
 def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict,
-                           time_steps=None):
+                           time_steps=None, scheduled_failures=None):
     """Joint inter+intra propagation on one shared dead-node set.
+
+    scheduled_failures : optional {node_id: (hours, cause)} — failures from a
+        precomputed mechanism, injected once their time arrives (before the
+        inter/intra fixed point at each timestep). Power coupling passes
+        Jesse's sampled dead set as {nid: (6.0, 'intra_power')}. A node
+        already dead earlier keeps its earlier fail_time/cause (floor, not
+        exclusive ownership); fail_time records the SCHEDULED hour, so
+        downstream buffer arithmetic is exact even if the first evaluated
+        timestep is later.
 
     Returns (results, fail_time, cause):
       results   : {"t0": [...], "t6": [...], ...} cumulative failed-node lists
@@ -164,6 +182,8 @@ def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict
     """
     if time_steps is None:
         time_steps = [0, 6, 24, 48, 96]
+    if scheduled_failures is None:
+        scheduled_failures = {}
 
     incoming = {}
     for u, v, data in get_cascade_edges(G):
@@ -179,6 +199,11 @@ def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict
     for t in time_steps:
         if t == 0:
             continue
+        # scheduled precomputed-mechanism failures land first at their hour
+        for nid, (t_sched, c) in scheduled_failures.items():
+            if t_sched <= t and nid not in fail_time and nid in G:
+                fail_time[nid] = float(t_sched)
+                cause[nid] = c
         while True:
             # (a) inter relaxation to fixed point at time t
             changed = True

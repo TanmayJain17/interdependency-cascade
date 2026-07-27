@@ -49,6 +49,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from fragility import sample_initial_failures
 from cascade_sim import load_graph, get_cascade_edges, simulate_cascade
+from intra_power import load_power_library, build_power_join, sample_power_state
+import yaml
 from src.cascade.stochastic_buffer import (
     load_buffer_config,
     sample_stochastic_graph,
@@ -94,6 +96,30 @@ AMP_FREQ_THRESHOLD = 0.50     # node is "amplifier" if it fails in >50% of runs
 FRAGILITY_SEED = 42
 BUFFER_SEED = 43
 
+INTRA_CONFIG = Path("config/intra_cascade.yaml")
+
+
+def load_power_coupling():
+    """Jesse intra-power coupling (Week 19). Gated by
+    config/intra_cascade.yaml -> power_coupling.enabled (default OFF).
+    When enabled: covered power nodes skip HAZUS seeding and receive
+    Jesse's index-paired sampled grid state at the t=6 floor with cause
+    'intra_power' (replace-not-union; inter-layer edges into power stay
+    live). Scenarios absent from his library fall back to legacy."""
+    with open(INTRA_CONFIG) as f:
+        cfg = yaml.safe_load(f) or {}
+    pc = cfg.get("power_coupling") or {}
+    if not pc.get("enabled", False):
+        print("  [power-coupling] disabled (legacy HAZUS power seeding)")
+        return None
+    lib = load_power_library(pc.get("jesse_dir", "data/external/jesse_power"))
+    join = build_power_join(str(NODES_IN), lib)
+    tied = pc.get("tied_rule", "matched")
+    print(f"  [power-coupling] ENABLED: {len(join)} power nodes covered by "
+          f"Jesse's library, scenarios={sorted(lib.scenarios)}, "
+          f"tied_rule={tied}")
+    return {"lib": lib, "join": join, "tied_rule": tied}
+
 
 # -----------------------------------------------------------------------------
 # Scenario preparation
@@ -134,7 +160,7 @@ def prepare_scenario_nodes(nodes_gdf, scenario_name, out_path):
 # Per-scenario run (with inline stochastic-buffer MC loop)
 # -----------------------------------------------------------------------------
 
-def run_scenario(scenario_name, nodes_gdf, buffer_config):
+def run_scenario(scenario_name, nodes_gdf, buffer_config, power_coupling=None):
     """Run fragility + stochastic-buffer cascade for one DEP scenario.
     Returns (mc_scenarios, cascade_results)."""
     print(f"\n{'=' * 75}")
@@ -196,6 +222,24 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config):
         # 'initial_failures' depending on your fragility.py version
         initial_failures = set(scenario.get("failed_nodes",
                                             scenario.get("initial_failures", [])))
+
+        # Week 19 power coupling: Jesse's library replaces flood seeding +
+        # intra-power cascade for covered nodes (his final state already
+        # contains the flood). Dead set lands at the t=6 floor, cause
+        # 'intra_power'; uncovered (NJ / out-of-footprint) nodes keep legacy.
+        scheduled = None
+        if power_coupling is not None and \
+                scenario_name in power_coupling["lib"].scenarios:
+            st = sample_power_state(power_coupling["lib"], power_coupling["join"],
+                                    scenario_name, run_id,
+                                    tied_rule=power_coupling["tied_rule"])
+            initial_failures -= st.covered_nodes          # replace, not union
+            scheduled = {nid: (6.0, "intra_power") for nid in st.dead_nodes}
+            if run_id == 0:
+                print(f"  [power-coupling] {scenario_name}: "
+                      f"{len(st.covered_nodes)} covered nodes skip HAZUS "
+                      f"seeding; Jesse run {st.jesse_run_idx} kills "
+                      f"{len(st.dead_nodes)} at the t=6 floor")
         """ cascade = simulate_cascade(G_stoch, initial_failures, time_steps=TIME_STEPS)
 
         # Per-node first-failure timestep (compact form for GNN labels):
@@ -208,7 +252,8 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config):
                     fail_time_per_node[nid] = t_int """
                     
         cascade, fail_time, cause = simulate_cascade_joint(
-            G_stoch, initial_failures, intra_ctx, time_steps=TIME_STEPS)
+            G_stoch, initial_failures, intra_ctx, time_steps=TIME_STEPS,
+            scheduled_failures=scheduled)
 
         fail_time_per_node = {nid: int(t) for nid, t in fail_time.items()}
         cause_counts = dict(Counter(cause.values()))
@@ -484,9 +529,13 @@ def main():
     nodes_gdf = gpd.read_file(NODES_IN)
     print(f"Loaded {len(nodes_gdf):,} nodes from {NODES_IN}")
 
+    # Week 19: Jesse intra-power coupling (config-gated, default OFF)
+    power_coupling = load_power_coupling()
+
     all_results = {}
     for scenario in SCENARIOS:
-        mc, cascade = run_scenario(scenario, nodes_gdf, buffer_config)
+        mc, cascade = run_scenario(scenario, nodes_gdf, buffer_config,
+                                   power_coupling=power_coupling)
         all_results[scenario] = (mc, cascade)
 
     comparison = summarize(all_results, nodes_gdf)
