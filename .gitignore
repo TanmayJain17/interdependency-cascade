@@ -130,3 +130,5 @@ data/export/
 # so archives live on disk only (data/simulation/ itself stays tracked)
 # ============================================================
 data/simulation_*/
+data/gnn_checkpoints*/*.pt
+data/graph/*failover*.pt
