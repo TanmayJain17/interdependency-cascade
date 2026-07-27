@@ -1,0 +1,3928 @@
+{
+ "join_tiers": {
+  "unmatched": 81,
+  "name": 112,
+  "spatial": 6,
+  "ward_name": 4
+ },
+ "join": {
+  "power_tap140970": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 7695.3
+  },
+  "power_tap135491": {
+   "tier": "name",
+   "osi_slug": "tap135491",
+   "distance_m": null
+  },
+  "power_tap135492": {
+   "tier": "name",
+   "osi_slug": "tap135492",
+   "distance_m": null
+  },
+  "power_tap135493": {
+   "tier": "name",
+   "osi_slug": "tap135493",
+   "distance_m": null
+  },
+  "power_unknown162554": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 11882.7
+  },
+  "power_bergen": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 6732.0
+  },
+  "power_unknown132952": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 7460.3
+  },
+  "power_unknown132953": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 7214.3
+  },
+  "power_maywood": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 13341.3
+  },
+  "power_leonia": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 6048.2
+  },
+  "power_kingsland": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10601.9
+  },
+  "power_hvdc_b2b_station_hudson": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 6392.9
+  },
+  "power_saddle_brook": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 15284.1
+  },
+  "power_essex": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9647.6
+  },
+  "power_newark_switching_station": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10215.7
+  },
+  "power_federal_square": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9508.9
+  },
+  "power_marion_drive": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 17942.5
+  },
+  "power_west_orange": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 17698.7
+  },
+  "power_cedar_grove": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 22081.7
+  },
+  "power_cook_road": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 16182.2
+  },
+  "power_belleville": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 12971.8
+  },
+  "power_unknown132357": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 5001.8
+  },
+  "power_unknown132362": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 4139.2
+  },
+  "power_marion": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 6085.7
+  },
+  "power_unknown132951": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 6143.0
+  },
+  "power_bayonne_switching_station": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 5498.4
+  },
+  "power_turnpike": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10223.0
+  },
+  "power_unknown140971": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3564.9
+  },
+  "power_kearny": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 7766.9
+  },
+  "power_njt_meadowlands_rail_substaion": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 8412.3
+  },
+  "power_penhorn": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 6463.2
+  },
+  "power_homestead": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 4154.4
+  },
+  "power_north_bergen": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 4463.9
+  },
+  "power_sewaren": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 1759.5
+  },
+  "power_unknown140874": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 2319.7
+  },
+  "power_minue_street": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3187.4
+  },
+  "power_athenia_switching_station": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 17157.8
+  },
+  "power_clifton": {
+   "tier": "name",
+   "osi_slug": "clifton",
+   "distance_m": null
+  },
+  "power_jackson_road": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 26035.3
+  },
+  "power_unknown132603": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 2327.4
+  },
+  "power_linden": {
+   "tier": "name",
+   "osi_slug": "linden",
+   "distance_m": null
+  },
+  "power_unknown132611": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 1309.6
+  },
+  "power_unknown132612": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 1095.3
+  },
+  "power_unknown133139": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 2143.7
+  },
+  "power_bayway": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 2037.3
+  },
+  "power_unknown133141": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 4204.2
+  },
+  "power_doremus_place": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 7064.8
+  },
+  "power_stanley_terrace": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10627.1
+  },
+  "power_north_avenue": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3179.5
+  },
+  "power_bruckner": {
+   "tier": "name",
+   "osi_slug": "bruckner",
+   "distance_m": null
+  },
+  "power_tremont": {
+   "tier": "name",
+   "osi_slug": "tremont",
+   "distance_m": null
+  },
+  "power_brownsville": {
+   "tier": "name",
+   "osi_slug": "brownsville",
+   "distance_m": null
+  },
+  "power_bensonhurst": {
+   "tier": "name",
+   "osi_slug": "bensonhurst",
+   "distance_m": null
+  },
+  "power_east_64th_street": {
+   "tier": "name",
+   "osi_slug": "east_64th_street",
+   "distance_m": null
+  },
+  "power_avenue_n": {
+   "tier": "name",
+   "osi_slug": "avenue_n",
+   "distance_m": null
+  },
+  "power_mill_avenue": {
+   "tier": "name",
+   "osi_slug": "mill_avenue",
+   "distance_m": null
+  },
+  "power_east_83rd_street": {
+   "tier": "name",
+   "osi_slug": "east_83rd_street",
+   "distance_m": null
+  },
+  "power_livonia_avenue": {
+   "tier": "name",
+   "osi_slug": "livonia_avenue",
+   "distance_m": null
+  },
+  "power_gowanus": {
+   "tier": "name",
+   "osi_slug": "gowanus",
+   "distance_m": null
+  },
+  "power_hudson_avenue": {
+   "tier": "name",
+   "osi_slug": "hudson_avenue",
+   "distance_m": null
+  },
+  "power_farragut": {
+   "tier": "name",
+   "osi_slug": "farragut",
+   "distance_m": null
+  },
+  "power_water_street": {
+   "tier": "name",
+   "osi_slug": "water_street",
+   "distance_m": null
+  },
+  "power_unknown129540": {
+   "tier": "name",
+   "osi_slug": "unknown129540",
+   "distance_m": null
+  },
+  "power_unknown129559": {
+   "tier": "spatial",
+   "osi_slug": "lake_success",
+   "distance_m": 124.5
+  },
+  "power_great_neck": {
+   "tier": "name",
+   "osi_slug": "great_neck",
+   "distance_m": null
+  },
+  "power_lake_success": {
+   "tier": "name",
+   "osi_slug": "lake_success",
+   "distance_m": null
+  },
+  "power_hewlett": {
+   "tier": "name",
+   "osi_slug": "hewlett",
+   "distance_m": null
+  },
+  "power_central_avenue": {
+   "tier": "name",
+   "osi_slug": "central_avenue",
+   "distance_m": null
+  },
+  "power_woodmere": {
+   "tier": "name",
+   "osi_slug": "woodmere",
+   "distance_m": null
+  },
+  "power_east_13th_street": {
+   "tier": "ward_name",
+   "osi_slug": null,
+   "ward_slug": "east_13th_street",
+   "distance_m": null
+  },
+  "power_parkview": {
+   "tier": "name",
+   "osi_slug": "parkview",
+   "distance_m": null
+  },
+  "power_leonard_street": {
+   "tier": "name",
+   "osi_slug": "leonard_street",
+   "distance_m": null
+  },
+  "power_west_65th_street": {
+   "tier": "name",
+   "osi_slug": "west_65th_street",
+   "distance_m": null
+  },
+  "power_east_36th_street": {
+   "tier": "name",
+   "osi_slug": "east_36th_street",
+   "distance_m": null
+  },
+  "power_west_19th_street": {
+   "tier": "name",
+   "osi_slug": "west_19th_street",
+   "distance_m": null
+  },
+  "power_east_63rd_street": {
+   "tier": "name",
+   "osi_slug": "east_63rd_street",
+   "distance_m": null
+  },
+  "power_unknown141001": {
+   "tier": "name",
+   "osi_slug": "unknown141001",
+   "distance_m": null
+  },
+  "power_east_75th_street": {
+   "tier": "name",
+   "osi_slug": "east_75th_street",
+   "distance_m": null
+  },
+  "power_west_49th_street": {
+   "tier": "name",
+   "osi_slug": "west_49th_street",
+   "distance_m": null
+  },
+  "power_cherry_street": {
+   "tier": "name",
+   "osi_slug": "cherry_street",
+   "distance_m": null
+  },
+  "power_unknown124169": {
+   "tier": "name",
+   "osi_slug": "unknown124169",
+   "distance_m": null
+  },
+  "power_west_astoria": {
+   "tier": "ward_name",
+   "osi_slug": null,
+   "ward_slug": "west_astoria",
+   "distance_m": null
+  },
+  "power_east_astoria": {
+   "tier": "name",
+   "osi_slug": "east_astoria",
+   "distance_m": null
+  },
+  "power_unknown129913": {
+   "tier": "ward_name",
+   "osi_slug": null,
+   "ward_slug": "unknown129913",
+   "distance_m": null
+  },
+  "power_north_queens": {
+   "tier": "name",
+   "osi_slug": "north_queens",
+   "distance_m": null
+  },
+  "power_fresh_meadows": {
+   "tier": "name",
+   "osi_slug": "fresh_meadows",
+   "distance_m": null
+  },
+  "power_bayside": {
+   "tier": "name",
+   "osi_slug": "bayside",
+   "distance_m": null
+  },
+  "power_chisholm": {
+   "tier": "name",
+   "osi_slug": "chisholm",
+   "distance_m": null
+  },
+  "power_causeway": {
+   "tier": "name",
+   "osi_slug": "causeway",
+   "distance_m": null
+  },
+  "power_whitestone": {
+   "tier": "name",
+   "osi_slug": "whitestone",
+   "distance_m": null
+  },
+  "power_auburndale": {
+   "tier": "name",
+   "osi_slug": "auburndale",
+   "distance_m": null
+  },
+  "power_beechhurst": {
+   "tier": "name",
+   "osi_slug": "beechhurst",
+   "distance_m": null
+  },
+  "power_clearview": {
+   "tier": "name",
+   "osi_slug": "clearview",
+   "distance_m": null
+  },
+  "power_flushing": {
+   "tier": "name",
+   "osi_slug": "flushing",
+   "distance_m": null
+  },
+  "power_douglaston": {
+   "tier": "name",
+   "osi_slug": "douglaston",
+   "distance_m": null
+  },
+  "power_oakland": {
+   "tier": "name",
+   "osi_slug": "oakland",
+   "distance_m": null
+  },
+  "power_alley_park": {
+   "tier": "name",
+   "osi_slug": "alley_park",
+   "distance_m": null
+  },
+  "power_north_hills": {
+   "tier": "name",
+   "osi_slug": "north_hills",
+   "distance_m": null
+  },
+  "power_parkway": {
+   "tier": "name",
+   "osi_slug": "parkway",
+   "distance_m": null
+  },
+  "power_glen_oaks": {
+   "tier": "name",
+   "osi_slug": "glen_oaks",
+   "distance_m": null
+  },
+  "power_floral_park": {
+   "tier": "name",
+   "osi_slug": "floral_park",
+   "distance_m": null
+  },
+  "power_hillcrest": {
+   "tier": "name",
+   "osi_slug": "hillcrest",
+   "distance_m": null
+  },
+  "power_cunningham": {
+   "tier": "name",
+   "osi_slug": "cunningham",
+   "distance_m": null
+  },
+  "power_union": {
+   "tier": "name",
+   "osi_slug": "union",
+   "distance_m": null
+  },
+  "power_hollis": {
+   "tier": "name",
+   "osi_slug": "hollis",
+   "distance_m": null
+  },
+  "power_far_rockaway": {
+   "tier": "name",
+   "osi_slug": "far_rockaway",
+   "distance_m": null
+  },
+  "power_rockaway_beach": {
+   "tier": "name",
+   "osi_slug": "rockaway_beach",
+   "distance_m": null
+  },
+  "power_long_island_railroad": {
+   "tier": "spatial",
+   "osi_slug": "woodhaven",
+   "distance_m": 94.9
+  },
+  "power_creedmoor": {
+   "tier": "name",
+   "osi_slug": "creedmoor",
+   "distance_m": null
+  },
+  "power_unknown135514": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 963.4
+  },
+  "power_151st_avenue": {
+   "tier": "name",
+   "osi_slug": "151st_avenue",
+   "distance_m": null
+  },
+  "power_160th_avenue": {
+   "tier": "name",
+   "osi_slug": "160th_avenue",
+   "distance_m": null
+  },
+  "power_woodhaven": {
+   "tier": "name",
+   "osi_slug": "woodhaven",
+   "distance_m": null
+  },
+  "power_howard_beach": {
+   "tier": "name",
+   "osi_slug": "howard_beach",
+   "distance_m": null
+  },
+  "power_centerville": {
+   "tier": "name",
+   "osi_slug": "centerville",
+   "distance_m": null
+  },
+  "power_unknown135522": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 1060.9
+  },
+  "power_aqueduct": {
+   "tier": "name",
+   "osi_slug": "aqueduct",
+   "distance_m": null
+  },
+  "power_lefferts": {
+   "tier": "name",
+   "osi_slug": "lefferts",
+   "distance_m": null
+  },
+  "power_sutphin": {
+   "tier": "name",
+   "osi_slug": "sutphin",
+   "distance_m": null
+  },
+  "power_unknown135527": {
+   "tier": "name",
+   "osi_slug": "unknown135527",
+   "distance_m": null
+  },
+  "power_brinkerhoff": {
+   "tier": "name",
+   "osi_slug": "brinkerhoff",
+   "distance_m": null
+  },
+  "power_cedar_manor": {
+   "tier": "name",
+   "osi_slug": "cedar_manor",
+   "distance_m": null
+  },
+  "power_springfield": {
+   "tier": "name",
+   "osi_slug": "springfield",
+   "distance_m": null
+  },
+  "power_146th_avenue": {
+   "tier": "name",
+   "osi_slug": "146th_avenue",
+   "distance_m": null
+  },
+  "power_montefiore": {
+   "tier": "name",
+   "osi_slug": "montefiore",
+   "distance_m": null
+  },
+  "power_cambria": {
+   "tier": "name",
+   "osi_slug": "cambria",
+   "distance_m": null
+  },
+  "power_rosedale": {
+   "tier": "name",
+   "osi_slug": "rosedale",
+   "distance_m": null
+  },
+  "power_253rd_place": {
+   "tier": "name",
+   "osi_slug": "253rd_place",
+   "distance_m": null
+  },
+  "power_unknown135536": {
+   "tier": "spatial",
+   "osi_slug": "jamaica",
+   "distance_m": 287.8
+  },
+  "power_newtown": {
+   "tier": "name",
+   "osi_slug": "newtown",
+   "distance_m": null
+  },
+  "power_rainey": {
+   "tier": "name",
+   "osi_slug": "rainey",
+   "distance_m": null
+  },
+  "power_vernon": {
+   "tier": "name",
+   "osi_slug": "vernon",
+   "distance_m": null
+  },
+  "power_queensbridge": {
+   "tier": "name",
+   "osi_slug": "queensbridge",
+   "distance_m": null
+  },
+  "power_unknown129920": {
+   "tier": "name",
+   "osi_slug": "unknown129920",
+   "distance_m": null
+  },
+  "power_fresh_kills": {
+   "tier": "name",
+   "osi_slug": "fresh_kills",
+   "distance_m": null
+  },
+  "power_willowbrook": {
+   "tier": "name",
+   "osi_slug": "willowbrook",
+   "distance_m": null
+  },
+  "power_woodrow": {
+   "tier": "name",
+   "osi_slug": "woodrow",
+   "distance_m": null
+  },
+  "power_unknown140881": {
+   "tier": "name",
+   "osi_slug": "unknown140881",
+   "distance_m": null
+  },
+  "power_westerleigh": {
+   "tier": "name",
+   "osi_slug": "westerleigh",
+   "distance_m": null
+  },
+  "power_odin": {
+   "tier": "name",
+   "osi_slug": "odin",
+   "distance_m": null
+  },
+  "power_clove_lakes": {
+   "tier": "name",
+   "osi_slug": "clove_lakes",
+   "distance_m": null
+  },
+  "power_naughton": {
+   "tier": "name",
+   "osi_slug": "naughton",
+   "distance_m": null
+  },
+  "power_silver_lake": {
+   "tier": "name",
+   "osi_slug": "silver_lake",
+   "distance_m": null
+  },
+  "power_dongan_hills": {
+   "tier": "name",
+   "osi_slug": "dongan_hills",
+   "distance_m": null
+  },
+  "power_seaside": {
+   "tier": "name",
+   "osi_slug": "seaside",
+   "distance_m": null
+  },
+  "power_wadsworth": {
+   "tier": "name",
+   "osi_slug": "wadsworth",
+   "distance_m": null
+  },
+  "power_howland_hook": {
+   "tier": "name",
+   "osi_slug": "howland_hook",
+   "distance_m": null
+  },
+  "power_port_richmond": {
+   "tier": "name",
+   "osi_slug": "port_richmond",
+   "distance_m": null
+  },
+  "power_unknown140894": {
+   "tier": "name",
+   "osi_slug": "unknown140894",
+   "distance_m": null
+  },
+  "power_new_brighton_substation": {
+   "tier": "spatial",
+   "osi_slug": "new_brighton",
+   "distance_m": 0.0
+  },
+  "power_cedar_street": {
+   "tier": "name",
+   "osi_slug": "cedar_street",
+   "distance_m": null
+  },
+  "power_foundry_street": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9589.9
+  },
+  "power_central_ave": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 12312.3
+  },
+  "power_irvington": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10211.4
+  },
+  "power_unknown132353": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 8971.4
+  },
+  "power_harrison": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 11768.9
+  },
+  "power_unknown132602": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 8591.4
+  },
+  "power_unknown132351": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9617.3
+  },
+  "power_port_street": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 7236.8
+  },
+  "power_clay_street": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 12213.3
+  },
+  "power_unknown132349": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9753.3
+  },
+  "power_ironbound": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9154.0
+  },
+  "power_mott_haven": {
+   "tier": "name",
+   "osi_slug": "mott_haven",
+   "distance_m": null
+  },
+  "power_unknown133197": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3709.5
+  },
+  "power_waverly": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 5619.8
+  },
+  "power_plank_road": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10106.1
+  },
+  "power_norfolk_street": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10778.6
+  },
+  "power_miller_st": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 8666.2
+  },
+  "power_unknown132358": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 4093.0
+  },
+  "power_unknown124209": {
+   "tier": "name",
+   "osi_slug": "unknown124209",
+   "distance_m": null
+  },
+  "power_unknown132401": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 16100.3
+  },
+  "power_unknown132408": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 20178.1
+  },
+  "power_unknown132361": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3761.8
+  },
+  "power_unknown132981": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 2698.0
+  },
+  "power_unknown140876": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 2646.3
+  },
+  "power_unknown132599": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9913.9
+  },
+  "power_unknown133201": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 7175.0
+  },
+  "power_15th_street": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 12556.8
+  },
+  "power_unknown132359": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3612.6
+  },
+  "power_unknown135542": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3862.6
+  },
+  "power_unknown133153": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 23461.6
+  },
+  "power_unknown162553": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 9506.2
+  },
+  "power_nineteenth_avenue": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 10248.8
+  },
+  "power_unknown132974": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 3049.0
+  },
+  "power_unknown162556": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 2319.6
+  },
+  "power_tap161815": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 1559.4
+  },
+  "power_tap162555": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 11776.4
+  },
+  "power_hell_gate": {
+   "tier": "name",
+   "osi_slug": "hell_gate",
+   "distance_m": null
+  },
+  "power_parkchester": {
+   "tier": "ward_name",
+   "osi_slug": null,
+   "ward_slug": "parkchester",
+   "distance_m": null
+  },
+  "power_east_179th_street": {
+   "tier": "name",
+   "osi_slug": "east_179th_street",
+   "distance_m": null
+  },
+  "power_plymouth": {
+   "tier": "name",
+   "osi_slug": "plymouth",
+   "distance_m": null
+  },
+  "power_greenwood": {
+   "tier": "name",
+   "osi_slug": "greenwood",
+   "distance_m": null
+  },
+  "power_unknown135537": {
+   "tier": "name",
+   "osi_slug": "unknown135537",
+   "distance_m": null
+  },
+  "power_cedarhurst": {
+   "tier": "name",
+   "osi_slug": "cedarhurst",
+   "distance_m": null
+  },
+  "power_unknown135513": {
+   "tier": "spatial",
+   "osi_slug": "s232",
+   "distance_m": 372.5
+  },
+  "power_academy": {
+   "tier": "name",
+   "osi_slug": "academy",
+   "distance_m": null
+  },
+  "power_corona": {
+   "tier": "name",
+   "osi_slug": "corona",
+   "distance_m": null
+  },
+  "power_unknown135505": {
+   "tier": "unmatched",
+   "osi_slug": null,
+   "distance_m": 846.8
+  },
+  "power_jamaica": {
+   "tier": "name",
+   "osi_slug": "jamaica",
+   "distance_m": null
+  },
+  "power_unknown135518": {
+   "tier": "spatial",
+   "osi_slug": "woodhaven",
+   "distance_m": 115.7
+  },
+  "power_arverne": {
+   "tier": "name",
+   "osi_slug": "arverne",
+   "distance_m": null
+  },
+  "power_rockaway": {
+   "tier": "name",
+   "osi_slug": "rockaway",
+   "distance_m": null
+  },
+  "power_fox_hill": {
+   "tier": "name",
+   "osi_slug": "fox_hill",
+   "distance_m": null
+  }
+ },
+ "reconciliation": {
+  "gc_2026": {
+   "n_matched": 118,
+   "n_runs": 1000,
+   "mean_ours_seed": 0.06508474576271187,
+   "mean_ours_t6": 0.10497457627118645,
+   "mean_ours_t96": 0.17955084745762712,
+   "mean_jesse": 0.009889830508474577,
+   "overkill_count": 13,
+   "rows": [
+    {
+     "node": "power_east_36th_street",
+     "tier": "name",
+     "ours_seed": 0.848,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_151st_avenue",
+     "tier": "name",
+     "ours_seed": 0.999,
+     "ours_t6": 0.999,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_160th_avenue",
+     "tier": "name",
+     "ours_seed": 0.98,
+     "ours_t6": 0.98,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_howard_beach",
+     "tier": "name",
+     "ours_seed": 0.995,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_centerville",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_livonia_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.983,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_hell_gate",
+     "tier": "name",
+     "ours_seed": 0.965,
+     "ours_t6": 0.965,
+     "ours_t96": 0.97,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_mill_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_east_83rd_street",
+     "tier": "name",
+     "ours_seed": 0.959,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_unknown124209",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.993,
+     "ours_t96": 0.993,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_far_rockaway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.919,
+     "ours_t96": 0.919,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_arverne",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.919,
+     "ours_t96": 0.919,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_parkview",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.898,
+     "ours_t96": 0.898,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_farragut",
+     "tier": "name",
+     "ours_seed": 0.997,
+     "ours_t6": 0.997,
+     "ours_t96": 0.997,
+     "jesse_pct": 0.115
+    },
+    {
+     "node": "power_chisholm",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.766,
+     "jesse_pct": 0.016
+    },
+    {
+     "node": "power_rockaway_beach",
+     "tier": "name",
+     "ours_seed": 0.749,
+     "ours_t6": 0.749,
+     "ours_t96": 0.749,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_gowanus",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.663,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_beechhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.51,
+     "ours_t96": 0.51,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_auburndale",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.51,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_hudson_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.478,
+     "jesse_pct": 0.028
+    },
+    {
+     "node": "power_water_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.478,
+     "jesse_pct": 0.028
+    },
+    {
+     "node": "power_plymouth",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.478,
+     "jesse_pct": 0.028
+    },
+    {
+     "node": "power_greenwood",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.367,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_cherry_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.41,
+     "jesse_pct": 0.115
+    },
+    {
+     "node": "power_east_75th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.23,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_bruckner",
+     "tier": "name",
+     "ours_seed": 0.188,
+     "ours_t6": 0.188,
+     "ours_t96": 0.188,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_east_astoria",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.187,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_north_queens",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.187,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_unknown124169",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.187,
+     "jesse_pct": 0.016
+    },
+    {
+     "node": "power_west_19th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.164,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_tap135492",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.135,
+     "ours_t96": 0.135,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_woodmere",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.135,
+     "ours_t96": 0.135,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_leonard_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.088,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_brownsville",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.089,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_east_64th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.118,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_avenue_n",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.118,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_unknown141001",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.081,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_west_49th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.078,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_bensonhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.088,
+     "jesse_pct": 0.034
+    },
+    {
+     "node": "power_queensbridge",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.026,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_tremont",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_unknown129559",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_great_neck",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_lake_success",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_bayside",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_clearview",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_douglaston",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_oakland",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_alley_park",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_north_hills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_parkway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_glen_oaks",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_floral_park",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_creedmoor",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_cedar_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_mott_haven",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_east_179th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_academy",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_unknown129540",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_hewlett",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_west_65th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_unknown135537",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_cedarhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.001
+    },
+    {
+     "node": "power_tap135491",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.002
+    },
+    {
+     "node": "power_tap135493",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.002
+    },
+    {
+     "node": "power_central_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.002
+    },
+    {
+     "node": "power_east_63rd_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_newtown",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_rainey",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_vernon",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_linden",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_fresh_meadows",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_hillcrest",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_cunningham",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_union",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_hollis",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_long_island_railroad",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_woodhaven",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_aqueduct",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_lefferts",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_sutphin",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_unknown135527",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_brinkerhoff",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_cedar_manor",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_springfield",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_146th_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_montefiore",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_cambria",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_rosedale",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_253rd_place",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_unknown135536",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_unknown135513",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_jamaica",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_unknown135518",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_rockaway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.005
+    },
+    {
+     "node": "power_causeway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_whitestone",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_flushing",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_corona",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_clifton",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_unknown129920",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_fresh_kills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_willowbrook",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_woodrow",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_unknown140881",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_westerleigh",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_odin",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_clove_lakes",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_naughton",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_silver_lake",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_dongan_hills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_seaside",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_wadsworth",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_howland_hook",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_port_richmond",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_unknown140894",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_new_brighton_substation",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    },
+    {
+     "node": "power_fox_hill",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.017
+    }
+   ]
+  },
+  "gc_2050": {
+   "n_matched": 118,
+   "n_runs": 1000,
+   "mean_ours_seed": 0.08727118644067797,
+   "mean_ours_t6": 0.15416949152542372,
+   "mean_ours_t96": 0.26738135593220336,
+   "mean_jesse": 0.032864406779661015,
+   "overkill_count": 23,
+   "rows": [
+    {
+     "node": "power_east_36th_street",
+     "tier": "name",
+     "ours_seed": 0.964,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_hell_gate",
+     "tier": "name",
+     "ours_seed": 0.997,
+     "ours_t6": 0.997,
+     "ours_t96": 0.999,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_151st_avenue",
+     "tier": "name",
+     "ours_seed": 1.0,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_160th_avenue",
+     "tier": "name",
+     "ours_seed": 0.996,
+     "ours_t6": 0.996,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_howard_beach",
+     "tier": "name",
+     "ours_seed": 0.998,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_centerville",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_livonia_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.996,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_parkview",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.988,
+     "ours_t96": 0.988,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_arverne",
+     "tier": "name",
+     "ours_seed": 0.25,
+     "ours_t6": 0.991,
+     "ours_t96": 0.994,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_far_rockaway",
+     "tier": "name",
+     "ours_seed": 0.278,
+     "ours_t6": 0.99,
+     "ours_t96": 0.991,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_chisholm",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.968,
+     "jesse_pct": 0.009
+    },
+    {
+     "node": "power_rockaway_beach",
+     "tier": "name",
+     "ours_seed": 0.948,
+     "ours_t6": 0.948,
+     "ours_t96": 0.948,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_beechhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.937,
+     "ours_t96": 0.937,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_tap135492",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.942,
+     "ours_t96": 0.943,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_woodmere",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.942,
+     "ours_t96": 0.943,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_auburndale",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.937,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_mill_avenue",
+     "tier": "name",
+     "ours_seed": 0.405,
+     "ours_t6": 0.892,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_east_83rd_street",
+     "tier": "name",
+     "ours_seed": 0.992,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_unknown124209",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.999,
+     "ours_t96": 0.999,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_hudson_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.935,
+     "jesse_pct": 0.038
+    },
+    {
+     "node": "power_water_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.935,
+     "jesse_pct": 0.038
+    },
+    {
+     "node": "power_plymouth",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.935,
+     "jesse_pct": 0.038
+    },
+    {
+     "node": "power_farragut",
+     "tier": "name",
+     "ours_seed": 0.998,
+     "ours_t6": 0.998,
+     "ours_t96": 0.998,
+     "jesse_pct": 0.135
+    },
+    {
+     "node": "power_bruckner",
+     "tier": "name",
+     "ours_seed": 0.713,
+     "ours_t6": 0.713,
+     "ours_t96": 0.859,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_east_astoria",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.858,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_north_queens",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.858,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_unknown124169",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.858,
+     "jesse_pct": 0.009
+    },
+    {
+     "node": "power_rainey",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.793,
+     "ours_t96": 0.802,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_gowanus",
+     "tier": "name",
+     "ours_seed": 0.483,
+     "ours_t6": 0.483,
+     "ours_t96": 0.817,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_cherry_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.854,
+     "jesse_pct": 0.135
+    },
+    {
+     "node": "power_avenue_n",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.524,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_east_64th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.465,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_leonard_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.307,
+     "ours_t96": 0.376,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_east_75th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.36,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_greenwood",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.369,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_west_19th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.209,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_queensbridge",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.16,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_146th_avenue",
+     "tier": "name",
+     "ours_seed": 0.166,
+     "ours_t6": 0.166,
+     "ours_t96": 0.166,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_vernon",
+     "tier": "name",
+     "ours_seed": 0.109,
+     "ours_t6": 0.109,
+     "ours_t96": 0.109,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_unknown141001",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.082,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_brownsville",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.089,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_west_49th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.079,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_east_63rd_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.042,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_cedarhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.039,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_unknown129540",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.038,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_bensonhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.088,
+     "jesse_pct": 0.071
+    },
+    {
+     "node": "power_tremont",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_unknown129559",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_great_neck",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_lake_success",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_west_65th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_bayside",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_clearview",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_douglaston",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_oakland",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_alley_park",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_north_hills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_parkway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_glen_oaks",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_floral_park",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_creedmoor",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_newtown",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_cedar_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_mott_haven",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_east_179th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_academy",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_253rd_place",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.002,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_tap135491",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_tap135493",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_hewlett",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_central_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_causeway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.001,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_flushing",
+     "tier": "name",
+     "ours_seed": 0.001,
+     "ours_t6": 0.001,
+     "ours_t96": 0.001,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_unknown135537",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.006
+    },
+    {
+     "node": "power_linden",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_fresh_meadows",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_whitestone",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_hillcrest",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_cunningham",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_union",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_hollis",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_long_island_railroad",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_woodhaven",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_aqueduct",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_lefferts",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_sutphin",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_unknown135527",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_brinkerhoff",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_cedar_manor",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_springfield",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_montefiore",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_cambria",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_rosedale",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_unknown135536",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_unknown135513",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_corona",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_jamaica",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_unknown135518",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_rockaway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.007
+    },
+    {
+     "node": "power_clifton",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_unknown129920",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_fresh_kills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_willowbrook",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_woodrow",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_unknown140881",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_westerleigh",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_odin",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_clove_lakes",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_naughton",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_silver_lake",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_dongan_hills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_seaside",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_wadsworth",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_howland_hook",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_port_richmond",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_unknown140894",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_new_brighton_substation",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    },
+    {
+     "node": "power_fox_hill",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.136
+    }
+   ]
+  },
+  "gc_2080": {
+   "n_matched": 118,
+   "n_runs": 1000,
+   "mean_ours_seed": 0.1276864406779661,
+   "mean_ours_t6": 0.20247457627118642,
+   "mean_ours_t96": 0.3498135593220339,
+   "mean_jesse": 0.04550847457627119,
+   "overkill_count": 35,
+   "rows": [
+    {
+     "node": "power_hell_gate",
+     "tier": "name",
+     "ours_seed": 1.0,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_bruckner",
+     "tier": "name",
+     "ours_seed": 0.926,
+     "ours_t6": 0.926,
+     "ours_t96": 0.999,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_north_queens",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.999,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_east_astoria",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.999,
+     "jesse_pct": 0.004
+    },
+    {
+     "node": "power_parkview",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.995,
+     "ours_t96": 0.995,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_far_rockaway",
+     "tier": "name",
+     "ours_seed": 0.799,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_arverne",
+     "tier": "name",
+     "ours_seed": 0.826,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_beechhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.989,
+     "ours_t96": 0.989,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_tap135492",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.994,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.012
+    },
+    {
+     "node": "power_woodmere",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.994,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.012
+    },
+    {
+     "node": "power_livonia_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_151st_avenue",
+     "tier": "name",
+     "ours_seed": 1.0,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_160th_avenue",
+     "tier": "name",
+     "ours_seed": 0.998,
+     "ours_t6": 0.998,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_howard_beach",
+     "tier": "name",
+     "ours_seed": 1.0,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_centerville",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_unknown124169",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.999,
+     "jesse_pct": 0.018
+    },
+    {
+     "node": "power_146th_avenue",
+     "tier": "name",
+     "ours_seed": 0.688,
+     "ours_t6": 0.983,
+     "ours_t96": 0.995,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_chisholm",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.997,
+     "jesse_pct": 0.018
+    },
+    {
+     "node": "power_auburndale",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.989,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_rockaway_beach",
+     "tier": "name",
+     "ours_seed": 0.985,
+     "ours_t6": 0.985,
+     "ours_t96": 0.985,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_rainey",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.973,
+     "ours_t96": 0.979,
+     "jesse_pct": 0.004
+    },
+    {
+     "node": "power_hudson_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.998,
+     "jesse_pct": 0.048
+    },
+    {
+     "node": "power_water_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.998,
+     "jesse_pct": 0.048
+    },
+    {
+     "node": "power_plymouth",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.998,
+     "jesse_pct": 0.048
+    },
+    {
+     "node": "power_leonard_street",
+     "tier": "name",
+     "ours_seed": 0.041,
+     "ours_t6": 0.935,
+     "ours_t96": 0.95,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_unknown129540",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.944,
+     "jesse_pct": 0.012
+    },
+    {
+     "node": "power_cedarhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.944,
+     "jesse_pct": 0.012
+    },
+    {
+     "node": "power_east_36th_street",
+     "tier": "name",
+     "ours_seed": 0.987,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.081
+    },
+    {
+     "node": "power_253rd_place",
+     "tier": "name",
+     "ours_seed": 0.602,
+     "ours_t6": 0.891,
+     "ours_t96": 0.929,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_mill_avenue",
+     "tier": "name",
+     "ours_seed": 0.841,
+     "ours_t6": 0.995,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_east_83rd_street",
+     "tier": "name",
+     "ours_seed": 0.996,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_unknown124209",
+     "tier": "name",
+     "ours_seed": 0.234,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_gowanus",
+     "tier": "name",
+     "ours_seed": 0.879,
+     "ours_t6": 0.959,
+     "ours_t96": 0.985,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_farragut",
+     "tier": "name",
+     "ours_seed": 1.0,
+     "ours_t6": 1.0,
+     "ours_t96": 1.0,
+     "jesse_pct": 0.151
+    },
+    {
+     "node": "power_cherry_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.957,
+     "jesse_pct": 0.151
+    },
+    {
+     "node": "power_queensbridge",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.767,
+     "jesse_pct": 0.004
+    },
+    {
+     "node": "power_vernon",
+     "tier": "name",
+     "ours_seed": 0.75,
+     "ours_t6": 0.75,
+     "ours_t96": 0.75,
+     "jesse_pct": 0.004
+    },
+    {
+     "node": "power_academy",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.733,
+     "ours_t96": 0.733,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_avenue_n",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.277,
+     "ours_t96": 0.747,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_east_64th_street",
+     "tier": "name",
+     "ours_seed": 0.062,
+     "ours_t6": 0.062,
+     "ours_t96": 0.743,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_flushing",
+     "tier": "name",
+     "ours_seed": 0.453,
+     "ours_t6": 0.453,
+     "ours_t96": 0.453,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_east_75th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.442,
+     "jesse_pct": 0.004
+    },
+    {
+     "node": "power_east_63rd_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.294,
+     "jesse_pct": 0.004
+    },
+    {
+     "node": "power_greenwood",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.374,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_west_19th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.341,
+     "jesse_pct": 0.081
+    },
+    {
+     "node": "power_causeway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.271,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_west_49th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.158,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_unknown141001",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.14,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_brownsville",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.14,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_unknown135527",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.071,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_bensonhurst",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.15,
+     "jesse_pct": 0.094
+    },
+    {
+     "node": "power_cedar_manor",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.049,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_west_65th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.009,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_tremont",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_unknown129559",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_great_neck",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_lake_success",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_bayside",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_clearview",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_douglaston",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_oakland",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_alley_park",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_north_hills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_parkway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_glen_oaks",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_floral_park",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_creedmoor",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_cedar_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_east_179th_street",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.0
+    },
+    {
+     "node": "power_mott_haven",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.003
+    },
+    {
+     "node": "power_newtown",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.004
+    },
+    {
+     "node": "power_hewlett",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.005,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_unknown135537",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.005,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_tap135491",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_tap135493",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_central_avenue",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.01
+    },
+    {
+     "node": "power_whitestone",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.002,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_long_island_railroad",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.002,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_woodhaven",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.002,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_unknown135518",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.002,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_linden",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_fresh_meadows",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_hillcrest",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_cunningham",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_union",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_hollis",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_aqueduct",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_lefferts",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_sutphin",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_brinkerhoff",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_springfield",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_montefiore",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_cambria",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_rosedale",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_unknown135536",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_unknown135513",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_corona",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_jamaica",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_rockaway",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.014
+    },
+    {
+     "node": "power_clifton",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_unknown129920",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_fresh_kills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_willowbrook",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_woodrow",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_unknown140881",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_westerleigh",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_odin",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_clove_lakes",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_naughton",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_silver_lake",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_dongan_hills",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_seaside",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_wadsworth",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_howland_hook",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_port_richmond",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_unknown140894",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_new_brighton_substation",
+     "tier": "spatial",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    },
+    {
+     "node": "power_fox_hill",
+     "tier": "name",
+     "ours_seed": 0.0,
+     "ours_t6": 0.0,
+     "ours_t96": 0.0,
+     "jesse_pct": 0.173
+    }
+   ]
+  }
+ },
+ "dep_adjudication": {
+  "dep_extreme_2080": {
+   "status": "ok",
+   "n_seeded_power_nodes": 9,
+   "agrees_with_jesse_zero": false,
+   "seeded": {
+    "power_arverne": 0.716,
+    "power_east_13th_street": 0.707,
+    "power_hillcrest": 0.506,
+    "power_chisholm": 0.486,
+    "power_160th_avenue": 0.016,
+    "power_woodhaven": 0.016,
+    "power_vernon": 0.014,
+    "power_brinkerhoff": 0.013,
+    "power_queensbridge": 0.01
+   }
+  },
+  "dep_moderate_2050": {
+   "status": "ok",
+   "n_seeded_power_nodes": 0,
+   "agrees_with_jesse_zero": true,
+   "seeded": {}
+  },
+  "dep_moderate_current": {
+   "status": "ok",
+   "n_seeded_power_nodes": 0,
+   "agrees_with_jesse_zero": true,
+   "seeded": {}
+  }
+ },
+ "spatial_threshold_m": 500.0,
+ "n_power_nodes": 203
+}
