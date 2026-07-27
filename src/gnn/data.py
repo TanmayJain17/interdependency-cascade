@@ -10,13 +10,15 @@ Pipeline:
 """
 
 import json
+import os
 from pathlib import Path
 
 import torch
 
 
 CASCADE_RESULTS_DIR = Path("data/simulation")
-HETERODATA_PATH = Path("data/graph/nyc_infra_heterodata.pt")
+# HETERODATA env var selects an ablation variant (default = baseline graph)
+HETERODATA_PATH = Path(os.environ.get("HETERODATA", "data/graph/nyc_infra_heterodata.pt"))
 SCENARIOS = (
     "moderate_current", "moderate_2050", "extreme_2080",
     "geoclaw_2026", "geoclaw_2050", "geoclaw_2080",

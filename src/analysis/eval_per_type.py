@@ -31,6 +31,7 @@ Run:
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -47,8 +48,7 @@ from src.gnn.data import (
 from src.gnn.model import CascadeGNN
 from src.gnn.train import _simple_auc, _simple_pr_auc
 
-CHECKPOINT_DIR = Path("data/gnn_checkpoints")
-OUT_PATH = Path("data/gnn_checkpoints/per_type_eval.json")
+CHECKPOINT_DIR = Path(os.environ.get("GNN_CKPT_DIR", "data/gnn_checkpoints"))
 
 
 def _fail(gate, msg):
@@ -264,8 +264,9 @@ def main():
               "SUPPORTS the prediction -> failover-edge ablation is the fix. "
               "Flat/positive delta REFUTES it -> spatial proxies suffice.")
 
-    # Persist
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    # Persist next to the checkpoint so ablation variants never collide
+    out_path = ckpt_path.parent / "per_type_eval.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "checkpoint": str(ckpt_path),
         "holdout": holdout,
@@ -275,9 +276,9 @@ def main():
             f"{g}|{tag}": summary[(g, tag)] for g in groups for tag in ("all", "casc")
         },
     }
-    with open(OUT_PATH, "w") as f:
+    with open(out_path, "w") as f:
         json.dump(payload, f, indent=2)
-    print(f"\nSaved: {OUT_PATH}")
+    print(f"\nSaved: {out_path}")
 
 
 if __name__ == "__main__":

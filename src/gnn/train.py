@@ -12,6 +12,7 @@ plumbing works before kicking off the long training job.
 
 import argparse
 import json
+import os
 import random
 import time
 from pathlib import Path
@@ -32,7 +33,8 @@ from src.gnn.data import (
 from src.gnn.model import CascadeGNN, count_parameters
 
 
-CHECKPOINT_DIR = Path("data/gnn_checkpoints")
+# GNN_CKPT_DIR env var redirects checkpoints for ablation runs
+CHECKPOINT_DIR = Path(os.environ.get("GNN_CKPT_DIR", "data/gnn_checkpoints"))
 
 
 # --------------------------------------------------------------------------
