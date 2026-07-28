@@ -17,12 +17,37 @@ import torch
 
 
 CASCADE_RESULTS_DIR = Path("data/simulation")
+SYN_RESULTS_DIR = Path("data/simulation_synthetic20")
 # HETERODATA env var selects an ablation variant (default = baseline graph)
 HETERODATA_PATH = Path(os.environ.get("HETERODATA", "data/graph/nyc_infra_heterodata.pt"))
-SCENARIOS = (
+
+SCENARIOS_BASE6 = (
     "moderate_current", "moderate_2050", "extreme_2080",
     "geoclaw_2026", "geoclaw_2050", "geoclaw_2080",
 )
+# Week 19: Gwen's synthetic surge sweep (19 distinct hazard points).
+# syn_ts_810_14_1p1460 is EXCLUDED: node-level replicate of syn_ts_173_2_0p8859
+# (identical to 0.35 mm at all 6,231 nodes) — held out entirely as a
+# determinism control, never trained or counted as an evaluation point.
+SYN_REPLICATE_CONTROL = "syn_ts_810_14_1p1460"
+SCENARIOS_SYN = (
+    "syn_ts_173_2_0p8859", "syn_ts_662_3_0p9973", "syn_ts_192_7_1p0240",
+    "syn_ts_156_15_1p066", "syn_ts_708_13_1p1567", "syn_ts_914_6_1p2955",
+    "syn_ts_436_11_1p3524", "syn_ts_570_2_1p5351", "syn_ts_463_29_1p6644",
+    "syn_ts_321_19_1p7614", "syn_ts_831_27_1p9452", "syn_ts_192_15_2p5752",
+    "syn_ts_880_9_2p6632", "syn_ts_514_13_2p7829", "syn_ts_258_9_3p0022",
+    "syn_ts_914_26_3p4047", "syn_ts_999_12_3p44", "syn_ts_605_5_3p7563",
+    "syn_ts_808_27_3p7885",
+)
+# SCENARIO_SET env: "base6" (default, backward-compatible) or "syn26"
+# (6 production + 19 distinct synthetic = 25 scenarios).
+_SET = os.environ.get("SCENARIO_SET", "base6")
+if _SET == "base6":
+    SCENARIOS = SCENARIOS_BASE6
+elif _SET == "syn26":
+    SCENARIOS = SCENARIOS_BASE6 + SCENARIOS_SYN
+else:
+    raise ValueError(f"Unknown SCENARIO_SET '{_SET}' (base6|syn26)")
 DEFAULT_TIMESTEPS = (6, 24, 48, 96)  # exclude t=0 (label leakage from initial_mask)
 
 
@@ -44,9 +69,15 @@ def load_cascade_results(scenarios=SCENARIOS, sim_dir=CASCADE_RESULTS_DIR):
     sim_dir = Path(sim_dir)
     out = {}
     for s in scenarios:
-        fp = sim_dir / f"cascade_results_nyc_{s}.json"
-        if not fp.exists():
-            raise FileNotFoundError(f"Missing {fp}. Run multi_scenario_runner.py first.")
+        # production scenarios live in data/simulation/; synthetic-20 outputs
+        # are isolated in data/simulation_synthetic20/ — search both.
+        candidates = [sim_dir / f"cascade_results_nyc_{s}.json",
+                      SYN_RESULTS_DIR / f"cascade_results_nyc_{s}.json"]
+        fp = next((p for p in candidates if p.exists()), None)
+        if fp is None:
+            raise FileNotFoundError(
+                f"Missing cascade_results_nyc_{s}.json in {sim_dir} or "
+                f"{SYN_RESULTS_DIR}. Run the relevant runner first.")
         with open(fp) as f:
             out[s] = json.load(f)
     return out

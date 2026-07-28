@@ -260,27 +260,33 @@ def run_train(args):
     # Scenario-level held-out test split (genuine generalization measurement).
     # Random MC-level shuffle is biased — train/val see same scenarios with near-identical
     # initial failure sets, especially GeoClaw where MC variance is ~0.2 nodes.
-    holdout_scenario = args.holdout_scenario
-    if holdout_scenario not in results:
-        raise ValueError(f"holdout_scenario '{holdout_scenario}' not in {list(results)}")
-    
+    # Comma-separated multi-holdout (Week 19): each held-out scenario is
+    # evaluated SEPARATELY so interpolation and extrapolation report as
+    # distinct numbers rather than one blended average.
+    holdout_scenarios = [s.strip() for s in args.holdout_scenario.split(",") if s.strip()]
+    for hs in holdout_scenarios:
+        if hs not in results:
+            raise ValueError(f"holdout scenario '{hs}' not in {list(results)}")
+
     train_val_examples = []
     test_examples = []
     for s, runs in results.items():
         for r in runs:
-            if s == holdout_scenario:
+            if s in holdout_scenarios:
                 test_examples.append((s, r))
             else:
                 train_val_examples.append((s, r))
-    
-    # Within remaining 5 scenarios, do random 80/20 train/val split on MC runs
+
+    # Within remaining scenarios, random 80/20 train/val split on MC runs
     rng = random.Random(args.seed)
     rng.shuffle(train_val_examples)
     n_train = int(0.8 * len(train_val_examples))
     train_examples = train_val_examples[:n_train]
     val_examples   = train_val_examples[n_train:]
+    n_train_scen = len(results) - len(holdout_scenarios)
     print(f"Train: {len(train_examples)}  Val: {len(val_examples)}  "
-      f"Test (held-out scenario={holdout_scenario}): {len(test_examples)}")
+      f"({n_train_scen} scenarios) | Test held-out: "
+      f"{holdout_scenarios} ({len(test_examples)} runs)")
     
     
 
@@ -391,36 +397,47 @@ def run_train(args):
 
     # === END OF EPOCH LOOP ===
 
-    # Held-out test evaluation (runs ONCE after all training)
-    test_losses = []
-    test_aucs_per_t, test_pr_per_t = [], []
-    test_aucs_casc_per_t, test_pr_casc_per_t = [], []
-    for _, run in test_examples:
-        tl, ta, tp, tac, tpc = eval_step(model, base_data, run, node_id_index,
-                                          edge_idx_dict, device)
-        test_losses.append(tl)
-        test_aucs_per_t.append(ta);   test_pr_per_t.append(tp)
-        test_aucs_casc_per_t.append(tac); test_pr_casc_per_t.append(tpc)
-    
-    mean_test_loss = sum(test_losses) / len(test_losses)
-    test_aucs      = _avg_per_t(test_aucs_per_t,      num_t)
-    test_prs       = _avg_per_t(test_pr_per_t,       num_t)
-    test_aucs_casc = _avg_per_t(test_aucs_casc_per_t, num_t)
-    test_prs_casc  = _avg_per_t(test_pr_casc_per_t,  num_t)
-    print(f"Held-out test_loss={mean_test_loss:.5f}")
-    print(f"  ALL-nodes     AUC={test_aucs}  PR={test_prs}")
-    print(f"  CASCADE-only  AUC={test_aucs_casc}  PR={test_prs_casc}")
-    
-    history_out = {
-        "epochs": history,
-        "test": {
-            "scenario": holdout_scenario,
+    # Held-out test evaluation (runs ONCE after all training), PER SCENARIO
+    per_scenario = {}
+    for hs in holdout_scenarios:
+        hs_examples = [(s, r) for s, r in test_examples if s == hs]
+        test_losses = []
+        test_aucs_per_t, test_pr_per_t = [], []
+        test_aucs_casc_per_t, test_pr_casc_per_t = [], []
+        for _, run in hs_examples:
+            tl, ta, tp, tac, tpc = eval_step(model, base_data, run, node_id_index,
+                                              edge_idx_dict, device)
+            test_losses.append(tl)
+            test_aucs_per_t.append(ta);   test_pr_per_t.append(tp)
+            test_aucs_casc_per_t.append(tac); test_pr_casc_per_t.append(tpc)
+
+        mean_test_loss = sum(test_losses) / len(test_losses)
+        test_aucs      = _avg_per_t(test_aucs_per_t,      num_t)
+        test_prs       = _avg_per_t(test_pr_per_t,       num_t)
+        test_aucs_casc = _avg_per_t(test_aucs_casc_per_t, num_t)
+        test_prs_casc  = _avg_per_t(test_pr_casc_per_t,  num_t)
+        print(f"[held-out {hs}] test_loss={mean_test_loss:.5f} ({len(hs_examples)} runs)")
+        print(f"  ALL-nodes     AUC={test_aucs}  PR={test_prs}")
+        print(f"  CASCADE-only  AUC={test_aucs_casc}  PR={test_prs_casc}")
+        per_scenario[hs] = {
+            "n_runs": len(hs_examples),
             "loss": mean_test_loss,
             "auc_per_t": test_aucs,
             "pr_per_t": test_prs,
             "cascade_auc_per_t": test_aucs_casc,
             "cascade_pr_per_t":  test_prs_casc,
-        },
+        }
+
+    history_out = {
+        "epochs": history,
+        # "test" keeps the legacy single-scenario shape (first holdout) so
+        # existing readers (adjudication scripts) keep working; the full
+        # multi-holdout picture is in "test_per_scenario".
+        "test": {"scenario": holdout_scenarios[0],
+                 **per_scenario[holdout_scenarios[0]]},
+        "test_per_scenario": per_scenario,
+        "holdout_scenarios": holdout_scenarios,
+        "scenario_set": os.environ.get("SCENARIO_SET", "base6"),
     }
     with open(CHECKPOINT_DIR / "history.json", "w") as f:
         json.dump(history_out, f, indent=2)
@@ -448,7 +465,7 @@ def parse_args():
                    help="Cap training-set size for faster epochs")
     p.add_argument("--val_subset", type=int, default=None,
                    help="Cap validation-set size for faster eval")
-    p.add_argument("--holdout_scenario", default="geoclaw_2050",
+    p.add_argument("--holdout_scenario", default="geoclaw_2050",  # comma-separated list supported
                help="Scenario name held out as test set (no exposure during training)")
     return p.parse_args()
 
