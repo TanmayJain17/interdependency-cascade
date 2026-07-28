@@ -1,0 +1,125 @@
+{
+ "threshold_note": "bimodal medians <500 vs >1700 make classification insensitive to cutoff in [600,1500]",
+ "curves": [
+  {
+   "tag": "syn_ts_156_15_1p066",
+   "crash_fraction_gt1000": 0.752,
+   "robustness_gt600": 0.808,
+   "robustness_gt1500": 0.752
+  },
+  {
+   "tag": "syn_ts_173_2_0p8859",
+   "crash_fraction_gt1000": 0.0,
+   "robustness_gt600": 0.0,
+   "robustness_gt1500": 0.0
+  },
+  {
+   "tag": "syn_ts_192_15_2p5752",
+   "crash_fraction_gt1000": 0.916,
+   "robustness_gt600": 0.988,
+   "robustness_gt1500": 0.916
+  },
+  {
+   "tag": "syn_ts_192_7_1p0240",
+   "crash_fraction_gt1000": 0.0,
+   "robustness_gt600": 0.0,
+   "robustness_gt1500": 0.0
+  },
+  {
+   "tag": "syn_ts_258_9_3p0022",
+   "crash_fraction_gt1000": 1.0,
+   "robustness_gt600": 1.0,
+   "robustness_gt1500": 1.0
+  },
+  {
+   "tag": "syn_ts_321_19_1p7614",
+   "crash_fraction_gt1000": 0.164,
+   "robustness_gt600": 0.164,
+   "robustness_gt1500": 0.164
+  },
+  {
+   "tag": "syn_ts_436_11_1p3524",
+   "crash_fraction_gt1000": 0.416,
+   "robustness_gt600": 0.416,
+   "robustness_gt1500": 0.416
+  },
+  {
+   "tag": "syn_ts_463_29_1p6644",
+   "crash_fraction_gt1000": 0.192,
+   "robustness_gt600": 0.192,
+   "robustness_gt1500": 0.192
+  },
+  {
+   "tag": "syn_ts_514_13_2p7829",
+   "crash_fraction_gt1000": 0.996,
+   "robustness_gt600": 1.0,
+   "robustness_gt1500": 0.988
+  },
+  {
+   "tag": "syn_ts_570_2_1p5351",
+   "crash_fraction_gt1000": 0.0,
+   "robustness_gt600": 0.0,
+   "robustness_gt1500": 0.0
+  },
+  {
+   "tag": "syn_ts_605_5_3p7563",
+   "crash_fraction_gt1000": 1.0,
+   "robustness_gt600": 1.0,
+   "robustness_gt1500": 1.0
+  },
+  {
+   "tag": "syn_ts_662_3_0p9973",
+   "crash_fraction_gt1000": 0.0,
+   "robustness_gt600": 0.0,
+   "robustness_gt1500": 0.0
+  },
+  {
+   "tag": "syn_ts_708_13_1p1567",
+   "crash_fraction_gt1000": 0.0,
+   "robustness_gt600": 0.0,
+   "robustness_gt1500": 0.0
+  },
+  {
+   "tag": "syn_ts_808_27_3p7885",
+   "crash_fraction_gt1000": 1.0,
+   "robustness_gt600": 1.0,
+   "robustness_gt1500": 1.0
+  },
+  {
+   "tag": "syn_ts_810_14_1p1460",
+   "crash_fraction_gt1000": 0.0,
+   "robustness_gt600": 0.0,
+   "robustness_gt1500": 0.0
+  },
+  {
+   "tag": "syn_ts_831_27_1p9452",
+   "crash_fraction_gt1000": 0.792,
+   "robustness_gt600": 0.904,
+   "robustness_gt1500": 0.792
+  },
+  {
+   "tag": "syn_ts_880_9_2p6632",
+   "crash_fraction_gt1000": 0.996,
+   "robustness_gt600": 1.0,
+   "robustness_gt1500": 0.976
+  },
+  {
+   "tag": "syn_ts_914_26_3p4047",
+   "crash_fraction_gt1000": 1.0,
+   "robustness_gt600": 1.0,
+   "robustness_gt1500": 1.0
+  },
+  {
+   "tag": "syn_ts_914_6_1p2955",
+   "crash_fraction_gt1000": 0.0,
+   "robustness_gt600": 0.0,
+   "robustness_gt1500": 0.0
+  },
+  {
+   "tag": "syn_ts_999_12_3p44",
+   "crash_fraction_gt1000": 1.0,
+   "robustness_gt600": 1.0,
+   "robustness_gt1500": 1.0
+  }
+ ]
+}
