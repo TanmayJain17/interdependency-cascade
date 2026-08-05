@@ -1,0 +1,292 @@
+{
+ "raster_dir": "/Users/tanmayjain/Downloads/nyc_synthetic_flood",
+ "maps": {
+  "nyc_combined_inundation_area_ts_156_15_1p066.tif": {
+   "storm_a": 156,
+   "storm_b": 15,
+   "peak_m": 1.066
+  },
+  "nyc_combined_inundation_area_ts_173_2_0p8859.tif": {
+   "storm_a": 173,
+   "storm_b": 2,
+   "peak_m": 0.8859
+  },
+  "nyc_combined_inundation_area_ts_192_15_2p5752.tif": {
+   "storm_a": 192,
+   "storm_b": 15,
+   "peak_m": 2.5752
+  },
+  "nyc_combined_inundation_area_ts_192_7_1p0240.tif": {
+   "storm_a": 192,
+   "storm_b": 7,
+   "peak_m": 1.024
+  },
+  "nyc_combined_inundation_area_ts_258_9_3p0022.tif": {
+   "storm_a": 258,
+   "storm_b": 9,
+   "peak_m": 3.0022
+  },
+  "nyc_combined_inundation_area_ts_321_19_1p7614.tif": {
+   "storm_a": 321,
+   "storm_b": 19,
+   "peak_m": 1.7614
+  },
+  "nyc_combined_inundation_area_ts_436_11_1p3524.tif": {
+   "storm_a": 436,
+   "storm_b": 11,
+   "peak_m": 1.3524
+  },
+  "nyc_combined_inundation_area_ts_463_29_1p6644.tif": {
+   "storm_a": 463,
+   "storm_b": 29,
+   "peak_m": 1.6644
+  },
+  "nyc_combined_inundation_area_ts_514_13_2p7829.tif": {
+   "storm_a": 514,
+   "storm_b": 13,
+   "peak_m": 2.7829
+  },
+  "nyc_combined_inundation_area_ts_570_2_1p5351.tif": {
+   "storm_a": 570,
+   "storm_b": 2,
+   "peak_m": 1.5351
+  },
+  "nyc_combined_inundation_area_ts_605_5_3p7563.tif": {
+   "storm_a": 605,
+   "storm_b": 5,
+   "peak_m": 3.7563
+  },
+  "nyc_combined_inundation_area_ts_662_3_0p9973.tif": {
+   "storm_a": 662,
+   "storm_b": 3,
+   "peak_m": 0.9973
+  },
+  "nyc_combined_inundation_area_ts_708_13_1p1567.tif": {
+   "storm_a": 708,
+   "storm_b": 13,
+   "peak_m": 1.1567
+  },
+  "nyc_combined_inundation_area_ts_808_27_3p7885.tif": {
+   "storm_a": 808,
+   "storm_b": 27,
+   "peak_m": 3.7885
+  },
+  "nyc_combined_inundation_area_ts_810_14_1p1460.tif": {
+   "storm_a": 810,
+   "storm_b": 14,
+   "peak_m": 1.146
+  },
+  "nyc_combined_inundation_area_ts_831_27_1p9452.tif": {
+   "storm_a": 831,
+   "storm_b": 27,
+   "peak_m": 1.9452
+  },
+  "nyc_combined_inundation_area_ts_880_9_2p6632.tif": {
+   "storm_a": 880,
+   "storm_b": 9,
+   "peak_m": 2.6632
+  },
+  "nyc_combined_inundation_area_ts_914_26_3p4047.tif": {
+   "storm_a": 914,
+   "storm_b": 26,
+   "peak_m": 3.4047
+  },
+  "nyc_combined_inundation_area_ts_914_6_1p2955.tif": {
+   "storm_a": 914,
+   "storm_b": 6,
+   "peak_m": 1.2955
+  },
+  "nyc_combined_inundation_area_ts_999_12_3p44.tif": {
+   "storm_a": 999,
+   "storm_b": 12,
+   "peak_m": 3.44
+  }
+ },
+ "grid": {
+  "crs": "EPSG:2263",
+  "width": 4842,
+  "height": 5066,
+  "dtype": "float32",
+  "nodata": 0.0
+ },
+ "stats": {
+  "nyc_combined_inundation_area_ts_173_2_0p8859.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.01558217159272082,
+   "wet_km2": 31.953912655976417,
+   "pos_min": 0.007437477819621563,
+   "pos_med": 0.7313375473022461,
+   "max": 16.133262634277344
+  },
+  "nyc_combined_inundation_area_ts_662_3_0p9973.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.015374952322853411,
+   "wet_km2": 31.528974038751105,
+   "pos_min": 0.006328158546239138,
+   "pos_med": 0.7397531867027283,
+   "max": 16.12262725830078
+  },
+  "nyc_combined_inundation_area_ts_192_7_1p0240.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.017019171798024035,
+   "wet_km2": 34.90072778849168,
+   "pos_min": 0.007272896822541952,
+   "pos_med": 0.7025977969169617,
+   "max": 16.228347778320312
+  },
+  "nyc_combined_inundation_area_ts_156_15_1p066.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.03050986784441245,
+   "wet_km2": 62.56571148922311,
+   "pos_min": 0.00032954663038253784,
+   "pos_med": 0.6575546860694885,
+   "max": 16.773855209350586
+  },
+  "nyc_combined_inundation_area_ts_810_14_1p1460.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.01558217159272082,
+   "wet_km2": 31.953912655976417,
+   "pos_min": 0.007084957789629698,
+   "pos_med": 0.7309850454330444,
+   "max": 16.132909774780273
+  },
+  "nyc_combined_inundation_area_ts_708_13_1p1567.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.019445834603229115,
+   "wet_km2": 39.87701564808971,
+   "pos_min": 0.006909142713993788,
+   "pos_med": 0.6831841468811035,
+   "max": 16.3613338470459
+  },
+  "nyc_combined_inundation_area_ts_914_6_1p2955.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.019890970784162073,
+   "wet_km2": 40.78984365546393,
+   "pos_min": 0.0034005199559032917,
+   "pos_med": 0.6701504588127136,
+   "max": 16.376874923706055
+  },
+  "nyc_combined_inundation_area_ts_436_11_1p3524.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.0251730441933516,
+   "wet_km2": 51.621640196489345,
+   "pos_min": 0.0072691780515015125,
+   "pos_med": 0.6644942164421082,
+   "max": 16.580768585205078
+  },
+  "nyc_combined_inundation_area_ts_570_2_1p5351.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.018618588208550887,
+   "wet_km2": 38.18060517775013,
+   "pos_min": 0.006503247655928135,
+   "pos_med": 0.6923031806945801,
+   "max": 16.313302993774414
+  },
+  "nyc_combined_inundation_area_ts_463_29_1p6644.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.023392417935380203,
+   "wet_km2": 47.97016096706435,
+   "pos_min": 0.003024577395990491,
+   "pos_med": 0.6221495866775513,
+   "max": 16.490798950195312
+  },
+  "nyc_combined_inundation_area_ts_321_19_1p7614.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.023180591980977085,
+   "wet_km2": 47.5357755539023,
+   "pos_min": 0.004777227994054556,
+   "pos_med": 0.6143772006034851,
+   "max": 16.4830265045166
+  },
+  "nyc_combined_inundation_area_ts_831_27_1p9452.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.03273652715995208,
+   "wet_km2": 67.13185792523126,
+   "pos_min": 0.0031415889970958233,
+   "pos_med": 0.6508416533470154,
+   "max": 16.843341827392578
+  },
+  "nyc_combined_inundation_area_ts_192_15_2p5752.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.038216035730260604,
+   "wet_km2": 78.36852909211191,
+   "pos_min": 0.006439989898353815,
+   "pos_med": 0.6636648774147034,
+   "max": 17.008563995361328
+  },
+  "nyc_combined_inundation_area_ts_880_9_2p6632.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.04823565612967075,
+   "wet_km2": 98.9154774544542,
+   "pos_min": 0.006365248467773199,
+   "pos_med": 0.7778903841972351,
+   "max": 17.30376434326172
+  },
+  "nyc_combined_inundation_area_ts_514_13_2p7829.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.05226874729000571,
+   "wet_km2": 107.18602189712588,
+   "pos_min": 0.0019664017017930746,
+   "pos_med": 0.8306414484977722,
+   "max": 17.451766967773438
+  },
+  "nyc_combined_inundation_area_ts_258_9_3p0022.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.0554305635662946,
+   "wet_km2": 113.6698679082927,
+   "pos_min": 0.00038540628156624734,
+   "pos_med": 0.8957353830337524,
+   "max": 17.58353614807129
+  },
+  "nyc_combined_inundation_area_ts_914_26_3p4047.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.061929861638026135,
+   "wet_km2": 126.99779217568313,
+   "pos_min": 0.0011007669381797314,
+   "pos_med": 1.0488507747650146,
+   "max": 17.850950241088867
+  },
+  "nyc_combined_inundation_area_ts_999_12_3p44.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.05704828441360493,
+   "wet_km2": 116.98728168140599,
+   "pos_min": 0.0013328010682016611,
+   "pos_med": 0.9384910464286804,
+   "max": 17.654865264892578
+  },
+  "nyc_combined_inundation_area_ts_605_5_3p7563.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.07812468150687668,
+   "wet_km2": 160.20804509128223,
+   "pos_min": 0.0005306776147335768,
+   "pos_med": 1.619868516921997,
+   "max": 18.669618606567383
+  },
+  "nyc_combined_inundation_area_ts_808_27_3p7885.tif": {
+   "neg_min": 0.0,
+   "wet_frac": 0.06416964796613654,
+   "wet_km2": 131.5908578001128,
+   "pos_min": 0.0017032349715009332,
+   "pos_med": 1.1256532669067383,
+   "max": 17.956327438354492
+  }
+ },
+ "monotonicity": {
+  "spearman": 0.932330827067669,
+  "inversions": 6
+ },
+ "water_probe": {
+  "east_river_mid": null,
+  "hudson_mid": null,
+  "ny_harbor": null,
+  "times_square": null,
+  "grand_concourse": null
+ },
+ "mask_mandatory": false,
+ "containment": {
+  "adjacent_mean": 0.9449623100618529,
+  "min_in_max": 0.9955503316262279,
+  "verdict": "ONE STORM SCALED (clean intensity sweep)"
+ },
+ "gates_failed": []
+}
