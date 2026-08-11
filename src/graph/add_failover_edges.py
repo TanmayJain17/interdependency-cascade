@@ -51,7 +51,7 @@ GRAPH_BASE = ROOT / "data/graph/nyc_infra_graph.graphml"
 CONFIG = ROOT / "config/intra_cascade.yaml"
 OUT_DIR = ROOT / "data/graph"
 
-OPERATOR_CATEGORIES = ["AT&T", "T-Mobile", "OTHER"]
+OPERATOR_CATEGORIES = ["AT&T", "T-Mobile", "Verizon", "OTHER"]
 
 
 def gate(cond, msg):

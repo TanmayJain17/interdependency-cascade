@@ -109,8 +109,8 @@ power_lines = gpd.read_file("data/power/transmission_lines_nyc.geojson")
 print(f"  Power: {len(power_sub_all)} substations, {len(power_lines)} transmission lines")
 
 # ── Telecom: cluster by 500m grid citywide ───────────────────────────────────
-telecom_raw = gpd.read_file("data/telecom/cell_towers_nyc.geojson")
-OP_MAP = {(310, 260): "T-Mobile", (310, 410): "AT&T", (310, 240): "T-Mobile Metro"}
+telecom_raw = gpd.read_file("data/telecom/cell_towers_nyc_v2.geojson")
+OP_MAP = {(310, 260): "T-Mobile", (310, 410): "AT&T",(311, 480): "Verizon", (310, 240): "T-Mobile Metro"}
 telecom_raw["operator"] = telecom_raw.apply(
     lambda r: OP_MAP.get((int(r["mcc"]), int(r["net"])), f'{int(r["mcc"])}/{int(r["net"])}'),
     axis=1,
