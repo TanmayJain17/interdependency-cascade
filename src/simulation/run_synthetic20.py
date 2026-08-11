@@ -58,7 +58,7 @@ from src.cascade.stochastic_buffer import load_buffer_config
 
 SYN_DIR = Path(os.environ.get(
     "SYN_DIR", "/Users/tanmayjain/Downloads/nyc_synthetic_flood"))
-OUT_SIM = Path("data/simulation_synthetic20")
+OUT_SIM = Path(os.environ.get("OUT_SIM", "data/simulation_synthetic20"))
 DEPTHS_CSV = Path("data/flood/synthetic20_node_depths.csv")
 SUMMARY_JSON = Path("data/analysis/synthetic20_summary.json")
 N_MC = int(os.environ.get("N_MC", "250"))
@@ -79,6 +79,9 @@ def discover_maps():
         maps.append({"file": f, "tag": f"syn_{tag}",
                      "peak_m": float(f"{ip}.{dp}")})
     maps.sort(key=lambda m: m["peak_m"])
+    only = os.environ.get("SCENARIO_ONLY")
+    if only:
+        maps = [m for m in maps if m["tag"] == only]
     if SYN_LIMIT:
         maps = maps[:SYN_LIMIT]
     return maps

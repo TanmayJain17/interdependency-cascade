@@ -61,10 +61,10 @@ from src.cascade.stochastic_buffer import (
 # Configuration
 # -----------------------------------------------------------------------------
 
-NODES_IN = Path("data/flood/nyc_infra_nodes_all_flood.geojson")
-GRAPH_IN = Path("data/flood/nyc_infra_graph_all_flood.graphml")
+NODES_IN = Path(os.environ.get("NODES_IN", "data/flood/nyc_infra_nodes_all_flood.geojson"))
+GRAPH_IN = Path(os.environ.get("GRAPH_IN", "data/flood/nyc_infra_graph_all_flood.graphml"))
 
-SIM_DIR = Path("data/simulation")
+SIM_DIR = Path(os.environ.get("SIM_DIR", "data/simulation"))
 OUT_DIR = Path("outputs")
 
 SCENARIOS = [
@@ -75,6 +75,10 @@ SCENARIOS = [
     "geoclaw_2050",
     "geoclaw_2080",
 ]
+
+_only = os.environ.get("SCENARIO_ONLY")
+if _only:
+    SCENARIOS = [s for s in SCENARIOS if s == _only]
 
 SCENARIO_DEPTH_COL = {
     "moderate_current": "flood_moderate_current_depth_m",
@@ -109,6 +113,11 @@ def load_power_coupling():
     with open(INTRA_CONFIG) as f:
         cfg = yaml.safe_load(f) or {}
     pc = cfg.get("power_coupling") or {}
+    _env = os.environ.get("POWER_COUPLING")          # per-job override; config
+    if _env is not None:                             # stays 'false' at rest
+        pc["enabled"] = _env == "1"
+    if os.environ.get("JESSE_DIR"):
+        pc["jesse_dir"] = os.environ["JESSE_DIR"]
     if not pc.get("enabled", False):
         print("  [power-coupling] disabled (legacy HAZUS power seeding)")
         return None
