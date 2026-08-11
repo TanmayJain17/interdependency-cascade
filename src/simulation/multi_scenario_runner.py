@@ -553,14 +553,18 @@ def main():
         json.dump(comparison, f, indent=2)
     print(f"\nSaved: {comparison_path}")
 
-    _, extreme_cascade = all_results["extreme_2080"]
-    amplifiers = find_amplifiers_extreme(nodes_gdf, extreme_cascade)
+    if "extreme_2080" in all_results:
+        _, extreme_cascade = all_results["extreme_2080"]
+        amplifiers = find_amplifiers_extreme(nodes_gdf, extreme_cascade)
 
-    summary_text = format_summary(comparison, amplifiers)
-    print("\n" + summary_text)
-    summary_path = OUT_DIR / "week6_cascade_summary.txt"
-    summary_path.write_text(summary_text)
-    print(f"\nSaved: {summary_path}")
+        summary_text = format_summary(comparison, amplifiers)
+        print("\n" + summary_text)
+        summary_path = OUT_DIR / "week6_cascade_summary.txt"
+        summary_path.write_text(summary_text)
+        print(f"\nSaved: {summary_path}")
+    else:
+        print("\n[note] extreme_2080 not part of this run (SCENARIO_ONLY filter) - "
+              "amplifier/summary block skipped; per-scenario results saved above.")
 
     for scenario in SCENARIOS:
         temp = SIM_DIR / f"temp_nodes_nyc_{scenario}.geojson"
