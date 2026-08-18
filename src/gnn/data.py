@@ -16,8 +16,11 @@ from pathlib import Path
 import torch
 
 
-CASCADE_RESULTS_DIR = Path("data/simulation")
-SYN_RESULTS_DIR = Path("data/simulation_synthetic20")
+# Both env-overridable: campaign retrains point BOTH at one HPC label dir
+# (same dir on purpose - a missing file must RAISE, never silently fall
+# back to stale v1-era outputs in data/simulation_synthetic20)
+CASCADE_RESULTS_DIR = Path(os.environ.get("CASCADE_RESULTS_DIR", "data/simulation"))
+SYN_RESULTS_DIR = Path(os.environ.get("SYN_RESULTS_DIR", "data/simulation_synthetic20"))
 # HETERODATA env var selects an ablation variant (default = baseline graph)
 HETERODATA_PATH = Path(os.environ.get("HETERODATA", "data/graph/nyc_infra_heterodata.pt"))
 
@@ -46,8 +49,13 @@ if _SET == "base6":
     SCENARIOS = SCENARIOS_BASE6
 elif _SET == "syn26":
     SCENARIOS = SCENARIOS_BASE6 + SCENARIOS_SYN
+elif _SET == "jesse22":
+    # Twin-campaign retrain set: gc trio + 19 distinct synthetics (replicate
+    # control 810_14 stays excluded). No DEP-era scenarios: they have no
+    # campaign labels (pluvial excluded from the twin campaigns).
+    SCENARIOS = ("geoclaw_2026", "geoclaw_2050", "geoclaw_2080") + SCENARIOS_SYN
 else:
-    raise ValueError(f"Unknown SCENARIO_SET '{_SET}' (base6|syn26)")
+    raise ValueError(f"Unknown SCENARIO_SET '{_SET}' (base6|syn26|jesse22)")
 DEFAULT_TIMESTEPS = (6, 24, 48, 96)  # exclude t=0 (label leakage from initial_mask)
 
 
