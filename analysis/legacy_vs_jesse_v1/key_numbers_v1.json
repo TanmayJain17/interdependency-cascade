@@ -1,0 +1,22 @@
+{
+  "n_scenarios": 23,
+  "guard": "PASS",
+  "crash_threshold_primary": 1200,
+  "scurve_fits": {
+    "legacy": {
+      "k_slope": 0.04464904850000827,
+      "w0_50pct": 218.0360820633842
+    },
+    "jesse": {
+      "k_slope": 0.04464904761037402,
+      "w0_50pct": 218.03606896504013
+    }
+  },
+  "max_sigma_ratio": {
+    "scenario": "nyc_syn_ts_808_27_3p7885",
+    "ratio": 5.756811439952207
+  },
+  "median_sigma_ratio": 1.0281459105736863,
+  "direct_drop_pct_mean": -1.4536780839574088,
+  "transition_band": []
+}
