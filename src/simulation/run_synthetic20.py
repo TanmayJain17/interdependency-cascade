@@ -18,8 +18,8 @@ Design notes (locked by phase0_gwen_20maps_gate + node-depth check):
     documented here and in the summary JSON.
   * Scenario tag = syn_<full ts suffix> (e.g. syn_ts_808_27_3p7885): unique,
     traceable to the source file, sorts stably.
-  * Power coupling: not applicable (Jesse's library covers gc scenarios only);
-    these runs use the legacy power layer by construction, matching the
+  * Power coupling: honored via msr.load_power_coupling() (POWER_COUPLING env);
+    the intra_power resolver maps syn_ts_<A>_<B>_* -> gwyn_<A>_<B>, matching the
     current production default.
   * Resume: scenarios whose cascade_results file already exists are skipped,
     so a killed overnight restarts where it stopped.
@@ -137,6 +137,8 @@ def main():
     for m in maps:
         msr.SCENARIO_DEPTH_COL[m["tag"]] = f"flood_{m['tag']}_depth_m"
     buffer_config = load_buffer_config("config/buffer_distributions.yaml")
+    power_coupling = msr.load_power_coupling()   # honors POWER_COUPLING/JESSE_DIR env;
+                                                 # resolver maps syn_ts_<A>_<B> -> gwyn_<A>_<B>
     print(f"  SIM_DIR -> {msr.SIM_DIR} | N_MC -> {msr.N_MONTE_CARLO} | "
           f"{len(maps)} scenario depth columns registered")
 
@@ -151,7 +153,7 @@ def main():
         else:
             t1 = time.time()
             print(f"\n[{i}/{len(maps)}] {m['tag']} (peak {m['peak_m']:.3f} m)")
-            _mc, runs = msr.run_scenario(m["tag"], nodes_gdf, buffer_config)
+            _mc, runs = msr.run_scenario(m["tag"], nodes_gdf, buffer_config, power_coupling)
             print(f"  scenario wall time: {(time.time()-t1)/60:.1f} min")
         direct = np.array([r["direct_failures"] for r in runs], dtype=float)
         total = np.array([r["total_failures"] for r in runs], dtype=float)
