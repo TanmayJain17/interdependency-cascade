@@ -238,7 +238,7 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config, power_coupling=None):
         # 'intra_power'; uncovered (NJ / out-of-footprint) nodes keep legacy.
         scheduled = None
         if power_coupling is not None and \
-                scenario_name in power_coupling["lib"].scenarios:
+                power_coupling["lib"].resolve(scenario_name) is not None:
             st = sample_power_state(power_coupling["lib"], power_coupling["join"],
                                     scenario_name, run_id,
                                     tied_rule=power_coupling["tied_rule"])
