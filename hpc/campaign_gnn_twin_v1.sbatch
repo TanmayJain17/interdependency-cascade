@@ -6,8 +6,8 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32GB
-#SBATCH --gres=gpu:1
-#SBATCH --partition=l40s
+#SBATCH --gres=gpu:h200:1
+#SBATCH --partition=h200_tandon
 #SBATCH --time=12:00:00
 #SBATCH --requeue
 #SBATCH --output=logs/gnn-twin-%A_%a.out
