@@ -1,0 +1,30 @@
+# Dynamic flood forcing (Week 23, Option A + arrival-ordered seeding).
+# Disabled by default: with enabled=false the runner is byte-identical to the frozen twin campaign.
+# Environment overrides for sbatch use: DYNAMIC_FORCING=1|0, DYNAMIC_MODE=<mode>.
+
+enabled: false
+
+# static_peak : every flood seed lands at the storm peak. Pure time translation of the frozen
+#               campaign (same seeds, same grid offsets, same intra clock) -> exact-reduction baseline.
+# arrival     : each flood seed lands when its depth first exceeds 0 (arrival_h from the timing table).
+# threshold   : each flood seed lands when its depth first exceeds threshold_m (cross_h).
+mode: arrival
+threshold_m: 0.0
+
+# Long-format table written by hydrograph_timing.py --all (node_id, scenario, arrival_h, cross_h, ...).
+# Scenario keys are the depth-column tags, e.g. syn_ts_914_6_1p2955.
+timing_csv: data/flood/timing/node_timing_synthetic20_v1.csv
+timing_summary_csv: data/flood/timing/node_timing_synthetic20_v1_summary.csv   # provides t_peak_h per scenario
+
+# Engine evaluation grid, hours after storm ONSET (t = 0 is the first hydrograph sample).
+grid:
+  pre_peak_step_h: 6                 # 0, 6, 12, ... up to (not including) the peak
+  post_peak_offsets_h: [0, 6, 24, 48, 96]   # must stay equal to the frozen TIME_STEPS for comparability
+
+# Which clock the intra closure sees (telecom m(t)). 'peak' reproduces the frozen assumption that
+# battery depletion starts at the peak; 'onset' starts it at storm onset. Keep 'peak' until the
+# per-node clock (buffer starts at each node's own power loss) is implemented.
+intra_clock: peak
+
+# Refuse to run with the power-coupling (jesse) arm until its t=6 floor is re-derived in onset time.
+allow_power_coupling: false

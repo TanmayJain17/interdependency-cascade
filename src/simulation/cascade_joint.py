@@ -162,8 +162,14 @@ def intra_closure(dead: set, ctx: dict, t: float = 0.0) -> dict:
 # Joint engine
 # --------------------------------------------------------------------------- #
 
+def _tkey(t):
+    """Results key: "t6" for integer hours (frozen format), "t64.9" otherwise."""
+    return f"t{int(t)}" if float(t).is_integer() else f"t{float(t):g}"
+
+
 def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict,
-                           time_steps=None, scheduled_failures=None):
+                           time_steps=None, scheduled_failures=None,
+                           t_origin=0.0, intra_clock_origin=None):
     """Joint inter+intra propagation on one shared dead-node set.
 
     scheduled_failures : optional {node_id: (hours, cause)} — failures from a
@@ -175,6 +181,13 @@ def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict
         downstream buffer arithmetic is exact even if the first evaluated
         timestep is later.
 
+    t_origin : hour at which `initial_failures` are stamped and at which no propagation is
+        evaluated (the frozen t=0 convention). Default 0.0 reproduces the frozen behaviour;
+        t_origin = t_peak with a translated grid is a pure time shift of the frozen run.
+    intra_clock_origin : hour subtracted from t before it is handed to intra_closure (the
+        telecom demand-surge clock m(t)); steps before the origin hand it 1e9 (surge fully
+        decayed, i.e. none yet). Defaults to t_origin.
+
     Returns (results, fail_time, cause):
       results   : {"t0": [...], "t6": [...], ...} cumulative failed-node lists
       fail_time : {node_id: hours}   (0.0 for flood seeds)
@@ -184,24 +197,30 @@ def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict
         time_steps = [0, 6, 24, 48, 96]
     if scheduled_failures is None:
         scheduled_failures = {}
+    t_origin = float(t_origin)
+    intra_origin = t_origin if intra_clock_origin is None else float(intra_clock_origin)
+    _eps = 1e-9   # float tolerance for translated grids (no effect on integer grids)
 
     incoming = {}
     for u, v, data in get_cascade_edges(G):
         incoming.setdefault(v, []).append((u, float(data.get("buffer_hours", 0.0))))
 
-    fail_time = {nid: 0.0 for nid in initial_failures if nid in G}
+    fail_time = {nid: t_origin for nid in initial_failures if nid in G}
     cause = {nid: "flood" for nid in fail_time}
 
     results = {}
-    if 0 in time_steps:
-        results["t0"] = sorted(fail_time)
+    if any(abs(float(ts) - t_origin) < _eps for ts in time_steps):
+        results[_tkey(t_origin)] = sorted(fail_time)
 
     for t in time_steps:
-        if t == 0:
+        if abs(float(t) - t_origin) < _eps:
+            continue
+        if float(t) < t_origin:
+            results[_tkey(t)] = []      # before the origin nothing has happened yet
             continue
         # scheduled precomputed-mechanism failures land first at their hour
         for nid, (t_sched, c) in scheduled_failures.items():
-            if t_sched <= t and nid not in fail_time and nid in G:
+            if t_sched <= t + _eps and nid not in fail_time and nid in G:
                 fail_time[nid] = float(t_sched)
                 cause[nid] = c
         while True:
@@ -213,13 +232,16 @@ def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict
                     if node in fail_time:
                         continue
                     for src, buf in incoming.get(node, ()):
-                        if src in fail_time and (fail_time[src] + buf) <= t:
+                        if src in fail_time and (fail_time[src] + buf) <= t + _eps:
                             fail_time[node] = float(t)
                             cause[node] = "inter"
                             changed = True
                             break
             # (b) intra closure on the shared dead set (t drives telecom m(t))
-            new_intra = intra_closure(set(fail_time), intra_ctx, t=float(t))
+            # intra clock = hours since the clock origin (telecom demand surge m(t) is event-anchored).
+            # Before the origin the closure sees a far-future clock, i.e. m(t) fully decayed: no surge yet.
+            _tc = round(float(t) - intra_origin, 6)
+            new_intra = intra_closure(set(fail_time), intra_ctx, t=_tc if _tc >= 0.0 else 1.0e9)
             if not new_intra:
                 break
             for nid, c in new_intra.items():
@@ -227,6 +249,6 @@ def simulate_cascade_joint(G: nx.DiGraph, initial_failures: set, intra_ctx: dict
                 cause[nid] = c
             # loop: intra kills may enable further inter kills at this same t
 
-        results[f"t{t}"] = sorted(fail_time)
+        results[_tkey(t)] = sorted(fail_time)
 
     return results, fail_time, cause

@@ -42,6 +42,7 @@ import numpy as np
 import geopandas as gpd
 import networkx as nx
 from cascade_joint import build_intra_context, simulate_cascade_joint
+from dynamic_forcing import load_dynamic_forcing, build_record, FLOOD_CAUSE
 # Make fragility.py and cascade_sim.py importable
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # Make src.cascade.stochastic_buffer importable from project root
@@ -205,6 +206,22 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config, power_coupling=None):
     print(f"  Loaded graph: {G.number_of_nodes():,} nodes, {G.number_of_edges():,} edges")
     intra_ctx = build_intra_context(G)
 
+    # Week 23 dynamic forcing (config/dynamic_forcing.yaml, env DYNAMIC_FORCING / DYNAMIC_MODE).
+    # Disabled -> the block below is skipped and the run is byte-identical to the frozen campaign.
+    dyn = load_dynamic_forcing()
+    dyn_active = dyn is not None and dyn.has_scenario(scenario_name)
+    if dyn is not None and not dyn_active:
+        print(f"  [dynamic-forcing] no timing table for {scenario_name}; static forcing for this scenario")
+    if dyn_active and power_coupling is not None and not dyn.allow_power_coupling:
+        raise NotImplementedError("dynamic forcing with the power-coupling arm is not derived yet "
+                                  "(Jesse's t=6 floor is peak-anchored); run the legacy arm")
+    if dyn_active:
+        dyn_grid = dyn.grid(scenario_name)
+        dyn_tpeak = dyn.t_peak[scenario_name]
+        dyn_intra = dyn.intra_origin(scenario_name)
+        print(f"  [dynamic-forcing] {scenario_name}: mode={dyn.mode} t_peak={dyn_tpeak:.1f} h "
+              f"intra_clock={dyn.intra_clock} grid={dyn_grid}")
+
     # Independent RNG for buffer sampling (fragility uses its own seed inside)
     buffer_rng = np.random.default_rng(BUFFER_SEED)
 
@@ -260,23 +277,43 @@ def run_scenario(scenario_name, nodes_gdf, buffer_config, power_coupling=None):
                 if nid not in fail_time_per_node:
                     fail_time_per_node[nid] = t_int """
                     
-        cascade, fail_time, cause = simulate_cascade_joint(
-            G_stoch, initial_failures, intra_ctx, time_steps=TIME_STEPS,
-            scheduled_failures=scheduled)
+        if dyn_active:
+            # seeds stay exactly as sampled; only WHEN they land changes
+            seeds = {nid for nid in initial_failures if nid in G_stoch}
+            seed_hours = dyn.seed_hours(scenario_name, seeds)
+            if dyn.mode == "static_peak":
+                # pure time translation of the frozen run: seeds are initial failures at t_origin=t_peak
+                cascade, fail_time, cause = simulate_cascade_joint(
+                    G_stoch, seeds, intra_ctx, time_steps=dyn_grid,
+                    scheduled_failures=scheduled, t_origin=dyn_tpeak, intra_clock_origin=dyn_intra)
+            else:
+                sched = dict(scheduled or {})
+                for nid, h in seed_hours.items():
+                    if nid not in sched or h < sched[nid][0]:
+                        sched[nid] = (h, FLOOD_CAUSE)
+                cascade, fail_time, cause = simulate_cascade_joint(
+                    G_stoch, set(), intra_ctx, time_steps=dyn_grid,
+                    scheduled_failures=sched, t_origin=0.0, intra_clock_origin=dyn_intra)
+            cascade_results.append(build_record(scenario.get("scenario_id", run_id), seeds, seed_hours,
+                                                fail_time, cause, dyn_tpeak, dyn.post_peak_offsets_h))
+        else:
+            cascade, fail_time, cause = simulate_cascade_joint(
+                G_stoch, initial_failures, intra_ctx, time_steps=TIME_STEPS,
+                scheduled_failures=scheduled)
 
-        fail_time_per_node = {nid: int(t) for nid, t in fail_time.items()}
-        cause_counts = dict(Counter(cause.values()))
+            fail_time_per_node = {nid: int(t) for nid, t in fail_time.items()}
+            cause_counts = dict(Counter(cause.values()))
 
-        by_timestep = {tk: len(cascade[tk]) for tk in time_keys}
-        cascade_results.append({
-            "scenario_id": scenario.get("scenario_id", run_id),
-            "direct_failures": by_timestep["t0"],
-            "cause_counts": cause_counts,
-            "total_failures":  by_timestep[time_keys[-1]],
-            "failed_nodes_t96": list(cascade[time_keys[-1]]),
-            "by_timestep": by_timestep,
-            "fail_time_per_node": fail_time_per_node,  # NEW
-        })
+            by_timestep = {tk: len(cascade[tk]) for tk in time_keys}
+            cascade_results.append({
+                "scenario_id": scenario.get("scenario_id", run_id),
+                "direct_failures": by_timestep["t0"],
+                "cause_counts": cause_counts,
+                "total_failures":  by_timestep[time_keys[-1]],
+                "failed_nodes_t96": list(cascade[time_keys[-1]]),
+                "by_timestep": by_timestep,
+                "fail_time_per_node": fail_time_per_node,  # NEW
+            })
 
         if (run_id + 1) % 100 == 0:
             print(f"    Completed {run_id + 1}/{len(mc_scenarios)} MC runs")

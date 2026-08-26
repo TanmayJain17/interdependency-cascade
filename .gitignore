@@ -136,3 +136,6 @@ data/external/jesse_power/**/*.html
 data/simulation_synthetic20/
 Tanmay_Handoff/
 data/telecom/*.csv.gz
+external/
+data/hpc_results_aug2026/
+logs/
