@@ -91,7 +91,7 @@ def load_dynamic_forcing(path: Path = CONFIG_PATH) -> DynamicForcing | None:
         threshold_m=float(cfg.get("threshold_m", 0.0)),
         pre_peak_step_h=float(g.get("pre_peak_step_h", 6)),
         post_peak_offsets_h=offsets,
-        intra_clock=cfg.get("intra_clock", "peak"),
+        intra_clock=os.environ.get("DYNAMIC_INTRA_CLOCK", cfg.get("intra_clock", "peak")),   # peak | onset
         allow_power_coupling=bool(cfg.get("allow_power_coupling", False)),
     )
     tim = pd.read_csv(cfg["timing_csv"])
