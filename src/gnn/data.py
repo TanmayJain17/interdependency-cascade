@@ -58,6 +58,15 @@ else:
     raise ValueError(f"Unknown SCENARIO_SET '{_SET}' (base6|syn26|jesse22)")
 DEFAULT_TIMESTEPS = (6, 24, 48, 96)  # exclude t=0 (label leakage from initial_mask)
 
+# --- optional flood-timing input features (Week 23, Option A / World 2) ---------------------------
+# Off by default: N_TIMING_FEATURES = 0 and every tensor is identical to the twin-retrain build.
+TIMING_FEATURES = os.environ.get("GNN_TIMING_FEATURES", "0") == "1"
+TIMING_CSV = Path(os.environ.get("GNN_TIMING_CSV", "data/flood/timing/node_timing_synthetic20_v1.csv"))
+TIMING_COLS = ("arrival_h", "duration_h", "time_to_peak_h")
+TIMING_SCALE_H = 96.0
+N_TIMING_FEATURES = len(TIMING_COLS) if TIMING_FEATURES else 0
+_TIMING_CACHE = {}          # scenario -> {node_type: tensor [N, len(TIMING_COLS)]}
+
 
 # --------------------------------------------------------------------------
 # Loading
@@ -88,6 +97,8 @@ def load_cascade_results(scenarios=SCENARIOS, sim_dir=CASCADE_RESULTS_DIR):
                 f"{SYN_RESULTS_DIR}. Run the relevant runner first.")
         with open(fp) as f:
             out[s] = json.load(f)
+        for r in out[s]:
+            r["_scenario"] = s          # lets example_from_run look up per-scenario timing features
     return out
 
 
@@ -144,16 +155,55 @@ def build_labels(fail_time_per_node, base_data, node_id_index, timesteps=DEFAULT
     return labels
 
 
-def build_input_x_dict(base_data, initial_mask):
-    """Concatenate base node features with the initial-failure mask as 9th feature.
+def load_timing_features(base_data, node_id_index, csv=None):
+    """Read hydrograph_timing.py's long CSV once into {scenario: {node_type: tensor [N, k]}} (hours / 96)."""
+    import pandas as pd
+    csv = Path(csv) if csv is not None else TIMING_CSV
+    if not csv.exists():
+        raise FileNotFoundError(f"GNN_TIMING_FEATURES=1 but timing table not found: {csv}")
+    df = pd.read_csv(csv)
+    missing = [c for c in TIMING_COLS if c not in df.columns]
+    if missing:
+        raise ValueError(f"timing table {csv} lacks columns {missing}")
+    out = {}
+    for sc, grp in df.groupby("scenario"):
+        feats = {nt: torch.zeros(base_data[nt].num_nodes, len(TIMING_COLS)) for nt in base_data.node_types}
+        vals = grp[list(TIMING_COLS)].fillna(0.0).to_numpy(dtype="float32") / TIMING_SCALE_H
+        for nid, row in zip(grp["node_id"].tolist(), vals):
+            hit = node_id_index.get(nid)
+            if hit is None:
+                continue
+            nt, local_idx = hit
+            feats[nt][local_idx] = torch.from_numpy(row.copy())
+        out[sc] = feats
+    return out
 
-    Output: dict {node_type: tensor [num_nodes_of_type, base_features + 1]}
+
+def timing_for(scenario, base_data, node_id_index):
+    """Per-scenario timing tensors (zeros if the scenario is not in the table, e.g. a map without a hydrograph)."""
+    if not _TIMING_CACHE:
+        _TIMING_CACHE.update(load_timing_features(base_data, node_id_index))
+        _TIMING_CACHE.setdefault("_zeros", {nt: torch.zeros(base_data[nt].num_nodes, len(TIMING_COLS))
+                                            for nt in base_data.node_types})
+        print(f"[timing-features] loaded {len(_TIMING_CACHE) - 1} scenarios from {TIMING_CSV} "
+              f"(features {TIMING_COLS}, scaled by {TIMING_SCALE_H:g} h)")
+    return _TIMING_CACHE.get(scenario, _TIMING_CACHE["_zeros"])
+
+
+def build_input_x_dict(base_data, initial_mask, timing=None):
+    """Concatenate base node features with the initial-failure mask as 9th feature,
+    plus the per-node timing features (arrival, duration, time-to-peak) when enabled.
+
+    Output: dict {node_type: tensor [num_nodes_of_type, base_features + 1 + N_TIMING_FEATURES]}
     """
     x_dict = {}
     for nt in base_data.node_types:
         base_x = base_data[nt].x                       # [N, base_features]
         mask = initial_mask[nt].unsqueeze(1)           # [N, 1]
-        x_dict[nt] = torch.cat([base_x, mask], dim=1)  # [N, base_features + 1]
+        parts = [base_x, mask]
+        if timing is not None:
+            parts.append(timing[nt])                   # [N, N_TIMING_FEATURES]
+        x_dict[nt] = torch.cat(parts, dim=1)           # [N, base_features + 1 (+ timing)]
     return x_dict
 
 
@@ -177,7 +227,8 @@ def example_from_run(run, base_data, node_id_index, timesteps=DEFAULT_TIMESTEPS)
     initial_failure_ids = extract_initial_failures(run)
     initial_mask = build_initial_mask(initial_failure_ids, base_data, node_id_index)
     labels = build_labels(run["fail_time_per_node"], base_data, node_id_index, timesteps)
-    x_dict = build_input_x_dict(base_data, initial_mask)
+    timing = timing_for(run.get("_scenario"), base_data, node_id_index) if TIMING_FEATURES else None
+    x_dict = build_input_x_dict(base_data, initial_mask, timing)
     return x_dict, labels
 
 

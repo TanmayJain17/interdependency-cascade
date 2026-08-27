@@ -29,6 +29,7 @@ from src.gnn.data import (
     example_from_run,
     load_base_graph,
     load_cascade_results,
+    N_TIMING_FEATURES,
 )
 from src.gnn.model import CascadeGNN, count_parameters
 
@@ -160,7 +161,7 @@ def run_smoke(args):
     base_data = load_base_graph()
     print(f"Loaded heterograph: {base_data.node_types}")
 
-    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 for nt in base_data.node_types}
+    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
     model = CascadeGNN(
         node_types=base_data.node_types,
         edge_types=list(base_data.edge_types),
@@ -175,7 +176,7 @@ def run_smoke(args):
 
     # Synthetic input
     x_dict = {
-        nt: torch.randn(base_data[nt].num_nodes, base_data[nt].x.shape[1] + 1)
+        nt: torch.randn(base_data[nt].num_nodes, base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES)
         for nt in base_data.node_types
     }
     edge_idx_dict = edge_index_dict(base_data)
@@ -206,7 +207,7 @@ def run_overfit(args):
         examples.extend([(s, r) for r in results[s][:2]])
     examples = examples[:5]
 
-    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 for nt in base_data.node_types}
+    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
     model = CascadeGNN(
         node_types=base_data.node_types,
         edge_types=list(base_data.edge_types),
@@ -299,7 +300,7 @@ def run_train(args):
         print(f"Subsampled val to {len(val_examples)}")
 
     # Build model
-    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 for nt in base_data.node_types}
+    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
     model = CascadeGNN(
         node_types=base_data.node_types,
         edge_types=list(base_data.edge_types),
