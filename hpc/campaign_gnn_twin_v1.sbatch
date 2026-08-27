@@ -5,9 +5,9 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=32GB
-#SBATCH --gres=gpu:h200:1
-#SBATCH --partition=h200_tandon
+#SBATCH --mem=64GB
+#SBATCH --gres=gpu:l40s:1
+#SBATCH --partition=l40s_public
 #SBATCH --time=12:00:00
 #SBATCH --requeue
 #SBATCH --output=logs/gnn-twin-%A_%a.out
@@ -24,6 +24,7 @@
 source $SCRATCH/miniforge3/bin/activate flood
 cd $SCRATCH/interdependency-cascade
 mkdir -p logs
+export PYTHONUNBUFFERED=1
 
 ARMS=(legacy jesse)
 ARM=${ARMS[$SLURM_ARRAY_TASK_ID]}
@@ -68,6 +69,6 @@ if [[ "${SMOKE:-0}" == "1" ]]; then
     --holdout_scenario "$HOLDOUT"
 else
   python -m src.gnn.train --mode train --device cuda --seed 42 \
-    --epochs 20 \
+    --epochs 6 \
     --holdout_scenario "$HOLDOUT"
 fi

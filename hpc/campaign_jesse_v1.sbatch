@@ -17,6 +17,7 @@ mkdir -p logs
 # pin to the FROZEN v1 graph (abstract-comparable; committed in git)
 export NODES_IN=data/graph_v1_frozen/nyc_infra_nodes_all_flood.geojson
 export GRAPH_IN=data/graph_v1_frozen/nyc_infra_graph_all_flood.graphml
+export SYN_DIR=$SCRATCH/nyc_synthetic_flood
 export POWER_COUPLING=1
 export JESSE_DIR=$SCRATCH/Tanmay_Handoff
 
