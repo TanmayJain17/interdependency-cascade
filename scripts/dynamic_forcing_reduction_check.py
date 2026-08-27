@@ -16,12 +16,18 @@ import argparse, json, sys
 KEYS = ["direct_failures", "total_failures", "by_timestep", "failed_nodes_t96", "fail_time_per_node", "cause_counts"]
 
 
-def norm(rec, k):
+def norm(rec, k, ref=None):
+    """ref (the frozen record) restricts comparison to the frozen horizons when the test file has more."""
     v = rec[k]
     if k == "failed_nodes_t96":
         return sorted(v)
     if k == "fail_time_per_node":
-        return {str(n): int(t) for n, t in v.items()}
+        hmax = max(int(h[1:]) for h in ref["by_timestep"]) if ref is not None else None
+        return {str(n): int(t) for n, t in v.items() if hmax is None or int(t) <= hmax}
+    if k == "by_timestep" and ref is not None:
+        return {h: v[h] for h in ref["by_timestep"] if h in v}
+    if k == "total_failures" and ref is not None:
+        return rec["by_timestep"].get("t96", v)
     return v
 
 
@@ -36,20 +42,24 @@ def main():
     if n == 0:
         sys.exit("no runs to compare")
     bad = 0
+    ext = max(int(h[1:]) for h in test[0]["by_timestep"]) > max(int(h[1:]) for h in ref[0]["by_timestep"])
+    keys = [k for k in KEYS if not (ext and k == "cause_counts")]      # causes are cumulative to the last horizon
+    if ext:
+        print("test file has a longer horizon than the reference: comparing on the reference horizons only (cause_counts skipped)")
     for i in range(n):
         r, t = ref[i], test[i]
-        for k in KEYS:
-            if norm(r, k) != norm(t, k):
+        for k in keys:
+            if norm(r, k) != norm(t, k, ref=r):
                 bad += 1
                 if bad <= 10:
                     if k == "fail_time_per_node":
-                        rf, tf = norm(r, k), norm(t, k)
+                        rf, tf = norm(r, k), norm(t, k, ref=r)
                         diff = [(nid, rf.get(nid), tf.get(nid)) for nid in set(rf) | set(tf) if rf.get(nid) != tf.get(nid)]
                         print(f"run {i}: {k} differs on {len(diff)} nodes, e.g. {diff[:4]}")
                     else:
                         print(f"run {i}: {k} ref={norm(r, k) if k != 'failed_nodes_t96' else len(norm(r, k))} "
-                              f"test={norm(t, k) if k != 'failed_nodes_t96' else len(norm(t, k))}")
-    fp_ref = sorted(r["total_failures"] for r in ref[:n]); fp_test = sorted(t["total_failures"] for t in test[:n])
+                              f"test={norm(t, k, ref=r) if k != 'failed_nodes_t96' else len(norm(t, k, ref=r))}")
+    fp_ref = sorted(r["total_failures"] for r in ref[:n]); fp_test = sorted(t["by_timestep"].get("t96", t["total_failures"]) for t in test[:n])
     print(f"compared {n} runs | fingerprint (sorted totals) identical: {fp_ref == fp_test} | mismatching fields: {bad}")
     if bad:
         print("EXACT REDUCTION FAILED — dynamic code does not reduce to the frozen static run"); sys.exit(2)

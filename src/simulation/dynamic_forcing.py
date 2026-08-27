@@ -13,6 +13,8 @@ Mechanics
     peak), by_timestep keys t0..t96 = failed by peak+offset. The onset-clock times are kept alongside.
   * mode = static_peak schedules every seed at the peak: a pure translation of the frozen run, which
     the reduction check compares byte-for-byte against the campaign output.
+  * mode = static_onset puts every seed at hour 0 on the same grid/horizon as the dynamic modes: the
+    other bracket (dynamic gets LESS cascade time than this baseline, MORE than static_peak).
 """
 from __future__ import annotations
 import math, os
@@ -45,6 +47,8 @@ class DynamicForcing:
         tp = self.t_peak[scenario]
         if self.mode == "static_peak":
             return {nid: tp for nid in seeds}
+        if self.mode == "static_onset":       # bracket baseline: everything wet at hour 0, same grid/horizon as dynamic
+            return {nid: 0.0 for nid in seeds}
         key = "cross_h" if self.mode == "threshold" else "arrival_h"
         tab = self.timing[scenario]
         out = {}
@@ -77,14 +81,16 @@ def load_dynamic_forcing(path: Path = CONFIG_PATH) -> DynamicForcing | None:
     if not enabled:
         return None
     mode = os.environ.get("DYNAMIC_MODE", cfg.get("mode", "arrival"))
-    if mode not in ("static_peak", "arrival", "threshold"):
-        raise ValueError(f"dynamic_forcing.mode must be static_peak|arrival|threshold, got {mode}")
+    if mode not in ("static_peak", "static_onset", "arrival", "threshold"):
+        raise ValueError(f"dynamic_forcing.mode must be static_peak|static_onset|arrival|threshold, got {mode}")
     g = cfg.get("grid", {})
+    env_off = os.environ.get("DYNAMIC_OFFSETS")          # e.g. "0 6 24 48 96 144 240" for horizon-convergence runs
+    offsets = [float(x) for x in env_off.split()] if env_off else [float(x) for x in g.get("post_peak_offsets_h", [0, 6, 24, 48, 96])]
     df = DynamicForcing(
         mode=mode,
         threshold_m=float(cfg.get("threshold_m", 0.0)),
         pre_peak_step_h=float(g.get("pre_peak_step_h", 6)),
-        post_peak_offsets_h=[float(x) for x in g.get("post_peak_offsets_h", [0, 6, 24, 48, 96])],
+        post_peak_offsets_h=offsets,
         intra_clock=cfg.get("intra_clock", "peak"),
         allow_power_coupling=bool(cfg.get("allow_power_coupling", False)),
     )
@@ -100,7 +106,8 @@ def load_dynamic_forcing(path: Path = CONFIG_PATH) -> DynamicForcing | None:
     missing = set(df.timing) - set(df.t_peak)
     if missing:
         raise ValueError(f"timing table has scenarios without t_peak in the summary: {sorted(missing)[:5]}")
-    print(f"[dynamic-forcing] ENABLED mode={df.mode} scenarios={len(df.t_peak)} intra_clock={df.intra_clock}")
+    print(f"[dynamic-forcing] ENABLED mode={df.mode} scenarios={len(df.t_peak)} intra_clock={df.intra_clock} "
+          f"post_peak_offsets_h={df.post_peak_offsets_h}")
     return df
 
 
@@ -109,7 +116,8 @@ def build_record(scenario_id, seeds: set, seed_hours: dict, fail_time: dict, cau
     """Frozen-campaign-compatible record (peak-relative ints) plus onset-clock detail."""
     rel = {nid: t - t_peak for nid, t in fail_time.items()}
     by_ts = {f"t{int(off)}": sum(1 for v in rel.values() if v <= off + 1e-9) for off in offsets}
-    last = f"t{int(offsets[-1])}"
+    last = "t96" if 96.0 in offsets else f"t{int(offsets[-1])}"      # frozen-schema anchor
+    last_all = f"t{int(offsets[-1])}"
     from collections import Counter
     early = sum(1 for nid in seeds if seed_hours[nid] <= t_peak - 24)
     return {
@@ -118,7 +126,9 @@ def build_record(scenario_id, seeds: set, seed_hours: dict, fail_time: dict, cau
         "direct_failures": len(seeds),
         "cause_counts": dict(Counter(cause.values())),
         "total_failures": by_ts[last],
-        "failed_nodes_t96": sorted(nid for nid, v in rel.items() if v <= offsets[-1] + 1e-9),
+        "failed_nodes_t96": sorted(nid for nid, v in rel.items() if v <= (96.0 if 96.0 in offsets else offsets[-1]) + 1e-9),
+        "total_failures_last_horizon": by_ts[last_all],
+        "last_horizon": last_all,
         "by_timestep": by_ts,
         "fail_time_per_node": {nid: int(math.floor(v + 1e-9)) for nid, v in rel.items()},   # hours after PEAK
         "fail_time_onset_h_per_node": {nid: round(t, 2) for nid, t in fail_time.items()},   # hours after ONSET

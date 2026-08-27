@@ -25,7 +25,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scenario", required=True)
     ap.add_argument("--n", type=int, default=20)
-    ap.add_argument("--mode", default="static_peak", choices=["static", "static_peak", "arrival", "threshold"])
+    ap.add_argument("--mode", default="static_peak", choices=["static", "static_peak", "static_onset", "arrival", "threshold"])
     ap.add_argument("--ref-dir", default="data/hpc_results_aug2026/legacy_v1_n1000")
     ap.add_argument("--out", default=None)
     ap.add_argument("--no-check", action="store_true")
@@ -79,7 +79,7 @@ def main():
     _mc, runs = msr.run_scenario(a.scenario, nodes_gdf, buffer_config, power_coupling)
     print(f"scenario wall time: {(time.time() - t1) / 60:.1f} min | runs: {len(runs)}")
 
-    if a.no_check or a.mode in ("arrival", "threshold"):
+    if a.no_check or a.mode in ("static_onset", "arrival", "threshold"):
         print("no reduction check for this mode (only static/static_peak reduce to the frozen run)"); return
     rc = subprocess.call([sys.executable, "scripts/dynamic_forcing_reduction_check.py",
                           "--ref", str(ref_runs), "--test", str(stale), "--first", str(a.n)])

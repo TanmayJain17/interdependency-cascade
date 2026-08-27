@@ -6,6 +6,7 @@ enabled: false
 
 # static_peak : every flood seed lands at the storm peak. Pure time translation of the frozen
 #               campaign (same seeds, same grid offsets, same intra clock) -> exact-reduction baseline.
+# static_onset: every flood seed lands at hour 0 on the dynamic grid/horizon (the other bracket baseline).
 # arrival     : each flood seed lands when its depth first exceeds 0 (arrival_h from the timing table).
 # threshold   : each flood seed lands when its depth first exceeds threshold_m (cross_h).
 mode: arrival
