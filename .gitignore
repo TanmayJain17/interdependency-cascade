@@ -139,3 +139,4 @@ data/telecom/*.csv.gz
 external/
 data/hpc_results_aug2026/
 logs/
+!data/graph/*v1_frozen*.pt
