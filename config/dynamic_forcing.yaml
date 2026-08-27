@@ -13,9 +13,10 @@ mode: arrival
 threshold_m: 0.0
 
 # Long-format table written by hydrograph_timing.py --all (node_id, scenario, arrival_h, cross_h, ...).
-# Scenario keys are the depth-column tags, e.g. syn_ts_914_6_1p2955.
-timing_csv: data/flood/timing/node_timing_synthetic20_v1.csv
-timing_summary_csv: data/flood/timing/node_timing_synthetic20_v1_summary.csv   # provides t_peak_h per scenario
+# Scenario keys are the depth-column tags, e.g. syn_ts_914_6_1p2955 or geoclaw_2050.
+# jesse22 = the 20 synthetic maps + the GeoClaw trio (Sandy NOAA hydrograph); superset of the synthetic-20 table.
+timing_csv: data/flood/timing/node_timing_jesse22_v1.csv
+timing_summary_csv: data/flood/timing/node_timing_jesse22_v1_summary.csv   # provides t_peak_h per scenario
 
 # Engine evaluation grid, hours after storm ONSET (t = 0 is the first hydrograph sample).
 grid:

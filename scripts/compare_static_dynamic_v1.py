@@ -73,6 +73,18 @@ def compare(ref, test, scenario):
     for t in test: ct.update(t["cause_counts"])
     for c in sorted(set(cr) | set(ct)):
         row[f"cause_{c}_static"] = cr[c] / n; row[f"cause_{c}_dynamic"] = ct[c] / n
+    # per-infrastructure-type failed counts at the last shared horizon (node ids carry their type prefix)
+    hmax = int(last[1:])
+    def by_type(recs):
+        c = Counter()
+        for rec in recs:
+            for nid, v in rec["fail_time_per_node"].items():
+                if v <= hmax:
+                    c[str(nid).split("_")[0]] += 1
+        return c
+    br, bt = by_type(ref), by_type(test)
+    for typ in sorted(set(br) | set(bt)):
+        row[f"type_{typ}_static"] = br[typ] / n; row[f"type_{typ}_dynamic"] = bt[typ] / n; row[f"type_{typ}_delta"] = (bt[typ] - br[typ]) / n
     tp = {t.get("dynamic_forcing", {}).get("t_peak_h") for t in test}
     row["t_peak_h"] = tp.pop() if len(tp) == 1 else None
     return row
@@ -99,6 +111,11 @@ def main():
             "crash_frac_static_1200", "crash_frac_dynamic_1200"]
     pd.set_option("display.width", 250); pd.set_option("display.max_columns", 40)
     print(df[show].round(3).T.to_string())
+    causes = [c for c in df.columns if c.startswith("cause_")]; types = [c for c in df.columns if c.startswith("type_")]
+    print("\n--- cause counts per run at the last horizon of each file (static = ref, dynamic = test) ---")
+    print(df[["scenario"] + causes].round(1).T.to_string())
+    print(f"\n--- failed nodes per run by infrastructure type at {rows[0]['totals_at']} ---")
+    print(df[["scenario"] + types].round(1).T.to_string())
     bad = [r["scenario"] for r in rows if not r["seeds_identical"]]
     if bad:
         print(f"\nWARNING: seeds differ from the frozen campaign for {bad} — comparison is NOT paired there")
