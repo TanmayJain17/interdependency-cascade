@@ -75,7 +75,7 @@ def eval_step(model, base_data, run, node_id_index, edge_idx_dict, device):
     # Recover the initial-failure mask from inputs:
     # build_input_x_dict appends mask as the LAST feature (column index -1).
     # mask == 1.0 means the node was an initial flood failure.
-    initial_mask = {nt: x_dict[nt][:, -1] for nt in x_dict}
+    initial_mask = {nt: x_dict[nt][:, -1 - N_TIMING_FEATURES] for nt in x_dict}
 
     losses = []
     for nt in logits:
