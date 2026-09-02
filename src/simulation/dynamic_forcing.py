@@ -51,13 +51,14 @@ class DynamicForcing:
             return {nid: 0.0 for nid in seeds}
         key = "cross_h" if self.mode == "threshold" else "arrival_h"
         tab = self.timing[scenario]
+        shift = float(os.environ.get("DYNAMIC_ARRIVAL_SHIFT_H", "0"))   # ±3/±6 h perturbation test; clamped at 0
         out = {}
         for nid in seeds:
             rec = tab.get(nid)
             h = rec.get(key) if rec else None
             # a seed without a timing record, or one that never reaches the threshold, is placed at the
             # peak: the static map says it is wet at the peak, so that is the latest defensible time
-            out[nid] = float(h) if (h is not None and not (isinstance(h, float) and math.isnan(h))) else tp
+            out[nid] = max(float(h) + shift, 0.0) if (h is not None and not (isinstance(h, float) and math.isnan(h))) else tp
         return out
 
     def grid(self, scenario: str) -> list:

@@ -1,0 +1,80 @@
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_156_15_1p066.tif
+  wet cells 748,394  wet area 62.6 km^2  depth p50/p90/p99/max = 0.66/2.27/4.09/16.77 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.06 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_173_2_0p8859.tif
+  wet cells 382,224  wet area 32.0 km^2  depth p50/p90/p99/max = 0.73/2.17/4.22/16.13 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.11 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_192_15_2p5752.tif
+  wet cells 937,423  wet area 78.4 km^2  depth p50/p90/p99/max = 0.66/2.36/4.09/17.01 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.05 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_192_7_1p0240.tif
+  wet cells 417,473  wet area 34.9 km^2  depth p50/p90/p99/max = 0.70/2.17/4.21/16.23 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.10 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_258_9_3p0022.tif
+  wet cells 1,359,688  wet area 113.7 km^2  depth p50/p90/p99/max = 0.90/2.71/4.42/17.58 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.04 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_321_19_1p7614.tif
+  wet cells 568,610  wet area 47.5 km^2  depth p50/p90/p99/max = 0.61/2.16/4.14/16.48 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.07 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_436_11_1p3524.tif
+  wet cells 617,484  wet area 51.6 km^2  depth p50/p90/p99/max = 0.66/2.19/4.15/16.58 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.07 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_463_29_1p6644.tif
+  wet cells 573,806  wet area 48.0 km^2  depth p50/p90/p99/max = 0.62/2.16/4.13/16.49 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.07 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_514_13_2p7829.tif
+  wet cells 1,282,130  wet area 107.2 km^2  depth p50/p90/p99/max = 0.83/2.60/4.35/17.45 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.04 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_570_2_1p5351.tif
+  wet cells 456,706  wet area 38.2 km^2  depth p50/p90/p99/max = 0.69/2.17/4.19/16.31 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.09 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_605_5_3p7563.tif
+  wet cells 1,916,365  wet area 160.2 km^2  depth p50/p90/p99/max = 1.62/3.25/5.15/18.67 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.03 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_662_3_0p9973.tif
+  wet cells 377,141  wet area 31.5 km^2  depth p50/p90/p99/max = 0.74/2.17/4.25/16.12 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.11 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_708_13_1p1567.tif
+  wet cells 476,998  wet area 39.9 km^2  depth p50/p90/p99/max = 0.68/2.17/4.22/16.36 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.08 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_808_27_3p7885.tif
+  wet cells 1,574,054  wet area 131.6 km^2  depth p50/p90/p99/max = 1.13/2.85/4.63/17.96 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.04 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_810_14_1p1460.tif
+  wet cells 382,224  wet area 32.0 km^2  depth p50/p90/p99/max = 0.73/2.17/4.22/16.13 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.11 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_831_27_1p9452.tif
+  wet cells 803,013  wet area 67.1 km^2  depth p50/p90/p99/max = 0.65/2.30/4.08/16.84 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.06 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_880_9_2p6632.tif
+  wet cells 1,183,200  wet area 98.9 km^2  depth p50/p90/p99/max = 0.78/2.51/4.28/17.30 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.05 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_914_26_3p4047.tif
+  wet cells 1,519,113  wet area 127.0 km^2  depth p50/p90/p99/max = 1.05/2.80/4.56/17.85 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.04 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_914_6_1p2955.tif
+  wet cells 487,917  wet area 40.8 km^2  depth p50/p90/p99/max = 0.67/2.17/4.23/16.38 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.08 < 0.35)
+=== /Users/tanmayjain/Downloads/nyc_synthetic_flood/nyc_combined_inundation_area_ts_999_12_3p44.tif
+  wet cells 1,399,370  wet area 117.0 km^2  depth p50/p90/p99/max = 0.94/2.73/4.46/17.65 m
+  -> LIKELY DEFECT (hole/neighbour wet ratio 0.04 < 0.35)
+=== nestedness (sorted by wet count) ===
+  nyc_combined_inundation_area_ts_662_3_0p9973.tif (377,141 wet) subset of nyc_combined_inundation_area_ts_173_2_0p8859.tif (382,224 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_173_2_0p8859.tif (382,224 wet) subset of nyc_combined_inundation_area_ts_810_14_1p1460.tif (382,224 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_810_14_1p1460.tif (382,224 wet) subset of nyc_combined_inundation_area_ts_192_7_1p0240.tif (417,473 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_192_7_1p0240.tif (417,473 wet) subset of nyc_combined_inundation_area_ts_570_2_1p5351.tif (456,706 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_570_2_1p5351.tif (456,706 wet) subset of nyc_combined_inundation_area_ts_708_13_1p1567.tif (476,998 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_708_13_1p1567.tif (476,998 wet) subset of nyc_combined_inundation_area_ts_914_6_1p2955.tif (487,917 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_914_6_1p2955.tif (487,917 wet) subset of nyc_combined_inundation_area_ts_321_19_1p7614.tif (568,610 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_321_19_1p7614.tif (568,610 wet) subset of nyc_combined_inundation_area_ts_463_29_1p6644.tif (573,806 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_463_29_1p6644.tif (573,806 wet) subset of nyc_combined_inundation_area_ts_436_11_1p3524.tif (617,484 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_436_11_1p3524.tif (617,484 wet) subset of nyc_combined_inundation_area_ts_156_15_1p066.tif (748,394 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_156_15_1p066.tif (748,394 wet) subset of nyc_combined_inundation_area_ts_831_27_1p9452.tif (803,013 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_831_27_1p9452.tif (803,013 wet) subset of nyc_combined_inundation_area_ts_192_15_2p5752.tif (937,423 wet)?  cells outside larger map: 227  -> not nested
+  nyc_combined_inundation_area_ts_192_15_2p5752.tif (937,423 wet) subset of nyc_combined_inundation_area_ts_880_9_2p6632.tif (1,183,200 wet)?  cells outside larger map: 0  -> NESTED
+  nyc_combined_inundation_area_ts_880_9_2p6632.tif (1,183,200 wet) subset of nyc_combined_inundation_area_ts_514_13_2p7829.tif (1,282,130 wet)?  cells outside larger map: 135  -> not nested
+  nyc_combined_inundation_area_ts_514_13_2p7829.tif (1,282,130 wet) subset of nyc_combined_inundation_area_ts_258_9_3p0022.tif (1,359,688 wet)?  cells outside larger map: 132  -> not nested
+  nyc_combined_inundation_area_ts_258_9_3p0022.tif (1,359,688 wet) subset of nyc_combined_inundation_area_ts_999_12_3p44.tif (1,399,370 wet)?  cells outside larger map: 144  -> not nested
+  nyc_combined_inundation_area_ts_999_12_3p44.tif (1,399,370 wet) subset of nyc_combined_inundation_area_ts_914_26_3p4047.tif (1,519,113 wet)?  cells outside larger map: 5,259  -> not nested
+  nyc_combined_inundation_area_ts_914_26_3p4047.tif (1,519,113 wet) subset of nyc_combined_inundation_area_ts_808_27_3p7885.tif (1,574,054 wet)?  cells outside larger map: 2,588  -> not nested
+  nyc_combined_inundation_area_ts_808_27_3p7885.tif (1,574,054 wet) subset of nyc_combined_inundation_area_ts_605_5_3p7563.tif (1,916,365 wet)?  cells outside larger map: 2,016  -> not nested
