@@ -1,0 +1,2 @@
+compared 100 runs | fingerprint (sorted totals) identical: True | mismatching fields: 0
+EXACT REDUCTION OK — static_peak reproduces the frozen campaign record-for-record

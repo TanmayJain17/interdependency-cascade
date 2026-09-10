@@ -15,6 +15,16 @@ Mechanics
     the reduction check compares byte-for-byte against the campaign output.
   * mode = static_onset puts every seed at hour 0 on the same grid/horizon as the dynamic modes: the
     other bracket (dynamic gets LESS cascade time than this baseline, MORE than static_peak).
+
+Shift knobs (env, all default 0 -> default build unchanged):
+  * DYNAMIC_ARRIVAL_SHIFT_H      : added to every seed's arrival/cross hour, clamped at 0 (Week 24 study).
+  * DYNAMIC_TPEAK_SHIFT_H        : added to every scenario's t_peak at load time, so the grid, the
+                                   peak-relative record frame, the intra origin and the static_peak/fallback
+                                   seed hour move together. arrival +D with tpeak +D translates the whole model.
+  * DYNAMIC_INTRA_ORIGIN_SHIFT_H : added to the intra (telecom demand-surge) clock origin only, on top of the
+                                   tpeak shift. Moves the surge relative to the flood and nothing else.
+  * DYNAMIC_PRE_PEAK_STEP_H      : overrides grid.pre_peak_step_h (with DYNAMIC_OFFSETS, a finer evaluation grid
+                                   for the grid-refinement sensitivity test). Unset -> yaml value.
 """
 from __future__ import annotations
 import math, os
@@ -36,7 +46,9 @@ class DynamicForcing:
     intra_clock: str
     allow_power_coupling: bool
     timing: dict = field(default_factory=dict)      # scenario -> {node_id: {arrival_h, cross_h, ...}}
-    t_peak: dict = field(default_factory=dict)      # scenario -> hours after onset
+    t_peak: dict = field(default_factory=dict)      # scenario -> hours after onset (tpeak_shift_h included)
+    tpeak_shift_h: float = 0.0                      # DYNAMIC_TPEAK_SHIFT_H (already folded into t_peak; provenance)
+    intra_origin_shift_h: float = 0.0               # DYNAMIC_INTRA_ORIGIN_SHIFT_H (applied in intra_origin)
 
     # ---- lookup -------------------------------------------------------------------------------
     def has_scenario(self, scenario: str) -> bool:
@@ -71,7 +83,8 @@ class DynamicForcing:
         return sorted(set(pre + post))
 
     def intra_origin(self, scenario: str) -> float:
-        return self.t_peak[scenario] if self.intra_clock == "peak" else 0.0
+        base = self.t_peak[scenario] if self.intra_clock == "peak" else 0.0
+        return base + self.intra_origin_shift_h
 
 
 def load_dynamic_forcing(path: Path = CONFIG_PATH) -> DynamicForcing | None:
@@ -90,10 +103,12 @@ def load_dynamic_forcing(path: Path = CONFIG_PATH) -> DynamicForcing | None:
     df = DynamicForcing(
         mode=mode,
         threshold_m=float(cfg.get("threshold_m", 0.0)),
-        pre_peak_step_h=float(g.get("pre_peak_step_h", 6)),
+        pre_peak_step_h=float(os.environ.get("DYNAMIC_PRE_PEAK_STEP_H", g.get("pre_peak_step_h", 6))),   # grid-refinement test
         post_peak_offsets_h=offsets,
         intra_clock=os.environ.get("DYNAMIC_INTRA_CLOCK", cfg.get("intra_clock", "peak")),   # peak | onset
         allow_power_coupling=bool(cfg.get("allow_power_coupling", False)),
+        tpeak_shift_h=float(os.environ.get("DYNAMIC_TPEAK_SHIFT_H", "0")),
+        intra_origin_shift_h=float(os.environ.get("DYNAMIC_INTRA_ORIGIN_SHIFT_H", "0")),
     )
     tim = pd.read_csv(cfg["timing_csv"])
     summ = pd.read_csv(cfg["timing_summary_csv"])
@@ -103,12 +118,16 @@ def load_dynamic_forcing(path: Path = CONFIG_PATH) -> DynamicForcing | None:
     for sc, grp in tim.groupby("scenario"):
         df.timing[sc] = grp.set_index("node_id")[["arrival_h", "cross_h", "duration_h", "time_to_peak_h"]].to_dict("index")
     for _, r in summ.iterrows():
-        df.t_peak[r["scenario"]] = float(r["t_peak_h"])
+        df.t_peak[r["scenario"]] = float(r["t_peak_h"]) + df.tpeak_shift_h
     missing = set(df.timing) - set(df.t_peak)
     if missing:
         raise ValueError(f"timing table has scenarios without t_peak in the summary: {sorted(missing)[:5]}")
     print(f"[dynamic-forcing] ENABLED mode={df.mode} scenarios={len(df.t_peak)} intra_clock={df.intra_clock} "
           f"post_peak_offsets_h={df.post_peak_offsets_h}")
+    _arr = float(os.environ.get("DYNAMIC_ARRIVAL_SHIFT_H", "0"))
+    if _arr or df.tpeak_shift_h or df.intra_origin_shift_h:
+        print(f"[dynamic-forcing] SHIFTS arrival_h={_arr:+g} tpeak_h={df.tpeak_shift_h:+g} "
+              f"intra_origin_h={df.intra_origin_shift_h:+g} (t_peak values already include tpeak_h)")
     return df
 
 
