@@ -11,6 +11,21 @@ Output: dict {node_type: tensor [num_nodes_of_type, num_timesteps]}
         where logit[i, t] = unnormalized log-odds that node i has failed by timestep t.
         Apply sigmoid to get cumulative failure probability P(T_i <= t).
 
+Output heads (Week 27, `head=` argument):
+    - "independent" (default): the K outputs of the MLP ARE the cumulative
+      logits, one per horizon, with nothing tying them together. Nothing stops
+      P(failed by 24 h) < P(failed by 6 h). This is the build every campaign
+      through the 2x2 (job 16805213) used; it is byte-identical to before.
+    - "hazard": the same K outputs are read as discrete-time HAZARD logits
+      eta_k: h_k = sigmoid(eta_k) is the probability the node fails inside
+      window k given it survived the windows before it. The cumulative
+      failure probability is chained, F_k = 1 - prod_{j<=k} (1 - h_j), and the
+      head returns logit(F_k) so every downstream consumer (loss, AUC, PR,
+      checkpoints) is unchanged. F_k is non-decreasing in k by construction.
+      Same parameter count, same initialisation, same RNG stream: the two
+      heads differ only in the map from the last layer to the cumulative
+      logits (hazard_to_cumulative_logit below).
+
 Notes:
     - Edge attributes are NOT used in v1. TransformerConv supports edge_dim, but
       passing edge_attr through HeteroConv has version-specific quirks across
@@ -25,6 +40,35 @@ import torch.nn.functional as F
 from torch_geometric.nn import HeteroConv, TransformerConv
 
 
+HEADS = ("independent", "hazard")
+
+
+def _log1mexp(x):
+    """log(1 - exp(x)) for x < 0, accurate in both tails (Maechler 2012)."""
+    return torch.where(
+        x > -0.6931471805599453,
+        torch.log(-torch.expm1(x)),
+        torch.log1p(-torch.exp(x)),
+    )
+
+
+def hazard_to_cumulative_logit(eta, eps=1e-6):
+    """Chain per-window hazard logits into cumulative failed-by logits.
+
+    eta: [N, K] hazard logits, windows in time order (window k ends at horizon k).
+        h_k          = sigmoid(eta_k)                       P(fail in window k | alive at its start)
+        log S_k      = sum_{j<=k} log(1 - h_j) = -sum_{j<=k} softplus(eta_j)
+        F_k          = 1 - S_k                              P(failed by horizon k)
+        logit(F_k)   = log(1 - S_k) - log S_k
+    S_k is non-increasing in k, so F_k (and its logit) is non-decreasing: the
+    monotone "failed-by" curve is guaranteed, not learned. The clamp keeps
+    S_k < 1 strictly so logit(F_k) is finite (floor ~ -13.8, i.e. F_k >= 1e-6).
+    """
+    log_surv = -torch.cumsum(F.softplus(eta), dim=1)
+    log_surv = log_surv.clamp(max=-eps)
+    return _log1mexp(log_surv) - log_surv
+
+
 class CascadeGNN(nn.Module):
     def __init__(
         self,
@@ -36,11 +80,14 @@ class CascadeGNN(nn.Module):
         num_heads=4,
         num_timesteps=5,
         dropout=0.1,
+        head="independent",
     ):
         super().__init__()
         assert hidden_dim % num_heads == 0, (
             f"hidden_dim ({hidden_dim}) must be divisible by num_heads ({num_heads})"
         )
+        assert head in HEADS, f"head must be one of {HEADS}, got {head!r}"
+        self.head = head
 
         self.node_types = list(node_types)
         self.edge_types = [tuple(et) for et in edge_types]
@@ -98,7 +145,11 @@ class CascadeGNN(nn.Module):
             }
 
         # 3. Output head per node type
-        return {nt: self.output_head[nt](h) for nt, h in h_dict.items()}
+        out = {nt: self.output_head[nt](h) for nt, h in h_dict.items()}
+        if self.head == "hazard":
+            # last-layer outputs are hazard logits; return cumulative logits
+            out = {nt: hazard_to_cumulative_logit(z) for nt, z in out.items()}
+        return out
 
 
 def count_parameters(model):

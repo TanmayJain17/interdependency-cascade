@@ -5,6 +5,15 @@ Usage:
     python -m src.gnn.train --mode smoke    # forward pass shape check (~1 second)
     python -m src.gnn.train --mode overfit  # overfit on 5 examples (~1 minute, sanity check)
     python -m src.gnn.train --mode train    # full training (default settings ~30 min CPU)
+    python -m src.gnn.train --mode evalckpt --ckpt <best.pt>   # re-evaluate a saved checkpoint
+
+Week 27: --head {independent,hazard} selects the output head (see model.py).
+"independent" is the default and reproduces every prior campaign exactly;
+"hazard" chains per-window hazards so P(failed by t) is monotone in t.
+eval_step now also reports the monotonicity-violation fraction: the share of
+(node, horizon) pairs where P(failed by t_{k+1}) < P(failed by t_k). It is
+zero by construction for the hazard head and measures a real defect of the
+independent head.
 
 The smoke and overfit modes are diagnostics — run them first to confirm the
 plumbing works before kicking off the long training job.
@@ -31,7 +40,7 @@ from src.gnn.data import (
     load_cascade_results,
     N_TIMING_FEATURES,
 )
-from src.gnn.model import CascadeGNN, count_parameters
+from src.gnn.model import CascadeGNN, HEADS, count_parameters
 
 
 # GNN_CKPT_DIR env var redirects checkpoints for ablation runs
@@ -115,7 +124,18 @@ def eval_step(model, base_data, run, node_id_index, edge_idx_dict, device):
             aucs_casc.append(_simple_auc(c_logits, c_labels))
             pr_aucs_casc.append(_simple_pr_auc(c_logits, c_labels))
 
-    return avg_loss, aucs, pr_aucs, aucs_casc, pr_aucs_casc
+    # Monotonicity diagnostic (Week 27): P(failed by t) must not decrease with t.
+    # Fraction of (node, horizon-pair) entries where it does, over ALL nodes.
+    viol_n, viol_d = 0.0, 0
+    for nt in logits:
+        probs = torch.sigmoid(logits[nt])
+        if probs.shape[1] > 1:
+            v = probs[:, 1:] < probs[:, :-1] - 1e-6
+            viol_n += v.float().sum().item()
+            viol_d += v.numel()
+    mono_viol = viol_n / viol_d if viol_d else float("nan")
+
+    return avg_loss, aucs, pr_aucs, aucs_casc, pr_aucs_casc, mono_viol
 
 
 
@@ -171,8 +191,9 @@ def run_smoke(args):
         num_heads=args.num_heads,
         num_timesteps=len(DEFAULT_TIMESTEPS),
         dropout=0.0,
+        head=args.head,
     )
-    print(f"Model parameters: {count_parameters(model):,}")
+    print(f"Model parameters: {count_parameters(model):,}  head={args.head}")
 
     # Synthetic input
     x_dict = {
@@ -187,6 +208,10 @@ def run_smoke(args):
         expected = (base_data[nt].num_nodes, len(DEFAULT_TIMESTEPS))
         ok = tuple(t.shape) == expected
         print(f"  {nt:<10s}  {list(t.shape)}  {'OK' if ok else 'WRONG, expected ' + str(list(expected))}")
+    if args.head == "hazard":
+        worst = max(float((torch.sigmoid(t[:, :-1]) - torch.sigmoid(t[:, 1:])).detach().max()) for t in out.values())
+        print(f"  hazard head: max decrease of P(failed by t) across horizons = {worst:.2e} (must be <= 0)")
+        assert worst <= 1e-6, "hazard head produced a non-monotone cumulative curve"
     print("\nSmoke test passed.")
 
 
@@ -217,9 +242,10 @@ def run_overfit(args):
         num_heads=args.num_heads,
         num_timesteps=len(DEFAULT_TIMESTEPS),
         dropout=0.0,
+        head=args.head,
     ).to(device)
     optimizer = Adam(model.parameters(), lr=args.lr)
-    print(f"Model parameters: {count_parameters(model):,}")
+    print(f"Model parameters: {count_parameters(model):,}  head={args.head}")
     print(f"Device: {device}")
 
     print(f"\nTraining on {len(examples)} fixed examples for {args.epochs} epochs...")
@@ -310,9 +336,10 @@ def run_train(args):
         num_heads=args.num_heads,
         num_timesteps=len(DEFAULT_TIMESTEPS),
         dropout=args.dropout,
+        head=args.head,
     ).to(device)
     optimizer = Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
-    print(f"Model parameters: {count_parameters(model):,}")
+    print(f"Model parameters: {count_parameters(model):,}  head={args.head}")
     print(f"Device: {device}")
 
     CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
@@ -334,15 +361,18 @@ def run_train(args):
         val_losses = []
         val_aucs_per_t, val_pr_per_t = [], []
         val_aucs_casc_per_t, val_pr_casc_per_t = [], []
+        val_mono = []
         for _, run in val_examples:
-            vl, va, vp, vac, vpc = eval_step(model, base_data, run, node_id_index,
-                                              edge_idx_dict, device)
+            vl, va, vp, vac, vpc, vm = eval_step(model, base_data, run, node_id_index,
+                                                  edge_idx_dict, device)
             val_losses.append(vl)
             val_aucs_per_t.append(va);   val_pr_per_t.append(vp)
             val_aucs_casc_per_t.append(vac); val_pr_casc_per_t.append(vpc)
+            val_mono.append(vm)
         
         mean_train_loss = sum(train_losses) / len(train_losses)
         mean_val_loss   = sum(val_losses) / len(val_losses)
+        mean_val_mono   = sum(val_mono) / len(val_mono)
         
         def _avg_per_t(per_t_list, num_t):
             out = []
@@ -364,12 +394,14 @@ def run_train(args):
             f"AUC={['%.3f' % a for a in val_aucs]} "
             f"PR={['%.3f' % p for p in val_prs]} | "
             f"CASCADE-only AUC={['%.3f' % a for a in val_aucs_casc]} "
-            f"PR={['%.3f' % p for p in val_prs_casc]} | {elapsed:.0f}s\n"
+            f"PR={['%.3f' % p for p in val_prs_casc]} | "
+            f"mono_viol={mean_val_mono:.5f} | {elapsed:.0f}s\n"
         )
         history.append({
             "epoch": epoch,
             "train_loss": mean_train_loss,
             "val_loss": mean_val_loss,
+            "val_mono_viol": mean_val_mono,
             "val_auc_per_t": val_aucs,
             "val_pr_per_t": val_prs,
             "val_cascade_auc_per_t": val_aucs_casc,
@@ -389,6 +421,7 @@ def run_train(args):
             "node_types": list(base_data.node_types),
             "edge_types": [list(et) for et in base_data.edge_types],
             "timesteps": list(DEFAULT_TIMESTEPS),
+            "head": args.head,
         }
         torch.save(ckpt, CHECKPOINT_DIR / "last.pt")
         if mean_val_loss < best_val_loss:
@@ -405,19 +438,22 @@ def run_train(args):
         test_losses = []
         test_aucs_per_t, test_pr_per_t = [], []
         test_aucs_casc_per_t, test_pr_casc_per_t = [], []
+        test_mono = []
         for _, run in hs_examples:
-            tl, ta, tp, tac, tpc = eval_step(model, base_data, run, node_id_index,
-                                              edge_idx_dict, device)
+            tl, ta, tp, tac, tpc, tm = eval_step(model, base_data, run, node_id_index,
+                                                  edge_idx_dict, device)
             test_losses.append(tl)
             test_aucs_per_t.append(ta);   test_pr_per_t.append(tp)
             test_aucs_casc_per_t.append(tac); test_pr_casc_per_t.append(tpc)
+            test_mono.append(tm)
 
         mean_test_loss = sum(test_losses) / len(test_losses)
+        mean_test_mono = sum(test_mono) / len(test_mono)
         test_aucs      = _avg_per_t(test_aucs_per_t,      num_t)
         test_prs       = _avg_per_t(test_pr_per_t,       num_t)
         test_aucs_casc = _avg_per_t(test_aucs_casc_per_t, num_t)
         test_prs_casc  = _avg_per_t(test_pr_casc_per_t,  num_t)
-        print(f"[held-out {hs}] test_loss={mean_test_loss:.5f} ({len(hs_examples)} runs)")
+        print(f"[held-out {hs}] test_loss={mean_test_loss:.5f} mono_viol={mean_test_mono:.5f} ({len(hs_examples)} runs)")
         print(f"  ALL-nodes     AUC={test_aucs}  PR={test_prs}")
         print(f"  CASCADE-only  AUC={test_aucs_casc}  PR={test_prs_casc}")
         per_scenario[hs] = {
@@ -427,6 +463,7 @@ def run_train(args):
             "pr_per_t": test_prs,
             "cascade_auc_per_t": test_aucs_casc,
             "cascade_pr_per_t":  test_prs_casc,
+            "mono_viol": mean_test_mono,
         }
 
     history_out = {
@@ -439,9 +476,91 @@ def run_train(args):
         "test_per_scenario": per_scenario,
         "holdout_scenarios": holdout_scenarios,
         "scenario_set": os.environ.get("SCENARIO_SET", "base6"),
+        "head": args.head,
     }
     with open(CHECKPOINT_DIR / "history.json", "w") as f:
         json.dump(history_out, f, indent=2)
+
+
+# --------------------------------------------------------------------------
+# Mode: evalckpt (Week 27) — re-evaluate a saved checkpoint, no training.
+# Rebuilds the SAME val split (same seed, same shuffle) and the same per-scenario
+# held-out evaluation as run_train, and reports val/test loss, AUC/PR and the
+# monotonicity-violation fraction. Used to audit the 2x2 v1 checkpoints.
+# --------------------------------------------------------------------------
+
+def run_evalckpt(args):
+    print("=== EVALCKPT MODE — re-evaluating a saved checkpoint ===")
+    device = torch.device(args.device)
+    ckpt = torch.load(args.ckpt, map_location="cpu", weights_only=False)
+    head = ckpt.get("head", "independent")     # pre-Week-27 checkpoints have no head key
+    ck_args = ckpt.get("args", {})
+    if args.head != head:
+        print(f"  NOTE: checkpoint head={head!r}; --head {args.head!r} ignored, using the checkpoint's")
+    node_in_dims = ckpt["node_in_dims"]
+
+    base_data = load_base_graph()
+    results = load_cascade_results()
+    node_id_index = build_node_id_index(base_data)
+    edge_idx_dict = {k: v.to(device) for k, v in edge_index_dict(base_data).items()}
+
+    live = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
+    assert live == node_in_dims, (
+        f"input dims differ from the checkpoint: live={live} ckpt={node_in_dims} "
+        f"(GNN_TIMING_FEATURES must match the arm that trained this checkpoint)")
+
+    holdout_scenarios = [s.strip() for s in args.holdout_scenario.split(",") if s.strip()]
+    train_val_examples, test_examples = [], []
+    for s, runs in results.items():
+        for r in runs:
+            (test_examples if s in holdout_scenarios else train_val_examples).append((s, r))
+    rng = random.Random(args.seed)
+    rng.shuffle(train_val_examples)
+    n_train = int(0.8 * len(train_val_examples))
+    val_examples = train_val_examples[n_train:]
+    if args.val_subset and args.val_subset < len(val_examples):
+        val_examples = val_examples[:args.val_subset]
+
+    model = CascadeGNN(
+        node_types=ckpt["node_types"], edge_types=[tuple(e) for e in ckpt["edge_types"]],
+        node_in_dims=node_in_dims,
+        hidden_dim=ck_args.get("hidden_dim", args.hidden_dim),
+        num_layers=ck_args.get("num_layers", args.num_layers),
+        num_heads=ck_args.get("num_heads", args.num_heads),
+        num_timesteps=len(ckpt["timesteps"]),
+        dropout=ck_args.get("dropout", args.dropout),
+        head=head,
+    ).to(device)
+    model.load_state_dict(ckpt["model_state"])
+    print(f"Loaded {args.ckpt}: epoch={ckpt.get('epoch')} saved val_loss={ckpt.get('val_loss')} "
+          f"head={head} params={count_parameters(model):,}")
+    print(f"Val: {len(val_examples)} runs | held-out {holdout_scenarios} ({len(test_examples)} runs)")
+
+    def _evaluate(examples):
+        L, M, A, P, AC, PC = [], [], [], [], [], []
+        for _, run in examples:
+            l, a, p, ac, pc, m = eval_step(model, base_data, run, node_id_index, edge_idx_dict, device)
+            L.append(l); M.append(m); A.append(a); P.append(p); AC.append(ac); PC.append(pc)
+        num_t = len(ckpt["timesteps"])
+        def avg(per_t):
+            return [sum(v[ti] for v in per_t if v[ti] == v[ti]) / max(1, sum(1 for v in per_t if v[ti] == v[ti]))
+                    for ti in range(num_t)]
+        return {"n_runs": len(examples), "loss": sum(L) / len(L), "mono_viol": sum(M) / len(M),
+                "auc_per_t": avg(A), "pr_per_t": avg(P),
+                "cascade_auc_per_t": avg(AC), "cascade_pr_per_t": avg(PC)}
+
+    out = {"ckpt": str(args.ckpt), "head": head, "val": _evaluate(val_examples), "test_per_scenario": {}}
+    print(f"[val] loss={out['val']['loss']:.5f} mono_viol={out['val']['mono_viol']:.5f} "
+          f"CASCADE-only PR={['%.3f' % p for p in out['val']['cascade_pr_per_t']]}")
+    for hs in holdout_scenarios:
+        r = _evaluate([(s, run) for s, run in test_examples if s == hs])
+        out["test_per_scenario"][hs] = r
+        print(f"[held-out {hs}] loss={r['loss']:.5f} mono_viol={r['mono_viol']:.5f} "
+              f"CASCADE-only PR={['%.3f' % p for p in r['cascade_pr_per_t']]}")
+    out_path = Path(args.eval_out) if args.eval_out else Path(args.ckpt).with_suffix(".eval.json")
+    with open(out_path, "w") as f:
+        json.dump(out, f, indent=2)
+    print(f"wrote {out_path}")
 
 
 # --------------------------------------------------------------------------
@@ -450,7 +569,11 @@ def run_train(args):
 
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--mode", choices=["smoke", "overfit", "train"], default="smoke")
+    p.add_argument("--mode", choices=["smoke", "overfit", "train", "evalckpt"], default="smoke")
+    p.add_argument("--head", choices=list(HEADS), default="independent",
+                   help="output head: independent (default, prior campaigns) or hazard (monotone)")
+    p.add_argument("--ckpt", default=None, help="evalckpt: checkpoint path (best.pt / last.pt)")
+    p.add_argument("--eval_out", default=None, help="evalckpt: output JSON (default: <ckpt>.eval.json)")
     p.add_argument("--epochs", type=int, default=20)
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--weight_decay", type=float, default=1e-5)
@@ -477,6 +600,10 @@ def main():
         run_smoke(args)
     elif args.mode == "overfit":
         run_overfit(args)
+    elif args.mode == "evalckpt":
+        if not args.ckpt:
+            raise SystemExit("--mode evalckpt requires --ckpt")
+        run_evalckpt(args)
     else:
         run_train(args)
 
