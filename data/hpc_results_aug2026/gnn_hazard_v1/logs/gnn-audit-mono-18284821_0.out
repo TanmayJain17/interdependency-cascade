@@ -1,0 +1,11 @@
+arm=static_mask ckpt=/scratch/tj2587/results/gnn_twin_v1/legacy/best.pt labels=/scratch/tj2587/results/legacy_v1_n1000 timing=unset
+=== EVALCKPT MODE — re-evaluating a saved checkpoint ===
+Loaded /scratch/tj2587/results/gnn_twin_v1/legacy/best.pt: epoch=5 saved val_loss=0.10823935169324862 head=independent params=695,960
+Val: 3400 runs | held-out ['geoclaw_2050', 'syn_ts_914_6_1p2955', 'syn_ts_258_9_3p0022', 'syn_ts_605_5_3p7563', 'syn_ts_808_27_3p7885'] (5000 runs)
+[val] loss=0.10824 mono_viol=0.06767 CASCADE-only PR=['0.956', '0.923', '0.904', '0.921']
+[held-out geoclaw_2050] loss=0.14061 mono_viol=0.06263 CASCADE-only PR=['0.955', '0.983', '0.959', '0.981']
+[held-out syn_ts_914_6_1p2955] loss=0.08548 mono_viol=0.06871 CASCADE-only PR=['0.967', '0.863', '0.858', '0.856']
+[held-out syn_ts_258_9_3p0022] loss=0.12480 mono_viol=0.06652 CASCADE-only PR=['0.966', '0.981', '0.955', '0.978']
+[held-out syn_ts_605_5_3p7563] loss=0.20517 mono_viol=0.06052 CASCADE-only PR=['0.933', '0.975', '0.969', '0.988']
+[held-out syn_ts_808_27_3p7885] loss=0.14004 mono_viol=0.06511 CASCADE-only PR=['0.955', '0.978', '0.963', '0.984']
+wrote /scratch/tj2587/results/gnn_audit_mono_v1/static_mask.eval.json

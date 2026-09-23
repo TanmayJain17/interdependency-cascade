@@ -1,0 +1,12 @@
+arm=static_timing ckpt=/scratch/tj2587/results/gnn_2x2_v1/static_timing/best.pt labels=/scratch/tj2587/results/legacy_v1_n1000 timing=1
+=== EVALCKPT MODE — re-evaluating a saved checkpoint ===
+Loaded /scratch/tj2587/results/gnn_2x2_v1/static_timing/best.pt: epoch=5 saved val_loss=0.09807790481887174 head=independent params=697,112
+Val: 3400 runs | held-out ['geoclaw_2050', 'syn_ts_914_6_1p2955', 'syn_ts_258_9_3p0022', 'syn_ts_605_5_3p7563', 'syn_ts_808_27_3p7885'] (5000 runs)
+[timing-features] loaded 23 scenarios from data/flood/timing/node_timing_jesse22_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[val] loss=0.09808 mono_viol=0.07798 CASCADE-only PR=['0.959', '0.941', '0.920', '0.934']
+[held-out geoclaw_2050] loss=0.13506 mono_viol=0.07120 CASCADE-only PR=['0.953', '0.977', '0.954', '0.977']
+[held-out syn_ts_914_6_1p2955] loss=0.07298 mono_viol=0.07674 CASCADE-only PR=['0.968', '0.917', '0.909', '0.901']
+[held-out syn_ts_258_9_3p0022] loss=0.12119 mono_viol=0.07568 CASCADE-only PR=['0.966', '0.976', '0.950', '0.976']
+[held-out syn_ts_605_5_3p7563] loss=0.20009 mono_viol=0.06779 CASCADE-only PR=['0.930', '0.970', '0.960', '0.982']
+[held-out syn_ts_808_27_3p7885] loss=0.11366 mono_viol=0.08044 CASCADE-only PR=['0.957', '0.986', '0.972', '0.987']
+wrote /scratch/tj2587/results/gnn_audit_mono_v1/static_timing.eval.json
