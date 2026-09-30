@@ -1,0 +1,37 @@
+[gate] /scratch/tj2587/results/dynamic_v1/arrival_h360 cascade_results files: 23 (need 23)
+[gate] CUDA OK: NVIDIA L40S
+arm=dynamic_timing head=hazard ckpt=/scratch/tj2587/results/gnn_hazard_v1/dynamic_timing/best.pt labels=/scratch/tj2587/results/dynamic_v1/arrival_h360 timing=1 smoke=0 out=/scratch/tj2587/results/gnn_mono_enforce_v1
+Loaded /scratch/tj2587/results/gnn_hazard_v1/dynamic_timing/best.pt: epoch=5 saved val_loss=0.16508133113448162 head=hazard params=697,112 horizons=[6, 24, 48, 96]
+Val: 3400 runs | held-out ['geoclaw_2050', 'syn_ts_914_6_1p2955', 'syn_ts_258_9_3p0022', 'syn_ts_605_5_3p7563', 'syn_ts_808_27_3p7885'] (5000 runs) | readings ('raw', 'cummax', 'sort', 'isotonic')
+[timing-features] loaded 23 scenarios from data/flood/timing/node_timing_jesse22_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[G1] raw reading vs train.eval_step on 3 runs: max |diff| loss 1.06e-08, mono_viol 0.00e+00, cascade PR 0.00e+00 -> PASS
+  val: 500/3400 runs  (50s)
+  val: 1000/3400 runs  (74s)
+  val: 1500/3400 runs  (97s)
+  val: 2000/3400 runs  (121s)
+  val: 2500/3400 runs  (146s)
+  val: 3000/3400 runs  (170s)
+[val] raw       loss=0.16508 brier=0.05195 mono_viol=0.00000 CASCADE-only PR=['0.919', '0.917', '0.904', '0.924'] moved=0.0000 of entries, mean|dp|=0.00e+00
+[val] cummax    loss=0.16508 brier=0.05195 mono_viol=0.00000 CASCADE-only PR=['0.919', '0.917', '0.904', '0.924'] moved=0.0000 of entries, mean|dp|=0.00e+00
+[val] sort      loss=0.16508 brier=0.05195 mono_viol=0.00000 CASCADE-only PR=['0.919', '0.917', '0.904', '0.924'] moved=0.0000 of entries, mean|dp|=0.00e+00
+[val] isotonic  loss=0.16508 brier=0.05195 mono_viol=0.00000 CASCADE-only PR=['0.919', '0.917', '0.904', '0.924'] moved=0.0000 of entries, mean|dp|=2.07e-21
+[val] dips: 0 per run; share of pairs with a dip > 1e-06: 0.0000, 0.001: 0.0000, 0.01: 0.0000, 0.05: 0.0000, 0.1: 0.0000
+[val] dip size: median nan, 90th pct nan, 99th pct nan, mean nan; by pair ['6->24h', '24->48h', '48->96h'] share ['0.0000', '0.0000', '0.0000']
+  geoclaw_2050: 500/1000 runs  (218s)
+  geoclaw_2050: 1000/1000 runs  (248s)
+[held-out geoclaw_2050] raw 0.31999  cummax 0.31999  sort 0.31999  isotonic 0.31999 | raw mono_viol=0.00000
+  syn_ts_914_6_1p2955: 500/1000 runs  (269s)
+  syn_ts_914_6_1p2955: 1000/1000 runs  (289s)
+[held-out syn_ts_914_6_1p2955] raw 0.10624  cummax 0.10624  sort 0.10624  isotonic 0.10624 | raw mono_viol=0.00000
+  syn_ts_258_9_3p0022: 500/1000 runs  (318s)
+  syn_ts_258_9_3p0022: 1000/1000 runs  (347s)
+[held-out syn_ts_258_9_3p0022] raw 0.25896  cummax 0.25896  sort 0.25896  isotonic 0.25896 | raw mono_viol=0.00000
+  syn_ts_605_5_3p7563: 500/1000 runs  (380s)
+  syn_ts_605_5_3p7563: 1000/1000 runs  (413s)
+[held-out syn_ts_605_5_3p7563] raw 0.43028  cummax 0.43028  sort 0.43028  isotonic 0.43028 | raw mono_viol=0.00000
+  syn_ts_808_27_3p7885: 500/1000 runs  (444s)
+  syn_ts_808_27_3p7885: 1000/1000 runs  (477s)
+[held-out syn_ts_808_27_3p7885] raw 0.30842  cummax 0.30842  sort 0.30842  isotonic 0.30842 | raw mono_viol=0.00000
+[G2] checkpoint saved val_loss: ref 0.165081 got 0.165081 |diff| 2.89e-09 -> PASS
+wrote /scratch/tj2587/results/gnn_mono_enforce_v1/hazard_dynamic_timing.json  (477s)
+ALL GATES AND INVARIANTS: PASS

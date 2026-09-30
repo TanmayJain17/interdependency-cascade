@@ -1,0 +1,37 @@
+[gate] /scratch/tj2587/results/legacy_v1_n1000 cascade_results files: 23 (need 23)
+[gate] CUDA OK: NVIDIA L40S
+arm=static_mask head=independent ckpt=/scratch/tj2587/results/gnn_twin_v1/legacy/best.pt labels=/scratch/tj2587/results/legacy_v1_n1000 timing=unset smoke=0 out=/scratch/tj2587/results/gnn_mono_enforce_v1
+Loaded /scratch/tj2587/results/gnn_twin_v1/legacy/best.pt: epoch=5 saved val_loss=0.10823935169324862 head=independent params=695,960 horizons=[6, 24, 48, 96]
+Val: 3400 runs | held-out ['geoclaw_2050', 'syn_ts_914_6_1p2955', 'syn_ts_258_9_3p0022', 'syn_ts_605_5_3p7563', 'syn_ts_808_27_3p7885'] (5000 runs) | readings ('raw', 'cummax', 'sort', 'isotonic')
+[G1] raw reading vs train.eval_step on 3 runs: max |diff| loss 7.45e-09, mono_viol 0.00e+00, cascade PR 0.00e+00 -> PASS
+  val: 500/3400 runs  (34s)
+  val: 1000/3400 runs  (58s)
+  val: 1500/3400 runs  (81s)
+  val: 2000/3400 runs  (105s)
+  val: 2500/3400 runs  (129s)
+  val: 3000/3400 runs  (153s)
+[val] raw       loss=0.10824 brier=0.03458 mono_viol=0.06767 CASCADE-only PR=['0.956', '0.923', '0.904', '0.921'] moved=0.0000 of entries, mean|dp|=0.00e+00
+[val] cummax    loss=0.10825 brier=0.03458 mono_viol=0.00000 CASCADE-only PR=['0.956', '0.924', '0.904', '0.921'] moved=0.0657 of entries, mean|dp|=1.11e-04
+[val] sort      loss=0.10824 brier=0.03458 mono_viol=0.00000 CASCADE-only PR=['0.955', '0.924', '0.904', '0.921'] moved=0.1072 of entries, mean|dp|=1.70e-04
+[val] isotonic  loss=0.10823 brier=0.03458 mono_viol=0.00000 CASCADE-only PR=['0.956', '0.924', '0.904', '0.921'] moved=0.0958 of entries, mean|dp|=9.30e-05
+[val] dips: 1265 per run; share of pairs with a dip > 1e-06: 0.0677, 0.001: 0.0133, 0.01: 0.0029, 0.05: 0.0003, 0.1: 0.0000
+[val] dip size: median 2.74e-05, 90th pct 2.74e-03, 99th pct 3.61e-02, mean 1.68e-03; by pair ['6->24h', '24->48h', '48->96h'] share ['0.0581', '0.0892', '0.0557']
+  geoclaw_2050: 500/1000 runs  (199s)
+  geoclaw_2050: 1000/1000 runs  (225s)
+[held-out geoclaw_2050] raw 0.14061  cummax 0.14059  sort 0.14060  isotonic 0.14060 | raw mono_viol=0.06263
+  syn_ts_914_6_1p2955: 500/1000 runs  (246s)
+  syn_ts_914_6_1p2955: 1000/1000 runs  (268s)
+[held-out syn_ts_914_6_1p2955] raw 0.08548  cummax 0.08548  sort 0.08547  isotonic 0.08547 | raw mono_viol=0.06871
+  syn_ts_258_9_3p0022: 500/1000 runs  (294s)
+  syn_ts_258_9_3p0022: 1000/1000 runs  (321s)
+[held-out syn_ts_258_9_3p0022] raw 0.12480  cummax 0.12476  sort 0.12480  isotonic 0.12480 | raw mono_viol=0.06652
+  syn_ts_605_5_3p7563: 500/1000 runs  (350s)
+  syn_ts_605_5_3p7563: 1000/1000 runs  (379s)
+[held-out syn_ts_605_5_3p7563] raw 0.20517  cummax 0.20470  sort 0.20509  isotonic 0.20506 | raw mono_viol=0.06052
+  syn_ts_808_27_3p7885: 500/1000 runs  (408s)
+  syn_ts_808_27_3p7885: 1000/1000 runs  (436s)
+[held-out syn_ts_808_27_3p7885] raw 0.14004  cummax 0.13993  sort 0.14003  isotonic 0.14003 | raw mono_viol=0.06511
+[G2] checkpoint saved val_loss: ref 0.108239 got 0.108239 |diff| 2.59e-09 -> PASS
+[G2] ref_eval val loss: ref 0.108239 got 0.108239 |diff| 2.64e-09 -> PASS
+wrote /scratch/tj2587/results/gnn_mono_enforce_v1/independent_static_mask.json  (436s)
+ALL GATES AND INVARIANTS: PASS
