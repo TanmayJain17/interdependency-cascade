@@ -20,9 +20,12 @@
 #
 # Task i in 0..95 -> mode = i / 48 (0 static, 1 arrival), storm = line (i % 48) + 1 of hpc/scenarios_gissr48.txt.
 # Tasks 96, 97 = identity gate: the OLD storm syn_ts_914_6_1p2955 through the same wrapper, static and
-# arrival, compared record for record with the frozen campaign files (exit 2 on any difference).
+# arrival, with the frozen campaign's own depths (its temp_nodes geojson), compared record for record
+# with the frozen campaign files (exit 2 on any difference). First smoke, job 19301966: both gates
+# failed in run 19 of 20 on one site because the depths came from data/flood/jesse22_node_depths_v1.csv,
+# which is 0.105 m above the campaign's depth at telecom_cluster_03042. Same code, different input.
 #
-# Acceptance: 98 COMPLETED; 96 "LABEL RUN OK" lines; 2 "IDENTITY GATE: PASS" lines;
+# Acceptance: 98 COMPLETED; 98 "LABEL RUN OK" lines, all with runs=1000; 2 "IDENTITY GATE: PASS" lines;
 #             48 cascade_results_nyc_*.json files in each of the two output folders.
 # Cheap first:  sbatch --test-only hpc/campaign_gissr48_v1.sbatch
 #               SMOKE=1 sbatch --array=96,97,10,58,47,95 hpc/campaign_gissr48_v1.sbatch     (N=20)
@@ -36,9 +39,15 @@ source "$SCRATCH/miniforge3/bin/activate" flood
 cd "$SCRATCH/interdependency-cascade"
 
 N_NEW=48
-I=$SLURM_ARRAY_TASK_ID
-N_MC=${SMOKE:+20}; N_MC=${N_MC:-1000}
-ROOT_OUT="$SCRATCH/results/gissr48_v1"; [[ "${SMOKE:-0}" == "1" ]] && ROOT_OUT="$SCRATCH/results/gissr48_v1_smoke"
+I=${SLURM_ARRAY_TASK_ID:-}
+[[ -n "${SLURM_ARRAY_TASK_ID:-}" ]] || { echo "GATE FAIL: run as an array task (sbatch --array=...)"; exit 2; }
+SMOKE=${SMOKE:-0}
+case "$SMOKE" in
+  0) N_MC=1000; ROOT_OUT="$SCRATCH/results/gissr48_v1" ;;
+  1) N_MC=20;   ROOT_OUT="$SCRATCH/results/gissr48_v1_smoke" ;;
+  *) echo "GATE FAIL: SMOKE must be 0 or 1, got '$SMOKE'"; exit 2 ;;
+esac
+STAMP="commit=$(git rev-parse --short HEAD) uncommitted_files=$(git status --porcelain --untracked-files=no | wc -l)"
 
 export NODES_IN=data/graph_v1_frozen/nyc_infra_nodes_all_flood.geojson
 export GRAPH_IN=data/graph_v1_frozen/nyc_infra_graph_all_flood.graphml
@@ -66,19 +75,19 @@ if (( I < 2 * N_NEW )); then
   SC=$(sed -n "$(( I % N_NEW + 1 ))p" hpc/scenarios_gissr48.txt)
   [[ -n "$SC" ]] || { echo "GATE FAIL: empty scenario for task $I"; exit 2; }
   OUT="$ROOT_OUT/static"; [[ "$MODE" == "arrival" ]] && OUT="$ROOT_OUT/arrival_h360"
-  echo "task=$I mode=$MODE scenario=$SC n_mc=$N_MC out=$OUT commit=$(git rev-parse --short HEAD)"
+  echo "task=$I mode=$MODE scenario=$SC n_mc=$N_MC out=$OUT $STAMP"
   python scripts/gissr48_label_run_v1.py --scenario "$SC" --mode "$MODE" --n "$N_MC" --out "$OUT" \
       --depth-csv data/flood/gissr48_node_depths_v1.csv --dyn-config "$DYN_CFG"
 elif (( I == 2 * N_NEW )); then
   SC=syn_ts_914_6_1p2955
-  echo "task=$I IDENTITY static scenario=$SC n_mc=$N_MC commit=$(git rev-parse --short HEAD)"
+  echo "task=$I IDENTITY static scenario=$SC n_mc=$N_MC $STAMP"
   python scripts/gissr48_label_run_v1.py --scenario "$SC" --mode static --n "$N_MC" --out "$ROOT_OUT/identity_static" \
-      --depth-csv data/flood/jesse22_node_depths_v1.csv --dyn-config "$DYN_CFG" --check-dir "$SCRATCH/results/legacy_v1_n1000"
+      --depth-geojson "$SCRATCH/results/legacy_v1_n1000/temp_nodes_nyc_${SC}.geojson" --dyn-config "$DYN_CFG" --check-dir "$SCRATCH/results/legacy_v1_n1000"
 elif (( I == 2 * N_NEW + 1 )); then
   SC=syn_ts_914_6_1p2955
-  echo "task=$I IDENTITY arrival scenario=$SC n_mc=$N_MC commit=$(git rev-parse --short HEAD)"
+  echo "task=$I IDENTITY arrival scenario=$SC n_mc=$N_MC $STAMP"
   python scripts/gissr48_label_run_v1.py --scenario "$SC" --mode arrival --n "$N_MC" --out "$ROOT_OUT/identity_arrival" \
-      --depth-csv data/flood/jesse22_node_depths_v1.csv --dyn-config "$DYN_CFG" --check-dir "$SCRATCH/results/dynamic_v1/arrival_h360"
+      --depth-geojson "$SCRATCH/results/legacy_v1_n1000/temp_nodes_nyc_${SC}.geojson" --dyn-config "$DYN_CFG" --check-dir "$SCRATCH/results/dynamic_v1/arrival_h360"
 else
   echo "GATE FAIL: task id $I out of range"; exit 2
 fi

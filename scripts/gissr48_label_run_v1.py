@@ -14,11 +14,21 @@ from dynamic_forcing_reduction_run.py:
   * the timing tables come from --dyn-config (default: the gissr48 config), by pointing the runner's
     load_dynamic_forcing at that file.
 
+The wrapper owns every setting the labels depend on, so a run by hand gives the same labels as the
+sbatch: the frozen v1 graph (NODES_IN / GRAPH_IN default to data/graph_v1_frozen), the arrival-mode
+post-peak offsets (--offsets, default "0 6 24 48 96 144 240 360"), no shift knobs, and in arrival mode
+a timing row for every wet site. A conflicting environment variable stops the run.
+
 Identity gate (--check-dir): run an OLD storm through this driver and compare the records with the
-frozen campaign file for the same storm, record for record. Exit code 2 on any difference.
+frozen campaign file for the same storm, record for record. Exit code 2 on any difference. The old
+storm's depths must be the campaign's own (--depth-geojson <campaign folder>/temp_nodes_nyc_<storm>.geojson),
+as in dynamic_forcing_reduction_run.py: the first gate run (job 19301966, depths from
+data/flood/jesse22_node_depths_v1.csv) failed in 1 run of 20 on one site, telecom_cluster_03042, whose
+depth in that table is 0.105 m above the depth the frozen campaign sampled; lowering that one depth by
+0.105 m reproduces the frozen record exactly. The gate tests the code, so it gets the campaign's inputs.
 
   python scripts/gissr48_label_run_v1.py --scenario syn_ts_914_6_1p2955 --mode static --n 20 \
-      --depth-csv data/flood/jesse22_node_depths_v1.csv --dyn-config config/dynamic_forcing.yaml \
+      --depth-geojson $SCRATCH/results/legacy_v1_n1000/temp_nodes_nyc_syn_ts_914_6_1p2955.geojson \
       --out $SCRATCH/results/gissr48_v1_smoke/identity_static --check-dir $SCRATCH/results/legacy_v1_n1000
 
 Production (one storm, one mode):
@@ -41,16 +51,33 @@ def main():
     ap.add_argument("--n", type=int, default=1000)
     ap.add_argument("--out", required=True)
     ap.add_argument("--depth-csv", default="data/flood/gissr48_node_depths_v1.csv")
+    ap.add_argument("--depth-geojson", default=None,
+                    help="read depths from a campaign temp_nodes geojson (property flood_depth_m) instead of --depth-csv; "
+                         "for the identity gate on an old storm")
     ap.add_argument("--dyn-config", default="config/dynamic_forcing_gissr48_v1.yaml")
+    ap.add_argument("--offsets", default="0 6 24 48 96 144 240 360",
+                    help="arrival mode: post-peak evaluation offsets in hours (the dynamic_v1 campaign's)")
     ap.add_argument("--check-dir", default=None,
                     help="folder holding a frozen cascade_results_nyc_<scenario>.json to compare against (identity gate)")
     a = ap.parse_args()
 
     os.environ["POWER_COUPLING"] = "0"                      # legacy arm only, as in both v1 label campaigns
+    for var, frozen in (("NODES_IN", "data/graph_v1_frozen/nyc_infra_nodes_all_flood.geojson"),
+                        ("GRAPH_IN", "data/graph_v1_frozen/nyc_infra_graph_all_flood.graphml")):
+        if os.environ.setdefault(var, frozen) != frozen:
+            sys.exit(f"{var}={os.environ[var]} is not the frozen v1 graph ({frozen}) — stop")
+    for knob in ("DYNAMIC_ARRIVAL_SHIFT_H", "DYNAMIC_TPEAK_SHIFT_H", "DYNAMIC_INTRA_ORIGIN_SHIFT_H", "DYNAMIC_PRE_PEAK_STEP_H", "DYNAMIC_INTRA_CLOCK"):
+        if os.environ.get(knob):
+            sys.exit(f"{knob}={os.environ[knob]} is set in the environment; label runs use the campaign defaults — unset it")
     if a.mode == "static":
         os.environ["DYNAMIC_FORCING"] = "0"
     else:
         os.environ["DYNAMIC_FORCING"] = "1"; os.environ["DYNAMIC_MODE"] = "arrival"
+        if os.environ.get("DYNAMIC_OFFSETS", a.offsets).split() != a.offsets.split():
+            sys.exit(f"DYNAMIC_OFFSETS='{os.environ['DYNAMIC_OFFSETS']}' differs from --offsets '{a.offsets}' — stop")
+        os.environ["DYNAMIC_OFFSETS"] = a.offsets
+    if a.check_dir and not (Path(a.check_dir) / f"cascade_results_nyc_{a.scenario}.json").exists():
+        sys.exit(f"identity gate: missing frozen file {Path(a.check_dir) / f'cascade_results_nyc_{a.scenario}.json'}")
 
     import pandas as pd
     import geopandas as gpd
@@ -67,8 +94,11 @@ def main():
         # never let a dynamic run silently fall back to static forcing
         if dyn is None or not dyn.has_scenario(a.scenario) or a.scenario not in dyn.timing:
             sys.exit(f"mode=arrival requested but {a.scenario} is not in the timing tables of {cfg} — refusing to fall back to static")
-        if dyn.mode != "arrival" or dyn.intra_clock != "peak":
-            sys.exit(f"unexpected dynamic settings: mode={dyn.mode} intra_clock={dyn.intra_clock} (campaign uses arrival / peak)")
+        want = [float(x) for x in a.offsets.split()]
+        if dyn.mode != "arrival" or dyn.intra_clock != "peak" or dyn.post_peak_offsets_h != want or dyn.pre_peak_step_h != 6.0 \
+                or dyn.tpeak_shift_h or dyn.intra_origin_shift_h:
+            sys.exit(f"unexpected dynamic settings: mode={dyn.mode} intra_clock={dyn.intra_clock} offsets={dyn.post_peak_offsets_h} "
+                     f"pre_peak_step={dyn.pre_peak_step_h} (campaign uses arrival / peak / {want} / 6)")
         print(f"timing: {len(dyn.timing[a.scenario])} wet sites, t_peak {dyn.t_peak[a.scenario]:.1f} h, offsets {dyn.post_peak_offsets_h} (from {cfg})")
 
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
@@ -78,18 +108,32 @@ def main():
 
     nodes_gdf = gpd.read_file(msr.NODES_IN)
     col = f"flood_{a.scenario}_depth_m"
-    dcsv = pd.read_csv(a.depth_csv, usecols=lambda c: c in ("node_id", col), float_precision="round_trip")
-    if col not in dcsv.columns:
-        sys.exit(f"{a.depth_csv} has no column {col}")
-    depth = dict(zip(dcsv["node_id"], dcsv[col].fillna(0.0)))
+    if a.depth_geojson:
+        import json
+        if not Path(a.depth_geojson).exists():
+            sys.exit(f"missing depth geojson: {a.depth_geojson}")
+        feats = json.load(open(a.depth_geojson))["features"]
+        depth = {f["properties"]["node_id"]: (f["properties"].get("flood_depth_m") or 0.0) for f in feats}
+        src_name = Path(a.depth_geojson).name
+    else:
+        dcsv = pd.read_csv(a.depth_csv, usecols=lambda c: c in ("node_id", col), float_precision="round_trip")
+        if col not in dcsv.columns:
+            sys.exit(f"{a.depth_csv} has no column {col}")
+        depth = dict(zip(dcsv["node_id"], dcsv[col].fillna(0.0)))
+        src_name = f"{Path(a.depth_csv).name}:{col}"
     missing = int(nodes_gdf["node_id"].map(depth).isna().sum())
     if missing or len(depth) != len(nodes_gdf):
-        sys.exit(f"node ids do not match: {missing} of {len(nodes_gdf)} nodes missing from {a.depth_csv} ({len(depth)} rows) — graph/nodes mismatch, stop")
+        sys.exit(f"node ids do not match: {missing} of {len(nodes_gdf)} nodes missing from {src_name} ({len(depth)} rows) — graph/nodes mismatch, stop")
     nodes_gdf[col] = nodes_gdf["node_id"].map(depth)
     wet = int((nodes_gdf[col] > 0.01).sum())
-    print(f"nodes {len(nodes_gdf):,} from {msr.NODES_IN} | depths from {Path(a.depth_csv).name}:{col}: wet {wet}")
+    print(f"nodes {len(nodes_gdf):,} from {msr.NODES_IN} | graph {msr.GRAPH_IN} | depths from {src_name}: wet {wet}")
     if wet == 0:
         sys.exit("no wet node in this storm — wrong column or wrong table, stop")
+    if a.mode == "arrival":
+        # a wet site without a timing row would be placed at the peak without a word: refuse instead
+        no_row = set(nodes_gdf.loc[nodes_gdf[col] > 0.01, "node_id"]) - set(dyn.timing[a.scenario])
+        if no_row:
+            sys.exit(f"{len(no_row)} wet sites of {a.scenario} have no timing row (e.g. {sorted(no_row)[:3]}) — depth table and timing table disagree, stop")
 
     msr.SIM_DIR = out
     msr.N_MONTE_CARLO = a.n
