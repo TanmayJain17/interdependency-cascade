@@ -1,0 +1,21 @@
+# Dynamic flood forcing for the 48 GISSR storms added in Week 29 (campaign gissr48_v1).
+# Identical to config/dynamic_forcing.yaml except for the two timing tables, which hold the 23 storms of
+# the v1 campaign (rows byte-identical to node_timing_jesse22_v1.csv) plus the 48 new storms
+# (data/flood/gissr48_manifest_v1.csv). Read only by scripts/gissr48_label_run_v1.py; the production
+# runner keeps reading config/dynamic_forcing.yaml, so the frozen campaigns are untouched.
+
+enabled: false          # switched on per job by DYNAMIC_FORCING=1, exactly as in the v1 campaign
+
+mode: arrival
+threshold_m: 0.0
+
+timing_csv: data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv
+timing_summary_csv: data/flood/timing/node_timing_jesse22_plus_gissr48_v1_summary.csv   # provides t_peak_h per scenario
+
+grid:
+  pre_peak_step_h: 6
+  post_peak_offsets_h: [0, 6, 24, 48, 96]
+
+intra_clock: peak       # same clock as dynamic_v1; an open advisor decision, kept unchanged here
+
+allow_power_coupling: false
