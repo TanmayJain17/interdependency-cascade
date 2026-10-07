@@ -1,0 +1,63 @@
+[gate] CUDA OK: NVIDIA L40S
+task=3 name=old17_plain_dynamic_timing_s1 hold=old5 set=jesse22 ckpt=/scratch/tj2587/results/gnn_morestorms_v1/old17_plain_dynamic_timing_s1/best.pt labels=/scratch/tj2587/results/dynamic_v1/arrival_h360 labels2=/scratch/tj2587/results/dynamic_v1/arrival_h360 timing=1 context=unset smoke=0 out=/scratch/tj2587/results/gnn_morestorms_numbers_v1_old5 commit=967d122 uncommitted_files=0
+design subsets from the checkpoint: train_subset=None val_subset=None
+Loaded /scratch/tj2587/results/gnn_morestorms_v1/old17_plain_dynamic_timing_s1/best.pt: epoch=5 saved val_loss=0.1645548128112968 head=hazard params=697,112 horizons=[6, 24, 48, 96]
+Train: 13600 runs (baselines) | Val: 3400 runs | held-out ['geoclaw_2050', 'syn_ts_914_6_1p2955', 'syn_ts_258_9_3p0022', 'syn_ts_605_5_3p7563', 'syn_ts_808_27_3p7885'] (5000 runs)
+  baselines: 2000/13600 training runs
+  baselines: 4000/13600 training runs
+  baselines: 6000/13600 training runs
+  baselines: 8000/13600 training runs
+  baselines: 10000/13600 training runs
+  baselines: 12000/13600 training runs
+[R3] baselines from 13600 training runs of 17 storms; base rate per horizon [0.0874, 0.1322, 0.1625, 0.2201] -> PASS
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[G1] model vs train.eval_step on 3 runs: max |diff| loss 4.97e-09, cascade PR 0.00e+00 -> PASS
+  val: 500/3400 runs  (185s)
+  val: 1000/3400 runs  (206s)
+  val: 1500/3400 runs  (227s)
+  val: 2000/3400 runs  (249s)
+  val: 2500/3400 runs  (270s)
+  val: 3000/3400 runs  (291s)
+[val] model: loss 0.16455 | non-seed BCE 0.14028 | count WAPE ['0.252', '0.326', '0.365', '0.461'] bias ['-0.006', '+0.006', '+0.011', '+0.041'] | AP ['0.921', '0.918', '0.905', '0.925'] | window given failure: exact 0.751, within one 0.937; caught by 0.685 | ECE ['0.0026', '0.0063', '0.0062', '0.0113']
+[val] no_cascade    : non-seed BCE 0.41122 | count WAPE ['0.840', '0.802', '0.811', '0.798'] | AP ['0.086', '0.131', '0.160', '0.217'] | window given failure: exact 0.397
+[val] site_frequency: non-seed BCE 0.24164 | count WAPE ['0.852', '0.810', '0.817', '0.801'] | AP ['0.849', '0.874', '0.875', '0.908'] | window given failure: exact 0.687
+[val] nearest_storm : non-seed BCE 0.09533 | count WAPE ['0.120', '0.147', '0.141', '0.184'] | AP ['0.908', '0.918', '0.912', '0.935'] | window given failure: exact 0.791
+  geoclaw_2050: 500/1000 runs  (335s)
+  geoclaw_2050: 1000/1000 runs  (363s)
+[geoclaw_2050] model: loss 0.32196 | non-seed BCE 0.29768 | count WAPE ['0.189', '0.355', '0.333', '0.376'] bias ['-0.189', '-0.355', '-0.333', '-0.376'] | AP ['0.945', '0.952', '0.942', '0.977'] | window given failure: exact 0.811, within one 0.950; caught by 0.563 | ECE ['0.0368', '0.1182', '0.1290', '0.1997']
+[geoclaw_2050] no_cascade    : non-seed BCE 0.75638 | count WAPE ['0.530', '0.602', '0.578', '0.586'] | AP ['0.186', '0.332', '0.385', '0.532'] | window given failure: exact 0.350
+[geoclaw_2050] site_frequency: non-seed BCE 0.42248 | count WAPE ['0.537', '0.605', '0.580', '0.587'] | AP ['0.927', '0.951', '0.945', '0.982'] | window given failure: exact 0.813
+[geoclaw_2050] nearest_storm : non-seed BCE 0.50151 | count WAPE ['0.169', '0.397', '0.305', '0.348'] | AP ['0.879', '0.905', '0.931', '0.976'] | window given failure: exact 0.605
+[geoclaw_2050] nearest training storm used by the lookup: {'syn_ts_514_13_2p7829': 403, 'syn_ts_880_9_2p6632': 597}
+  syn_ts_914_6_1p2955: 500/1000 runs  (380s)
+  syn_ts_914_6_1p2955: 1000/1000 runs  (398s)
+[syn_ts_914_6_1p2955] model: loss 0.10630 | non-seed BCE 0.08373 | count WAPE ['0.928', '1.401', '1.743', '2.881'] bias ['+0.928', '+1.401', '+1.743', '+2.876'] | AP ['0.944', '0.936', '0.936', '0.930'] | window given failure: exact 0.807, within one 0.955; caught by 0.936 | ECE ['0.0222', '0.0460', '0.0619', '0.1094']
+[syn_ts_914_6_1p2955] no_cascade    : non-seed BCE 0.21621 | count WAPE ['3.525', '3.363', '3.778', '4.859'] | AP ['0.019', '0.030', '0.034', '0.038'] | window given failure: exact 0.514
+[syn_ts_914_6_1p2955] site_frequency: non-seed BCE 0.17621 | count WAPE ['3.570', '3.390', '3.801', '4.879'] | AP ['0.836', '0.857', '0.862', '0.878'] | window given failure: exact 0.573
+[syn_ts_914_6_1p2955] nearest_storm : non-seed BCE 0.02163 | count WAPE ['0.187', '0.177', '0.165', '0.178'] | AP ['0.924', '0.933', '0.926', '0.933'] | window given failure: exact 0.822
+[syn_ts_914_6_1p2955] nearest training storm used by the lookup: {'syn_ts_708_13_1p1567': 905, 'syn_ts_570_2_1p5351': 64, 'syn_ts_321_19_1p7614': 31}
+  syn_ts_258_9_3p0022: 500/1000 runs  (425s)
+  syn_ts_258_9_3p0022: 1000/1000 runs  (451s)
+[syn_ts_258_9_3p0022] model: loss 0.25753 | non-seed BCE 0.24381 | count WAPE ['0.232', '0.302', '0.297', '0.302'] bias ['-0.231', '-0.301', '-0.296', '-0.299'] | AP ['0.950', '0.950', '0.948', '0.978'] | window given failure: exact 0.795, within one 0.947; caught by 0.608 | ECE ['0.0445', '0.0873', '0.1030', '0.1359']
+[syn_ts_258_9_3p0022] no_cascade    : non-seed BCE 0.69621 | count WAPE ['0.527', '0.544', '0.534', '0.516'] | AP ['0.185', '0.290', '0.348', '0.455'] | window given failure: exact 0.407
+[syn_ts_258_9_3p0022] site_frequency: non-seed BCE 0.35265 | count WAPE ['0.535', '0.550', '0.538', '0.520'] | AP ['0.963', '0.955', '0.957', '0.986'] | window given failure: exact 0.785
+[syn_ts_258_9_3p0022] nearest_storm : non-seed BCE 0.16305 | count WAPE ['0.072', '0.168', '0.133', '0.190'] | AP ['0.977', '0.963', '0.965', '0.989'] | window given failure: exact 0.798
+[syn_ts_258_9_3p0022] nearest training storm used by the lookup: {'syn_ts_999_12_3p44': 937, 'syn_ts_514_13_2p7829': 63}
+  syn_ts_605_5_3p7563: 500/1000 runs  (481s)
+  syn_ts_605_5_3p7563: 1000/1000 runs  (511s)
+[syn_ts_605_5_3p7563] model: loss 0.44253 | non-seed BCE 0.42560 | count WAPE ['0.303', '0.340', '0.308', '0.284'] bias ['-0.303', '-0.340', '-0.308', '-0.284'] | AP ['0.946', '0.971', '0.975', '0.983'] | window given failure: exact 0.707, within one 0.873; caught by 0.679 | ECE ['0.1025', '0.1499', '0.1465', '0.1601']
+[syn_ts_605_5_3p7563] no_cascade    : non-seed BCE 0.93225 | count WAPE ['0.732', '0.697', '0.656', '0.607'] | AP ['0.326', '0.437', '0.473', '0.560'] | window given failure: exact 0.583
+[syn_ts_605_5_3p7563] site_frequency: non-seed BCE 0.79817 | count WAPE ['0.754', '0.716', '0.674', '0.622'] | AP ['0.933', '0.978', '0.985', '0.994'] | window given failure: exact 0.634
+[syn_ts_605_5_3p7563] nearest_storm : non-seed BCE 0.43863 | count WAPE ['0.375', '0.237', '0.173', '0.083'] | AP ['0.950', '0.985', '0.988', '0.995'] | window given failure: exact 0.679
+[syn_ts_605_5_3p7563] nearest training storm used by the lookup: {'syn_ts_914_26_3p4047': 1000}
+  syn_ts_808_27_3p7885: 500/1000 runs  (540s)
+  syn_ts_808_27_3p7885: 1000/1000 runs  (569s)
+[syn_ts_808_27_3p7885] model: loss 0.30974 | non-seed BCE 0.29935 | count WAPE ['0.231', '0.299', '0.289', '0.291'] bias ['-0.231', '-0.299', '-0.289', '-0.291'] | AP ['0.962', '0.982', '0.979', '0.986'] | window given failure: exact 0.766, within one 0.943; caught by 0.681 | ECE ['0.0618', '0.1148', '0.1266', '0.1593']
+[syn_ts_808_27_3p7885] no_cascade    : non-seed BCE 0.85524 | count WAPE ['0.674', '0.656', '0.628', '0.598'] | AP ['0.268', '0.384', '0.437', '0.548'] | window given failure: exact 0.489
+[syn_ts_808_27_3p7885] site_frequency: non-seed BCE 0.57652 | count WAPE ['0.686', '0.666', '0.637', '0.605'] | AP ['0.943', '0.986', '0.985', '0.994'] | window given failure: exact 0.719
+[syn_ts_808_27_3p7885] nearest_storm : non-seed BCE 0.18576 | count WAPE ['0.196', '0.114', '0.085', '0.053'] | AP ['0.952', '0.990', '0.992', '0.997'] | window given failure: exact 0.789
+[syn_ts_808_27_3p7885] nearest training storm used by the lookup: {'syn_ts_914_26_3p4047': 1000}
+[speed] model forward on cuda: median 10.87 ms per run (n=50)
+[G2] saved val_loss 0.164555 got 0.164555 |diff| 3.24e-09 -> PASS
+wrote /scratch/tj2587/results/gnn_morestorms_numbers_v1_old5/old17_plain_dynamic_timing_s1.json  (571s)
+ALL GATES AND RULES: PASS

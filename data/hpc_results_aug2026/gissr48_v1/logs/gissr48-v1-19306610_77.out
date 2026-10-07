@@ -1,0 +1,48 @@
+gate ok: 6231 nodes (v1 frozen)
+task=77 mode=arrival scenario=syn2_t494w17_wl3p890 n_mc=1000 out=/scratch/tj2587/results/gissr48_v1/arrival_h360 commit=b38143d uncommitted_files=0
+[dynamic-forcing] ENABLED mode=arrival scenarios=71 intra_clock=peak post_peak_offsets_h=[0.0, 6.0, 24.0, 48.0, 96.0, 144.0, 240.0, 360.0]
+timing: 586 wet sites, t_peak 32.1 h, offsets [0.0, 6.0, 24.0, 48.0, 96.0, 144.0, 240.0, 360.0] (from config/dynamic_forcing_gissr48_v1.yaml)
+nodes 6,231 from data/graph_v1_frozen/nyc_infra_nodes_all_flood.geojson | graph data/graph_v1_frozen/nyc_infra_graph_all_flood.graphml | depths from gissr48_node_depths_v1.csv:flood_syn2_t494w17_wl3p890_depth_m: wet 586
+  [power-coupling] disabled (legacy HAZUS power seeding)
+SIM_DIR -> /scratch/tj2587/results/gissr48_v1/arrival_h360 | N_MC -> 1000 | mode -> arrival | time steps [0, 6, 24, 48, 96] | seeds fragility 42 buffer 43
+
+===========================================================================
+SCENARIO: syn2_t494w17_wl3p890
+===========================================================================
+  Prepared temp nodes: /scratch/tj2587/results/gissr48_v1/arrival_h360/temp_nodes_nyc_syn2_t494w17_wl3p890.geojson
+
+  [Fragility] Sampling 1000 Monte Carlo scenarios...
+  Loaded 6231 nodes from /scratch/tj2587/results/gissr48_v1/arrival_h360/temp_nodes_nyc_syn2_t494w17_wl3p890.geojson
+  581 nodes have P(failure) > 0 (depth_scale=1.0, regime=pluvial)
+  Initial failures: mean=482.5  std=5.7  min=464  max=501
+  Saved: /scratch/tj2587/results/gissr48_v1/arrival_h360/monte_carlo_failures_nyc_syn2_t494w17_wl3p890.json
+
+  [Cascade] Propagating through graph (Weibull-sampled buffers)...
+  Loaded graph: 6231 nodes, 13709 edges
+  Loaded graph: 6,231 nodes, 13,709 edges
+  [intra:subway] 493 nodes, 586 within-edges, Motter-Lai alpha=0.2 (pristine loads cached)
+  [intra:water] 137 nodes, 115 within-edges, directed_flow (against_edges)
+  [intra:fuel] 1187 nodes, 1181 within-edges, directed_flow (with_edges)
+  [intra:telecom] 4150 sites, 11823 Voronoi failover edges (587 pruned >3.0km), 4 isolated | layers={'AT&T': 1663, 'T-Mobile': 2487} roaming=False | rho=0.6 (alpha=0.67), spill hops=2, crash at 3.0x capacity, surge peak=1.5 tau=12.0h | mass-blocking if m(t) > 1.67, mass-crash only if m(t) > 5.00
+  [intra:hospital] 58 hospitals, 22573 certified beds (NYS DOH), occupancy=0.75, divert@0.95, collapse@1.2 | gravity d0=5.0km bonus=2.0 | multi-facility systems: {'NYC Health + Hospitals': 12, 'NewYork-Presbyterian': 7, 'Mount Sinai': 7, 'Memorial Hospital for Cancer and Allied Diseases Inc': 2, 'NYU Langone': 3, 'One Brooklyn Health': 2, 'Northwell': 6, 'Montefiore': 3, 'Calvary Hospital Inc.': 2, 'MediSys': 2}
+  [intra:hospital] zero certified beds (official; no inpatient role in redistribution): ['hospital_mount_sinai_beth_israel', 'hospital_kingsbrook_jewish_medical_village', 'hospital_montefiore_medical_center___montefiore_w']
+[dynamic-forcing] ENABLED mode=arrival scenarios=71 intra_clock=peak post_peak_offsets_h=[0.0, 6.0, 24.0, 48.0, 96.0, 144.0, 240.0, 360.0]
+  [dynamic-forcing] syn2_t494w17_wl3p890: mode=arrival t_peak=32.1 h intra_clock=peak grid=[0.0, 6.0, 12.0, 18.0, 24.0, 30.0, 32.1, 38.1, 56.1, 80.1, 128.1, 176.1, 272.1, 392.1]
+  Stochastic buffer audit (first MC run):
+    Sampled:          5880 edges
+    Zero-buffer kept: 1633 edges
+    Fallback used:    0 edges
+    Completed 100/1000 MC runs
+    Completed 200/1000 MC runs
+    Completed 300/1000 MC runs
+    Completed 400/1000 MC runs
+    Completed 500/1000 MC runs
+    Completed 600/1000 MC runs
+    Completed 700/1000 MC runs
+    Completed 800/1000 MC runs
+    Completed 900/1000 MC runs
+    Completed 1000/1000 MC runs
+  Saved: /scratch/tj2587/results/gissr48_v1/arrival_h360/cascade_results_nyc_syn2_t494w17_wl3p890.json
+  [syn2_t494w17_wl3p890] direct: 482.5 +/- 5.7, total: 3632.9 +/- 148.9
+scenario wall time: 23.0 min | runs: 1000
+LABEL RUN OK: syn2_t494w17_wl3p890 mode=arrival runs=1000 -> /scratch/tj2587/results/gissr48_v1/arrival_h360/cascade_results_nyc_syn2_t494w17_wl3p890.json

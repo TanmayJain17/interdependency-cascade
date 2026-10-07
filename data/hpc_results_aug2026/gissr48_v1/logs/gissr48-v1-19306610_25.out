@@ -1,0 +1,44 @@
+gate ok: 6231 nodes (v1 frozen)
+task=25 mode=static scenario=syn2_t431w19_wl3p632 n_mc=1000 out=/scratch/tj2587/results/gissr48_v1/static commit=b38143d uncommitted_files=0
+nodes 6,231 from data/graph_v1_frozen/nyc_infra_nodes_all_flood.geojson | graph data/graph_v1_frozen/nyc_infra_graph_all_flood.graphml | depths from gissr48_node_depths_v1.csv:flood_syn2_t431w19_wl3p632_depth_m: wet 526
+  [power-coupling] disabled (legacy HAZUS power seeding)
+SIM_DIR -> /scratch/tj2587/results/gissr48_v1/static | N_MC -> 1000 | mode -> static | time steps [0, 6, 24, 48, 96] | seeds fragility 42 buffer 43
+
+===========================================================================
+SCENARIO: syn2_t431w19_wl3p632
+===========================================================================
+  Prepared temp nodes: /scratch/tj2587/results/gissr48_v1/static/temp_nodes_nyc_syn2_t431w19_wl3p632.geojson
+
+  [Fragility] Sampling 1000 Monte Carlo scenarios...
+  Loaded 6231 nodes from /scratch/tj2587/results/gissr48_v1/static/temp_nodes_nyc_syn2_t431w19_wl3p632.geojson
+  520 nodes have P(failure) > 0 (depth_scale=1.0, regime=pluvial)
+  Initial failures: mean=418.5  std=5.6  min=396  max=435
+  Saved: /scratch/tj2587/results/gissr48_v1/static/monte_carlo_failures_nyc_syn2_t431w19_wl3p632.json
+
+  [Cascade] Propagating through graph (Weibull-sampled buffers)...
+  Loaded graph: 6231 nodes, 13709 edges
+  Loaded graph: 6,231 nodes, 13,709 edges
+  [intra:subway] 493 nodes, 586 within-edges, Motter-Lai alpha=0.2 (pristine loads cached)
+  [intra:water] 137 nodes, 115 within-edges, directed_flow (against_edges)
+  [intra:fuel] 1187 nodes, 1181 within-edges, directed_flow (with_edges)
+  [intra:telecom] 4150 sites, 11823 Voronoi failover edges (587 pruned >3.0km), 4 isolated | layers={'AT&T': 1663, 'T-Mobile': 2487} roaming=False | rho=0.6 (alpha=0.67), spill hops=2, crash at 3.0x capacity, surge peak=1.5 tau=12.0h | mass-blocking if m(t) > 1.67, mass-crash only if m(t) > 5.00
+  [intra:hospital] 58 hospitals, 22573 certified beds (NYS DOH), occupancy=0.75, divert@0.95, collapse@1.2 | gravity d0=5.0km bonus=2.0 | multi-facility systems: {'NYC Health + Hospitals': 12, 'NewYork-Presbyterian': 7, 'Mount Sinai': 7, 'Memorial Hospital for Cancer and Allied Diseases Inc': 2, 'NYU Langone': 3, 'One Brooklyn Health': 2, 'Northwell': 6, 'Montefiore': 3, 'Calvary Hospital Inc.': 2, 'MediSys': 2}
+  [intra:hospital] zero certified beds (official; no inpatient role in redistribution): ['hospital_mount_sinai_beth_israel', 'hospital_kingsbrook_jewish_medical_village', 'hospital_montefiore_medical_center___montefiore_w']
+  Stochastic buffer audit (first MC run):
+    Sampled:          5880 edges
+    Zero-buffer kept: 1633 edges
+    Fallback used:    0 edges
+    Completed 100/1000 MC runs
+    Completed 200/1000 MC runs
+    Completed 300/1000 MC runs
+    Completed 400/1000 MC runs
+    Completed 500/1000 MC runs
+    Completed 600/1000 MC runs
+    Completed 700/1000 MC runs
+    Completed 800/1000 MC runs
+    Completed 900/1000 MC runs
+    Completed 1000/1000 MC runs
+  Saved: /scratch/tj2587/results/gissr48_v1/static/cascade_results_nyc_syn2_t431w19_wl3p632.json
+  [syn2_t431w19_wl3p632] direct: 418.5 +/- 5.6, total: 2330.4 +/- 88.5
+scenario wall time: 11.3 min | runs: 1000
+LABEL RUN OK: syn2_t431w19_wl3p632 mode=static runs=1000 -> /scratch/tj2587/results/gissr48_v1/static/cascade_results_nyc_syn2_t431w19_wl3p632.json
