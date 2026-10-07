@@ -36,6 +36,7 @@ from src.gnn.data import (
     build_node_id_index,
     edge_index_dict,
     example_from_run,
+    input_dim,
     load_base_graph,
     load_cascade_results,
     N_TIMING_FEATURES,
@@ -181,7 +182,7 @@ def run_smoke(args):
     base_data = load_base_graph()
     print(f"Loaded heterograph: {base_data.node_types}")
 
-    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
+    node_in_dims = {nt: input_dim(base_data, nt) for nt in base_data.node_types}
     model = CascadeGNN(
         node_types=base_data.node_types,
         edge_types=list(base_data.edge_types),
@@ -197,7 +198,7 @@ def run_smoke(args):
 
     # Synthetic input
     x_dict = {
-        nt: torch.randn(base_data[nt].num_nodes, base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES)
+        nt: torch.randn(base_data[nt].num_nodes, input_dim(base_data, nt))
         for nt in base_data.node_types
     }
     edge_idx_dict = edge_index_dict(base_data)
@@ -232,7 +233,7 @@ def run_overfit(args):
         examples.extend([(s, r) for r in results[s][:2]])
     examples = examples[:5]
 
-    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
+    node_in_dims = {nt: input_dim(base_data, nt) for nt in base_data.node_types}
     model = CascadeGNN(
         node_types=base_data.node_types,
         edge_types=list(base_data.edge_types),
@@ -269,6 +270,9 @@ def run_overfit(args):
 def run_train(args):
     print("=== TRAIN MODE — full training ===")
     device = torch.device(args.device)
+    if args.torch_seed is not None:
+        torch.manual_seed(args.torch_seed)          # seeds the CPU and every CUDA generator
+        print(f"torch seed set: {args.torch_seed}")
 
     base_data = load_base_graph()
     results = load_cascade_results()
@@ -326,7 +330,7 @@ def run_train(args):
         print(f"Subsampled val to {len(val_examples)}")
 
     # Build model
-    node_in_dims = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
+    node_in_dims = {nt: input_dim(base_data, nt) for nt in base_data.node_types}
     model = CascadeGNN(
         node_types=base_data.node_types,
         edge_types=list(base_data.edge_types),
@@ -422,6 +426,7 @@ def run_train(args):
             "edge_types": [list(et) for et in base_data.edge_types],
             "timesteps": list(DEFAULT_TIMESTEPS),
             "head": args.head,
+            "storm_context": int(os.environ.get("GNN_STORM_CONTEXT", "0") == "1"),
         }
         torch.save(ckpt, CHECKPOINT_DIR / "last.pt")
         if mean_val_loss < best_val_loss:
@@ -504,10 +509,10 @@ def run_evalckpt(args):
     node_id_index = build_node_id_index(base_data)
     edge_idx_dict = {k: v.to(device) for k, v in edge_index_dict(base_data).items()}
 
-    live = {nt: base_data[nt].x.shape[1] + 1 + N_TIMING_FEATURES for nt in base_data.node_types}
+    live = {nt: input_dim(base_data, nt) for nt in base_data.node_types}
     assert live == node_in_dims, (
         f"input dims differ from the checkpoint: live={live} ckpt={node_in_dims} "
-        f"(GNN_TIMING_FEATURES must match the arm that trained this checkpoint)")
+        f"(GNN_TIMING_FEATURES and GNN_STORM_CONTEXT must match the arm that trained this checkpoint)")
 
     holdout_scenarios = [s.strip() for s in args.holdout_scenario.split(",") if s.strip()]
     train_val_examples, test_examples = [], []
@@ -582,6 +587,10 @@ def parse_args():
     p.add_argument("--num_heads", type=int, default=4)
     p.add_argument("--dropout", type=float, default=0.1)
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--torch_seed", type=int, default=None,
+                   help="train: seed for PyTorch (initial weights, dropout). Default None = not set, "
+                        "as in every campaign before Week 29. --seed only fixes the split and run order. "
+                        "A replicate label, not a guarantee: GPU runs with the same seed need not match bit for bit.")
     p.add_argument("--device", default="cpu",
                    help="cpu, mps (Apple Silicon), or cuda:0")
     p.add_argument("--log_every", type=int, default=100)

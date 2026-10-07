@@ -54,8 +54,28 @@ elif _SET == "jesse22":
     # control 810_14 stays excluded). No DEP-era scenarios: they have no
     # campaign labels (pluvial excluded from the twin campaigns).
     SCENARIOS = ("geoclaw_2026", "geoclaw_2050", "geoclaw_2080") + SCENARIOS_SYN
+elif _SET in ("w29_old", "w29_all"):
+    # Week 29: 48 further GISSR storms (data/flood/gissr48_manifest_v1.csv; 40 train, 8 held out).
+    #   w29_old : the jesse22 storms + the 8 new held-out storms. With the 13 held-out storms named on
+    #             the command line, training sees exactly the 17 storms of the jesse22 campaigns, in the
+    #             same order (so the same seed gives the same train/val split).
+    #   w29_all : the same + the 40 new training storms (57 training storms).
+    # The manifest is read only for these two sets; every other set is built exactly as before.
+    import csv as _csv
+    _man = Path("data/flood/gissr48_manifest_v1.csv")
+    with open(_man) as _fh:
+        _rows = list(_csv.DictReader(_fh))
+    SCENARIOS_GISSR48_TRAIN = tuple(r["tag"] for r in _rows if r["role"] == "train")
+    SCENARIOS_GISSR48_TEST = tuple(r["tag"] for r in _rows if r["role"] == "test")
+    if (len(SCENARIOS_GISSR48_TRAIN), len(SCENARIOS_GISSR48_TEST)) != (40, 8):
+        raise ValueError(f"{_man}: expected 40 train + 8 test storms, found "
+                         f"{len(SCENARIOS_GISSR48_TRAIN)} + {len(SCENARIOS_GISSR48_TEST)}")
+    SCENARIOS = ("geoclaw_2026", "geoclaw_2050", "geoclaw_2080") + SCENARIOS_SYN
+    if _SET == "w29_all":
+        SCENARIOS = SCENARIOS + SCENARIOS_GISSR48_TRAIN
+    SCENARIOS = SCENARIOS + SCENARIOS_GISSR48_TEST
 else:
-    raise ValueError(f"Unknown SCENARIO_SET '{_SET}' (base6|syn26|jesse22)")
+    raise ValueError(f"Unknown SCENARIO_SET '{_SET}' (base6|syn26|jesse22|w29_old|w29_all)")
 DEFAULT_TIMESTEPS = (6, 24, 48, 96)  # exclude t=0 (label leakage from initial_mask)
 
 # --- optional flood-timing input features (Week 23, Option A / World 2) ---------------------------
@@ -66,6 +86,24 @@ TIMING_COLS = ("arrival_h", "duration_h", "time_to_peak_h")
 TIMING_SCALE_H = 96.0
 N_TIMING_FEATURES = len(TIMING_COLS) if TIMING_FEATURES else 0
 _TIMING_CACHE = {}          # scenario -> {node_type: tensor [N, len(TIMING_COLS)]}
+
+# --- optional storm-level context (Week 29) --------------------------------------------------------
+# Off by default: every tensor is identical to the builds above. With GNN_STORM_CONTEXT=1 every site
+# also receives the same short vector describing the whole storm (see storm_context). Reason: the
+# model passes messages over two links, so a site with no flooded site within two links gets the
+# same input in every storm and cannot tell a small storm from a large one.
+STORM_CONTEXT = os.environ.get("GNN_STORM_CONTEXT", "0") == "1"
+
+
+def n_context_features(base_data):
+    """Length of the storm-context vector: one number per infrastructure type, one for all sites,
+    and (timing arms) the three timing columns averaged over the wet sites. 0 when switched off."""
+    return (len(base_data.node_types) + 1 + N_TIMING_FEATURES) if STORM_CONTEXT else 0
+
+
+def input_dim(base_data, nt):
+    """Width of the input of node type nt: base features | storm context | seed bit | timing."""
+    return base_data[nt].x.shape[1] + n_context_features(base_data) + 1 + N_TIMING_FEATURES
 
 
 # --------------------------------------------------------------------------
@@ -190,20 +228,44 @@ def timing_for(scenario, base_data, node_id_index):
     return _TIMING_CACHE.get(scenario, _TIMING_CACHE["_zeros"])
 
 
+def storm_context(base_data, initial_mask, timing=None):
+    """Storm-level summary of the inputs, the same vector for every site.
+
+    Per infrastructure type and for all sites together: log(1 + number of seeds) / log(1 + number of
+    sites), a number in [0, 1] that grows with the size of the flood. Timing arms add the mean of each
+    timing column over the wet sites (already in units of 96 h). It contains nothing the per-site
+    inputs do not already contain; it only makes the storm's size visible to every site.
+    """
+    import math
+    vals, tot_s, tot_n = [], 0.0, 0
+    for nt in base_data.node_types:
+        s = float(initial_mask[nt].sum()); n = base_data[nt].num_nodes
+        vals.append(math.log1p(s) / math.log1p(n)); tot_s += s; tot_n += n
+    vals.append(math.log1p(tot_s) / math.log1p(tot_n))
+    if timing is not None:
+        t = torch.cat([timing[nt] for nt in base_data.node_types])
+        wet = (t != 0).any(dim=1)
+        vals += t[wet].mean(dim=0).tolist() if bool(wet.any()) else [0.0] * t.shape[1]
+    return torch.tensor(vals, dtype=torch.float32)
+
+
 def build_input_x_dict(base_data, initial_mask, timing=None):
     """Concatenate base node features with the initial-failure mask as 9th feature,
     plus the per-node timing features (arrival, duration, time-to-peak) when enabled.
 
     Output: dict {node_type: tensor [num_nodes_of_type, base_features + 1 + N_TIMING_FEATURES]}
+    With GNN_STORM_CONTEXT=1 the storm-context columns sit between the base features and the seed
+    bit, so the seed bit and the timing columns keep their positions counted from the end.
     """
+    ctx = storm_context(base_data, initial_mask, timing) if STORM_CONTEXT else None
     x_dict = {}
     for nt in base_data.node_types:
         base_x = base_data[nt].x                       # [N, base_features]
         mask = initial_mask[nt].unsqueeze(1)           # [N, 1]
-        parts = [base_x, mask]
+        parts = [base_x, mask] if ctx is None else [base_x, ctx.unsqueeze(0).expand(base_x.shape[0], -1), mask]
         if timing is not None:
             parts.append(timing[nt])                   # [N, N_TIMING_FEATURES]
-        x_dict[nt] = torch.cat(parts, dim=1)           # [N, base_features + 1 (+ timing)]
+        x_dict[nt] = torch.cat(parts, dim=1)           # [N, base_features (+ context) + 1 (+ timing)]
     return x_dict
 
 
