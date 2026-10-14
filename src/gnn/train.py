@@ -46,6 +46,9 @@ from src.gnn.model import CascadeGNN, HEADS, count_parameters
 
 # GNN_CKPT_DIR env var redirects checkpoints for ablation runs
 CHECKPOINT_DIR = Path(os.environ.get("GNN_CKPT_DIR", "data/gnn_checkpoints"))
+# settings a resumed job must share with the checkpoint it continues (Week 30, --resume)
+RESUME_IDENTITY_KEYS = ("epochs", "lr", "weight_decay", "hidden_dim", "num_layers", "num_heads", "dropout",
+                        "seed", "torch_seed", "head", "train_subset", "val_subset", "holdout_scenario")
 
 
 # --------------------------------------------------------------------------
@@ -349,9 +352,62 @@ def run_train(args):
     CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
     history = []
     best_val_loss = float("inf")
+    start_epoch = 0
+    elapsed_before = 0.0
 
-    t0 = time.time()
-    for epoch in range(args.epochs):
+    # --- Week 30: resume (off by default; without --resume this block does nothing) ---------------
+    # A run can be split over several jobs: each job trains up to --epochs_this_job epochs, saves last.pt
+    # with everything needed to continue (weights, Adam state, history, torch RNG), and stops WITHOUT
+    # writing history.json. The next job starts with --resume, replays the split and the per-epoch
+    # shuffles (so the run order is the one an unbroken run would have used), restores the RNG and
+    # carries on. The job that completes the last epoch does the held-out evaluation and writes
+    # history.json, exactly as an unbroken run. An existing history.json means the run is finished:
+    # --resume then exits without touching anything.
+    if args.resume:
+        if (CHECKPOINT_DIR / "history.json").exists():
+            print(f"[resume] {CHECKPOINT_DIR}/history.json exists: training already finished, nothing to do")
+            return
+        last = CHECKPOINT_DIR / "last.pt"
+        if last.exists():
+            ck = torch.load(last, map_location="cpu", weights_only=False)
+            if "optimizer_state" not in ck:
+                raise SystemExit(f"[resume] FAIL: {last} was written without resume information "
+                                 f"(no optimizer state); start this run afresh in an empty directory")
+            same = {k: ck["args"].get(k) for k in RESUME_IDENTITY_KEYS}
+            mine = {k: vars(args).get(k) for k in RESUME_IDENTITY_KEYS}
+            if same != mine:
+                raise SystemExit(f"[resume] FAIL: checkpoint was trained with {same}, this job asks for {mine}")
+            if ck.get("storm_context") != int(os.environ.get("GNN_STORM_CONTEXT", "0") == "1") or \
+                    ck.get("node_in_dims") != node_in_dims:
+                raise SystemExit("[resume] FAIL: input width or storm-context switch differs from the checkpoint")
+            model.load_state_dict(ck["model_state"])
+            optimizer.load_state_dict(ck["optimizer_state"])
+            history = ck["history"]
+            best_val_loss = ck["best_val_loss"]
+            start_epoch = ck["epoch"] + 1
+            elapsed_before = ck.get("elapsed_s", 0.0)
+            for _ in range(start_epoch):               # replay: same rng, same list, same order
+                rng.shuffle(train_examples)
+            torch.set_rng_state(ck["torch_rng_state"])
+            if device.type == "cuda" and ck.get("cuda_rng_state") is not None:
+                torch.cuda.set_rng_state(ck["cuda_rng_state"], device=device)
+            print(f"[resume] continuing from {last}: epochs 0..{ck['epoch']} done, "
+                  f"best val {best_val_loss:.5f}, starting epoch {start_epoch}")
+        else:
+            print(f"[resume] no {last}: starting afresh")
+    epochs_this_job = args.epochs_this_job or args.epochs
+    stop_after = min(args.epochs, start_epoch + epochs_this_job)
+
+    def _avg_per_t(per_t_list, num_t):
+        out = []
+        for ti in range(num_t):
+            vals = [v[ti] for v in per_t_list if v[ti] == v[ti]]
+            out.append(sum(vals) / len(vals) if vals else float("nan"))
+        return out
+
+    num_t = len(DEFAULT_TIMESTEPS)
+    t0 = time.time() - elapsed_before
+    for epoch in range(start_epoch, args.epochs):
         rng.shuffle(train_examples)
         train_losses = []
         for i, (_, run) in enumerate(train_examples):
@@ -378,14 +434,6 @@ def run_train(args):
         mean_val_loss   = sum(val_losses) / len(val_losses)
         mean_val_mono   = sum(val_mono) / len(val_mono)
         
-        def _avg_per_t(per_t_list, num_t):
-            out = []
-            for ti in range(num_t):
-                vals = [v[ti] for v in per_t_list if v[ti] == v[ti]]
-                out.append(sum(vals) / len(vals) if vals else float("nan"))
-            return out
-        
-        num_t = len(DEFAULT_TIMESTEPS)
         val_aucs      = _avg_per_t(val_aucs_per_t, num_t)
         val_prs       = _avg_per_t(val_pr_per_t,  num_t)
         val_aucs_casc = _avg_per_t(val_aucs_casc_per_t, num_t)
@@ -428,11 +476,25 @@ def run_train(args):
             "head": args.head,
             "storm_context": int(os.environ.get("GNN_STORM_CONTEXT", "0") == "1"),
         }
-        torch.save(ckpt, CHECKPOINT_DIR / "last.pt")
         if mean_val_loss < best_val_loss:
             best_val_loss = mean_val_loss
             torch.save(ckpt, CHECKPOINT_DIR / "best.pt")
             print(f"  [checkpoint] best.pt updated (epoch {epoch}, val_loss={mean_val_loss:.5f})")
+        # last.pt also carries what a later job needs to continue the run (Week 30, --resume).
+        # best.pt stays as before: weights and metadata only.
+        ckpt.update({
+            "optimizer_state": optimizer.state_dict(),
+            "history": history,
+            "best_val_loss": best_val_loss,
+            "elapsed_s": elapsed,
+            "torch_rng_state": torch.get_rng_state(),
+            "cuda_rng_state": torch.cuda.get_rng_state(device) if device.type == "cuda" else None,
+        })
+        torch.save(ckpt, CHECKPOINT_DIR / "last.pt")
+        if epoch + 1 >= stop_after and epoch + 1 < args.epochs:
+            print(f"[resume] epoch {epoch} saved; this job stops here ({epoch + 1} of {args.epochs} epochs done). "
+                  f"Continue with --resume.")
+            return
 
     # === END OF EPOCH LOOP ===
 
@@ -600,6 +662,12 @@ def parse_args():
                    help="Cap validation-set size for faster eval")
     p.add_argument("--holdout_scenario", default="geoclaw_2050",  # comma-separated list supported
                help="Scenario name held out as test set (no exposure during training)")
+    p.add_argument("--resume", action="store_true",
+                   help="train: continue from GNN_CKPT_DIR/last.pt if it exists (Week 30); exit at once if "
+                        "history.json exists; start afresh if neither exists. Default off: unchanged behaviour.")
+    p.add_argument("--epochs_this_job", type=int, default=None,
+                   help="train: stop after this many epochs in this job (last.pt is written, history.json is not); "
+                        "the next job continues with --resume. Default: all epochs in one job.")
     return p.parse_args()
 
 
