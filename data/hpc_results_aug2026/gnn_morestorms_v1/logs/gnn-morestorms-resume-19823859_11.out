@@ -1,0 +1,23 @@
+task=11 arm=mix57_full variant=plain cell=dynamic_timing torch_seed=1 set=w29_all head=hazard labels=/scratch/tj2587/results/dynamic_v1/arrival_h360 labels2=/scratch/tj2587/results/gissr48_v1/arrival_h360 timing=1 context=unset ckpt=/scratch/tj2587/results/gnn_morestorms_resume_v1_smoke/mix57_full_plain_dynamic_timing_s1 smoke=1 commit=ea5ba2f uncommitted_files=0
+[chain] task=11 depth=0 epochs_per_job=1 epochs_done_before=0 job=19823860
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] set w29_all: 70 storms, 57 for training, 13 held out; in both folders []; missing [] -> OK
+[gate] timing table data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv: storms without rows [] -> OK
+[gate] variant plain: storm context off, timing inputs on -> OK
+[gate] head switch present: ('independent', 'hazard')
+=== TRAIN MODE — full training ===
+torch seed set: 1
+Train: 45600  Val: 11400  (57 scenarios) | Test held-out: ['geoclaw_2050', 'syn_ts_914_6_1p2955', 'syn_ts_258_9_3p0022', 'syn_ts_605_5_3p7563', 'syn_ts_808_27_3p7885', 'syn2_t449w6_wl2p103', 'syn2_t580w24_wl2p439', 'syn2_t934c34_wl2p777', 'syn2_t270w17_wl3p116', 'syn2_t33w13_wl3p458', 'syn2_t857w1_wl3p800', 'syn2_t116w1_wl4p130', 'syn2_t198w16_wl4p722'] (13000 runs)
+Subsampled train to 50
+Subsampled val to 20
+Model parameters: 697,112  head=hazard
+Device: cuda
+[resume] no /scratch/tj2587/results/gnn_morestorms_resume_v1_smoke/mix57_full_plain_dynamic_timing_s1/last.pt: starting afresh
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+
+Epoch 00/2 | train=0.63357 val=0.49028 | AUC=['0.853', '0.859', '0.862', '0.863'] PR=['0.565', '0.637', '0.679', '0.723'] | CASCADE-only AUC=['0.823', '0.835', '0.839', '0.845'] PR=['0.435', '0.563', '0.596', '0.654'] | mono_viol=0.00000 | 5s
+
+  [checkpoint] best.pt updated (epoch 0, val_loss=0.49028)
+[resume] epoch 0 saved; this job stops here (1 of 2 epochs done). Continue with --resume.
+[chain] submitted next job 19824268 for task 11 (depth 1)

@@ -1,0 +1,159 @@
+task=17 arm=mix57_same variant=plain cell=static_timing torch_seed=2 set=w29_all head=hazard labels=/scratch/tj2587/results/legacy_v1_n1000 labels2=/scratch/tj2587/results/gissr48_v1/static timing=1 context=unset ckpt=/scratch/tj2587/results/gnn_morestorms_v1/mix57_same_plain_static_timing_s2 smoke=0 commit=ea5ba2f uncommitted_files=0
+[chain] task=17 depth=1 epochs_per_job=1 epochs_done_before=1 job=19827861
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] set w29_all: 70 storms, 57 for training, 13 held out; in both folders []; missing [] -> OK
+[gate] timing table data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv: storms without rows [] -> OK
+[gate] variant plain: storm context off, timing inputs on -> OK
+[gate] head switch present: ('independent', 'hazard')
+=== TRAIN MODE — full training ===
+torch seed set: 2
+Train: 45600  Val: 11400  (57 scenarios) | Test held-out: ['geoclaw_2050', 'syn_ts_914_6_1p2955', 'syn_ts_258_9_3p0022', 'syn_ts_605_5_3p7563', 'syn_ts_808_27_3p7885', 'syn2_t449w6_wl2p103', 'syn2_t580w24_wl2p439', 'syn2_t934c34_wl2p777', 'syn2_t270w17_wl3p116', 'syn2_t33w13_wl3p458', 'syn2_t857w1_wl3p800', 'syn2_t116w1_wl4p130', 'syn2_t198w16_wl4p722'] (13000 runs)
+Subsampled train to 13600
+Subsampled val to 3400
+Model parameters: 697,112  head=hazard
+Device: cuda
+[resume] continuing from /scratch/tj2587/results/gnn_morestorms_v1/mix57_same_plain_static_timing_s2/last.pt: epochs 0..0 done, best val 0.11167, starting epoch 1
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+  Ep01 step  100/13600: loss = 0.08272
+  Ep01 step  200/13600: loss = 0.08118
+  Ep01 step  300/13600: loss = 0.08182
+  Ep01 step  400/13600: loss = 0.08286
+  Ep01 step  500/13600: loss = 0.08524
+  Ep01 step  600/13600: loss = 0.08867
+  Ep01 step  700/13600: loss = 0.08176
+  Ep01 step  800/13600: loss = 0.09049
+  Ep01 step  900/13600: loss = 0.08460
+  Ep01 step 1000/13600: loss = 0.08565
+  Ep01 step 1100/13600: loss = 0.08335
+  Ep01 step 1200/13600: loss = 0.08336
+  Ep01 step 1300/13600: loss = 0.08143
+  Ep01 step 1400/13600: loss = 0.08260
+  Ep01 step 1500/13600: loss = 0.08223
+  Ep01 step 1600/13600: loss = 0.08333
+  Ep01 step 1700/13600: loss = 0.08166
+  Ep01 step 1800/13600: loss = 0.08033
+  Ep01 step 1900/13600: loss = 0.08814
+  Ep01 step 2000/13600: loss = 0.08326
+  Ep01 step 2100/13600: loss = 0.08287
+  Ep01 step 2200/13600: loss = 0.08409
+  Ep01 step 2300/13600: loss = 0.07960
+  Ep01 step 2400/13600: loss = 0.08819
+  Ep01 step 2500/13600: loss = 0.08170
+  Ep01 step 2600/13600: loss = 0.08304
+  Ep01 step 2700/13600: loss = 0.08355
+  Ep01 step 2800/13600: loss = 0.08265
+  Ep01 step 2900/13600: loss = 0.08468
+  Ep01 step 3000/13600: loss = 0.08285
+  Ep01 step 3100/13600: loss = 0.08171
+  Ep01 step 3200/13600: loss = 0.08103
+  Ep01 step 3300/13600: loss = 0.08234
+  Ep01 step 3400/13600: loss = 0.08093
+  Ep01 step 3500/13600: loss = 0.08297
+  Ep01 step 3600/13600: loss = 0.08035
+  Ep01 step 3700/13600: loss = 0.08757
+  Ep01 step 3800/13600: loss = 0.08091
+  Ep01 step 3900/13600: loss = 0.07918
+  Ep01 step 4000/13600: loss = 0.08192
+  Ep01 step 4100/13600: loss = 0.08045
+  Ep01 step 4200/13600: loss = 0.08634
+  Ep01 step 4300/13600: loss = 0.08216
+  Ep01 step 4400/13600: loss = 0.08103
+  Ep01 step 4500/13600: loss = 0.07997
+  Ep01 step 4600/13600: loss = 0.08279
+  Ep01 step 4700/13600: loss = 0.08209
+  Ep01 step 4800/13600: loss = 0.07845
+  Ep01 step 4900/13600: loss = 0.08026
+  Ep01 step 5000/13600: loss = 0.07916
+  Ep01 step 5100/13600: loss = 0.08296
+  Ep01 step 5200/13600: loss = 0.08364
+  Ep01 step 5300/13600: loss = 0.08323
+  Ep01 step 5400/13600: loss = 0.08164
+  Ep01 step 5500/13600: loss = 0.07963
+  Ep01 step 5600/13600: loss = 0.08036
+  Ep01 step 5700/13600: loss = 0.08248
+  Ep01 step 5800/13600: loss = 0.08750
+  Ep01 step 5900/13600: loss = 0.08522
+  Ep01 step 6000/13600: loss = 0.08125
+  Ep01 step 6100/13600: loss = 0.08148
+  Ep01 step 6200/13600: loss = 0.08083
+  Ep01 step 6300/13600: loss = 0.07957
+  Ep01 step 6400/13600: loss = 0.09030
+  Ep01 step 6500/13600: loss = 0.08218
+  Ep01 step 6600/13600: loss = 0.08342
+  Ep01 step 6700/13600: loss = 0.08055
+  Ep01 step 6800/13600: loss = 0.07931
+  Ep01 step 6900/13600: loss = 0.08166
+  Ep01 step 7000/13600: loss = 0.07982
+  Ep01 step 7100/13600: loss = 0.08189
+  Ep01 step 7200/13600: loss = 0.08234
+  Ep01 step 7300/13600: loss = 0.08479
+  Ep01 step 7400/13600: loss = 0.08387
+  Ep01 step 7500/13600: loss = 0.07942
+  Ep01 step 7600/13600: loss = 0.08631
+  Ep01 step 7700/13600: loss = 0.08173
+  Ep01 step 7800/13600: loss = 0.08155
+  Ep01 step 7900/13600: loss = 0.08014
+  Ep01 step 8000/13600: loss = 0.08493
+  Ep01 step 8100/13600: loss = 0.08527
+  Ep01 step 8200/13600: loss = 0.08013
+  Ep01 step 8300/13600: loss = 0.07854
+  Ep01 step 8400/13600: loss = 0.08185
+  Ep01 step 8500/13600: loss = 0.08007
+  Ep01 step 8600/13600: loss = 0.08298
+  Ep01 step 8700/13600: loss = 0.08073
+  Ep01 step 8800/13600: loss = 0.07906
+  Ep01 step 8900/13600: loss = 0.07907
+  Ep01 step 9000/13600: loss = 0.07520
+  Ep01 step 9100/13600: loss = 0.08124
+  Ep01 step 9200/13600: loss = 0.08193
+  Ep01 step 9300/13600: loss = 0.07881
+  Ep01 step 9400/13600: loss = 0.07991
+  Ep01 step 9500/13600: loss = 0.07940
+  Ep01 step 9600/13600: loss = 0.07736
+  Ep01 step 9700/13600: loss = 0.08084
+  Ep01 step 9800/13600: loss = 0.08340
+  Ep01 step 9900/13600: loss = 0.07945
+  Ep01 step 10000/13600: loss = 0.08060
+  Ep01 step 10100/13600: loss = 0.08153
+  Ep01 step 10200/13600: loss = 0.07795
+  Ep01 step 10300/13600: loss = 0.07793
+  Ep01 step 10400/13600: loss = 0.08066
+  Ep01 step 10500/13600: loss = 0.08196
+  Ep01 step 10600/13600: loss = 0.07959
+  Ep01 step 10700/13600: loss = 0.07905
+  Ep01 step 10800/13600: loss = 0.08065
+  Ep01 step 10900/13600: loss = 0.07960
+  Ep01 step 11000/13600: loss = 0.08619
+  Ep01 step 11100/13600: loss = 0.08278
+  Ep01 step 11200/13600: loss = 0.08318
+  Ep01 step 11300/13600: loss = 0.07823
+  Ep01 step 11400/13600: loss = 0.08120
+  Ep01 step 11500/13600: loss = 0.07987
+  Ep01 step 11600/13600: loss = 0.08174
+  Ep01 step 11700/13600: loss = 0.07942
+  Ep01 step 11800/13600: loss = 0.07782
+  Ep01 step 11900/13600: loss = 0.08008
+  Ep01 step 12000/13600: loss = 0.07783
+  Ep01 step 12100/13600: loss = 0.08057
+  Ep01 step 12200/13600: loss = 0.07829
+  Ep01 step 12300/13600: loss = 0.07965
+  Ep01 step 12400/13600: loss = 0.07628
+  Ep01 step 12500/13600: loss = 0.08258
+  Ep01 step 12600/13600: loss = 0.07871
+  Ep01 step 12700/13600: loss = 0.08085
+  Ep01 step 12800/13600: loss = 0.07916
+  Ep01 step 12900/13600: loss = 0.07893
+  Ep01 step 13000/13600: loss = 0.07940
+  Ep01 step 13100/13600: loss = 0.08027
+  Ep01 step 13200/13600: loss = 0.07995
+  Ep01 step 13300/13600: loss = 0.08192
+  Ep01 step 13400/13600: loss = 0.08383
+  Ep01 step 13500/13600: loss = 0.08087
+  Ep01 step 13600/13600: loss = 0.07993
+
+Epoch 01/6 | train=0.08167 val=0.10806 | AUC=['0.998', '0.996', '0.991', '0.991'] PR=['0.987', '0.972', '0.956', '0.961'] | CASCADE-only AUC=['0.997', '0.994', '0.988', '0.988'] PR=['0.950', '0.938', '0.918', '0.934'] | mono_viol=0.00000 | 1555s
+
+  [checkpoint] best.pt updated (epoch 1, val_loss=0.10806)
+[resume] epoch 1 saved; this job stops here (2 of 6 epochs done). Continue with --resume.
+[chain] submitted next job 19832859 for task 17 (depth 2)
