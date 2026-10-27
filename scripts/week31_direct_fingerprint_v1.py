@@ -17,7 +17,10 @@ repository; F2 and F3 also need the simulator's label files (--labels-dir), whic
   F3  (labels) phi-consistency: on wet, non-external sites the seed frequency over the runs matches phi_i within
       0.03 on at least 99% of sites (telecom_cluster_03042 is expected to miss: the repository depth table and
       the frozen campaign disagree there by 0.105 m); the 99 external sites have phi = 0 and never seed.
-      Decided only on 1,000-run labels; on fewer runs the numbers are printed and the check is not decided.
+      The seed set of a run is read as data.py reads it: the record's initial_failures, or, when a campaign did
+      not store that key, the sites stamped at hour 0. Under arrival labels that fallback is not the seed set
+      (seeds are stamped at their arrival hour), so storms without the key are reported and left out of the
+      fraction. Decided only on 1,000-run labels; on fewer runs the numbers are printed and the check is not decided.
   F4  composition on random weights (hazard head): p >= phi_k and p non-decreasing in the horizon on real storms,
       static and arrival, timing off and on; input widths 17 and 23.
   F5  the soft log loss at p = pi_hat equals the entropy of pi_hat (random targets, and the real pi_hat when
@@ -214,6 +217,7 @@ def main():
             cnt = np.zeros((len(all_ids), K)); sd = np.zeros(len(all_ids))
             h1 = np.zeros((len(all_ids), K)); h2 = np.zeros((len(all_ids), K))
             ts_arr = np.array(ts, dtype=np.float64)
+            n_key = 0
             for r_i, r in enumerate(rr):
                 items = [(pos[nid], int(t)) for nid, t in r["fail_time_per_node"].items() if nid in pos]
                 if items:
@@ -221,7 +225,12 @@ def main():
                     rows = (tt[:, None] <= ts_arr[None, :]).astype(np.float64)
                     cnt[js] += rows
                     (h1 if r_i < n // 2 else h2)[js] += rows
-                sj = np.array([pos[nid] for nid in r["initial_failures"] if nid in pos], dtype=np.int64)
+                # the seed set, as data.py reads it: the record's initial_failures, else the sites stamped at hour 0
+                if "initial_failures" in r:
+                    seed_ids = r["initial_failures"]; n_key += 1
+                else:
+                    seed_ids = [nid for nid, t in r["fail_time_per_node"].items() if int(t) == 0]
+                sj = np.array([pos[nid] for nid in seed_ids if nid in pos], dtype=np.int64)
                 if sj.size:
                     sd[sj] += 1
             pi_got = torch.cat([got["pi"][nt] for nt in base.node_types]).double().numpy()
@@ -232,8 +241,9 @@ def main():
                      and np.array_equal(hv[0], (h1 / (n // 2)).astype(np.float32).astype(np.float64))
                      and np.array_equal(hv[1], (h2 / (n - n // 2)).astype(np.float32).astype(np.float64)))
             f2_ok = f2_ok and same2 and got["n_runs"] == n
+            seed_source = "initial_failures" if n_key == n else ("t==0 fallback" if n_key == 0 else f"MIXED ({n_key}/{n} runs with the key)")
             f2_detail.append(f"{storm}: {n} runs, failed by 96 h mean {float(pi_got[:, -1].sum()):.1f} sites, "
-                             f"seeds {float(sd_got.sum()):.1f}, recount {'equal' if same2 else 'DIFFERENT'}")
+                             f"seeds {float(sd_got.sum()):.1f} ({seed_source}), recount {'equal' if same2 else 'DIFFERENT'}")
             # F3 rows: wet non-external sites
             phi = d.fragility_probs(base, depths[storm], external)
             phi_all = torch.cat([phi[nt] for nt in base.node_types]).double().numpy()
@@ -244,8 +254,12 @@ def main():
             ok_sites = int((gap[wet] <= 0.03).sum()); n_wet = int(wet.sum())
             offenders = [(all_ids[j], float(dep_all[j]), float(phi_all[j]), float(sd_got[j])) for j in np.where(wet & (gap > 0.03))[0]]
             ext_ok = ext_ok and bool((phi_all[ext_all] == 0).all()) and bool((sd_got[ext_all] == 0).all())
+            # under arrival labels a record without the key gives no seed set (seeds are stamped at their arrival
+            # hour, not 0): such storms are reported but left out of the F3 fraction
+            usable = (n_key == n) or (a.label_mode == "static" and n_key == 0)
             f3_rows.append({"storm": storm, "n_runs": n, "wet_non_external": n_wet, "within_0.03": ok_sites,
-                            "offenders": offenders[:20], "n_offenders": len(offenders)})
+                            "offenders": offenders[:20], "n_offenders": len(offenders), "seed_source": seed_source,
+                            "counted_in_f3": usable})
             # F5 on the real target
             z = torch.logit(torch.from_numpy(pi_got).float().clamp(1e-7, 1 - 1e-7))
             lp = float(soft_bce_with_logits(z, torch.from_numpy(pi_got).float())); en = float(binary_entropy(torch.from_numpy(pi_got).float()))
@@ -256,18 +270,23 @@ def main():
         res["F2_per_storm"] = f2_detail
         check("F2", f2_ok, f"{n_eq}/{len(f2_detail)} storms with the recount equal to marginal_labels (seeds, pi_hat, both halves); "
                            + "; ".join([x for x in f2_detail if "DIFFERENT" in x][:5] + f2_detail[:2]))
-        tot_wet = sum(r["wet_non_external"] for r in f3_rows); tot_ok = sum(r["within_0.03"] for r in f3_rows)
+        used = [r for r in f3_rows if r["counted_in_f3"]]
+        left_out = [r["storm"] for r in f3_rows if not r["counted_in_f3"]]
+        sources = sorted({r["seed_source"] for r in f3_rows})
+        tot_wet = sum(r["wet_non_external"] for r in used); tot_ok = sum(r["within_0.03"] for r in used)
         frac = tot_ok / tot_wet if tot_wet else float("nan")
-        quirk = [r["storm"] for r in f3_rows if any(o[0] == QUIRK_SITE for o in r["offenders"])]
-        other = {r["storm"]: [o for o in r["offenders"] if o[0] != QUIRK_SITE] for r in f3_rows}
+        quirk = [r["storm"] for r in used if any(o[0] == QUIRK_SITE for o in r["offenders"])]
+        other = {r["storm"]: [o for o in r["offenders"] if o[0] != QUIRK_SITE] for r in used}
         other = {k: v for k, v in other.items() if v}
-        decided = min(n_runs_seen) >= 1000
+        decided = min(n_runs_seen) >= 1000 and bool(used)
         f3_pass = (frac >= 0.99 and ext_ok and not other) if decided else None
         res["F3"] = {"pass": f3_pass, "frac_wet_within_0.03": frac, "external_phi_zero_and_never_seed": ext_ok,
                      "n_runs": sorted(n_runs_seen), "rows": f3_rows, "quirk_site_flagged_in": quirk,
-                     "other_offenders": {k: v[:10] for k, v in other.items()}}
+                     "other_offenders": {k: v[:10] for k, v in other.items()}, "seed_sources": sources,
+                     "storms_counted": len(used), "storms_left_out": left_out}
         tag = "NOT DECIDED (fewer than 1,000 runs)" if not decided else ("PASS" if f3_pass else "FAIL")
-        print(f"[F3] {tag}  seed frequency within 0.03 of phi on {tot_ok}/{tot_wet} wet non-external sites ({frac:.4f}); "
+        print(f"[F3] {tag}  seed frequency within 0.03 of phi on {tot_ok}/{tot_wet} wet non-external sites ({frac:.4f}) over "
+              f"{len(used)} storms (seed sources {sources}; left out under this label mode: {left_out[:8]}{'...' if len(left_out) > 8 else ''}); "
               f"external sites phi = 0 and never seed: {ext_ok}; {QUIRK_SITE} flagged in {quirk}; "
               f"other offenders in {list(other)[:5]}")
         for r in f3_rows:
