@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World 2: CascadeGNN under dynamic flooding - walkthrough v2</title>
+<style>
+  :root { --ink:#15151E; --muted:#5A5A66; --faint:#8A8A96; --panel:#F2F0FA; --line:#DDD6F3; --violet:#4F46E5; --violet-deep:#3C3489; --red:#D4537E; --red-deep:#B5443C; --water:#185FA5; --green:#0F6E56; --amber:#BA7517; }
+  body { font-family: Arial, Helvetica, sans-serif; background:#FFFFFF; color:var(--ink); margin:0; padding:26px 20px 40px; }
+  .wrap { max-width:1120px; margin:0 auto; }
+  h1 { font-size:26px; margin:0 0 2px; }
+  .sub { color:var(--muted); font-size:14px; margin:0 0 14px; max-width:820px; line-height:1.45; }
+  button { font-family:inherit; font-size:13px; padding:6px 12px; border:1px solid #C9C3E6; background:#FFFFFF; color:#3A3A46; border-radius:8px; cursor:pointer; }
+  button:hover { background:var(--panel); }
+  button:focus-visible { outline:2px solid var(--violet); outline-offset:2px; }
+  button.on { background:#EEF0FD; border-color:var(--violet); color:var(--violet-deep); font-weight:bold; }
+  button.small { font-size:12px; padding:4px 9px; }
+  .bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:12px; }
+  #stageTitle { font-size:18px; font-weight:bold; margin:2px 0; }
+  #caption { font-size:14px; color:#4A4A56; line-height:1.5; min-height:44px; max-width:900px; }
+  #codeptr { font-family:"Courier New", monospace; font-size:12px; color:var(--faint); margin:4px 0 6px; }
+  #codeptr b { color:var(--muted); font-weight:normal; }
+  .row { display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap; margin-top:8px; }
+  svg#scene { flex:1 1 520px; min-width:400px; background:#FFFFFF; border:1px solid #E8E6F2; border-radius:12px; }
+  #panel { flex:0 0 380px; min-width:300px; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; font-size:13.5px; color:#4A4A56; line-height:1.55; }
+  .mono { font-family:"Courier New", monospace; font-size:12.5px; background:#FFFFFF; border:1px solid var(--line); border-radius:6px; padding:6px 8px; display:block; margin:6px 0; color:var(--ink); white-space:pre-wrap; }
+  .ph { font-weight:bold; color:var(--ink); margin-bottom:6px; }
+  .hint { color:var(--faint); font-size:12px; margin-top:14px; max-width:900px; line-height:1.5; }
+  .verdict { font-family:"Courier New", monospace; font-size:12.5px; padding:6px 8px; border-radius:6px; margin:6px 0; }
+  .verdict.bad { background:#FBE9EF; color:var(--red-deep); border:1px solid #F0C6D2; }
+  .verdict.good { background:#E8F5EF; color:var(--green); border:1px solid #BFE3D2; }
+  .sl { display:grid; grid-template-columns:44px 1fr 44px; gap:8px; align-items:center; margin:4px 0; font-family:"Courier New", monospace; font-size:12px; }
+  input[type=range] { width:100%; accent-color:var(--violet); }
+  table.t { border-collapse:collapse; width:100%; font-size:12.5px; background:#FFFFFF; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  table.t th, table.t td { padding:4px 6px; text-align:right; border-bottom:1px solid #EEEBF7; font-family:"Courier New", monospace; }
+  table.t th { background:#ECE8F8; color:var(--ink); font-family:Arial, sans-serif; font-weight:bold; font-size:12px; }
+  table.t td:first-child, table.t th:first-child { text-align:left; font-family:Arial, sans-serif; }
+  table.t tr.mask td { color:var(--faint); text-decoration:line-through; }
+  .kv { display:flex; gap:14px; flex-wrap:wrap; margin:6px 0; }
+  .kv div { min-width:70px; }
+  .kv .n { font-size:19px; font-weight:bold; color:var(--ink); font-family:"Courier New", monospace; }
+  .kv .l { font-size:11.5px; color:var(--muted); }
+  .toggle { display:inline-flex; border:1px solid #C9C3E6; border-radius:8px; overflow:hidden; margin:4px 0; }
+  .toggle button { border:0; border-radius:0; }
+  .toggle button.on { background:#EEF0FD; }
+  .note { font-size:12.5px; color:var(--muted); margin-top:6px; }
+  .flag { display:inline-block; font-size:11px; padding:1px 6px; border-radius:10px; background:#FBE9EF; color:var(--red-deep); margin-left:4px; vertical-align:middle; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>World 2: CascadeGNN under dynamic flooding</h1>
+<p class="sub">How the surrogate reads a flood that arrives over time, what it is asked to predict, how it is scored, and what changed in Week 27. Use the buttons or arrow keys; drag the sliders in stage 6. Toy 14-node city; the real model spans 6,231 facilities.</p>
+<div class="bar">
+  <button id="btnPrev" aria-label="previous stage">&#8592;</button>
+  
+  <button id="btnNext" aria-label="next stage">&#8594;</button>
+  <span id="pills" style="display:flex;gap:6px;flex-wrap:wrap"></span>
+</div>
+<div id="stageTitle"></div>
+<div id="caption"></div>
+<div id="codeptr"></div>
+<div class="row">
+<svg id="scene" viewBox="0 0 430 420" role="img" aria-label="toy city graph">
+<defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#B4B2A9"/></marker></defs>
+<rect id="flood" x="0" y="420" width="430" height="0" fill="#378ADD" opacity="0.14"/>
+<g id="edges"></g><g id="pulses"></g><g id="nodes"></g><g id="legend" transform="translate(10,12)"></g>
+<g id="clock" transform="translate(14,404)"><rect x="-6" y="-14" width="120" height="20" rx="6" fill="#F2F0FA" stroke="#DDD6F3"/><text id="clockText" x="0" y="0" font-family="Courier New, monospace" font-size="11.5" fill="#15151E"></text></g>
+</svg>
+<div id="panel"></div>
+</div>
+<p class="hint" id="foot">Colours on the map: blue fill = water at the site (drawn for you, never given to the network); red ring = a flood seed switched off by the water; ring size in later stages = predicted P(failed by 96 h). Solid arrows = dependencies, in the direction failure travels; dashed = telecom failover.</p>
+</div>
+<script>
+'use strict';
+const NS='http://www.w3.org/2000/svg';
+const style={power:['#FAEEDA','#BA7517'],telecom:['#EEEDFE','#534AB7'],hospital:['#FAECE7','#993C1D'],subway:['#F1EFE8','#5F5E5A'],water:['#E6F1FB','#185FA5'],fuel:['#E1F5EE','#0F6E56']};
+// toy city. arr = arrival hour relative to the Battery peak (null = dry); seed = HAZUS switched it off at arrival;
+// ft = fail_time_per_node in the record (seed -> arrival hour; cascade kill -> the grid look that realized it; null = never).
+const nodes=[
+ {id:'P1',t:'power',x:95,y:88,d:0.2,arr:-2,seed:false,ft:null},  // wet, unseeded, never fails: the false alarm in stage 8
+ {id:'P2',t:'power',x:295,y:66,d:0.0,arr:null,seed:false,ft:null},
+ {id:'P3',t:'power',x:205,y:208,d:0.8,arr:-26,seed:true,ft:-26},
+ {id:'T1',t:'telecom',x:62,y:198,d:0.3,arr:-8,seed:false,ft:0},
+ {id:'T2',t:'telecom',x:162,y:138,d:0.0,arr:null,seed:false,ft:6},
+ {id:'T3',t:'telecom',x:278,y:158,d:0.0,arr:null,seed:false,ft:24},
+ {id:'T4',t:'telecom',x:122,y:298,d:0.7,arr:-23,seed:true,ft:-23},
+ {id:'T5',t:'telecom',x:328,y:256,d:0.4,arr:-4,seed:true,ft:-4},
+ {id:'H1',t:'hospital',x:218,y:318,d:0.6,arr:-17,seed:true,ft:-17},
+ {id:'H2',t:'hospital',x:368,y:146,d:0.0,arr:null,seed:false,ft:null},
+ {id:'S1',t:'subway',x:62,y:356,d:0.45,arr:-15,seed:true,ft:-15},
+ {id:'S2',t:'subway',x:298,y:374,d:0.5,arr:-5,seed:false,ft:30},
+ {id:'W1',t:'water',x:388,y:328,d:0.5,arr:-11,seed:true,ft:-11},
+ {id:'F1',t:'fuel',x:34,y:112,d:0.0,arr:null,seed:false,ft:null}];
+const dep=[['P1','T1'],['P1','T2'],['P2','T3'],['P2','H2'],['P3','T4'],['P3','T5'],['P3','H1'],['P1','S1'],['P2','S2'],['P3','W1'],['P1','F1'],['T3','H2'],['T4','H1']];
+const fo=[['T1','T2'],['T2','T3'],['T3','T5'],['T4','T5'],['T1','T4']];
+const byId={};nodes.forEach(n=>byId[n.id]=n);
+const H=[6,24,48,96];
+// toy raw head outputs per node (the four numbers the last layer emits). A few are deliberately
+// non-monotone under the independent reading, as the audited baselines were.
+const ETA={P1:[-2.2,-1.6,-1.2,0.8],P2:[-3.0,-3.2,-3.1,-2.9],P3:[2.6,2.9,3.1,3.2],T1:[-0.4,0.4,0.9,1.2],T2:[-0.6,0.5,0.8,1.0],
+ T3:[-1.6,-0.4,0.3,0.6],T4:[2.2,2.5,2.7,2.8],T5:[-1.0,0.2,0.5,0.1],H1:[1.4,1.8,2.1,2.2],H2:[-2.4,-2.0,-2.2,-1.6],
+ S1:[1.6,2.0,2.2,2.3],S2:[-1.5,0.4,0.2,0.9],W1:[1.2,1.6,1.9,2.0],F1:[-2.6,-2.4,-2.5,-2.3]};
+// ---------- math ----------
+const sig=z=>1/(1+Math.exp(-z));
+const logit=p=>Math.log(p/(1-p));
+const softplus=z=>z>30?z:Math.log1p(Math.exp(z));
+function independent(eta){return eta.map(sig);}
+function hazard(eta){const h=eta.map(sig);let S=1;return h.map(hk=>{S*=(1-hk);return 1-S;});}
+function hazardParts(eta){const h=eta.map(sig);let S=1;const Ss=[],Fs=[];h.forEach(hk=>{S*=(1-hk);Ss.push(S);Fs.push(1-S);});return {h,S:Ss,F:Fs};}
+function labelsOf(n){return H.map(t=>(n.ft!==null&&Math.trunc(n.ft)<=t)?1:0);}
+function bce(y,p){const e=1e-7;p=Math.min(1-e,Math.max(e,p));return -(y*Math.log(p)+(1-y)*Math.log(1-p));}
+function predOf(n,reading){return reading==='hazard'?hazard(ETA[n.id]):independent(ETA[n.id]);}
+function monoCount(reading){let viol=0,tot=0,list=[];nodes.forEach(n=>{const p=predOf(n,reading);for(let k=0;k<3;k++){tot++;if(p[k+1]<p[k]-1e-6){viol++;list.push(n.id+' '+H[k]+'\u2192'+H[k+1]+'h');}}});return {viol,tot,list};}
+function averagePrecision(items){ // items: [{score,label}] ; AP = sum over ranked positives of precision@k / n_pos
+ const s=[...items].sort((a,b)=>b.score-a.score);const npos=s.filter(i=>i.label===1).length;if(!npos)return NaN;
+ let tp=0,ap=0;s.forEach((it,i)=>{if(it.label===1){tp++;ap+=tp/(i+1);}});return ap/npos;}
+const f2=x=>x.toFixed(2),f3=x=>x.toFixed(3);
+// ---------- scene ----------
+const eG=document.getElementById('edges'),nG=document.getElementById('nodes'),pG=document.getElementById('pulses');
+function el(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+const edgeEls=[];
+dep.forEach(([a,b])=>{const A=byId[a],B=byId[b];const L=el('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:'#B4B2A9','stroke-width':1.2,opacity:0.6,'marker-end':'url(#arr)'});eG.appendChild(L);edgeEls.push({a,b,L,kind:'dep'});});
+fo.forEach(([a,b])=>{const A=byId[a],B=byId[b];const L=el('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:'#7F77DD','stroke-width':1.4,opacity:0.6,'stroke-dasharray':'4 4'});eG.appendChild(L);edgeEls.push({a,b,L,kind:'fo'});});
+nodes.forEach(n=>{
+ const [f,s]=style[n.t];
+ const g=el('g',{transform:`translate(${n.x},${n.y})`,style:'cursor:pointer'});
+ let shape;
+ if(n.t==='power'){shape=el('rect',{x:-9,y:-9,width:18,height:18,rx:4,fill:f,stroke:s,'stroke-width':1.5});}
+ else if(n.t==='hospital'){shape=el('circle',{r:10,fill:f,stroke:s,'stroke-width':1.5});}
+ else{shape=el('circle',{r:9,fill:f,stroke:s,'stroke-width':1.5});}
+ const halo=el('circle',{r:14,fill:'none',stroke:'#E24B4A','stroke-width':2,opacity:0});
+ const water=el('rect',{x:-9,y:9,width:18,height:0,fill:'#185FA5',opacity:0.85,rx:2});
+ const sel=el('circle',{r:17,fill:'none',stroke:'#4F46E5','stroke-width':1.5,'stroke-dasharray':'3 3',opacity:0});
+ const t=el('text',{y:-14,'text-anchor':'middle','font-size':'10.5',fill:'#5A5A66'});t.textContent=n.id;
+ const tag=el('text',{y:24,'text-anchor':'middle','font-size':'9.5','font-family':'Courier New, monospace',fill:'#3C3489',opacity:0});
+ g.appendChild(sel);g.appendChild(shape);g.appendChild(halo);g.appendChild(water);g.appendChild(t);g.appendChild(tag);
+ g.addEventListener('click',()=>{state.sel=n.id;render();});
+ nG.appendChild(g);Object.assign(n,{g,halo,water,shape,tag,sel});});
+const lg=document.getElementById('legend');
+Object.keys(style).forEach((k,i)=>{const [f,s]=style[k];const g=el('g',{transform:`translate(${i*68},0)`});
+ g.appendChild(el('rect',{x:0,y:-8,width:10,height:10,rx:3,fill:f,stroke:s}));
+ const t=el('text',{x:14,y:1,'font-size':'10.5',fill:'#5A5A66'});t.textContent=k;g.appendChild(t);lg.appendChild(g);});
+let pulses=[];
+function spawnPulse(a,b,color,rev){const A=byId[a],B=byId[b];const p={x1:rev?B.x:A.x,y1:rev?B.y:A.y,x2:rev?A.x:B.x,y2:rev?A.y:B.y,p:0,c:el('circle',{r:3.6,fill:color}),sp:0.016+Math.random()*0.01};pulses.push(p);pG.appendChild(p.c);}
+(function tick(){pulses.forEach(p=>{p.p+=p.sp;p.c.setAttribute('cx',p.x1+(p.x2-p.x1)*p.p);p.c.setAttribute('cy',p.y1+(p.y2-p.y1)*p.p);});pulses=pulses.filter(p=>{if(p.p>=1){p.c.remove();return false;}return true;});requestAnimationFrame(tick);})();
+let timers=[];
+const every=(ms,fn)=>{const id=setInterval(fn,ms);timers.push(id);return id;};
+const after=(ms,fn)=>{const id=setTimeout(fn,ms);timers.push(id);return id;};
+function clearAnim(){timers.forEach(t=>{clearInterval(t);clearTimeout(t);});timers=[];pulses.forEach(p=>p.c.remove());pulses=[];}
+const flood=document.getElementById('flood');
+const setFlood=h=>{flood.setAttribute('y',420-h);flood.setAttribute('height',h);};
+const setWaterAt=hour=>nodes.forEach(n=>{const on=n.arr!==null&&hour>=n.arr;const h=on?n.d*16:0;n.water.setAttribute('height',h);n.water.setAttribute('y',9-h);
+ n.halo.setAttribute('opacity',(on&&n.seed)?0.95:0);n.halo.setAttribute('stroke-width',2);n.halo.setAttribute('r',14);});
+const setWater=on=>setWaterAt(on?0:-1e9);
+const clockText=document.getElementById('clockText');
+const setClock=txt=>{clockText.textContent=txt;document.getElementById('clock').setAttribute('opacity',txt?1:0);};
+const setHalos=(mode,reading)=>nodes.forEach(n=>{if(mode==='off'){n.halo.setAttribute('opacity',0);return;}
+ const p=predOf(n,reading||state.reading)[3];n.halo.setAttribute('opacity',Math.max(0,p-0.06));n.halo.setAttribute('stroke-width',1+p*3);n.halo.setAttribute('r',14);});
+const setTags=fn=>nodes.forEach(n=>{const v=fn?fn(n):null;if(v===null||v===undefined){n.tag.setAttribute('opacity',0);}else{n.tag.textContent=v;n.tag.setAttribute('opacity',1);}});
+const setSel=id=>nodes.forEach(n=>n.sel.setAttribute('opacity',n.id===id?1:0));
+const edgeGlow=(kind,on)=>edgeEls.forEach(e=>{if(kind==='all'||e.kind===kind){e.L.setAttribute('opacity',on?1:0.6);e.L.setAttribute('stroke-width',on?(e.kind==='fo'?2.4:2.1):(e.kind==='fo'?1.4:1.2));}});
+const panel=document.getElementById('panel');
+const barRow=(l,v,c,w)=>`<div style="display:flex;align-items:center;gap:6px;margin:3px 0"><span style="width:${w||36}px;font-size:12px;font-family:Courier New,monospace">${l}</span><div style="flex:1;height:9px;background:#FFFFFF;border:1px solid #E4E1F0;border-radius:5px;overflow:hidden"><div style="height:100%;width:${Math.round(v*100)}%;background:${c};transition:width 0.3s"></div></div><span style="width:40px;text-align:right;font-size:12px;font-family:Courier New,monospace">${f2(v)}</span></div>`;
+const readingToggle=()=>`<div class="toggle"><button class="small ${state.reading==='independent'?'on':''}" data-r="independent">independent head</button><button class="small ${state.reading==='hazard'?'on':''}" data-r="hazard">hazard head</button></div>`;
+function bindToggle(){panel.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{state.reading=b.dataset.r;render();});}
+// ---------- state ----------
+const state={sel:'H1',reading:'independent',eta:[-2,0,1,-1]};
+// ---------- stages ----------
+const stages=[
+ {name:'The city',code:'src/graph/convert_to_pyg.py:101-195 (features); src/gnn/data.py:75 load_base_graph',
+  cap:'Fourteen facilities, six systems. Solid arrows point the way failure travels (power feeds everything); dashed purple links are telecom failover paths. The real graph: 6,231 nodes, 20 relations, 13,709 directed edges - and it is the same graph for every storm.',
+  run(){setFlood(0);setWater(false);setHalos('off');edgeGlow('all',false);setTags(null);setClock('');
+   panel.innerHTML='<div class="ph">A heterogeneous graph, frozen once</div>Each system is its own node type with its own eight base numbers. In the frozen graph the first four are the same for every type: latitude, longitude, <b>elevation (a constant 3.0)</b>, <b>flood depth (a constant 0.0)</b>. Then four type-specific ones - voltage class and in-service for power, tower count and LTE/5G for telecom, routes and ADA for subway. A hospital is described by its location and nothing else.'
+   +'<span class="mono">x_power   [203  x 8]\nx_telecom [4150 x 8]\nx_hospital[61   x 8]   ... 6,231 rows in all</span><div class="note">Nothing about any storm is in these numbers. That is deliberate: one graph serves all 23 scenarios, and the storm enters in the next stage.</div>';}},
+ {name:'The storm arrives',code:'src/simulation/dynamic_forcing.py (arrival-ordered seeding); src/gnn/data.py:119-132 build_initial_mask, :158-190 timing features',
+  cap:'Water reaches the low sites first, about 26 hours before the Battery peak, and climbs to the rest. When it reaches a site the HAZUS dice decide whether that site is switched off - a red ring. The clock is in hours relative to the peak; the same run seeds the same sites whether the water comes all at once or over a day.',
+  run(){setFlood(0);setHalos('off');setTags(null);let hour=-28;setWaterAt(hour);setClock('t = -28 h');
+   every(120,()=>{hour=Math.min(hour+1,0);setFlood(120*(hour+28)/28);setWaterAt(hour);setClock('t = '+(hour>=0?'0 (peak)':hour+' h'));});
+   const seeds=nodes.filter(n=>n.seed).map(n=>n.id).join(' ');
+   panel.innerHTML='<div class="ph">What the network is given about this run</div>'
+   +'<span class="mono">mask   1 for '+seeds+'\n       0 for everyone else\n\ntiming (timing arms only, per storm):\n  arrival_h / 96, duration_h / 96,\n  time_to_peak_h / 96   - zeros if dry</span>'
+   +'<div>That is the entire flood input. <b>The depth of the water is never given</b> - the blue fill is drawn for you here, but the tensor has no such column. A site under 0.3 m and a site under 3 m look identical once both are seeds; a wet-but-unseeded site (T1, S2, P1) looks the same as a dry one in the mask-only arms.</div>'
+   +'<div class="note">Verified from the run files: 880_9 run 0 has 285 seeds, and the seed set is identical in the static and the arrival version of the run.</div>';}},
+ {name:'Labels from the record',code:'src/gnn/data.py:59 DEFAULT_TIMESTEPS; :135-155 build_labels  (label = 1 if int(fail_time) <= t)',
+  cap:'The simulator writes down, for every site, the hour it failed relative to the peak: seeds at their arrival hour (negative), sites killed by the cascade at the look that caught them (0, 6, 24, 30 ...), the rest never. Four bits per site come out of that: failed by 6, 24, 48, 96 hours after the peak.',
+  run(){setFlood(120);setWaterAt(0);setClock('hours vs peak');
+   setTags(n=>n.ft===null?'never':(n.ft>0?'+'+n.ft:''+n.ft));
+   nodes.forEach(n=>{if(n.ft!==null&&!n.seed){n.halo.setAttribute('opacity',0.6);n.halo.setAttribute('stroke-width',1.5);}});
+   const rows=nodes.map(n=>{const y=labelsOf(n);return `<tr><td>${n.id}${n.seed?' <span class="flag">seed</span>':''}</td><td>${n.ft===null?'never':n.ft}</td><td>${y.join(' ')}</td></tr>`;}).join('');
+   panel.innerHTML='<div class="ph">fail_time_per_node &rarr; four bits</div><span class="mono">label[i,k] = 1  if  int(fail_t[i]) &le; t_k\nt_k in (6, 24, 48, 96)</span>'
+   +'<div style="max-height:236px;overflow:auto"><table class="t"><tr><th>site</th><th>fail hour</th><th>6 24 48 96</th></tr>'+rows+'</table></div>'
+   +'<div class="note">Because failure is permanent, a true row is always zeros then ones - never 0 1 0 1. No 0-hour label: at t = 0 it would equal the mask, and the network would just copy it (the leakage rule). In 880_9 run 0: 864 sites down at the peak under arrival timing vs 285 under all-at-once - same seeds, the cascade simply started a day earlier.</div>';}},
+ {name:'Project',code:'src/gnn/model.py:100-104 input_proj   (6 x (9*64+64) = 3,840 parameters)',
+  cap:'Different systems arrive with different raw numbers, so a per-type linear layer maps every site into the same 64-number language before any message is sent. ReLU zeroes the negatives. Constant input columns normalise to 0 and contribute nothing.',
+  run(){setFlood(120);setWaterAt(0);setTags(null);setClock('');nodes.forEach((n,i)=>after(i*60,()=>{n.shape.setAttribute('transform','scale(1.25)');after(260,()=>n.shape.setAttribute('transform','scale(1)'));}));
+   panel.innerHTML='<div class="ph">Stage 1 of 3 inside the network</div><span class="mono">h&#8304;_i = ReLU( W_type &middot; x_i + b_type )\n\nx_i : 9 numbers  (8 base + mask)\n      12 with timing features\nh&#8304;_i: 64 numbers</span>'
+   +'<div>One 64 x 9 table per type, learned. Why per type: the ninth number means "seed" for everyone, but the eight before it mean different things for a substation and a fuel terminal.</div><div class="note">Parameters here: 3,840 (4,992 with timing inputs). About 0.6 % of the model.</div>';}},
+ {name:'Message passing',code:'src/gnn/model.py:106-121 HeteroConv of TransformerConv; :140-145 residual + ReLU   (20 relations x 2 layers x 16,640 = 665,600 parameters)',
+  cap:'Layer 1, then layer 2. Each pulse is a message along a relation; attention lets a site weigh its feeders unequally, so a tower can listen mostly to the substation that reads "seed". Two layers = two hops of context - a compression of a cascade that runs further.',
+  run(){setFlood(120);setWaterAt(0);setTags(null);setClock('');edgeGlow('dep',true);
+   every(500,()=>dep.forEach(([a,b])=>{if(Math.random()<0.6)spawnPulse(a,b,'#7F77DD');}));
+   after(2600,()=>{edgeGlow('fo',true);every(500,()=>fo.forEach(([a,b])=>{if(Math.random()<0.7){spawnPulse(a,b,'#1D9E75');spawnPulse(b,a,'#1D9E75');}}));});
+   panel.innerHTML='<div class="ph">Stage 2 of 3: exchange</div><span class="mono">score_ij = (W_q h_i)&middot;(W_k h_j) / &radic;16\n&alpha;_ij    = softmax_j(score_ij)\nm_i^r    = W_skip h_i + &Sigma;_j &alpha;_ij W_v h_j\nh&#185;_i    = ReLU( &Sigma;_r m_i^r + h&#8304;_i )</span>'
+   +'<div>Query asks "what am I looking for", key answers "what do I offer", their product is relevance, softmax turns relevance into shares of attention. Four heads of 16 numbers each. One TransformerConv per relation (20), summed at the receiving site, plus the site\'s own previous state.</div><div class="note">Purple pulses: dependency relations. Teal: telecom failover, both ways. 95 % of the model\'s parameters live here.</div>';}},
+ {name:'Predict: two readings',code:'src/gnn/model.py:124-132 output_head (26,520 parameters); :46-69 hazard_to_cumulative_logit; :149-151 applied when head == "hazard"',
+  cap:'The per-type head emits four raw numbers per site. Until Week 27 they were read as four separate probabilities that nothing tied together - and, measurably, they could go down over time. The hazard head reads the same four numbers as the chance of failing in each window given survival so far, and chains them. Drag the sliders.',
+  run(){setFlood(120);setWaterAt(0);setTags(null);setClock('');state.eta=[...ETA[state.sel]];renderPredict();}},
+ {name:'Learn: the loss',code:'src/gnn/train.py:54-68 train_step (sum over every node and horizon / count); :91-95 eval_step (mean per type, then average of types)',
+  cap:'Training: World 1 reveals what happened in this run, and the penalty is minus the log of the probability the network gave to the true bit - almost nothing when confident and right, huge when confident and wrong. Red pulses carry the error backward. Pick a site on the map to see its four penalties.',
+  run(){setFlood(120);setWaterAt(0);setTags(null);setClock('');setHalos('on');
+   every(900,()=>{edgeEls.forEach(e=>{if(Math.random()<0.5)spawnPulse(e.a,e.b,'#E24B4A',true);});nodes.forEach(n=>{if(Math.random()<0.4){n.shape.setAttribute('transform','scale(0.88)');after(180,()=>n.shape.setAttribute('transform','scale(1)'));}});});
+   renderLoss();}},
+ {name:'Score: the metrics',code:'src/gnn/train.py:78-125 eval_step - cascade mask at column -1-N_TIMING_FEATURES, ROC-AUC, average precision; :126-136 mono_viol',
+  cap:'Three scores per horizon. Ranking scores (AUC, average precision) ask whether failed sites are ranked above survivors. Cascade-only versions throw the seeds out first, because predicting that a seed fails is copying the input. And since Week 27, one more: how often does the failed-by curve go the wrong way?',
+  run(){setFlood(120);setWaterAt(0);setClock('');setHalos('on');setTags(n=>n.seed?'masked':null);renderMetrics();}},
+];
+// ---------- interactive renderers ----------
+function renderPredict(){
+ const n=byId[state.sel];setSel(n.id);setHalos('on');
+ const eta=state.eta;const pI=independent(eta);const {h,S,F}=hazardParts(eta);
+ const dipsI=[];for(let k=0;k<3;k++)if(pI[k+1]<pI[k]-1e-6)dipsI.push(H[k]+'\u2192'+H[k+1]+' h');
+ const city=monoCount(state.reading);
+ let html='<div class="ph">Site '+n.id+' - the same four raw numbers, two readings</div>';
+ html+='<div class="note" style="margin:0 0 4px">raw head outputs &eta;&#8321;..&eta;&#8324; (drag)</div>';
+ for(let k=0;k<4;k++)html+=`<div class="sl"><span>${H[k]} h</span><input type="range" min="-4" max="4" step="0.1" value="${eta[k]}" data-k="${k}" aria-label="eta ${k+1}"><span style="text-align:right">${eta[k].toFixed(1)}</span></div>`;
+ html+='<div style="display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px"><button class="small" data-pre="-2,0,1,-1">worked example</button><button class="small" data-pre="-3,-3,-3,-3">never fails</button><button class="small" data-pre="2.5,2.7,2.9,3">seed</button><button class="small" data-pre="node">this site\'s outputs</button></div>';
+ html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">';
+ html+='<div><div style="font-size:12px;font-weight:bold;color:#B5443C">independent  p_k = &sigma;(z_k)</div>'+H.map((t,k)=>barRow(t+'h',pI[k],'#D4537E')).join('')+'</div>';
+ html+='<div><div style="font-size:12px;font-weight:bold;color:#3C3489">hazard  F_k = 1 &minus; &Pi;(1 &minus; h_j)</div>'+H.map((t,k)=>barRow(t+'h',F[k],'#4F46E5')).join('')+'</div></div>';
+ html+=dipsI.length?`<div class="verdict bad">independent: P(failed) drops at ${dipsI.join(', ')} - impossible, failure is permanent</div>`:'<div class="verdict good">independent: rises this time - but nothing guarantees it</div>';
+ html+='<div class="verdict good">hazard: rises by construction, whatever the numbers</div>';
+ html+='<span class="mono">h_k = &sigma;(&eta;_k)     = '+h.map(f3).join(' ')+'\nS_k = &Pi;(1&minus;h_j)   = '+S.map(f3).join(' ')+'\nF_k = 1 &minus; S_k      = '+F.map(f3).join(' ')+'\n\nhead returns logit(F_k): '+F.map(x=>logit(Math.max(1e-6,Math.min(1-1e-6,x))).toFixed(2)).join(' ')+'\nlog S_k = &minus;&Sigma; softplus(&eta;_j), computed in log space</span>';
+ html+='<div class="note">Reading applied to the whole city (ring size = P(failed by 96 h)): '+readingToggle()+'<br>pairs where the curve goes down: <b>'+city.viol+' of '+city.tot+'</b> ('+(100*city.viol/city.tot).toFixed(1)+' %)'+(city.list.length?' - '+city.list.join(', '):'')+'</div>';
+ panel.innerHTML=html;bindToggle();
+ panel.querySelectorAll('input[type=range]').forEach(r=>r.oninput=()=>{state.eta[+r.dataset.k]=parseFloat(r.value);renderPredict();});
+ panel.querySelectorAll('[data-pre]').forEach(b=>b.onclick=()=>{state.eta=b.dataset.pre==='node'?[...ETA[n.id]]:b.dataset.pre.split(',').map(Number);renderPredict();});
+}
+function renderLoss(){
+ const n=byId[state.sel];setSel(n.id);setHalos('on');
+ const y=labelsOf(n);const p=predOf(n,state.reading);const L=y.map((yk,k)=>bce(yk,p[k]));
+ // whole-city losses under the two weightings
+ let sumAll=0,cnt=0;const perType={};
+ nodes.forEach(m=>{const ym=labelsOf(m),pm=predOf(m,state.reading);let s=0;ym.forEach((yk,k)=>{const l=bce(yk,pm[k]);s+=l;sumAll+=l;cnt++;});perType[m.t]=perType[m.t]||{s:0,c:0};perType[m.t].s+=s;perType[m.t].c+=4;});
+ const types=Object.keys(perType);const typeMeans=types.map(t=>perType[t].s/perType[t].c);const valLoss=typeMeans.reduce((a,b)=>a+b,0)/types.length;
+ let html='<div class="ph">Site '+n.id+' - World 1 says: '+(n.ft===null?'never failed':'failed at '+(n.ft>0?'+':'')+n.ft+' h')+'</div>';
+ html+='<span class="mono">loss(y, p) = &minus;[ y&middot;log p + (1&minus;y)&middot;log(1&minus;p) ]</span>';
+ html+='<table class="t"><tr><th>horizon</th><th>label y</th><th>predicted p</th><th>penalty</th></tr>'+H.map((t,k)=>`<tr><td>${t} h</td><td>${y[k]}</td><td>${f3(p[k])}</td><td>${f3(L[k])}</td></tr>`).join('')+`<tr><td>mean</td><td></td><td></td><td>${f3(L.reduce((a,b)=>a+b,0)/4)}</td></tr></table>`;
+ html+='<div class="note">Reading: '+readingToggle()+'</div>';
+ html+='<div style="margin-top:6px"><b>Two ways to average over the city</b></div>';
+ html+='<div class="kv"><div><div class="n">'+f3(sumAll/cnt)+'</div><div class="l">training loss: every site-horizon counts once</div></div><div><div class="n">'+f3(valLoss)+'</div><div class="l">validation loss: mean per type, then average of the six types</div></div></div>';
+ html+='<span class="mono">'+types.map((t,i)=>t.padEnd(9)+f3(typeMeans[i])).join('\n')+'</span>';
+ html+='<div class="note">In the real model the second one is the reported number, so 61 hospitals weigh as much as 4,150 towers. e^(&minus;0.1082) &asymp; 0.90: the twin gives the true bit about 90 % probability on average.</div>';
+ panel.innerHTML=html;bindToggle();
+}
+function renderMetrics(){
+ const cascade=nodes.filter(n=>!n.seed);
+ const k=3; // score at 96 h
+ const items=cascade.map(n=>({id:n.id,score:predOf(n,state.reading)[k],label:labelsOf(n)[k]}));
+ const ranked=[...items].sort((a,b)=>b.score-a.score);
+ const ap=averagePrecision(items);
+ // ROC-AUC by pair counting
+ let pos=items.filter(i=>i.label===1),neg=items.filter(i=>i.label===0),wins=0;pos.forEach(a=>neg.forEach(b=>{wins+=a.score>b.score?1:(a.score===b.score?0.5:0);}));const auc=pos.length&&neg.length?wins/(pos.length*neg.length):NaN;
+ const city=monoCount(state.reading);
+ let html='<div class="ph">Cascade-only scores at 96 h, '+cascade.length+' unseeded sites</div>';
+ html+='<div class="note">Reading: '+readingToggle()+'</div>';
+ html+='<table class="t"><tr><th>rank</th><th>site</th><th>P(failed by 96h)</th><th>truth</th><th>precision so far</th></tr>';
+ let tp=0;ranked.forEach((it,i)=>{if(it.label===1)tp++;html+=`<tr><td>${i+1}</td><td>${it.id}</td><td>${f3(it.score)}</td><td>${it.label?'failed':'ok'}</td><td>${it.label?f2(tp/(i+1)):''}</td></tr>`;});
+ html+='</table>';
+ html+='<div class="kv"><div><div class="n">'+f3(ap)+'</div><div class="l">average precision: mean of "precision so far" at each failed site</div></div><div><div class="n">'+f3(auc)+'</div><div class="l">ROC-AUC: share of (failed, ok) pairs ranked correctly</div></div><div><div class="n">'+city.viol+'/'+city.tot+'</div><div class="l">mono_viol: pairs where P(failed) goes down, all sites</div></div></div>';
+ html+='<div class="note">Toy numbers - switch the reading and watch the ranking and both scores move. The six seeds are struck out on the map: they are inputs, so scoring them rewards copying. In the real runs the seeds are found from the mask column at index &minus;1&minus;N_TIMING_FEATURES - the position that was once pointed at the wrong column and caught in a smoke test.</div>';
+ panel.innerHTML=html;bindToggle();
+}
+function render(){const st=stages[cur];if(st.name.startsWith('Predict'))renderPredict();else if(st.name.startsWith('Learn'))renderLoss();else if(st.name.startsWith('Score'))renderMetrics();else{setSel(null);}}
+// ---------- navigation ----------
+const pills=document.getElementById('pills');
+stages.forEach((st,i)=>{const b=document.createElement('button');b.textContent=(i+1)+' '+st.name;b.onclick=()=>go(i);pills.appendChild(b);st.pill=b;});
+let cur=0,playing=false,auto;
+function go(i){if(i<0||i>=stages.length)return;clearAnim();cur=i;
+ stages.forEach((s,j)=>s.pill.className=j===cur?'on':'');
+ document.getElementById('stageTitle').textContent='Stage '+(cur+1)+' of '+stages.length+' - '+stages[cur].name;
+ document.getElementById('caption').textContent=stages[cur].cap;
+ document.getElementById('codeptr').innerHTML='<b>in the code:</b> '+stages[cur].code;
+ nodes.forEach(n=>n.shape.setAttribute('transform','scale(1)'));
+ if(cur<5)setHalos('off');setSel(null);edgeGlow('all',false);
+ stages[cur].run();restart();}
+function restart(){}
+document.getElementById('btnNext').onclick=()=>go(cur+1);
+document.getElementById('btnPrev').onclick=()=>go(cur-1);
+
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
+go(0);
+</script>
+</body>
+</html>
