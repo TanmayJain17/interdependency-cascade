@@ -42,6 +42,8 @@ from src.gnn.data import (
     N_TIMING_FEATURES,
 )
 from src.gnn.model import CascadeGNN, HEADS, count_parameters
+from src.gnn import data as gnn_data           # direct model (Week 32): module access for the marginal target
+from src.gnn.model import compose_with_fragility, soft_bce_with_logits
 
 
 # GNN_CKPT_DIR env var redirects checkpoints for ablation runs
@@ -631,6 +633,154 @@ def run_evalckpt(args):
 
 
 # --------------------------------------------------------------------------
+# Mode: train, target marginal (Week 32) — the direct model, one example per storm
+# --------------------------------------------------------------------------
+# Off unless --target marginal is given; run_train above is untouched. The example is a storm: inputs from the
+# depth table (src/gnn/data.py::direct_example), target pi_hat = the share of the storm's simulator runs in
+# which each site has failed by each horizon (read from the cache the fingerprint job wrote), prediction
+# p = 1 - (1 - phi)(1 - g) with g from the hazard head, loss = soft log loss, mean over all sites and horizons.
+# Split by storm from config/gnn_direct_split_v1.yaml: --train_storms 17|34|50 training storms, the same 7
+# validation storms in every arm (early stopping on their mean loss, --patience), the same 13 test storms.
+# best.pt = lowest validation loss; history.json as before, plus the storm-level test losses.
+
+def _direct_loss(model, x, phi_k, pi, edge_idx_dict, node_types):
+    g = model(x, edge_idx_dict)
+    logit_p = torch.cat([compose_with_fragility(g[nt], phi_k[nt]) for nt in node_types])
+    return soft_bce_with_logits(logit_p, torch.cat([pi[nt] for nt in node_types]))
+
+
+def run_train_marginal(args):
+    print("=== TRAIN MODE, target marginal — the direct model, one example per storm ===")
+    if gnn_data.TARGET != "marginal":
+        raise SystemExit("--target marginal needs GNN_TARGET=marginal in the environment (data.py reads it at import)")
+    if gnn_data.STORM_CONTEXT:
+        raise SystemExit("GNN_STORM_CONTEXT must be unset for the direct model: its summary is always on and is "
+                         "the expected-seed summary, not the seed-count one")
+    if args.label_mode is None:
+        raise SystemExit("--target marginal needs --label_mode static|arrival")
+    if args.marginal_cache is None:
+        raise SystemExit("--target marginal needs --marginal_cache (targets written by the fingerprint job)")
+    if args.resume or args.epochs_this_job:
+        raise SystemExit("--resume / --epochs_this_job are not supported for --target marginal (a run takes minutes)")
+    if args.head != "hazard":
+        raise SystemExit("the direct model composes with the hazard head; pass --head hazard")
+    device = torch.device(args.device)
+    if args.torch_seed is not None:
+        torch.manual_seed(args.torch_seed)
+        print(f"torch seed set: {args.torch_seed}")
+
+    base_data = load_base_graph()
+    node_id_index = build_node_id_index(base_data)
+    edge_idx_dict = {k: v.to(device) for k, v in edge_index_dict(base_data).items()}
+    node_types = list(base_data.node_types)
+    split = gnn_data.load_direct_split()
+    train_storms = split[f"train{args.train_storms}"]
+    val_storms, test_storms = split["val7"], split["test13"]
+    depths = gnn_data.load_depths(base_data, node_id_index)
+    external = gnn_data.external_mask(base_data, node_id_index)
+    cache = Path(args.marginal_cache)
+
+    def target_for(storm):
+        fp = cache / f"{storm}.pt"
+        if not fp.exists():
+            raise SystemExit(f"[marginal] no cached target for {storm} at {fp}; run the fingerprint with --cache-dir first")
+        got = torch.load(fp, weights_only=False)
+        if got.get("timesteps") != list(DEFAULT_TIMESTEPS):
+            raise SystemExit(f"[marginal] {fp} was built for horizons {got.get('timesteps')}, expected {list(DEFAULT_TIMESTEPS)}")
+        return {nt: got["pi"][nt].to(device) for nt in node_types}, int(got["n_runs"])
+
+    def example(storm):
+        x, phi, phi_k, _ = gnn_data.direct_example(storm, depths, external, base_data, node_id_index,
+                                                    label_mode=args.label_mode)
+        x = {nt: x[nt].to(device) for nt in node_types}
+        phi_k = {nt: phi_k[nt].to(device) for nt in node_types}
+        pi, n_runs = target_for(storm)
+        return {"storm": storm, "x": x, "phi_k": phi_k, "pi": pi, "n_runs": n_runs}
+
+    t_load = time.time()
+    train_ex = [example(s) for s in train_storms]
+    val_ex = [example(s) for s in val_storms]
+    test_ex = [example(s) for s in test_storms]
+    n_runs = sorted({e["n_runs"] for e in train_ex + val_ex + test_ex})
+    width = {nt: train_ex[0]["x"][nt].shape[1] for nt in node_types}
+    print(f"Train: {len(train_ex)} storms  Val: {len(val_ex)}  Test: {len(test_ex)} | runs per storm {n_runs} | "
+          f"label mode {args.label_mode} | timing inputs {'on' if gnn_data.TIMING_FEATURES else 'off'} | "
+          f"input width {width['telecom']} | loaded in {time.time() - t_load:.0f}s")
+
+    node_in_dims = {nt: gnn_data.direct_input_dim(base_data, nt) for nt in node_types}
+    assert node_in_dims == width, f"input width mismatch {node_in_dims} vs {width}"
+    model = CascadeGNN(node_types=node_types, edge_types=list(base_data.edge_types), node_in_dims=node_in_dims,
+                       hidden_dim=args.hidden_dim, num_layers=args.num_layers, num_heads=args.num_heads,
+                       num_timesteps=len(DEFAULT_TIMESTEPS), dropout=args.dropout, head=args.head).to(device)
+    optimizer = Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    print(f"Model parameters: {count_parameters(model):,}  head={args.head}  device={device}")
+
+    CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+    rng = random.Random(args.seed)
+    history, best_val, best_epoch, since_best = [], float("inf"), -1, 0
+    t0 = time.time()
+
+    @torch.no_grad()
+    def evaluate(examples):
+        model.eval()
+        return [float(_direct_loss(model, e["x"], e["phi_k"], e["pi"], edge_idx_dict, node_types)) for e in examples]
+
+    meta = {"target": "marginal", "label_mode": args.label_mode, "train_storms": args.train_storms,
+            "train_storm_names": train_storms, "val_storms": val_storms, "test_storms": test_storms,
+            "timing": int(gnn_data.TIMING_FEATURES), "node_in_dims": node_in_dims, "node_types": node_types,
+            "edge_types": [list(et) for et in base_data.edge_types], "timesteps": list(DEFAULT_TIMESTEPS),
+            "head": args.head, "storm_context": 0, "depth_csvs": [str(p) for p in gnn_data.DEPTH_CSVS],
+            "split": str(gnn_data.DIRECT_SPLIT), "n_runs": n_runs}
+    for epoch in range(args.max_epochs):
+        model.train()
+        rng.shuffle(train_ex)
+        tl = []
+        for e in train_ex:
+            loss = _direct_loss(model, e["x"], e["phi_k"], e["pi"], edge_idx_dict, node_types)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            tl.append(loss.item())
+        vl = evaluate(val_ex)
+        mean_train, mean_val = sum(tl) / len(tl), sum(vl) / len(vl)
+        improved = mean_val < best_val - 1e-7
+        history.append({"epoch": epoch, "train_loss": mean_train, "val_loss": mean_val,
+                        "val_loss_per_storm": dict(zip(val_storms, vl)), "elapsed_s": time.time() - t0})
+        if epoch % 10 == 0 or improved and epoch < 20:
+            print(f"Epoch {epoch:03d} | train={mean_train:.5f} val={mean_val:.5f}{' *' if improved else ''} | {time.time() - t0:.0f}s")
+        ckpt = {"model_state": model.state_dict(), "args": vars(args), "epoch": epoch, "val_loss": mean_val, **meta}
+        if improved:
+            best_val, best_epoch, since_best = mean_val, epoch, 0
+            torch.save(ckpt, CHECKPOINT_DIR / "best.pt")
+        else:
+            since_best += 1
+        torch.save(ckpt, CHECKPOINT_DIR / "last.pt")
+        if since_best >= args.patience:
+            print(f"[early stop] no improvement for {args.patience} epochs; best epoch {best_epoch} val {best_val:.5f}")
+            break
+    epochs_run = len(history)
+    early = epochs_run < args.max_epochs
+
+    # held-out evaluation with the best checkpoint (storm-level loss only; the audit does the rest)
+    best = torch.load(CHECKPOINT_DIR / "best.pt", map_location=device, weights_only=False)
+    model.load_state_dict(best["model_state"])
+    test_losses = evaluate(test_ex)
+    per_storm = {}
+    for e, l in zip(test_ex, test_losses):
+        per_storm[e["storm"]] = {"loss": l, "n_runs": e["n_runs"]}
+        print(f"[held-out {e['storm']}] soft log loss={l:.5f}")
+    with open(CHECKPOINT_DIR / "history.json", "w") as f:
+        json.dump({"epochs": history, "best_epoch": best_epoch, "best_val_loss": best_val, "epochs_run": epochs_run,
+                   "early_stopped": early, "patience": args.patience, "max_epochs": args.max_epochs,
+                   "test_per_scenario": per_storm, "holdout_scenarios": test_storms, "val_storms": val_storms,
+                   "train_storm_names": train_storms, "target": "marginal", "label_mode": args.label_mode,
+                   "train_storms": args.train_storms, "timing": int(gnn_data.TIMING_FEATURES), "head": args.head,
+                   "scenario_set": os.environ.get("SCENARIO_SET", "base6")}, f, indent=2)
+    print(f"done: {epochs_run} epochs ({'early stop' if early else 'max epochs'}), best epoch {best_epoch}, "
+          f"best val {best_val:.5f}, {time.time() - t0:.0f}s")
+
+
+# --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
 
@@ -668,6 +818,21 @@ def parse_args():
     p.add_argument("--epochs_this_job", type=int, default=None,
                    help="train: stop after this many epochs in this job (last.pt is written, history.json is not); "
                         "the next job continues with --resume. Default: all epochs in one job.")
+    # --- direct model (Week 32): one example per storm, trained on the 1,000-run probabilities ---------------
+    p.add_argument("--target", choices=["run", "marginal"], default="run",
+                   help="run (default): one example per simulator run, as every campaign so far. marginal: the direct "
+                        "model, one example per storm, target = share of runs failed by each horizon (needs "
+                        "GNN_TARGET=marginal in the environment too; see run_train_marginal).")
+    p.add_argument("--label_mode", choices=["static", "arrival"], default=None,
+                   help="marginal: which label campaign the targets come from; sets the seed part phi_ik")
+    p.add_argument("--train_storms", type=int, choices=list(gnn_data.DIRECT_SIZES), default=50,
+                   help="marginal: training set of the frozen split (config/gnn_direct_split_v1.yaml)")
+    p.add_argument("--max_epochs", type=int, default=600, help="marginal: upper bound on epochs")
+    p.add_argument("--patience", type=int, default=50,
+                   help="marginal: stop when the validation loss has not improved for this many epochs")
+    p.add_argument("--marginal_cache", default=None,
+                   help="marginal: folder of <storm>.pt targets written by scripts/week31_direct_fingerprint_v1.py "
+                        "--cache-dir; required, so a training job never rebuilds targets from the label files")
     return p.parse_args()
 
 
@@ -681,6 +846,8 @@ def main():
         if not args.ckpt:
             raise SystemExit("--mode evalckpt requires --ckpt")
         run_evalckpt(args)
+    elif args.target == "marginal":
+        run_train_marginal(args)
     else:
         run_train(args)
 

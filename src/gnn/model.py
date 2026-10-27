@@ -154,3 +154,38 @@ class CascadeGNN(nn.Module):
 
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+# --------------------------------------------------------------------------
+# Direct model (Week 32): composition with the fragility probability, soft loss
+# --------------------------------------------------------------------------
+# Nothing above reads these; the per-run surrogate is unchanged.
+
+def compose_with_fragility(g_logit, phi_k, eps=1e-6):
+    """p = 1 - (1 - phi)(1 - g), returned as logit(p) so every consumer stays logit-based.
+
+    g_logit: [N, K] cumulative logits from the network (hazard head: logit(F_k), non-decreasing in k).
+    phi_k:   [N, K] the seed part phi_ik (phi_by_horizon), non-decreasing in k.
+    Stable form:  log(1 - p) = log(1 - phi) + log(1 - g) = log(1 - phi) - softplus(g_logit),
+                  logit(p) = log(1 - exp(log(1 - p))) - log(1 - p).
+    Since softplus >= 0, log(1 - p) <= log(1 - phi): p >= phi. Both terms are non-increasing in k, so p is
+    non-decreasing in k. phi is kept below 1 - eps and log(1 - p) below -eps so the logit stays finite.
+    """
+    log_1m_phi = torch.log1p(-phi_k.clamp(min=0.0, max=1.0 - eps))
+    log_1m_p = (log_1m_phi - F.softplus(g_logit)).clamp(max=-eps)
+    return _log1mexp(log_1m_p) - log_1m_p
+
+
+def soft_bce_with_logits(p_logit, pi):
+    """Soft log loss against a probability target: -[pi log p + (1 - pi) log(1 - p)] per entry, mean over all
+    entries; equals pi * softplus(-z) + (1 - pi) * softplus(z) for z = logit(p). Its minimum over p, reached at
+    p = pi, is the entropy of pi (binary_entropy)."""
+    return (pi * F.softplus(-p_logit) + (1.0 - pi) * F.softplus(p_logit)).mean()
+
+
+def binary_entropy(pi):
+    """-[pi log pi + (1 - pi) log(1 - pi)] per entry with 0 log 0 = 0, mean over all entries."""
+    pi = pi.clamp(min=0.0, max=1.0)
+    h = torch.zeros_like(pi)
+    m = (pi > 0) & (pi < 1)
+    h[m] = -(pi[m] * torch.log(pi[m]) + (1.0 - pi[m]) * torch.log1p(-pi[m]))
+    return h.mean()

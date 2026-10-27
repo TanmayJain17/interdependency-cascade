@@ -1,0 +1,34 @@
+{
+ "F1": {
+  "pass": true,
+  "detail": "data.py inputs and labels identical to f45a7b2 on 4 runs in 4 switch settings (widths [9, 16, 12, 22]); model.py at f45a7b2 is a prefix of the working file: True; train.py: 0 lines of f45a7b2 removed (must be 0; the default path is additions only)"
+ },
+ "F4": {
+  "pass": true,
+  "detail": "p >= phi_k and non-decreasing on random weights, static and arrival, timing off/on; syn_ts_914_6_1p2955: 156 wet sites, expected seeds 91.3; syn2_t580w24_wl2p439: 216 wet sites, expected seeds 140.3; geoclaw_2050: 368 wet sites, expected seeds 295.5; syn2_t198w16_wl4p722: 737 wet sites, expected seeds 660.1; timing=off width 17 params 699,032; timing=on width 23 params 701,336"
+ },
+ "F5": {
+  "pass": true,
+  "detail": "loss at p = pi_hat 0.460928 vs entropy 0.460928; perturbed p 0.467974 > entropy: True"
+ },
+ "F2": {
+  "pass": null,
+  "detail": "no --labels-dir: not run"
+ },
+ "F3": {
+  "pass": null,
+  "detail": "no --labels-dir: not run"
+ },
+ "_meta": {
+  "base_commit": "f45a7b2",
+  "labels_dir": null,
+  "label_mode": "static",
+  "storms": "syn_ts_914_6_1p2955,syn2_t580w24_wl2p439",
+  "elapsed_s": 11.5,
+  "decided": [
+   "F1",
+   "F4",
+   "F5"
+  ]
+ }
+}
