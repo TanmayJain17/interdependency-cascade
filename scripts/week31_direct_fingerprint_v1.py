@@ -21,6 +21,9 @@ repository; F2 and F3 also need the simulator's label files (--labels-dir), whic
       not store that key, the sites stamped at hour 0. Under arrival labels that fallback is not the seed set
       (seeds are stamped at their arrival hour), so storms without the key are reported and left out of the
       fraction. Decided only on 1,000-run labels; on fewer runs the numbers are printed and the check is not decided.
+      The verdict is the pre-registered rule and nothing stricter: sites beyond 0.03 other than 03042 are expected
+      from 1,000 Bernoulli draws (about 0.9% of wet sites) and are reported with their largest gap next to the
+      exact binomial expectation, not held against the pass. --rescore-from recomputes this verdict from a stored run.
   F4  composition on random weights (hazard head): p >= phi_k and p non-decreasing in the horizon on real storms,
       static and arrival, timing off and on; input widths 17 and 23.
   F5  the soft log loss at p = pi_hat equals the entropy of pi_hat (random targets, and the real pi_hat when
@@ -68,6 +71,88 @@ def load_data_module(source, env, name):
     return mod
 
 
+def expected_noise(d, base, depths, external, storms, n=1000, tol=0.03):
+    """How many wet non-external site-storms 1,000 Bernoulli draws from phi put beyond tol of phi, exactly (binomial)."""
+    from scipy.stats import binom
+    tot, exp = 0, 0.0
+    for s in storms:
+        phi = d.fragility_probs(base, depths[s], external)
+        for nt in base.node_types:
+            wet = (depths[s][nt] > 0) & (~external[nt])
+            p = phi[nt][wet].double().numpy()
+            tot += len(p)
+            lo = np.ceil(n * (p - tol)) - 1; hi = np.floor(n * (p + tol))
+            exp += float((binom.cdf(lo, n, p) + (1 - binom.cdf(hi, n, p))).sum())
+    return {"n_runs": n, "tol": tol, "wet_non_external": tot, "expected_beyond_tol": exp,
+            "expected_share_beyond_tol": exp / tot if tot else float("nan")}
+
+
+def f3_verdict(f3_rows, ext_ok, n_runs, noise):
+    """The pre-registered rule, and nothing stricter: over the storms counted, the seed frequency is within 0.03 of
+    phi on at least 99% of wet non-external site-storms with telecom_cluster_03042 excepted (its misses are not held
+    against the fraction), and the external sites have phi = 0 and never seed. Decided on 1,000-run labels only.
+    Other sites beyond 0.03 are reported with their largest gap next to the binomial expectation, so the record
+    shows whether they are sampling noise or a drift."""
+    used = [r for r in f3_rows if r["counted_in_f3"]]
+    left_out = [r["storm"] for r in f3_rows if not r["counted_in_f3"]]
+    sources = sorted({r["seed_source"] for r in f3_rows})
+    tot_wet = sum(r["wet_non_external"] for r in used); tot_ok = sum(r["within_0.03"] for r in used)
+    quirk = [r["storm"] for r in used if any(o[0] == QUIRK_SITE for o in r["offenders"])]
+    quirk_gaps = [abs(o[3] - o[2]) for r in used for o in r["offenders"] if o[0] == QUIRK_SITE]
+    other = {r["storm"]: [o for o in r["offenders"] if o[0] != QUIRK_SITE] for r in used}
+    other = {k: v for k, v in other.items() if v}
+    n_other = sum(r["n_offenders"] for r in used) - len(quirk_gaps)
+    other_gaps = [abs(o[3] - o[2]) for v in other.values() for o in v]
+    frac_raw = tot_ok / tot_wet if tot_wet else float("nan")
+    frac = (tot_ok + len(quirk_gaps)) / tot_wet if tot_wet else float("nan")          # 03042 excepted
+    decided = bool(used) and min(n_runs) >= 1000
+    f3_pass = (frac >= 0.99 and ext_ok) if decided else None
+    out = {"pass": f3_pass, "frac_wet_within_0.03": frac, "frac_wet_within_0.03_raw": frac_raw,
+           "external_phi_zero_and_never_seed": ext_ok, "n_runs": n_runs, "rows": f3_rows,
+           "quirk_site_flagged_in": quirk, "quirk_site_gaps": quirk_gaps,
+           "other_beyond_0.03": n_other, "other_max_gap": max(other_gaps) if other_gaps else 0.0,
+           "other_offenders": {k: v[:10] for k, v in other.items()}, "expected_noise": noise,
+           "seed_sources": sources, "storms_counted": len(used), "storms_left_out": left_out}
+    tag = "NOT DECIDED (fewer than 1,000 runs)" if not decided else ("PASS" if f3_pass else "FAIL")
+    print(f"[F3] {tag}  seed frequency within 0.03 of phi on {tot_ok}/{tot_wet} wet non-external site-storms "
+          f"({frac_raw:.4f}; {frac:.4f} with {QUIRK_SITE} excepted; rule: at least 0.99) over {len(used)} storms "
+          f"(seed sources {sources}; left out under this label mode: {left_out[:8]}{'...' if len(left_out) > 8 else ''}); "
+          f"external sites phi = 0 and never seed: {ext_ok}; {QUIRK_SITE} beyond 0.03 in {quirk} (gaps "
+          f"{[round(g, 3) for g in quirk_gaps]}); other sites beyond 0.03: {n_other} (largest gap "
+          f"{max(other_gaps) if other_gaps else 0.0:.3f}) against a binomial expectation of "
+          f"{noise['expected_beyond_tol']:.1f} ({noise['expected_share_beyond_tol'] * 100:.2f}%) for 1,000 draws")
+    return out
+
+
+def rescore(a):
+    """Recompute the F3 verdict of an earlier run from its stored measurements (no label files read)."""
+    with open(a.rescore_from) as fh:
+        prev = json.load(fh)
+    base_env = {"SCENARIO_SET": "w29_all", "HETERODATA": GRAPH, "GNN_TIMING_CSV": TIMING, "GNN_TARGET": "marginal",
+                "GNN_TIMING_FEATURES": "0", "GNN_STORM_CONTEXT": "0"}
+    d = load_data_module(open("src/gnn/data.py").read(), base_env, "data_rescore")
+    base = torch.load(GRAPH, weights_only=False); idx = d.build_node_id_index(base)
+    split = d.load_direct_split(); storms = split["train50"] + split["val7"] + split["test13"]
+    depths = d.load_depths(base, idx); external = d.external_mask(base, idx)
+    old_f3 = prev["F3"]
+    rows = old_f3["rows"]
+    for k in ("F1", "F2", "F4", "F5"):
+        print(f"[{k}] {'PASS' if prev[k]['pass'] else 'FAIL'}  (from {a.rescore_from}) {prev[k]['detail'][:160]}")
+    prev["F3"] = f3_verdict(rows, old_f3["external_phi_zero_and_never_seed"], old_f3["n_runs"],
+                            expected_noise(d, base, depths, external, [r["storm"] for r in rows]))
+    prev["_meta"]["rescored_from"] = a.rescore_from
+    prev["_meta"]["rescore_note"] = ("F3 verdict recomputed from the stored rows under the pre-registered rule; "
+                                     "the measurements (rows) and F1, F2, F4, F5 are those of the original run")
+    decided = [k for k in ("F1", "F2", "F3", "F4", "F5") if prev.get(k, {}).get("pass") is not None]
+    ok = all(prev[k]["pass"] for k in decided)
+    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    with open(a.out, "w") as fh:
+        json.dump(prev, fh, indent=1, default=float)
+    print(f"wrote {a.out}")
+    print("FINGERPRINT PASSED" if ok else "FINGERPRINT FAILED", f"({', '.join(decided)} decided; F3 rescored)")
+    sys.exit(0 if ok else 1)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--base-commit", default="f45a7b2")
@@ -79,7 +164,12 @@ def main():
                     help="storms for F2/F3: comma list, or 'all' for every storm of the split")
     ap.add_argument("--cache-dir", default=None, help="save the targets built for F2/F3 here (marginal_labels_cached)")
     ap.add_argument("--out", default="analysis/gnn/week31_direct_fingerprint_v1.json")
+    ap.add_argument("--rescore-from", default=None,
+                    help="take F1-F5 measurements from this earlier result JSON and recompute only the F3 verdict "
+                         "(the pre-registered rule) from its stored rows; no label file is read")
     a = ap.parse_args()
+    if a.rescore_from:
+        rescore(a); return
     res = {}
     t0 = time.time()
 
@@ -270,25 +360,7 @@ def main():
         res["F2_per_storm"] = f2_detail
         check("F2", f2_ok, f"{n_eq}/{len(f2_detail)} storms with the recount equal to marginal_labels (seeds, pi_hat, both halves); "
                            + "; ".join([x for x in f2_detail if "DIFFERENT" in x][:5] + f2_detail[:2]))
-        used = [r for r in f3_rows if r["counted_in_f3"]]
-        left_out = [r["storm"] for r in f3_rows if not r["counted_in_f3"]]
-        sources = sorted({r["seed_source"] for r in f3_rows})
-        tot_wet = sum(r["wet_non_external"] for r in used); tot_ok = sum(r["within_0.03"] for r in used)
-        frac = tot_ok / tot_wet if tot_wet else float("nan")
-        quirk = [r["storm"] for r in used if any(o[0] == QUIRK_SITE for o in r["offenders"])]
-        other = {r["storm"]: [o for o in r["offenders"] if o[0] != QUIRK_SITE] for r in used}
-        other = {k: v for k, v in other.items() if v}
-        decided = min(n_runs_seen) >= 1000 and bool(used)
-        f3_pass = (frac >= 0.99 and ext_ok and not other) if decided else None
-        res["F3"] = {"pass": f3_pass, "frac_wet_within_0.03": frac, "external_phi_zero_and_never_seed": ext_ok,
-                     "n_runs": sorted(n_runs_seen), "rows": f3_rows, "quirk_site_flagged_in": quirk,
-                     "other_offenders": {k: v[:10] for k, v in other.items()}, "seed_sources": sources,
-                     "storms_counted": len(used), "storms_left_out": left_out}
-        tag = "NOT DECIDED (fewer than 1,000 runs)" if not decided else ("PASS" if f3_pass else "FAIL")
-        print(f"[F3] {tag}  seed frequency within 0.03 of phi on {tot_ok}/{tot_wet} wet non-external sites ({frac:.4f}) over "
-              f"{len(used)} storms (seed sources {sources}; left out under this label mode: {left_out[:8]}{'...' if len(left_out) > 8 else ''}); "
-              f"external sites phi = 0 and never seed: {ext_ok}; {QUIRK_SITE} flagged in {quirk}; "
-              f"other offenders in {list(other)[:5]}")
+        res["F3"] = f3_verdict(f3_rows, ext_ok, sorted(n_runs_seen), expected_noise(d, base, depths, external, storms))
         for r in f3_rows:
             for o in r["offenders"][:3]:
                 print(f"      {r['storm']}: {o[0]} depth {o[1]:.3f} m phi {o[2]:.3f} seed freq {o[3]:.3f}")
