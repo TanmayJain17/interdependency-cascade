@@ -12,7 +12,7 @@ Prints, per cell, the 13 held-out storms by water level with the soft log loss o
 fragility-only, lookup and two-stage baselines and the split-half floor; then the verdicts below. Writes one
 CSV row per cell x training size x seed x storm.
 
-    python scripts/week31_direct_table_v1.py --dir <json dir> [--fingerprint analysis/gnn/week31_direct_fingerprint_v1.json]
+    python scripts/week31_direct_table_v1.py --dir <json dir> [--fingerprint <static json>,<arrival json>]
                                              [--out analysis/gnn/week31_direct_v1.csv]
 
 VOCABULARY
@@ -135,7 +135,8 @@ def per_seed(js, cell, n, storm, who, field="soft_bce"):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
-    ap.add_argument("--fingerprint", default="analysis/gnn/week31_direct_fingerprint_v1.json")
+    ap.add_argument("--fingerprint", default="analysis/gnn/week31_direct_fingerprint_static_v1.json,analysis/gnn/week31_direct_fingerprint_arrival_v1.json",
+                    help="fingerprint JSON(s), comma-separated: one per label mode; every one must pass F1-F5")
     ap.add_argument("--out", default="analysis/gnn/week31_direct_v1.csv")
     a = ap.parse_args()
 
@@ -144,20 +145,19 @@ def main():
 
     # ---- D0 -------------------------------------------------------------------------------------------
     d0_fail = list(missing)
-    fp = {}
-    if Path(a.fingerprint).exists():
-        with open(a.fingerprint) as fh:
+    for fpath in [x.strip() for x in a.fingerprint.split(",") if x.strip()]:
+        if not Path(fpath).exists():
+            d0_fail.append(f"fingerprint file not found: {fpath}"); continue
+        with open(fpath) as fh:
             fp = json.load(fh)
         for k in FINGERPRINT_KEYS:
             if fp.get(k, {}).get("pass") is not True:
-                d0_fail.append(f"fingerprint {k}: {fp.get(k)}")
+                d0_fail.append(f"{Path(fpath).name} {k}: {fp.get(k, {}).get('pass')}")
         pc = fp.get("F3", {})
         if pc.get("frac_wet_within_0.03", 0.0) < 0.99:
-            d0_fail.append(f"phi-consistency below 99%: {pc.get('frac_wet_within_0.03')}")
+            d0_fail.append(f"{Path(fpath).name}: phi-consistency below 99%: {pc.get('frac_wet_within_0.03')}")
         if pc.get("external_phi_zero_and_never_seed") is not True:
-            d0_fail.append("external sites: phi or seed frequency not zero")
-    else:
-        d0_fail.append(f"fingerprint file not found: {a.fingerprint}")
+            d0_fail.append(f"{Path(fpath).name}: external sites: phi or seed frequency not zero")
     for key, j in js.items():
         if not identity_ok(key, j):
             d0_fail.append(f"{key}: identity does not match file name")

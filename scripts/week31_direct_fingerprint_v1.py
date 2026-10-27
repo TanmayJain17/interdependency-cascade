@@ -250,8 +250,12 @@ def main():
             z = torch.logit(torch.from_numpy(pi_got).float().clamp(1e-7, 1 - 1e-7))
             lp = float(soft_bce_with_logits(z, torch.from_numpy(pi_got).float())); en = float(binary_entropy(torch.from_numpy(pi_got).float()))
             res.setdefault("F5_real", []).append({"storm": storm, "loss_at_pi": lp, "entropy": en})
-            print(f"  [F5 on {storm}] loss at p = pi_hat {lp:.6f} vs entropy {en:.6f}")
-        check("F2", f2_ok, "; ".join(f2_detail))
+            if abs(lp - en) > 1e-5 or len(res["F5_real"]) <= 2:
+                print(f"  [F5 on {storm}] loss at p = pi_hat {lp:.6f} vs entropy {en:.6f}")
+        n_eq = sum("recount equal" in x for x in f2_detail)
+        res["F2_per_storm"] = f2_detail
+        check("F2", f2_ok, f"{n_eq}/{len(f2_detail)} storms with the recount equal to marginal_labels (seeds, pi_hat, both halves); "
+                           + "; ".join([x for x in f2_detail if "DIFFERENT" in x][:5] + f2_detail[:2]))
         tot_wet = sum(r["wet_non_external"] for r in f3_rows); tot_ok = sum(r["within_0.03"] for r in f3_rows)
         frac = tot_ok / tot_wet if tot_wet else float("nan")
         quirk = [r["storm"] for r in f3_rows if any(o[0] == QUIRK_SITE for o in r["offenders"])]
