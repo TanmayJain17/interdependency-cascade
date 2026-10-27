@@ -185,7 +185,7 @@ The bounds were loose. They passed by one to two orders of magnitude, so they te
 
 `src/gnn/train.py` never calls `torch.manual_seed`. `--seed` feeds only `random.Random(args.seed)` (lines 308 and 517), which fixes the train/validation split and the per-epoch shuffle order. Weight initialisation and dropout use PyTorch's own generator.
 
-- Whether two jobs share an initialisation therefore depends on the PyTorch version's default seed. In the PyTorch build in this chat's sandbox the default seed differs from process to process, and two fresh processes built different initial weights. The version on Torch has not been checked.
+- Whether two jobs share an initialisation therefore depends on the PyTorch version's default seed. In the PyTorch build used for the local check the default seed differs from process to process, and two fresh processes built different initial weights. The version on Torch has not been checked.
 - One-line check on Torch, run twice: `python -c "import torch; print(torch.__version__, torch.default_generator.initial_seed())"`. The same number twice means a fixed default seed; two different numbers mean every campaign so far started from a different random initialisation.
 - Tonight's audit is unaffected: it scores saved checkpoints and involves no training randomness.
 - For the seed check, set the torch seed explicitly (a flag that is off by default, so earlier campaigns stay as they were), and compare the two heads paired by seed.

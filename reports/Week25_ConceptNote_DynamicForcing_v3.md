@@ -1,6 +1,6 @@
 # Week 25 Concept Note v3 — Dynamic flood forcing, Dr. Lin's question, and what the designed decomposition showed
 
-*Supersedes v1 and v2 (v3 adds the Mac-reproduced N = 100 dense-grid arms W3, P−3 and the closing arm V3, which make the decomposition converge). Branch `feat/dynamic-flood-maps` @ `4a05bf3` + the three-knob patch to `src/simulation/dynamic_forcing.py` (default build byte-identical, gate in §7.1). All runs N = 100, paired seeds (42/43), legacy arm, 360-h horizon. Every number below comes from a file in `week25_results/`; the sandbox that produced them reproduced the committed Week 24 files bit-for-bit (§7.1), and the Mac re-run matched every shared file to the last digit.*
+*Supersedes v1 and v2 (v3 adds the Mac-reproduced N = 100 dense-grid arms W3, P−3 and the closing arm V3, which make the decomposition converge). Branch `feat/dynamic-flood-maps` @ `4a05bf3` + the three-knob patch to `src/simulation/dynamic_forcing.py` (default build byte-identical, gate in §7.1). All runs N = 100, paired seeds (42/43), legacy arm, 360-h horizon. Every number below comes from a file in `week25_results/`; the environment that produced them reproduced the committed Week 24 files bit-for-bit (§7.1), and the Mac re-run matched every shared file to the last digit.*
 
 Sections 1–3 (the bathtub rule, spread-vs-clock, the null stated exactly) are unchanged from v1 and not repeated. This version replaces v1 §4–§9.
 
@@ -68,7 +68,7 @@ Time-dependent things v1 models: Weibull inter-layer buffers (autonomous); the p
 ### 7.1 Gates (all passed)
 
 - **Default build unchanged:** patched module, no knobs, N = 20 vs the unshifted N = 100 file, first 20 runs: six keys identical, 0 mismatches.
-- **Sandbox = pipeline:** unshifted arrival N = 100 on 880_9 reproduced the committed Week 24 reference exactly (t360 mean 2388.71 / sd 288.91 / t0 996.66); the Week 24 −6 h arm likewise (+315.39 ± 619.24, t0 +152.97); 914_6 unshifted 337.04 vs 337.00.
+- **Local run = pipeline:** unshifted arrival N = 100 on 880_9 reproduced the committed Week 24 reference exactly (t360 mean 2388.71 / sd 288.91 / t0 996.66); the Week 24 −6 h arm likewise (+315.39 ± 619.24, t0 +152.97); 914_6 unshifted 337.04 vs 337.00.
 
 ### 7.2 Arms (880_9 unless noted; env knobs `DYNAMIC_ARRIVAL_SHIFT_H` / `DYNAMIC_TPEAK_SHIFT_H` / `DYNAMIC_INTRA_ORIGIN_SHIFT_H`; dense grid = `DYNAMIC_PRE_PEAK_STEP_H=3` with 3-h post-peak offsets to 96 h then 120/144/192/240/300/360)
 
