@@ -1,0 +1,91 @@
+task=9 name=e2e_a1b_lognormal_l0_arrival_timing_s1 arm=a1b_lognormal_l0 cell=arrival_timing mode=arrival torch_seed=1 init=perturb_up timing=1 extra=[--fragility lognormal --frag_init perturb_up --lambda_seed 0.0  --frag_regime joint      --detach_phi 1] cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival ckpt=/scratch/tj2587/results/gnn_fragility_v1/e2e_a1b_lognormal_l0_arrival_timing_s1 smoke=0 commit=6f5fe28 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week33_fragility_fingerprint_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True, 'F6': True} -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_arrival_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/arrival: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs on -> OK
+[gate] assumed fragility parameters unchanged: OK
+=== TRAIN MODE, end-to-end fragility (lognormal) — depth in, probability out ===
+torch seed set: 1
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+Train: 50 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode arrival | timing inputs on | input width 23 | fragility lognormal init perturb_up lambda_seed 0.0 lambda_g 0.0 regime joint detach 1 | loaded in 1s
+Model parameters: 701,348 (head 12)  device=cuda
+head at start: {'power': {'median': 1.2, 'beta': 0.25}, 'telecom': {'median': 0.6, 'beta': 0.3}, 'hospital': {'median': 1.2, 'beta': 0.25}, 'subway': {'median': 0.2, 'beta': 0.2}, 'water': {'median': 1.0, 'beta': 0.25}, 'fuel': {'median': 1.0, 'beta': 0.3}}
+Epoch 000 | train=0.67912 val=0.42178 * seed=0.0000 | pow 0.988/0.289 tel 0.476/0.355 hos 1.040/0.269 sub 0.161/0.204 wat 0.816/0.282 fue 0.822/0.346 | 3s
+Epoch 001 | train=0.32040 val=0.29121 * seed=0.0000 | pow 0.891/0.305 tel 0.416/0.385 hos 0.944/0.282 sub 0.134/0.226 wat 0.708/0.305 fue 0.733/0.373 | 5s
+Epoch 002 | train=0.25601 val=0.26090 * seed=0.0000 | pow 0.855/0.316 tel 0.388/0.430 hos 0.898/0.302 sub 0.121/0.265 wat 0.654/0.327 fue 0.671/0.412 | 7s
+Epoch 003 | train=0.22439 val=0.22151 * seed=0.0000 | pow 0.846/0.325 tel 0.374/0.470 hos 0.854/0.329 sub 0.115/0.296 wat 0.627/0.349 fue 0.632/0.448 | 9s
+Epoch 004 | train=0.20308 val=0.21431 * seed=0.0000 | pow 0.845/0.336 tel 0.357/0.500 hos 0.811/0.358 sub 0.112/0.325 wat 0.617/0.369 fue 0.611/0.486 | 11s
+Epoch 005 | train=0.18911 val=0.20189 * seed=0.0000 | pow 0.847/0.346 tel 0.340/0.523 hos 0.776/0.388 sub 0.108/0.347 wat 0.601/0.390 fue 0.595/0.520 | 13s
+Epoch 006 | train=0.19068 val=0.18384 * seed=0.0000 | pow 0.851/0.354 tel 0.325/0.542 hos 0.746/0.416 sub 0.106/0.361 wat 0.589/0.407 fue 0.580/0.535 | 15s
+Epoch 007 | train=0.17479 val=0.18345 * seed=0.0000 | pow 0.854/0.361 tel 0.317/0.559 hos 0.719/0.442 sub 0.106/0.368 wat 0.575/0.419 fue 0.570/0.548 | 17s
+Epoch 008 | train=0.16873 val=0.17874 * seed=0.0000 | pow 0.855/0.365 tel 0.310/0.571 hos 0.694/0.470 sub 0.106/0.372 wat 0.560/0.428 fue 0.560/0.557 | 19s
+Epoch 009 | train=0.16555 val=0.16951 * seed=0.0000 | pow 0.849/0.371 tel 0.305/0.580 hos 0.674/0.497 sub 0.105/0.374 wat 0.547/0.436 fue 0.549/0.566 | 21s
+Epoch 010 | train=0.16421 val=0.17389 seed=0.0000 | pow 0.843/0.376 tel 0.302/0.591 hos 0.659/0.506 sub 0.106/0.372 wat 0.536/0.446 fue 0.542/0.565 | 23s
+Epoch 012 | train=0.15718 val=0.16390 * seed=0.0000 | pow 0.822/0.383 tel 0.297/0.597 hos 0.639/0.524 sub 0.106/0.377 wat 0.521/0.465 fue 0.531/0.572 | 27s
+Epoch 015 | train=0.15478 val=0.15836 * seed=0.0000 | pow 0.794/0.402 tel 0.293/0.604 hos 0.620/0.536 sub 0.105/0.381 wat 0.509/0.482 fue 0.518/0.580 | 33s
+Epoch 016 | train=0.15167 val=0.15636 * seed=0.0000 | pow 0.784/0.407 tel 0.293/0.604 hos 0.618/0.533 sub 0.105/0.381 wat 0.508/0.487 fue 0.516/0.576 | 35s
+Epoch 018 | train=0.14807 val=0.15344 * seed=0.0000 | pow 0.763/0.421 tel 0.293/0.602 hos 0.613/0.539 sub 0.104/0.381 wat 0.504/0.490 fue 0.509/0.575 | 39s
+Epoch 019 | train=0.14673 val=0.15230 * seed=0.0000 | pow 0.757/0.431 tel 0.292/0.600 hos 0.610/0.533 sub 0.105/0.381 wat 0.502/0.493 fue 0.508/0.578 | 41s
+Epoch 020 | train=0.14557 val=0.14956 * seed=0.0000 | pow 0.751/0.438 tel 0.293/0.600 hos 0.609/0.535 sub 0.104/0.382 wat 0.502/0.493 fue 0.506/0.579 | 43s
+Epoch 030 | train=0.13831 val=0.15218 seed=0.0000 | pow 0.683/0.507 tel 0.292/0.593 hos 0.606/0.528 sub 0.103/0.382 wat 0.497/0.502 fue 0.502/0.590 | 63s
+Epoch 040 | train=0.13078 val=0.13706 seed=0.0000 | pow 0.677/0.533 tel 0.294/0.592 hos 0.600/0.524 sub 0.103/0.391 wat 0.496/0.506 fue 0.499/0.583 | 83s
+Epoch 050 | train=0.12672 val=0.13354 seed=0.0000 | pow 0.668/0.535 tel 0.294/0.589 hos 0.603/0.534 sub 0.101/0.389 wat 0.492/0.507 fue 0.497/0.592 | 103s
+Epoch 060 | train=0.12306 val=0.12584 * seed=0.0000 | pow 0.657/0.532 tel 0.294/0.597 hos 0.594/0.538 sub 0.100/0.387 wat 0.490/0.503 fue 0.500/0.592 | 123s
+Epoch 070 | train=0.12030 val=0.12631 seed=0.0000 | pow 0.656/0.533 tel 0.301/0.594 hos 0.602/0.529 sub 0.100/0.388 wat 0.490/0.504 fue 0.497/0.588 | 143s
+Epoch 080 | train=0.11960 val=0.12165 * seed=0.0000 | pow 0.652/0.523 tel 0.298/0.588 hos 0.600/0.535 sub 0.100/0.387 wat 0.492/0.512 fue 0.495/0.588 | 162s
+Epoch 090 | train=0.11681 val=0.11958 * seed=0.0000 | pow 0.643/0.534 tel 0.298/0.596 hos 0.604/0.541 sub 0.101/0.388 wat 0.496/0.509 fue 0.494/0.592 | 182s
+Epoch 100 | train=0.11536 val=0.11785 * seed=0.0000 | pow 0.632/0.507 tel 0.296/0.596 hos 0.595/0.534 sub 0.099/0.382 wat 0.489/0.501 fue 0.500/0.593 | 202s
+Epoch 110 | train=0.11338 val=0.11784 seed=0.0000 | pow 0.642/0.525 tel 0.299/0.594 hos 0.604/0.524 sub 0.099/0.395 wat 0.498/0.504 fue 0.496/0.580 | 222s
+Epoch 120 | train=0.11256 val=0.11695 seed=0.0000 | pow 0.642/0.517 tel 0.295/0.588 hos 0.606/0.532 sub 0.099/0.386 wat 0.498/0.512 fue 0.492/0.592 | 241s
+Epoch 130 | train=0.11318 val=0.12213 seed=0.0000 | pow 0.633/0.528 tel 0.299/0.600 hos 0.603/0.525 sub 0.100/0.389 wat 0.493/0.513 fue 0.492/0.594 | 261s
+Epoch 140 | train=0.11308 val=0.11761 seed=0.0000 | pow 0.619/0.514 tel 0.295/0.594 hos 0.584/0.526 sub 0.102/0.396 wat 0.494/0.508 fue 0.489/0.594 | 281s
+Epoch 150 | train=0.10783 val=0.11579 seed=0.0000 | pow 0.637/0.513 tel 0.299/0.602 hos 0.600/0.534 sub 0.101/0.390 wat 0.490/0.504 fue 0.496/0.594 | 301s
+Epoch 160 | train=0.11114 val=0.11438 seed=0.0000 | pow 0.625/0.512 tel 0.298/0.603 hos 0.608/0.532 sub 0.098/0.390 wat 0.488/0.505 fue 0.499/0.597 | 320s
+Epoch 170 | train=0.10749 val=0.11465 seed=0.0000 | pow 0.630/0.521 tel 0.301/0.599 hos 0.589/0.539 sub 0.099/0.386 wat 0.494/0.499 fue 0.501/0.595 | 340s
+Epoch 180 | train=0.10913 val=0.11465 seed=0.0000 | pow 0.635/0.513 tel 0.298/0.592 hos 0.592/0.532 sub 0.100/0.395 wat 0.499/0.502 fue 0.491/0.595 | 360s
+Epoch 190 | train=0.10840 val=0.11142 seed=0.0000 | pow 0.628/0.518 tel 0.299/0.598 hos 0.604/0.528 sub 0.100/0.390 wat 0.493/0.513 fue 0.503/0.593 | 380s
+Epoch 200 | train=0.10823 val=0.11234 seed=0.0000 | pow 0.629/0.523 tel 0.297/0.600 hos 0.605/0.534 sub 0.100/0.394 wat 0.497/0.504 fue 0.497/0.599 | 399s
+Epoch 210 | train=0.10861 val=0.11942 seed=0.0000 | pow 0.622/0.519 tel 0.297/0.597 hos 0.601/0.527 sub 0.100/0.391 wat 0.495/0.508 fue 0.489/0.591 | 419s
+Epoch 220 | train=0.10580 val=0.11547 seed=0.0000 | pow 0.633/0.509 tel 0.299/0.594 hos 0.589/0.526 sub 0.098/0.388 wat 0.499/0.506 fue 0.496/0.587 | 439s
+Epoch 230 | train=0.10510 val=0.11160 seed=0.0000 | pow 0.622/0.529 tel 0.297/0.593 hos 0.601/0.542 sub 0.100/0.394 wat 0.498/0.504 fue 0.497/0.599 | 459s
+Epoch 240 | train=0.10315 val=0.10861 seed=0.0000 | pow 0.639/0.510 tel 0.297/0.594 hos 0.604/0.516 sub 0.099/0.390 wat 0.496/0.507 fue 0.497/0.594 | 478s
+Epoch 250 | train=0.10641 val=0.11218 seed=0.0000 | pow 0.611/0.513 tel 0.301/0.601 hos 0.595/0.527 sub 0.101/0.386 wat 0.492/0.512 fue 0.504/0.589 | 498s
+Epoch 260 | train=0.10626 val=0.11139 seed=0.0000 | pow 0.635/0.510 tel 0.301/0.599 hos 0.602/0.538 sub 0.099/0.394 wat 0.500/0.502 fue 0.499/0.594 | 518s
+Epoch 270 | train=0.10454 val=0.11303 seed=0.0000 | pow 0.636/0.521 tel 0.294/0.602 hos 0.602/0.528 sub 0.099/0.394 wat 0.496/0.502 fue 0.496/0.597 | 538s
+Epoch 280 | train=0.10720 val=0.11241 seed=0.0000 | pow 0.635/0.524 tel 0.294/0.601 hos 0.604/0.528 sub 0.100/0.396 wat 0.493/0.508 fue 0.500/0.595 | 557s
+Epoch 290 | train=0.10515 val=0.10950 seed=0.0000 | pow 0.628/0.524 tel 0.296/0.597 hos 0.601/0.537 sub 0.100/0.390 wat 0.494/0.507 fue 0.506/0.590 | 577s
+Epoch 300 | train=0.10592 val=0.11106 seed=0.0000 | pow 0.619/0.515 tel 0.296/0.602 hos 0.594/0.517 sub 0.100/0.392 wat 0.497/0.500 fue 0.494/0.602 | 597s
+Epoch 310 | train=0.10273 val=0.11037 seed=0.0000 | pow 0.626/0.537 tel 0.299/0.604 hos 0.591/0.524 sub 0.100/0.397 wat 0.494/0.512 fue 0.496/0.591 | 617s
+Epoch 320 | train=0.10361 val=0.10992 seed=0.0000 | pow 0.617/0.514 tel 0.296/0.597 hos 0.593/0.524 sub 0.100/0.389 wat 0.499/0.502 fue 0.488/0.594 | 636s
+Epoch 330 | train=0.10187 val=0.10875 seed=0.0000 | pow 0.626/0.508 tel 0.298/0.594 hos 0.592/0.531 sub 0.100/0.392 wat 0.495/0.520 fue 0.501/0.596 | 656s
+Epoch 340 | train=0.10233 val=0.10916 seed=0.0000 | pow 0.627/0.514 tel 0.297/0.606 hos 0.596/0.534 sub 0.101/0.397 wat 0.499/0.508 fue 0.509/0.593 | 676s
+Epoch 350 | train=0.10344 val=0.10827 seed=0.0000 | pow 0.619/0.523 tel 0.297/0.606 hos 0.597/0.533 sub 0.100/0.395 wat 0.498/0.511 fue 0.496/0.593 | 695s
+Epoch 360 | train=0.10095 val=0.10848 seed=0.0000 | pow 0.611/0.510 tel 0.296/0.594 hos 0.605/0.524 sub 0.100/0.392 wat 0.498/0.507 fue 0.501/0.591 | 715s
+Epoch 370 | train=0.10339 val=0.10953 seed=0.0000 | pow 0.620/0.514 tel 0.296/0.601 hos 0.597/0.529 sub 0.100/0.397 wat 0.489/0.509 fue 0.499/0.597 | 735s
+Epoch 380 | train=0.10276 val=0.11123 seed=0.0000 | pow 0.608/0.523 tel 0.296/0.600 hos 0.598/0.521 sub 0.099/0.398 wat 0.501/0.509 fue 0.495/0.597 | 755s
+Epoch 390 | train=0.10306 val=0.10770 seed=0.0000 | pow 0.626/0.529 tel 0.297/0.592 hos 0.593/0.528 sub 0.100/0.398 wat 0.494/0.507 fue 0.500/0.586 | 774s
+Epoch 400 | train=0.10652 val=0.11244 seed=0.0000 | pow 0.613/0.521 tel 0.301/0.603 hos 0.596/0.530 sub 0.099/0.395 wat 0.498/0.504 fue 0.493/0.591 | 794s
+Epoch 410 | train=0.10010 val=0.10861 seed=0.0000 | pow 0.631/0.518 tel 0.299/0.604 hos 0.595/0.523 sub 0.100/0.390 wat 0.503/0.509 fue 0.497/0.588 | 814s
+Epoch 420 | train=0.10186 val=0.10864 seed=0.0000 | pow 0.616/0.518 tel 0.298/0.615 hos 0.599/0.535 sub 0.099/0.388 wat 0.490/0.511 fue 0.492/0.590 | 834s
+Epoch 430 | train=0.10604 val=0.10970 seed=0.0000 | pow 0.614/0.507 tel 0.299/0.597 hos 0.599/0.529 sub 0.100/0.397 wat 0.497/0.510 fue 0.496/0.605 | 853s
+Epoch 440 | train=0.09994 val=0.10701 seed=0.0000 | pow 0.628/0.520 tel 0.297/0.595 hos 0.592/0.533 sub 0.099/0.389 wat 0.491/0.503 fue 0.499/0.588 | 873s
+Epoch 450 | train=0.10023 val=0.10800 seed=0.0000 | pow 0.630/0.523 tel 0.299/0.598 hos 0.596/0.533 sub 0.100/0.395 wat 0.489/0.502 fue 0.501/0.595 | 892s
+Epoch 460 | train=0.10189 val=0.11523 seed=0.0000 | pow 0.616/0.517 tel 0.296/0.607 hos 0.596/0.518 sub 0.098/0.399 wat 0.486/0.514 fue 0.494/0.597 | 912s
+[early stop] no improvement for 50 epochs; best epoch 416 val 0.10605
+[held-out geoclaw_2050] soft log loss=0.16101
+[held-out syn_ts_914_6_1p2955] soft log loss=0.03058
+[held-out syn_ts_258_9_3p0022] soft log loss=0.14884
+[held-out syn_ts_605_5_3p7563] soft log loss=0.11580
+[held-out syn_ts_808_27_3p7885] soft log loss=0.10984
+[held-out syn2_t449w6_wl2p103] soft log loss=0.04975
+[held-out syn2_t580w24_wl2p439] soft log loss=0.11214
+[held-out syn2_t934c34_wl2p777] soft log loss=0.11308
+[held-out syn2_t270w17_wl3p116] soft log loss=0.12113
+[held-out syn2_t33w13_wl3p458] soft log loss=0.13363
+[held-out syn2_t857w1_wl3p800] soft log loss=0.10578
+[held-out syn2_t116w1_wl4p130] soft log loss=0.08212
+[held-out syn2_t198w16_wl4p722] soft log loss=0.07445
+head at best epoch: {'power': (0.6311, 0.52), 'telecom': (0.2972, 0.6042), 'hospital': (0.5965, 0.5289), 'subway': (0.1, 0.3913), 'water': (0.4931, 0.5079), 'fuel': (0.4903, 0.5921)}
+done: 467 epochs (early stop), best epoch 416, best val 0.10605, 924s

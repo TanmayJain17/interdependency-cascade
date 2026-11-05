@@ -1,0 +1,19 @@
+commit=6f5fe28 branch=feat/direct-model uncommitted_files=0 cache=/scratch/tj2587/results/gnn_direct_targets_v1/static
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F1] PASS  per-run build identical in 4 settings: True; Week 32 direct inputs identical on 4 storms x 2 label modes: True; model.py prefix: True; train.py lines removed: 0
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F2] PASS  max |phi_hat - phi formula| 1.19e-07; max |e2e input row - Week 32 row| 1.19e-07
+[F3] PASS  power median 0.5975 (assumed 0.6, 0.42%) beta 0.5008 (assumed 0.5, 0.17%) n=551 ok; telecom median 0.3003 (assumed 0.3, 0.12%) beta 0.5996 (assumed 0.6, 0.06%) n=13193 ok; hospital median 0.6022 (assumed 0.6, 0.36%) beta 0.5125 (assumed 0.5, 2.50%) n=187 ok; subway median 0.1000 (assumed 0.1, 0.02%) beta 0.4001 (assumed 0.4, 0.03%) n=1077 ok; water median 0.4992 (assumed 0.5, 0.16%) beta 0.4998 (assumed 0.5, 0.04%) n=1169 ok; fuel median 0.4975 (assumed 0.5, 0.49%) beta 0.5985 (assumed 0.6, 0.24%) n=2386 ok; stage-1 Adam fit within 0.00% of the MLE after 298 steps
+[F4] PASS  detach=1: non-zero grad on median and beta for all 5 types with an unsaturated wet site: True (saturated here: ['hospital']); detach=0: non-zero grad on median and beta for all 5 types with an unsaturated wet site: True (saturated here: ['hospital']); seed loss (log form) finite and non-zero gradient on all 6 wet types: True; detach changes the head gradient: True; summary from phi_hat vs formula max gap 6.0e-08
+[F5] PASS  mixture monotone on the depth grid for 6 types: True; K=1 equals the lognormal head (max gap 0.0e+00); composed p >= phi_hat*gate, monotone in k, externals 0: True
+[F6] PASS  timing=off width 16 (expected 16) params 698,648 mono-violation rate on random weights 0.312; timing=on width 22 (expected 22) params 700,952 mono-violation rate on random weights 0.766
+wrote analysis/gnn/week33_fragility_fingerprint_v1.json
+FINGERPRINT PASSED (F1, F2, F3, F4, F5, F6 decided)
+exit=0

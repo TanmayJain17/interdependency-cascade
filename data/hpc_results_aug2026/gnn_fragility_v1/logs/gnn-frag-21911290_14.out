@@ -1,0 +1,33 @@
+task=14 name=e2e_a2_mixture_arrival_timing_s1 arm=a2_mixture cell=arrival_timing mode=arrival torch_seed=1 init=perturb_up timing=1 extra=[--fragility mixture   --frag_init hazus --lambda_seed 1.0  --frag_regime joint      --detach_phi 1] cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival ckpt=/scratch/tj2587/results/gnn_fragility_v1_smoke/e2e_a2_mixture_arrival_timing_s1 smoke=1 commit=6f5fe28 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week33_fragility_fingerprint_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True, 'F6': True} -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_arrival_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/arrival: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs on -> OK
+[gate] assumed fragility parameters unchanged: OK
+=== TRAIN MODE, end-to-end fragility (mixture) — depth in, probability out ===
+torch seed set: 1
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+Train: 50 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode arrival | timing inputs on | input width 23 | fragility mixture init hazus lambda_seed 1.0 lambda_g 0.0 regime joint detach 1 | loaded in 1s
+Model parameters: 701,390 (head 54)  device=cuda
+head at start: mixture
+Epoch 000 | train=0.67649 val=0.42338 * seed=0.2518 | 4s
+Epoch 001 | train=0.32219 val=0.28726 * seed=0.2455 | 6s
+Epoch 002 | train=0.25485 val=0.26414 * seed=0.2451 | 8s
+Epoch 003 | train=0.23295 val=0.22284 * seed=0.2451 | 10s
+Epoch 004 | train=0.20672 val=0.20588 * seed=0.2451 | 13s
+[held-out geoclaw_2050] soft log loss=0.25996
+[held-out syn_ts_914_6_1p2955] soft log loss=0.08357
+[held-out syn_ts_258_9_3p0022] soft log loss=0.24752
+[held-out syn_ts_605_5_3p7563] soft log loss=0.22086
+[held-out syn_ts_808_27_3p7885] soft log loss=0.22181
+[held-out syn2_t449w6_wl2p103] soft log loss=0.10779
+[held-out syn2_t580w24_wl2p439] soft log loss=0.18050
+[held-out syn2_t934c34_wl2p777] soft log loss=0.20033
+[held-out syn2_t270w17_wl3p116] soft log loss=0.22979
+[held-out syn2_t33w13_wl3p458] soft log loss=0.24486
+[held-out syn2_t857w1_wl3p800] soft log loss=0.23046
+[held-out syn2_t116w1_wl4p130] soft log loss=0.21789
+[held-out syn2_t198w16_wl4p722] soft log loss=0.21731
+done: 5 epochs (max epochs), best epoch 4, best val 0.20588, 13s

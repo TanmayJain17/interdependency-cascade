@@ -1,0 +1,22 @@
+task=1 name=e2e_a1b_lognormal_l0_static_plain_s1 arm=a1b_lognormal_l0 cell=static_plain ckpt=/scratch/tj2587/results/gnn_fragility_v1/e2e_a1b_lognormal_l0_static_plain_s1/best.pt week32_json=none cache=/scratch/tj2587/results/gnn_direct_targets_v1/static out=/scratch/tj2587/results/gnn_fragility_numbers_v1/e2e_a1b_lognormal_l0_static_plain_s1.json commit=6f5fe28 branch=feat/direct-model
+[gate] CUDA OK: NVIDIA L40S
+[ckpt] /scratch/tj2587/results/gnn_fragility_v1/e2e_a1b_lognormal_l0_static_plain_s1/best.pt: arm a1b_lognormal_l0, cell static_plain, 50 training storms, torch seed 1, best epoch 450, saved val 0.069051, params 699,044; G6 identity OK
+[gate] G2 val loss 0.069051 vs saved 0.069051 -> OK
+  syn2_t449w6_wl2p103         2.10 m  model 0.0283  B0 0.3799  floor 0.0267  count96 0.018  decomp 0.0206  seed 0.3256/0.3251  mono 0.0000
+  syn_ts_914_6_1p2955         2.17 m  model 0.0272  B0 0.4415  floor 0.0258  count96 0.030  decomp 0.0270  seed 0.3150/0.3145  mono 0.0000
+  syn2_t580w24_wl2p439        2.44 m  model 0.0922  B0 1.3437  floor 0.0898  count96 0.034  decomp 0.0495  seed 0.3077/0.3072  mono 0.0047
+  syn2_t934c34_wl2p777        2.78 m  model 0.0727  B0 1.9344  floor 0.0704  count96 0.007  decomp 0.0503  seed 0.2580/0.2576  mono 0.0197
+  syn2_t270w17_wl3p116        3.12 m  model 0.0850  B0 2.3684  floor 0.0829  count96 0.003  decomp 0.0569  seed 0.2436/0.2431  mono 0.0100
+  syn_ts_258_9_3p0022         3.37 m  model 0.0779  B0 2.7008  floor 0.0755  count96 0.004  decomp 0.0504  seed 0.2482/0.2477  mono 0.0044
+  syn2_t33w13_wl3p458         3.46 m  model 0.0758  B0 2.7803  floor 0.0731  count96 0.009  decomp 0.0521  seed 0.2359/0.2354  mono 0.0042
+  geoclaw_2050                3.48 m  model 0.0771  B0 2.8252  floor 0.0633  count96 0.008  decomp 0.0839  seed 0.1878/0.1874  mono 0.0111
+  syn_ts_808_27_3p7885        3.75 m  model 0.0706  B0 3.0079  floor 0.0676  count96 0.008  decomp 0.0572  seed 0.1952/0.1947  mono 0.0000
+  syn2_t857w1_wl3p800         3.80 m  model 0.0700  B0 3.0846  floor 0.0685  count96 0.004  decomp 0.0601  seed 0.1916/0.1911  mono 0.0000
+  syn2_t116w1_wl4p130         4.13 m  model 0.0652  B0 3.2920  floor 0.0630  count96 0.001  decomp 0.0533  seed 0.1628/0.1623  mono 0.0032
+  syn_ts_605_5_3p7563         4.46 m  model 0.0690  B0 3.3830  floor 0.0629  count96 0.003  decomp 0.0420  seed 0.1419/0.1414  mono 0.0086
+  syn2_t198w16_wl4p722        4.72 m  model 0.0796  B0 3.5123  floor 0.0648  count96 0.028  decomp 0.0431  seed 0.1193/0.1188  mono 0.0014
+[gate] G3 p >= phi_hat within 1e-05: OK; min(p - phi) -1.073e-06; sites below -1e-6: 94 (at phi >= 1 - 1e-6: 94); below -1e-5: 0
+[gate] G4 monotone in the horizon: OK; G5 externals phi = 0: OK
+learned fragility: {'power': (0.6096, 0.505), 'telecom': (0.2992, 0.5973), 'hospital': (0.6068, 0.5272), 'subway': (0.0998, 0.3983), 'water': (0.4963, 0.5124), 'fuel': (0.5039, 0.5995)}  assumed: {'power': (0.6, 0.5), 'telecom': (0.3, 0.6), 'hospital': (0.6, 0.5), 'subway': (0.1, 0.4), 'water': (0.5, 0.5), 'fuel': (0.5, 0.6)}
+13-storm mean soft log loss 0.0685 (B0 2.3887, floor 0.0642); speed 15.3 ms per pass; gates {'G1_history_present': True, 'G6_identity': True, 'G5_external_phi_zero': True, 'G2_val_loss_reproduced': True, 'G3_p_ge_phi': True, 'G4_monotone': True}; wrote /scratch/tj2587/results/gnn_fragility_numbers_v1/e2e_a1b_lognormal_l0_static_plain_s1.json
+ALL GATES PASS

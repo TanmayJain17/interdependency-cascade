@@ -1,0 +1,93 @@
+task=6 name=e2e_a2_mixture_static_plain_s1 arm=a2_mixture cell=static_plain mode=static torch_seed=1 init=perturb_up timing=unset extra=[--fragility mixture   --frag_init hazus --lambda_seed 1.0  --frag_regime joint      --detach_phi 1] cache=/scratch/tj2587/results/gnn_direct_targets_v1/static ckpt=/scratch/tj2587/results/gnn_fragility_v1/e2e_a2_mixture_static_plain_s1 smoke=0 commit=6f5fe28 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week33_fragility_fingerprint_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True, 'F6': True} -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_static_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/static: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs off -> OK
+[gate] assumed fragility parameters unchanged: OK
+=== TRAIN MODE, end-to-end fragility (mixture) — depth in, probability out ===
+torch seed set: 1
+Train: 50 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode static | timing inputs off | input width 17 | fragility mixture init hazus lambda_seed 1.0 lambda_g 0.0 regime joint detach 1 | loaded in 1s
+Model parameters: 699,086 (head 54)  device=cuda
+head at start: mixture
+Epoch 000 | train=0.55830 val=0.35723 * seed=0.2518 | 5s
+Epoch 001 | train=0.26769 val=0.23084 * seed=0.2455 | 8s
+Epoch 002 | train=0.20379 val=0.18850 * seed=0.2451 | 10s
+Epoch 003 | train=0.16386 val=0.15235 * seed=0.2451 | 13s
+Epoch 004 | train=0.13949 val=0.13389 * seed=0.2451 | 16s
+Epoch 005 | train=0.12986 val=0.12647 * seed=0.2451 | 19s
+Epoch 006 | train=0.12299 val=0.12057 * seed=0.2451 | 22s
+Epoch 009 | train=0.11481 val=0.11480 * seed=0.2451 | 30s
+Epoch 010 | train=0.11150 val=0.11113 * seed=0.2451 | 33s
+Epoch 011 | train=0.10758 val=0.10966 * seed=0.2451 | 36s
+Epoch 013 | train=0.10640 val=0.10534 * seed=0.2451 | 42s
+Epoch 014 | train=0.10371 val=0.10364 * seed=0.2451 | 44s
+Epoch 015 | train=0.10193 val=0.10280 * seed=0.2451 | 47s
+Epoch 016 | train=0.10070 val=0.10049 * seed=0.2451 | 50s
+Epoch 018 | train=0.09887 val=0.10023 * seed=0.2451 | 56s
+Epoch 019 | train=0.09951 val=0.09884 * seed=0.2451 | 59s
+Epoch 020 | train=0.09725 val=0.10309 seed=0.2451 | 61s
+Epoch 030 | train=0.09234 val=0.09362 seed=0.2451 | 89s
+Epoch 040 | train=0.08626 val=0.09027 seed=0.2451 | 117s
+Epoch 050 | train=0.08341 val=0.08409 * seed=0.2451 | 144s
+Epoch 060 | train=0.08179 val=0.08136 * seed=0.2451 | 171s
+Epoch 070 | train=0.07853 val=0.07878 * seed=0.2451 | 198s
+Epoch 080 | train=0.07693 val=0.07654 * seed=0.2451 | 226s
+Epoch 090 | train=0.07595 val=0.07549 * seed=0.2451 | 253s
+Epoch 100 | train=0.07731 val=0.07584 seed=0.2451 | 282s
+Epoch 110 | train=0.07709 val=0.07506 seed=0.2451 | 312s
+Epoch 120 | train=0.07394 val=0.07587 seed=0.2451 | 342s
+Epoch 130 | train=0.07249 val=0.07404 seed=0.2451 | 372s
+Epoch 140 | train=0.07225 val=0.07292 * seed=0.2451 | 402s
+Epoch 150 | train=0.07175 val=0.07483 seed=0.2451 | 432s
+Epoch 160 | train=0.09549 val=0.08116 seed=0.2451 | 462s
+Epoch 170 | train=0.07130 val=0.07209 seed=0.2451 | 492s
+Epoch 180 | train=0.07078 val=0.07212 seed=0.2451 | 522s
+Epoch 190 | train=0.07146 val=0.07472 seed=0.2451 | 551s
+Epoch 200 | train=0.07104 val=0.07268 seed=0.2451 | 581s
+Epoch 210 | train=0.07036 val=0.07123 * seed=0.2451 | 611s
+Epoch 220 | train=0.07027 val=0.07132 seed=0.2451 | 641s
+Epoch 230 | train=0.07067 val=0.07147 seed=0.2451 | 671s
+Epoch 240 | train=0.07001 val=0.07112 seed=0.2451 | 700s
+Epoch 250 | train=0.06955 val=0.07117 seed=0.2451 | 730s
+Epoch 260 | train=0.07021 val=0.07490 seed=0.2451 | 759s
+Epoch 270 | train=0.06946 val=0.07131 seed=0.2451 | 788s
+Epoch 280 | train=0.07052 val=0.07298 seed=0.2451 | 818s
+Epoch 290 | train=0.07357 val=0.07277 seed=0.2451 | 847s
+Epoch 300 | train=0.06906 val=0.07070 seed=0.2451 | 876s
+Epoch 310 | train=0.07135 val=0.07411 seed=0.2451 | 905s
+Epoch 320 | train=0.07095 val=0.07110 seed=0.2451 | 934s
+Epoch 330 | train=0.06951 val=0.07112 seed=0.2451 | 963s
+Epoch 340 | train=0.06951 val=0.07416 seed=0.2451 | 992s
+Epoch 350 | train=0.06914 val=0.07219 seed=0.2451 | 1021s
+Epoch 360 | train=0.06992 val=0.07141 seed=0.2451 | 1049s
+Epoch 370 | train=0.06896 val=0.07063 seed=0.2451 | 1078s
+Epoch 380 | train=0.06928 val=0.07194 seed=0.2451 | 1107s
+Epoch 390 | train=0.08063 val=0.07376 seed=0.2451 | 1135s
+Epoch 400 | train=0.06858 val=0.06985 seed=0.2451 | 1162s
+Epoch 410 | train=0.06855 val=0.06963 seed=0.2451 | 1190s
+Epoch 420 | train=0.06846 val=0.06979 seed=0.2451 | 1218s
+Epoch 430 | train=0.06936 val=0.07053 seed=0.2451 | 1245s
+Epoch 440 | train=0.07633 val=0.07296 seed=0.2451 | 1273s
+Epoch 450 | train=0.07278 val=0.07092 seed=0.2451 | 1300s
+Epoch 460 | train=0.06887 val=0.07438 seed=0.2451 | 1328s
+Epoch 470 | train=0.06811 val=0.06976 seed=0.2451 | 1356s
+Epoch 480 | train=0.06933 val=0.06991 seed=0.2451 | 1385s
+Epoch 490 | train=0.06824 val=0.07113 seed=0.2451 | 1414s
+Epoch 500 | train=0.06821 val=0.07010 seed=0.2451 | 1442s
+[early stop] no improvement for 50 epochs; best epoch 451 val 0.06941
+[held-out geoclaw_2050] soft log loss=0.07698
+[held-out syn_ts_914_6_1p2955] soft log loss=0.02725
+[held-out syn_ts_258_9_3p0022] soft log loss=0.07844
+[held-out syn_ts_605_5_3p7563] soft log loss=0.06965
+[held-out syn_ts_808_27_3p7885] soft log loss=0.07134
+[held-out syn2_t449w6_wl2p103] soft log loss=0.02829
+[held-out syn2_t580w24_wl2p439] soft log loss=0.09233
+[held-out syn2_t934c34_wl2p777] soft log loss=0.07321
+[held-out syn2_t270w17_wl3p116] soft log loss=0.08569
+[held-out syn2_t33w13_wl3p458] soft log loss=0.07624
+[held-out syn2_t857w1_wl3p800] soft log loss=0.07028
+[held-out syn2_t116w1_wl4p130] soft log loss=0.06562
+[held-out syn2_t198w16_wl4p722] soft log loss=0.08055
+done: 502 epochs (early stop), best epoch 451, best val 0.06941, 1446s

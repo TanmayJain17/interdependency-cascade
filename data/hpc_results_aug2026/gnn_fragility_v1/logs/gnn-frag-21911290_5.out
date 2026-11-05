@@ -1,0 +1,34 @@
+task=5 name=e2e_a4_sequential_static_plain_s1 arm=a4_sequential cell=static_plain mode=static torch_seed=1 init=perturb_up timing=unset extra=[--fragility lognormal --frag_init perturb_up --lambda_seed 1.0  --frag_regime sequential --detach_phi 1 --stage1_steps 2000] cache=/scratch/tj2587/results/gnn_direct_targets_v1/static ckpt=/scratch/tj2587/results/gnn_fragility_v1_smoke/e2e_a4_sequential_static_plain_s1 smoke=1 commit=6f5fe28 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week33_fragility_fingerprint_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True, 'F6': True} -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_static_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/static: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs off -> OK
+[gate] assumed fragility parameters unchanged: OK
+=== TRAIN MODE, end-to-end fragility (lognormal) — depth in, probability out ===
+torch seed set: 1
+Train: 50 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode static | timing inputs off | input width 17 | fragility lognormal init perturb_up lambda_seed 1.0 lambda_g 0.0 regime sequential detach 1 | loaded in 1s
+Model parameters: 699,044 (head 12)  device=cuda
+head at start: {'power': {'median': 1.2, 'beta': 0.25}, 'telecom': {'median': 0.6, 'beta': 0.3}, 'hospital': {'median': 1.2, 'beta': 0.25}, 'subway': {'median': 0.2, 'beta': 0.2}, 'water': {'median': 1.0, 'beta': 0.25}, 'fuel': {'median': 1.0, 'beta': 0.3}}
+[sequential] stage 1 done in 256 steps, seed loss 0.216254; head frozen: {'power': (0.5975, 0.5009), 'telecom': (0.3003, 0.5996), 'hospital': (0.6022, 0.5125), 'subway': (0.1, 0.4001), 'water': (0.4992, 0.4998), 'fuel': (0.4976, 0.5985)}
+Epoch 000 | train=0.55777 val=0.35624 * seed=0.0000 | pow 0.598/0.501 tel 0.300/0.600 hos 0.602/0.513 sub 0.100/0.400 wat 0.499/0.500 fue 0.498/0.599 | 2s
+Epoch 001 | train=0.26728 val=0.23202 * seed=0.0000 | pow 0.598/0.501 tel 0.300/0.600 hos 0.602/0.513 sub 0.100/0.400 wat 0.499/0.500 fue 0.498/0.599 | 4s
+Epoch 002 | train=0.20425 val=0.18902 * seed=0.0000 | pow 0.598/0.501 tel 0.300/0.600 hos 0.602/0.513 sub 0.100/0.400 wat 0.499/0.500 fue 0.498/0.599 | 6s
+Epoch 003 | train=0.16418 val=0.15286 * seed=0.0000 | pow 0.598/0.501 tel 0.300/0.600 hos 0.602/0.513 sub 0.100/0.400 wat 0.499/0.500 fue 0.498/0.599 | 8s
+Epoch 004 | train=0.13974 val=0.13466 * seed=0.0000 | pow 0.598/0.501 tel 0.300/0.600 hos 0.602/0.513 sub 0.100/0.400 wat 0.499/0.500 fue 0.498/0.599 | 10s
+[held-out geoclaw_2050] soft log loss=0.14673
+[held-out syn_ts_914_6_1p2955] soft log loss=0.07318
+[held-out syn_ts_258_9_3p0022] soft log loss=0.14285
+[held-out syn_ts_605_5_3p7563] soft log loss=0.16112
+[held-out syn_ts_808_27_3p7885] soft log loss=0.14677
+[held-out syn2_t449w6_wl2p103] soft log loss=0.06688
+[held-out syn2_t580w24_wl2p439] soft log loss=0.14236
+[held-out syn2_t934c34_wl2p777] soft log loss=0.13013
+[held-out syn2_t270w17_wl3p116] soft log loss=0.14397
+[held-out syn2_t33w13_wl3p458] soft log loss=0.14387
+[held-out syn2_t857w1_wl3p800] soft log loss=0.15090
+[held-out syn2_t116w1_wl4p130] soft log loss=0.16012
+[held-out syn2_t198w16_wl4p722] soft log loss=0.16525
+head at best epoch: {'power': (0.5975, 0.5009), 'telecom': (0.3003, 0.5996), 'hospital': (0.6022, 0.5125), 'subway': (0.1, 0.4001), 'water': (0.4992, 0.4998), 'fuel': (0.4976, 0.5985)}
+done: 5 epochs (max epochs), best epoch 4, best val 0.13466, 10s

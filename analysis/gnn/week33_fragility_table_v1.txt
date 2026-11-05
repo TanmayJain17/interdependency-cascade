@@ -1,0 +1,40 @@
+P0 gates: PASS — fingerprint F1-F6, 36/36 JSONs gate-clean, A0 reproduces Week 32
+
+=== static_plain — 13-storm mean soft log loss, curve error, decomposition error, mono violations (mean of seeds) ===
+arm                         loss   vs A0   curve  decomp  mono%  recovered (median | beta) per type
+a0_formula                0.0690   1.000  0.0000  0.0529   0.35  
+a1a_lognormal_l1          0.0686   0.994  0.0008  0.0508   0.32  powe 0.8|1.5%  tele 0.3|0.2%  hosp 1.0|1.7%  subw 0.1|1.0%  wate 0.6|0.6%  fuel 0.8|0.9%
+a1b_lognormal_l0          0.0685   0.994  0.0013  0.0496   0.43  powe 1.9|2.5%  tele 0.6|0.4%  hosp 1.1|5.7%  subw 0.9|2.1%  wate 2.3|2.5%  fuel 0.8|0.3%
+a1c_lognormal_l0p1        0.0691   1.002  0.0006  0.0506   0.36  powe 0.6|1.2%  tele 0.2|0.1%  hosp 1.2|1.4%  subw 0.4|1.1%  wate 0.5|0.9%  fuel 0.7|0.5%
+a1d_lognormal_l10         0.0685   0.993  0.0006  0.0489   0.30  powe 0.2|0.4%  tele 0.3|0.2%  hosp 0.8|1.9%  subw 0.4|0.4%  wate 0.9|0.9%  fuel 0.6|1.0%
+a1e_lognormal_nodetach    0.0685   0.993  0.0007  0.0486   0.39  powe 0.7|1.7%  tele 0.4|0.4%  hosp 0.8|3.1%  subw 0.2|0.8%  wate 0.2|0.9%  fuel 0.7|0.3%
+a4_sequential             0.0693   1.005  0.0004  0.0522   0.31  powe 0.4|0.2%  tele 0.1|0.1%  hosp 0.4|2.5%  subw 0.0|0.0%  wate 0.2|0.0%  fuel 0.5|0.2%
+a2_mixture                0.0691   1.001  0.0008  0.0522   0.28  
+a3_blackbox               0.0709   1.028     nan     nan   1.24  
+geoclaw_2050 by arm     a0 0.0774  a1a 0.0779  a1b 0.0777  a1c 0.0789  a1d 0.0783  a1e 0.0775  a4 0.0782  a2 0.0787  a3 0.0841
+
+=== arrival_timing — 13-storm mean soft log loss, curve error, decomposition error, mono violations (mean of seeds) ===
+arm                         loss   vs A0   curve  decomp  mono%  recovered (median | beta) per type
+a0_formula                0.1036   1.000  0.0000  0.0610   0.22  
+a1a_lognormal_l1          0.1051   1.014  0.0010  0.0614   0.27  powe 0.4|1.5%  tele 0.6|0.4%  hosp 1.0|2.3%  subw 0.4|0.4%  wate 0.5|0.5%  fuel 0.2|1.1%
+a1b_lognormal_l0          0.1041   1.004  0.0026  0.0603   0.44  powe 6.2|6.7%  tele 0.9|1.3%  hosp 0.6|8.1%  subw 0.8|2.2%  wate 1.4|1.6%  fuel 1.9|1.3%
+a1c_lognormal_l0p1        0.1026   0.990  0.0011  0.0589   0.31  powe 0.6|1.8%  tele 0.6|0.9%  hosp 1.2|2.5%  subw 0.6|0.8%  wate 0.5|0.8%  fuel 1.2|0.8%
+a1d_lognormal_l10         0.1029   0.993  0.0007  0.0597   0.26  powe 0.5|1.6%  tele 0.7|0.3%  hosp 0.9|2.3%  subw 0.3|0.5%  wate 0.5|0.1%  fuel 0.5|1.0%
+a1e_lognormal_nodetach    0.1036   0.999  0.0009  0.0587   0.28  powe 0.2|0.5%  tele 0.7|0.5%  hosp 1.9|3.1%  subw 0.3|1.0%  wate 0.4|0.8%  fuel 0.3|0.4%
+a4_sequential             0.1038   1.001  0.0004  0.0616   0.24  powe 0.4|0.2%  tele 0.1|0.1%  hosp 0.4|2.5%  subw 0.0|0.0%  wate 0.2|0.0%  fuel 0.5|0.2%
+a2_mixture                0.1036   0.999  0.0010  0.0603   0.35  
+a3_blackbox               0.1045   1.008     nan     nan   1.35  
+geoclaw_2050 by arm     a0 0.1395  a1a 0.1466  a1b 0.1511  a1c 0.1446  a1d 0.1389  a1e 0.1493  a4 0.1415  a2 0.1423  a3 0.1486
+
+=== VERDICTS (pre-registered 4 Nov 2026) ===
+  P0  PASS   fingerprint F1-F6, 36/36 JSONs gate-clean, A0 reproduces Week 32
+  P1  PASS   static_plain: big-four worst median error 0.8% (power, seed 1); arrival_timing: big-four worst median error 0.6% (telecom, seed 1)
+  P2  MISS   static_plain: loss ratio to A0 0.994; arrival_timing: loss ratio to A0 1.004; runs with power/telecom median >= 10% too low: 0/4
+  P3  PASS   static_plain: a1a/A0 = 0.994; arrival_timing: a1a/A0 = 1.014
+  P4  MISS   static_plain: curve error a2 0.0008 vs a1a 0.0008; loss ratio a2/a1a 1.007; arrival_timing: curve error a2 0.0010 vs a1a 0.0010; loss ratio a2/a1a 0.985
+  P5  PASS   static_plain: geoclaw a3 0.0841 vs A0 0.0774; mono violations 1.24%; arrival_timing: geoclaw a3 0.1486 vs A0 0.1395; mono violations 1.35%
+  P6  MISS   static_plain: a1c 1.008, a1d 0.999, a4 1.011; arrival_timing: a1c 0.976, a1d 0.979, a4 0.987
+  P7  MISS   static_plain: loss ratio 0.999; big four recovered: True; arrival_timing: loss ratio 0.985; big four recovered: True
+  4 of 8 predictions passed
+
+wrote analysis/gnn/week33_fragility_v1.csv (468 rows)

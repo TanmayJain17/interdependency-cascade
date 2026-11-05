@@ -1,0 +1,197 @@
+{
+ "F1": {
+  "pass": true,
+  "detail": "per-run build identical in 4 settings: True; Week 32 direct inputs identical on 4 storms x 2 label modes: True; model.py prefix: True; train.py lines removed: 0"
+ },
+ "F2": {
+  "pass": true,
+  "detail": "max |phi_hat - phi formula| 1.19e-07; max |e2e input row - Week 32 row| 1.19e-07"
+ },
+ "F3_oracle": {
+  "power": {
+   "median": 0.5974866810544157,
+   "beta": 0.5008455997213588,
+   "assumed_median": 0.6,
+   "assumed_beta": 0.5,
+   "rel_err_median": 0.004188864909307144,
+   "rel_err_beta": 0.0016911994427175614,
+   "n_site_storms": 551,
+   "n_informative": 309,
+   "ci95_median": [
+    0.5967639625887609,
+    0.5982471620204377
+   ],
+   "ci95_beta": [
+    0.49887843546435057,
+    0.502646049132112
+   ],
+   "pass": true
+  },
+  "telecom": {
+   "median": 0.30034683750164076,
+   "beta": 0.599637369717297,
+   "assumed_median": 0.3,
+   "assumed_beta": 0.6,
+   "rel_err_median": 0.001156125005469244,
+   "rel_err_beta": 0.0006043838045050043,
+   "n_site_storms": 13193,
+   "n_informative": 4902,
+   "ci95_median": [
+    0.30022864711789476,
+    0.3004823411221348
+   ],
+   "ci95_beta": [
+    0.5991163717147522,
+    0.5999875679318074
+   ],
+   "pass": true
+  },
+  "hospital": {
+   "median": 0.6021596279559871,
+   "beta": 0.5125170544729509,
+   "assumed_median": 0.6,
+   "assumed_beta": 0.5,
+   "rel_err_median": 0.003599379926645163,
+   "rel_err_beta": 0.025034108945901856,
+   "n_site_storms": 187,
+   "n_informative": 108,
+   "ci95_median": [
+    0.599450419786739,
+    0.6051378866111229
+   ],
+   "ci95_beta": [
+    0.509677947680084,
+    0.5166903364317518
+   ],
+   "pass": true
+  },
+  "subway": {
+   "median": 0.09997521815387946,
+   "beta": 0.40012122078942347,
+   "assumed_median": 0.1,
+   "assumed_beta": 0.4,
+   "rel_err_median": 0.00024781846120547346,
+   "rel_err_beta": 0.00030305197355862123,
+   "n_site_storms": 1077,
+   "n_informative": 112,
+   "ci95_median": [
+    0.09967056345362865,
+    0.10026155269802478
+   ],
+   "ci95_beta": [
+    0.39828400151776616,
+    0.4021574000560571
+   ],
+   "pass": true
+  },
+  "water": {
+   "median": 0.4991780084165833,
+   "beta": 0.49980983311438637,
+   "assumed_median": 0.5,
+   "assumed_beta": 0.5,
+   "rel_err_median": 0.0016439831668334515,
+   "rel_err_beta": 0.0003803337712272592,
+   "n_site_storms": 1169,
+   "n_informative": 555,
+   "ci95_median": [
+    0.4985519675588887,
+    0.4997207251683
+   ],
+   "ci95_beta": [
+    0.4986020011612312,
+    0.501150762065625
+   ],
+   "pass": true
+  },
+  "fuel": {
+   "median": 0.4975496931454569,
+   "beta": 0.5985313154994616,
+   "assumed_median": 0.5,
+   "assumed_beta": 0.6,
+   "rel_err_median": 0.004900613709086232,
+   "rel_err_beta": 0.002447807500897311,
+   "n_site_storms": 2386,
+   "n_informative": 1378,
+   "ci95_median": [
+    0.4972316942431195,
+    0.49806466917908976
+   ],
+   "ci95_beta": [
+    0.597494422583113,
+    0.5994466665446935
+   ],
+   "pass": true
+  }
+ },
+ "F3_stage1": {
+  "steps": 298,
+  "params": {
+   "power": {
+    "median": 0.5974894762039185,
+    "beta": 0.500847578048706,
+    "assumed_median": 0.5999999642372131,
+    "assumed_beta": 0.5
+   },
+   "telecom": {
+    "median": 0.300344854593277,
+    "beta": 0.5996184945106506,
+    "assumed_median": 0.29999998211860657,
+    "assumed_beta": 0.6000000238418579
+   },
+   "hospital": {
+    "median": 0.6021644473075867,
+    "beta": 0.5125207901000977,
+    "assumed_median": 0.5999999642372131,
+    "assumed_beta": 0.5
+   },
+   "subway": {
+    "median": 0.09997589886188507,
+    "beta": 0.40012288093566895,
+    "assumed_median": 0.09999999403953552,
+    "assumed_beta": 0.4000000059604645
+   },
+   "water": {
+    "median": 0.4991804361343384,
+    "beta": 0.4998118579387665,
+    "assumed_median": 0.5,
+    "assumed_beta": 0.5
+   },
+   "fuel": {
+    "median": 0.4975517988204956,
+    "beta": 0.5985335111618042,
+    "assumed_median": 0.5,
+    "assumed_beta": 0.6000000238418579
+   }
+  },
+  "max_rel_gap_to_mle": 3.147770235745195e-05
+ },
+ "F3": {
+  "pass": true,
+  "detail": "power median 0.5975 (assumed 0.6, 0.42%) beta 0.5008 (assumed 0.5, 0.17%) n=551 ok; telecom median 0.3003 (assumed 0.3, 0.12%) beta 0.5996 (assumed 0.6, 0.06%) n=13193 ok; hospital median 0.6022 (assumed 0.6, 0.36%) beta 0.5125 (assumed 0.5, 2.50%) n=187 ok; subway median 0.1000 (assumed 0.1, 0.02%) beta 0.4001 (assumed 0.4, 0.03%) n=1077 ok; water median 0.4992 (assumed 0.5, 0.16%) beta 0.4998 (assumed 0.5, 0.04%) n=1169 ok; fuel median 0.4975 (assumed 0.5, 0.49%) beta 0.5985 (assumed 0.6, 0.24%) n=2386 ok; stage-1 Adam fit within 0.00% of the MLE after 298 steps"
+ },
+ "F4": {
+  "pass": true,
+  "detail": "detach=1: non-zero grad on median and beta for all 5 types with an unsaturated wet site: True (saturated here: ['hospital']); detach=0: non-zero grad on median and beta for all 5 types with an unsaturated wet site: True (saturated here: ['hospital']); seed loss (log form) finite and non-zero gradient on all 6 wet types: True; detach changes the head gradient: True; summary from phi_hat vs formula max gap 6.0e-08"
+ },
+ "F5": {
+  "pass": true,
+  "detail": "mixture monotone on the depth grid for 6 types: True; K=1 equals the lognormal head (max gap 0.0e+00); composed p >= phi_hat*gate, monotone in k, externals 0: True"
+ },
+ "F6": {
+  "pass": true,
+  "detail": "timing=off width 16 (expected 16) params 698,648 mono-violation rate on random weights 0.312; timing=on width 22 (expected 22) params 700,952 mono-violation rate on random weights 0.766"
+ },
+ "_meta": {
+  "base_commit": "f1a1e48",
+  "cache": "/scratch/tj2587/results/gnn_direct_targets_v1/static",
+  "elapsed_s": 108.1,
+  "decided": [
+   "F1",
+   "F2",
+   "F3",
+   "F4",
+   "F5",
+   "F6"
+  ]
+ }
+}
