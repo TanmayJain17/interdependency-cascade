@@ -1,0 +1,29 @@
+task=0 cell=static_plain mode=static size=17 torch_seed=1 timing=unset cache=/scratch/tj2587/results/gnn_direct_targets_v1/static ckpt=/scratch/tj2587/results/gnn_direct_v1_smoke/direct_static_plain_n17_s1 smoke=1 commit=898f966 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_static_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/static: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs off -> OK
+=== TRAIN MODE, target marginal — the direct model, one example per storm ===
+torch seed set: 1
+Train: 17 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode static | timing inputs off | input width 17 | loaded in 7s
+Model parameters: 699,032  head=hazard  device=cuda
+Epoch 000 | train=0.79169 val=0.57489 * | 2s
+Epoch 001 | train=0.38014 val=0.40569 * | 3s
+Epoch 002 | train=0.30551 val=0.34082 * | 3s
+Epoch 003 | train=0.26111 val=0.28995 * | 4s
+Epoch 004 | train=0.22171 val=0.25999 * | 5s
+[held-out geoclaw_2050] soft log loss=0.30524
+[held-out syn_ts_914_6_1p2955] soft log loss=0.12089
+[held-out syn_ts_258_9_3p0022] soft log loss=0.30214
+[held-out syn_ts_605_5_3p7563] soft log loss=0.33129
+[held-out syn_ts_808_27_3p7885] soft log loss=0.31605
+[held-out syn2_t449w6_wl2p103] soft log loss=0.11102
+[held-out syn2_t580w24_wl2p439] soft log loss=0.20534
+[held-out syn2_t934c34_wl2p777] soft log loss=0.24359
+[held-out syn2_t270w17_wl3p116] soft log loss=0.28274
+[held-out syn2_t33w13_wl3p458] soft log loss=0.30659
+[held-out syn2_t857w1_wl3p800] soft log loss=0.32031
+[held-out syn2_t116w1_wl4p130] soft log loss=0.32845
+[held-out syn2_t198w16_wl4p722] soft log loss=0.33302
+done: 5 epochs (max epochs), best epoch 4, best val 0.25999, 5s

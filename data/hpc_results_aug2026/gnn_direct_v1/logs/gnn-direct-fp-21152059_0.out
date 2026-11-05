@@ -1,0 +1,187 @@
+task=0 mode=static labels=/scratch/tj2587/results/legacy_v1_n1000,/scratch/tj2587/results/gissr48_v1/static cache=/scratch/tj2587/results/gnn_direct_targets_v1/static out=analysis/gnn/week31_direct_fingerprint_static_v1.json commit=12e6313 branch=feat/direct-model uncommitted_files=0
+[gate] heterodata total=6231 -> OK
+[gate] labels for 70 storms in [PosixPath('/scratch/tj2587/results/legacy_v1_n1000'), PosixPath('/scratch/tj2587/results/gissr48_v1/static')]: storms without exactly one file [] -> OK
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F1] PASS  data.py inputs and labels identical to f45a7b2 on 4 runs in 4 switch settings (widths [9, 16, 12, 22]); model.py at f45a7b2 is a prefix of the working file: True; train.py: 0 lines of f45a7b2 removed (must be 0; the default path is additions only)
+[info] split: train17/34/50 = 17/34/50, val 7, test 13; depth tables hold 71 storms, missing for the split: []; external sites 99
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F4] PASS  p >= phi_k and non-decreasing on random weights, static and arrival, timing off/on; syn_ts_914_6_1p2955: 156 wet sites, expected seeds 91.3; syn2_t580w24_wl2p439: 216 wet sites, expected seeds 140.3; geoclaw_2050: 368 wet sites, expected seeds 295.5; syn2_t198w16_wl4p722: 737 wet sites, expected seeds 660.1; timing=off width 17 params 699,032; timing=on width 23 params 701,336
+[F5] PASS  loss at p = pi_hat 0.460928 vs entropy 0.460928; perturbed p 0.467974 > entropy: True
+  [F5 on geoclaw_2026] loss at p = pi_hat 0.058363 vs entropy 0.058363
+  [F5 on geoclaw_2080] loss at p = pi_hat 0.073973 vs entropy 0.073973
+[F2] PASS  70/70 storms with the recount equal to marginal_labels (seeds, pi_hat, both halves); geoclaw_2026: 1000 runs, failed by 96 h mean 1970.6 sites, seeds 206.6 (t==0 fallback), recount equal; geoclaw_2080: 1000 runs, failed by 96 h mean 2509.1 sites, seeds 416.0 (t==0 fallback), recount equal
+[F3] FAIL  seed frequency within 0.03 of phi on 26727/26976 wet non-external sites (0.9908) over 70 storms (seed sources ['t==0 fallback']; left out under this label mode: []); external sites phi = 0 and never seed: True; telecom_cluster_03042 flagged in ['syn_ts_173_2_0p8859', 'syn_ts_662_3_0p9973', 'syn_ts_192_7_1p0240', 'syn_ts_708_13_1p1567', 'syn_ts_570_2_1p5351']; other offenders in ['geoclaw_2026', 'geoclaw_2080', 'syn_ts_662_3_0p9973', 'syn_ts_192_7_1p0240', 'syn_ts_156_15_1p066']
+      geoclaw_2026: telecom_cluster_00294 depth 0.354 m phi 0.609 seed freq 0.570
+      geoclaw_2026: telecom_cluster_03338 depth 0.305 m phi 0.512 seed freq 0.480
+      geoclaw_2026: telecom_cluster_03830 depth 0.160 m phi 0.147 seed freq 0.177
+      geoclaw_2080: telecom_cluster_02735 depth 0.431 m phi 0.727 seed freq 0.696
+      syn_ts_173_2_0p8859: telecom_cluster_03042 depth 0.531 m phi 0.830 seed freq 0.730
+      syn_ts_662_3_0p9973: telecom_cluster_03042 depth 0.521 m phi 0.821 seed freq 0.719
+      syn_ts_662_3_0p9973: telecom_cluster_03401 depth 0.178 m phi 0.192 seed freq 0.159
+      syn_ts_192_7_1p0240: telecom_cluster_01237 depth 0.464 m phi 0.767 seed freq 0.797
+      syn_ts_192_7_1p0240: telecom_cluster_02813 depth 0.360 m phi 0.619 seed freq 0.649
+      syn_ts_192_7_1p0240: telecom_cluster_03042 depth 0.626 m phi 0.890 seed freq 0.820
+      syn_ts_156_15_1p066: telecom_cluster_00033 depth 0.238 m phi 0.351 seed freq 0.386
+      syn_ts_156_15_1p066: telecom_cluster_00192 depth 0.296 m phi 0.490 seed freq 0.523
+      syn_ts_156_15_1p066: telecom_cluster_00923 depth 0.305 m phi 0.511 seed freq 0.545
+      syn_ts_708_13_1p1567: telecom_cluster_00833 depth 0.302 m phi 0.505 seed freq 0.539
+      syn_ts_708_13_1p1567: telecom_cluster_00879 depth 0.483 m phi 0.786 seed freq 0.756
+      syn_ts_708_13_1p1567: telecom_cluster_01704 depth 0.255 m phi 0.392 seed freq 0.362
+      syn_ts_436_11_1p3524: telecom_cluster_02179 depth 0.655 m phi 0.903 seed freq 0.873
+      syn_ts_570_2_1p5351: telecom_cluster_03042 depth 0.711 m phi 0.925 seed freq 0.885
+      syn_ts_463_29_1p6644: telecom_cluster_01751 depth 0.508 m phi 0.810 seed freq 0.778
+      syn_ts_321_19_1p7614: telecom_cluster_01751 depth 0.500 m phi 0.803 seed freq 0.769
+      syn_ts_831_27_1p9452: telecom_cluster_00923 depth 0.375 m phi 0.644 seed freq 0.678
+      syn_ts_831_27_1p9452: telecom_cluster_02478 depth 0.451 m phi 0.751 seed freq 0.720
+      syn_ts_831_27_1p9452: telecom_cluster_03766 depth 0.489 m phi 0.792 seed freq 0.757
+      syn_ts_192_15_2p5752: power_160th_avenue depth 0.464 m phi 0.303 seed freq 0.335
+      syn_ts_192_15_2p5752: telecom_cluster_00033 depth 0.473 m phi 0.776 seed freq 0.809
+      syn_ts_192_15_2p5752: telecom_cluster_02959 depth 0.226 m phi 0.317 seed freq 0.348
+      syn_ts_880_9_2p6632: power_160th_avenue depth 0.759 m phi 0.681 seed freq 0.725
+      syn_ts_880_9_2p6632: telecom_cluster_00086 depth 0.340 m phi 0.582 seed freq 0.551
+      syn_ts_880_9_2p6632: telecom_cluster_00142 depth 0.435 m phi 0.732 seed freq 0.701
+      syn_ts_514_13_2p7829: telecom_cluster_00155 depth 0.469 m phi 0.771 seed freq 0.806
+      syn_ts_514_13_2p7829: telecom_cluster_00628 depth 0.278 m phi 0.450 seed freq 0.416
+      syn_ts_514_13_2p7829: water_wastewater_pumping_station depth 0.345 m phi 0.229 seed freq 0.259
+      syn_ts_914_26_3p4047: telecom_cluster_00294 depth 0.192 m phi 0.227 seed freq 0.196
+      syn_ts_914_26_3p4047: telecom_cluster_01986 depth 0.230 m phi 0.328 seed freq 0.297
+      syn_ts_914_26_3p4047: telecom_cluster_03475 depth 0.392 m phi 0.672 seed freq 0.629
+      syn_ts_999_12_3p44: telecom_cluster_00886 depth 0.253 m phi 0.387 seed freq 0.346
+      syn_ts_999_12_3p44: telecom_cluster_03475 depth 0.196 m phi 0.238 seed freq 0.207
+      syn_ts_999_12_3p44: water_spring_creek_park_dep_aux_plnt depth 0.681 m phi 0.732 seed freq 0.701
+      syn2_t817c20_wl1p935: telecom_cluster_00586 depth 0.277 m phi 0.448 seed freq 0.410
+      syn2_t296c32_wl2p002: telecom_cluster_02813 depth 0.345 m phi 0.592 seed freq 0.627
+      syn2_t931w15_wl2p070: telecom_cluster_03400 depth 0.270 m phi 0.431 seed freq 0.397
+      syn2_t931w15_wl2p070: subway_coney_island_stillwell_av_dfnq depth 0.108 m phi 0.579 seed freq 0.539
+      syn2_t931w15_wl2p070: subway_howard_beach_jfk_airport_a depth 0.099 m phi 0.488 seed freq 0.518
+      syn2_t504c15_wl2p205: telecom_cluster_01751 depth 0.433 m phi 0.730 seed freq 0.686
+      syn2_t504c15_wl2p205: telecom_cluster_02316 depth 0.262 m phi 0.411 seed freq 0.446
+      syn2_t910c36_wl2p272: telecom_cluster_01751 depth 0.500 m phi 0.803 seed freq 0.769
+      syn2_t910c36_wl2p272: telecom_cluster_03524 depth 0.405 m phi 0.692 seed freq 0.723
+      syn2_t910c36_wl2p272: subway_richmond_valley_sir depth 0.100 m phi 0.504 seed freq 0.535
+      syn2_t736c42_wl2p339: telecom_cluster_01751 depth 0.568 m phi 0.856 seed freq 0.824
+      syn2_t736c42_wl2p339: telecom_cluster_02576 depth 0.444 m phi 0.743 seed freq 0.709
+      syn2_t736c42_wl2p339: telecom_cluster_02582 depth 0.349 m phi 0.599 seed freq 0.636
+      syn2_t25w17_wl2p408: telecom_cluster_02582 depth 0.417 m phi 0.709 seed freq 0.744
+      syn2_t25w17_wl2p408: telecom_cluster_02683 depth 0.236 m phi 0.345 seed freq 0.314
+      syn2_t25w17_wl2p408: telecom_cluster_03098 depth 0.198 m phi 0.245 seed freq 0.207
+      syn2_t354w10_wl2p544: telecom_cluster_00033 depth 0.220 m phi 0.302 seed freq 0.332
+      syn2_t354w10_wl2p544: telecom_cluster_02634 depth 0.267 m phi 0.424 seed freq 0.456
+      syn2_t354w10_wl2p544: telecom_cluster_03098 depth 0.334 m phi 0.571 seed freq 0.527
+      syn2_t589w12_wl2p614: telecom_cluster_00923 depth 0.356 m phi 0.613 seed freq 0.648
+      syn2_t589w12_wl2p614: telecom_cluster_02634 depth 0.337 m phi 0.577 seed freq 0.616
+      syn2_t589w12_wl2p614: telecom_cluster_03766 depth 0.471 m phi 0.773 seed freq 0.742
+      syn2_t748c28_wl2p684: telecom_cluster_00923 depth 0.426 m phi 0.721 seed freq 0.758
+      syn2_t748c28_wl2p684: telecom_cluster_03766 depth 0.541 m phi 0.837 seed freq 0.805
+      syn2_t731c2_wl2p755: telecom_cluster_00923 depth 0.498 m phi 0.801 seed freq 0.836
+      syn2_t731c2_wl2p755: telecom_cluster_02034 depth 0.250 m phi 0.382 seed freq 0.413
+      syn2_t853c18_wl2p880: telecom_cluster_02034 depth 0.375 m phi 0.644 seed freq 0.679
+      syn2_t853c18_wl2p880: telecom_cluster_02178 depth 0.270 m phi 0.430 seed freq 0.393
+      syn2_t853c18_wl2p880: telecom_cluster_02735 depth 0.317 m phi 0.537 seed freq 0.503
+      syn2_t760w7_wl2p959: telecom_cluster_00142 depth 0.302 m phi 0.503 seed freq 0.468
+      syn2_t760w7_wl2p959: telecom_cluster_00155 depth 0.187 m phi 0.216 seed freq 0.253
+      syn2_t760w7_wl2p959: telecom_cluster_01949 depth 0.444 m phi 0.744 seed freq 0.783
+      syn2_t51w23_wl3p011: power_160th_avenue depth 0.677 m phi 0.595 seed freq 0.630
+      syn2_t51w23_wl3p011: telecom_cluster_00142 depth 0.353 m phi 0.607 seed freq 0.567
+      syn2_t51w23_wl3p011: telecom_cluster_00155 depth 0.239 m phi 0.352 seed freq 0.393
+      syn2_t512w18_wl3p089: power_160th_avenue depth 0.756 m phi 0.678 seed freq 0.724
+      syn2_t512w18_wl3p089: telecom_cluster_00086 depth 0.337 m phi 0.576 seed freq 0.545
+      syn2_t512w18_wl3p089: telecom_cluster_00142 depth 0.432 m phi 0.728 seed freq 0.698
+      syn2_t78w9_wl3p232: telecom_cluster_00155 depth 0.461 m phi 0.763 seed freq 0.796
+      syn2_t78w9_wl3p232: water_hunts_pt_market_wholesale depth 0.365 m phi 0.265 seed freq 0.296
+      syn2_t78w9_wl3p232: water_sirtoa_r_o_w_hannah_st_ps depth 0.337 m phi 0.215 seed freq 0.181
+      syn2_t546c20_wl3p299: telecom_cluster_00191 depth 0.242 m phi 0.359 seed freq 0.401
+      syn2_t546c20_wl3p299: telecom_cluster_01872 depth 0.299 m phi 0.498 seed freq 0.541
+      syn2_t546c20_wl3p299: telecom_cluster_03304 depth 0.308 m phi 0.518 seed freq 0.485
+      syn2_t858w3_wl3p342: telecom_cluster_02025 depth 0.237 m phi 0.346 seed freq 0.316
+      syn2_t858w3_wl3p342: telecom_cluster_02843 depth 0.427 m phi 0.722 seed freq 0.690
+      syn2_t858w3_wl3p342: telecom_cluster_03304 depth 0.351 m phi 0.603 seed freq 0.571
+      syn2_t870w11_wl3p407: telecom_cluster_00271 depth 0.502 m phi 0.805 seed freq 0.772
+      syn2_t870w11_wl3p407: telecom_cluster_01775 depth 0.312 m phi 0.525 seed freq 0.556
+      syn2_t870w11_wl3p407: telecom_cluster_03304 depth 0.416 m phi 0.708 seed freq 0.673
+      syn2_t175w10_wl3p557: telecom_cluster_00886 depth 0.366 m phi 0.630 seed freq 0.582
+      syn2_t175w10_wl3p557: telecom_cluster_03475 depth 0.309 m phi 0.520 seed freq 0.481
+      syn2_t175w10_wl3p557: fuel_station_allegiance_0213 depth 0.785 m phi 0.774 seed freq 0.733
+      syn2_t431w19_wl3p632: telecom_cluster_01986 depth 0.222 m phi 0.308 seed freq 0.275
+      syn2_t431w19_wl3p632: telecom_cluster_03475 depth 0.384 m phi 0.659 seed freq 0.615
+      syn2_t431w19_wl3p632: fuel_station_allegiance_0213 depth 0.860 m phi 0.817 seed freq 0.782
+      syn2_t397w4_wl3p687: telecom_cluster_00294 depth 0.239 m phi 0.353 seed freq 0.308
+      syn2_t397w4_wl3p687: telecom_cluster_03475 depth 0.439 m phi 0.737 seed freq 0.690
+      syn2_t397w4_wl3p687: telecom_cluster_03830 depth 0.201 m phi 0.252 seed freq 0.300
+      syn2_t98w4_wl3p759: telecom_cluster_00116 depth 0.597 m phi 0.874 seed freq 0.843
+      syn2_t98w4_wl3p759: telecom_cluster_00294 depth 0.311 m phi 0.524 seed freq 0.474
+      syn2_t98w4_wl3p759: telecom_cluster_02149 depth 0.349 m phi 0.600 seed freq 0.565
+      syn2_t494w17_wl3p890: telecom_cluster_00217 depth 0.233 m phi 0.336 seed freq 0.374
+      syn2_t494w17_wl3p890: telecom_cluster_00294 depth 0.442 m phi 0.741 seed freq 0.709
+      syn2_t494w17_wl3p890: telecom_cluster_03567 depth 0.423 m phi 0.717 seed freq 0.678
+      syn2_t445w4_wl3p963: telecom_cluster_00169 depth 0.248 m phi 0.377 seed freq 0.408
+      syn2_t574w1_wl4p027: telecom_cluster_00535 depth 0.197 m phi 0.243 seed freq 0.273
+      syn2_t162w13_wl4p105: telecom_cluster_01801 depth 0.190 m phi 0.225 seed freq 0.193
+      syn2_t162w13_wl4p105: telecom_cluster_02151 depth 0.305 m phi 0.511 seed freq 0.554
+      syn2_t162w13_wl4p105: fuel_station_sunoco_1021 depth 0.591 m phi 0.609 seed freq 0.643
+      syn2_t13w19_wl4p230: fuel_station_unknown_gas_station_1042 depth 0.344 m phi 0.266 seed freq 0.302
+      syn2_t874w0_wl4p297: telecom_cluster_01859 depth 0.230 m phi 0.329 seed freq 0.299
+      syn2_t874w0_wl4p297: telecom_cluster_03563 depth 0.183 m phi 0.204 seed freq 0.171
+      syn2_t874w0_wl4p297: hospital_staten_island_university_hosp_north depth 0.564 m phi 0.450 seed freq 0.490
+      syn2_t433w18_wl4p363: hospital_staten_island_university_hosp_north depth 0.629 m phi 0.538 seed freq 0.583
+      syn2_t433w18_wl4p363: fuel_station_sunoco_0520 depth 0.505 m phi 0.507 seed freq 0.474
+      syn2_t459w5_wl4p437: telecom_cluster_03021 depth 0.275 m phi 0.442 seed freq 0.474
+      syn2_t117w7_wl4p508: telecom_cluster_01932 depth 0.365 m phi 0.628 seed freq 0.662
+      syn2_t117w7_wl4p508: fuel_station_unknown_gas_station_0627 depth 0.355 m phi 0.285 seed freq 0.321
+      syn2_t66w12_wl4p572: telecom_cluster_01932 depth 0.429 m phi 0.724 seed freq 0.757
+      syn2_t66w12_wl4p572: hospital_staten_island_university_hosp_north depth 0.839 m phi 0.748 seed freq 0.782
+      syn2_t66w12_wl4p572: subway_canal_st_jz depth 0.077 m phi 0.252 seed freq 0.219
+      syn2_t165c31_wl2p137: telecom_cluster_03400 depth 0.337 m phi 0.577 seed freq 0.546
+      syn2_t326c15_wl2p477: telecom_cluster_02683 depth 0.306 m phi 0.512 seed freq 0.474
+      syn2_t326c15_wl2p477: telecom_cluster_03766 depth 0.334 m phi 0.571 seed freq 0.533
+      syn2_t551w16_wl2p807: power_160th_avenue depth 0.473 m phi 0.317 seed freq 0.349
+      syn2_t551w16_wl2p807: telecom_cluster_00033 depth 0.483 m phi 0.786 seed freq 0.822
+      syn2_t595w12_wl3p142: power_160th_avenue depth 0.808 m phi 0.724 seed freq 0.762
+      syn2_t595w12_wl3p142: telecom_cluster_02178 depth 0.532 m phi 0.830 seed freq 0.797
+      syn2_t595w12_wl3p142: telecom_cluster_02626 depth 0.218 m phi 0.297 seed freq 0.327
+      syn2_t194c43_wl3p498: telecom_cluster_00886 depth 0.307 m phi 0.515 seed freq 0.472
+      syn2_t194c43_wl3p498: fuel_station_allegiance_0213 depth 0.726 m phi 0.733 seed freq 0.697
+      syn2_t194c43_wl3p498: fuel_station_exxon_1020 depth 0.736 m phi 0.740 seed freq 0.775
+      syn2_t502w24_wl3p827: telecom_cluster_00921 depth 0.436 m phi 0.734 seed freq 0.699
+      syn2_t502w24_wl3p827: telecom_cluster_03567 depth 0.360 m phi 0.620 seed freq 0.589
+      syn2_t502w24_wl3p827: fuel_station_mobil_0600 depth 0.398 m phi 0.352 seed freq 0.387
+      syn2_t982w10_wl4p153: telecom_cluster_00535 depth 0.324 m phi 0.551 seed freq 0.582
+      syn2_t982w10_wl4p153: telecom_cluster_03379 depth 0.219 m phi 0.300 seed freq 0.264
+      syn2_t982w10_wl4p153: fuel_station_sunoco_1021 depth 0.638 m phi 0.658 seed freq 0.690
+      geoclaw_2050: telecom_cluster_01718 depth 0.433 m phi 0.730 seed freq 0.761
+      geoclaw_2050: telecom_cluster_03475 depth 0.408 m phi 0.696 seed freq 0.652
+      geoclaw_2050: water_sirtoa_r_o_w_hannah_st_ps depth 0.360 m phi 0.255 seed freq 0.223
+      syn_ts_914_6_1p2955: telecom_cluster_00879 depth 0.499 m phi 0.802 seed freq 0.769
+      syn_ts_914_6_1p2955: telecom_cluster_01751 depth 0.394 m phi 0.675 seed freq 0.638
+      syn_ts_914_6_1p2955: telecom_cluster_02316 depth 0.222 m phi 0.309 seed freq 0.349
+      syn_ts_258_9_3p0022: telecom_cluster_01775 depth 0.277 m phi 0.446 seed freq 0.479
+      syn_ts_258_9_3p0022: telecom_cluster_02843 depth 0.458 m phi 0.759 seed freq 0.729
+      syn_ts_258_9_3p0022: telecom_cluster_03304 depth 0.381 m phi 0.655 seed freq 0.623
+      syn_ts_605_5_3p7563: telecom_cluster_03021 depth 0.296 m phi 0.491 seed freq 0.528
+      syn_ts_808_27_3p7885: telecom_cluster_00116 depth 0.583 m phi 0.866 seed freq 0.834
+      syn_ts_808_27_3p7885: telecom_cluster_00294 depth 0.297 m phi 0.493 seed freq 0.447
+      syn_ts_808_27_3p7885: telecom_cluster_03475 depth 0.497 m phi 0.800 seed freq 0.759
+      syn2_t580w24_wl2p439: telecom_cluster_02683 depth 0.267 m phi 0.424 seed freq 0.394
+      syn2_t580w24_wl2p439: telecom_cluster_03766 depth 0.296 m phi 0.491 seed freq 0.460
+      syn2_t270w17_wl3p116: power_160th_avenue depth 0.782 m phi 0.702 seed freq 0.744
+      syn2_t270w17_wl3p116: telecom_cluster_00086 depth 0.363 m phi 0.624 seed freq 0.591
+      syn2_t270w17_wl3p116: telecom_cluster_00142 depth 0.458 m phi 0.760 seed freq 0.727
+      syn2_t33w13_wl3p458: telecom_cluster_00886 depth 0.267 m phi 0.423 seed freq 0.386
+      syn2_t33w13_wl3p458: telecom_cluster_03304 depth 0.467 m phi 0.770 seed freq 0.737
+      syn2_t33w13_wl3p458: hospital_hospital_for_special_surgery depth 0.743 m phi 0.666 seed freq 0.696
+      syn2_t857w1_wl3p800: telecom_cluster_00294 depth 0.352 m phi 0.606 seed freq 0.565
+      syn2_t857w1_wl3p800: telecom_cluster_02149 depth 0.391 m phi 0.670 seed freq 0.637
+      syn2_t857w1_wl3p800: telecom_cluster_02796 depth 0.391 m phi 0.670 seed freq 0.638
+      syn2_t116w1_wl4p130: telecom_cluster_02151 depth 0.329 m phi 0.562 seed freq 0.601
+      syn2_t116w1_wl4p130: fuel_station_sunoco_1021 depth 0.615 m phi 0.635 seed freq 0.670
+      syn2_t198w16_wl4p722: telecom_cluster_00799 depth 0.254 m phi 0.392 seed freq 0.426
+      syn2_t198w16_wl4p722: telecom_cluster_02862 depth 0.188 m phi 0.217 seed freq 0.181
+      syn2_t198w16_wl4p722: fuel_station_mobil_1138 depth 0.359 m phi 0.291 seed freq 0.253
+wrote analysis/gnn/week31_direct_fingerprint_static_v1.json
+FINGERPRINT FAILED (F1, F2, F3, F4, F5 decided)
+targets: 70 files in /scratch/tj2587/results/gnn_direct_targets_v1/static
+fingerprint exit=1

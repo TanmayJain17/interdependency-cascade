@@ -1,0 +1,23 @@
+task=23 name=direct_arrival_timing_n50_s2 ckpt=/scratch/tj2587/results/gnn_direct_v1/direct_arrival_timing_n50_s2/best.pt two_stage=/scratch/tj2587/results/gnn_morestorms_v1/mix57_full_ctx_dynamic_timing_s2/best.pt cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival out=/scratch/tj2587/results/gnn_direct_numbers_v1/direct_arrival_timing_n50_s2.json commit=f1a1e48 branch=feat/direct-model
+[gate] CUDA OK: NVIDIA L40S
+[ckpt] /scratch/tj2587/results/gnn_direct_v1/direct_arrival_timing_n50_s2/best.pt: cell arrival_timing, 50 training storms, torch seed 2, best epoch 233, saved val 0.107552, params 701,336
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[B2] /scratch/tj2587/results/gnn_morestorms_v1/mix57_full_ctx_dynamic_timing_s2/best.pt: timing on, 100 seed sets per storm; G6 inputs match data.py: True
+[gate] G2 val loss 0.107552 vs saved 0.107552 -> OK
+  syn2_t449w6_wl2p103         2.10 m  model 0.0628  B0 0.5956  B1 0.0670 (syn_ts_570_2_1p5)  B2 0.0512  floor 0.0414  count96 0.210 (floor 0.016)
+  syn_ts_914_6_1p2955         2.17 m  model 0.0310  B0 0.4755  B1 0.0279 (syn_ts_708_13_1p)  B2 0.0315  floor 0.0273  count96 0.046 (floor 0.013)
+  syn2_t580w24_wl2p439        2.44 m  model 0.1100  B0 1.5686  B1 0.1025 (syn2_t25w17_wl2p)  B2 0.1105  floor 0.1007  count96 0.011 (floor 0.023)
+  syn2_t934c34_wl2p777        2.78 m  model 0.1090  B0 2.6446  B1 0.6189 (geoclaw_2026)  B2 0.1211  floor 0.0978  count96 0.004 (floor 0.012)
+  syn2_t270w17_wl3p116        3.12 m  model 0.1236  B0 3.5553  B1 0.1530 (syn_ts_880_9_2p6)  B2 0.1211  floor 0.1101  count96 0.020 (floor 0.001)
+  syn_ts_258_9_3p0022         3.37 m  model 0.1458  B0 4.7217  B1 0.1518 (syn2_t870w11_wl3)  B2 0.1460  floor 0.1354  count96 0.007 (floor 0.014)
+  syn2_t33w13_wl3p458         3.46 m  model 0.1299  B0 5.1576  B1 0.1273 (syn_ts_999_12_3p)  B2 0.1360  floor 0.1147  count96 0.051 (floor 0.012)
+  geoclaw_2050                3.48 m  model 0.1418  B0 5.4113  B1 0.3229 (syn2_t78w9_wl3p2)  B2 0.1442  floor 0.0777  count96 0.101 (floor 0.005)
+  syn_ts_808_27_3p7885        3.75 m  model 0.1071  B0 5.9727  B1 0.1860 (syn2_t98w4_wl3p7)  B2 0.1058  floor 0.0827  count96 0.003 (floor 0.000)
+  syn2_t857w1_wl3p800         3.80 m  model 0.1110  B0 5.4089  B1 0.1000 (syn2_t98w4_wl3p7)  B2 0.1071  floor 0.0950  count96 0.030 (floor 0.001)
+  syn2_t116w1_wl4p130         4.13 m  model 0.0847  B0 5.6815  B1 0.1545 (syn2_t162w13_wl4)  B2 0.0810  floor 0.0710  count96 0.002 (floor 0.001)
+  syn_ts_605_5_3p7563         4.46 m  model 0.1178  B0 6.3838  B1 0.1548 (syn2_t459w5_wl4p)  B2 0.1425  floor 0.0788  count96 0.020 (floor 0.002)
+  syn2_t198w16_wl4p722        4.72 m  model 0.0779  B0 5.9371  B1 0.0705 (syn2_t66w12_wl4p)  B2 0.0765  floor 0.0597  count96 0.007 (floor 0.001)
+[gate] G3 p >= phi within 1e-05: OK; min(p - phi) -1.073e-06; sites below -1e-6: 107 (of which at phi == 1.0: 102; sites with phi == 1.0: 1004); below -1e-5: 0
+13-storm mean soft log loss 0.1040; speed 13.2 ms per pass; gates {'G1_history_present': True, 'G5_external_phi_zero': True, 'G6_two_stage_inputs_match_data_py': True, 'G2_val_loss_reproduced': True, 'G3_p_ge_phi': True, 'G4_monotone': True}; wrote /scratch/tj2587/results/gnn_direct_numbers_v1/direct_arrival_timing_n50_s2.json
+ALL GATES PASS

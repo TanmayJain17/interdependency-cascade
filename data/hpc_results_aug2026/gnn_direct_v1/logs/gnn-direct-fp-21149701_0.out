@@ -1,0 +1,22 @@
+task=0 mode=static labels=/scratch/tj2587/results/legacy_v1_n1000,/scratch/tj2587/results/gissr48_v1/static cache=/scratch/tj2587/results/gnn_direct_targets_v1/static out=analysis/gnn/week31_direct_fingerprint_static_v1.json commit=7b7f373 branch=feat/direct-model uncommitted_files=0
+[gate] heterodata total=6231 -> OK
+[gate] labels for 70 storms in [PosixPath('/scratch/tj2587/results/legacy_v1_n1000'), PosixPath('/scratch/tj2587/results/gissr48_v1/static')]: storms without exactly one file [] -> OK
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F1] PASS  data.py inputs and labels identical to f45a7b2 on 4 runs in 4 switch settings (widths [9, 16, 12, 22]); model.py at f45a7b2 is a prefix of the working file: True; train.py: 0 lines of f45a7b2 removed (must be 0; the default path is additions only)
+[info] split: train17/34/50 = 17/34/50, val 7, test 13; depth tables hold 71 storms, missing for the split: []; external sites 99
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F4] PASS  p >= phi_k and non-decreasing on random weights, static and arrival, timing off/on; syn_ts_914_6_1p2955: 156 wet sites, expected seeds 91.3; syn2_t580w24_wl2p439: 216 wet sites, expected seeds 140.3; geoclaw_2050: 368 wet sites, expected seeds 295.5; syn2_t198w16_wl4p722: 737 wet sites, expected seeds 660.1; timing=off width 17 params 699,032; timing=on width 23 params 701,336
+[F5] PASS  loss at p = pi_hat 0.460928 vs entropy 0.460928; perturbed p 0.467974 > entropy: True
+Traceback (most recent call last):
+  File "/scratch/tj2587/interdependency-cascade/scripts/week31_direct_fingerprint_v1.py", line 286, in <module>
+    main()
+  File "/scratch/tj2587/interdependency-cascade/scripts/week31_direct_fingerprint_v1.py", line 224, in main
+    sj = np.array([pos[nid] for nid in r["initial_failures"] if nid in pos], dtype=np.int64)
+                                       ~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'initial_failures'
+targets: 1 files in /scratch/tj2587/results/gnn_direct_targets_v1/static
+fingerprint exit=1

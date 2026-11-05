@@ -1,0 +1,74 @@
+task=1 mode=arrival labels=/scratch/tj2587/results/dynamic_v1/arrival_h360,/scratch/tj2587/results/gissr48_v1/arrival_h360 cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival out=analysis/gnn/week31_direct_fingerprint_arrival_v1.json commit=7b7f373 branch=feat/direct-model uncommitted_files=0
+[gate] heterodata total=6231 -> OK
+[gate] labels for 70 storms in [PosixPath('/scratch/tj2587/results/dynamic_v1/arrival_h360'), PosixPath('/scratch/tj2587/results/gissr48_v1/arrival_h360')]: storms without exactly one file [] -> OK
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F1] PASS  data.py inputs and labels identical to f45a7b2 on 4 runs in 4 switch settings (widths [9, 16, 12, 22]); model.py at f45a7b2 is a prefix of the working file: True; train.py: 0 lines of f45a7b2 removed (must be 0; the default path is additions only)
+[info] split: train17/34/50 = 17/34/50, val 7, test 13; depth tables hold 71 storms, missing for the split: []; external sites 99
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[F4] PASS  p >= phi_k and non-decreasing on random weights, static and arrival, timing off/on; syn_ts_914_6_1p2955: 156 wet sites, expected seeds 91.3; syn2_t580w24_wl2p439: 216 wet sites, expected seeds 140.3; geoclaw_2050: 368 wet sites, expected seeds 295.5; syn2_t198w16_wl4p722: 737 wet sites, expected seeds 660.1; timing=off width 17 params 699,032; timing=on width 23 params 701,336
+[F5] PASS  loss at p = pi_hat 0.460928 vs entropy 0.460928; perturbed p 0.467974 > entropy: True
+  [F5 on geoclaw_2026] loss at p = pi_hat 0.083517 vs entropy 0.083517
+  [F5 on geoclaw_2080] loss at p = pi_hat 0.074836 vs entropy 0.074836
+  [F5 on syn_ts_173_2_0p8859] loss at p = pi_hat 0.017873 vs entropy 0.017872
+  [F5 on syn_ts_662_3_0p9973] loss at p = pi_hat 0.017042 vs entropy 0.017042
+  [F5 on syn_ts_192_7_1p0240] loss at p = pi_hat 0.024317 vs entropy 0.024317
+  [F5 on syn_ts_156_15_1p066] loss at p = pi_hat 0.099148 vs entropy 0.099148
+  [F5 on syn_ts_708_13_1p1567] loss at p = pi_hat 0.027550 vs entropy 0.027550
+  [F5 on syn_ts_436_11_1p3524] loss at p = pi_hat 0.101927 vs entropy 0.101927
+  [F5 on syn_ts_570_2_1p5351] loss at p = pi_hat 0.031123 vs entropy 0.031123
+  [F5 on syn_ts_463_29_1p6644] loss at p = pi_hat 0.079723 vs entropy 0.079723
+  [F5 on syn_ts_321_19_1p7614] loss at p = pi_hat 0.066337 vs entropy 0.066337
+  [F5 on syn_ts_831_27_1p9452] loss at p = pi_hat 0.102642 vs entropy 0.102642
+  [F5 on syn_ts_192_15_2p5752] loss at p = pi_hat 0.092620 vs entropy 0.092620
+  [F5 on syn_ts_880_9_2p6632] loss at p = pi_hat 0.102862 vs entropy 0.102862
+  [F5 on syn_ts_514_13_2p7829] loss at p = pi_hat 0.135335 vs entropy 0.135335
+  [F5 on syn_ts_914_26_3p4047] loss at p = pi_hat 0.092511 vs entropy 0.092510
+  [F5 on syn_ts_999_12_3p44] loss at p = pi_hat 0.121787 vs entropy 0.121787
+  [F5 on syn2_t817c20_wl1p935] loss at p = pi_hat 0.018856 vs entropy 0.018856
+  [F5 on syn2_t296c32_wl2p002] loss at p = pi_hat 0.031669 vs entropy 0.031669
+  [F5 on syn2_t931w15_wl2p070] loss at p = pi_hat 0.030188 vs entropy 0.030188
+  [F5 on syn2_t504c15_wl2p205] loss at p = pi_hat 0.035756 vs entropy 0.035755
+  [F5 on syn2_t910c36_wl2p272] loss at p = pi_hat 0.074868 vs entropy 0.074868
+  [F5 on syn2_t736c42_wl2p339] loss at p = pi_hat 0.086445 vs entropy 0.086445
+  [F5 on syn2_t25w17_wl2p408] loss at p = pi_hat 0.107109 vs entropy 0.107109
+  [F5 on syn2_t354w10_wl2p544] loss at p = pi_hat 0.114157 vs entropy 0.114157
+  [F5 on syn2_t589w12_wl2p614] loss at p = pi_hat 0.101347 vs entropy 0.101347
+  [F5 on syn2_t748c28_wl2p684] loss at p = pi_hat 0.109338 vs entropy 0.109338
+  [F5 on syn2_t731c2_wl2p755] loss at p = pi_hat 0.084137 vs entropy 0.084137
+  [F5 on syn2_t853c18_wl2p880] loss at p = pi_hat 0.089825 vs entropy 0.089825
+  [F5 on syn2_t760w7_wl2p959] loss at p = pi_hat 0.130659 vs entropy 0.130659
+  [F5 on syn2_t51w23_wl3p011] loss at p = pi_hat 0.101406 vs entropy 0.101406
+  [F5 on syn2_t512w18_wl3p089] loss at p = pi_hat 0.094873 vs entropy 0.094873
+  [F5 on syn2_t78w9_wl3p232] loss at p = pi_hat 0.145869 vs entropy 0.145869
+  [F5 on syn2_t546c20_wl3p299] loss at p = pi_hat 0.137233 vs entropy 0.137233
+  [F5 on syn2_t858w3_wl3p342] loss at p = pi_hat 0.132446 vs entropy 0.132446
+  [F5 on syn2_t870w11_wl3p407] loss at p = pi_hat 0.134710 vs entropy 0.134710
+  [F5 on syn2_t175w10_wl3p557] loss at p = pi_hat 0.109386 vs entropy 0.109386
+  [F5 on syn2_t431w19_wl3p632] loss at p = pi_hat 0.095959 vs entropy 0.095959
+  [F5 on syn2_t397w4_wl3p687] loss at p = pi_hat 0.114076 vs entropy 0.114076
+  [F5 on syn2_t98w4_wl3p759] loss at p = pi_hat 0.101062 vs entropy 0.101062
+  [F5 on syn2_t494w17_wl3p890] loss at p = pi_hat 0.082733 vs entropy 0.082733
+  [F5 on syn2_t445w4_wl3p963] loss at p = pi_hat 0.111995 vs entropy 0.111995
+  [F5 on syn2_t574w1_wl4p027] loss at p = pi_hat 0.075739 vs entropy 0.075739
+  [F5 on syn2_t162w13_wl4p105] loss at p = pi_hat 0.103873 vs entropy 0.103873
+  [F5 on syn2_t13w19_wl4p230] loss at p = pi_hat 0.067096 vs entropy 0.067096
+  [F5 on syn2_t874w0_wl4p297] loss at p = pi_hat 0.079916 vs entropy 0.079916
+  [F5 on syn2_t433w18_wl4p363] loss at p = pi_hat 0.096052 vs entropy 0.096052
+  [F5 on syn2_t459w5_wl4p437] loss at p = pi_hat 0.061914 vs entropy 0.061914
+  [F5 on syn2_t117w7_wl4p508] loss at p = pi_hat 0.094040 vs entropy 0.094040
+  [F5 on syn2_t66w12_wl4p572] loss at p = pi_hat 0.060917 vs entropy 0.060917
+  [F5 on syn2_t165c31_wl2p137] loss at p = pi_hat 0.038327 vs entropy 0.038327
+  [F5 on syn2_t326c15_wl2p477] loss at p = pi_hat 0.103946 vs entropy 0.103946
+  [F5 on syn2_t551w16_wl2p807] loss at p = pi_hat 0.092656 vs entropy 0.092656
+  [F5 on syn2_t595w12_wl3p142] loss at p = pi_hat 0.107412 vs entropy 0.107412
+  [F5 on syn2_t194c43_wl3p498] loss at p = pi_hat 0.117098 vs entropy 0.117098
+  [F5 on syn2_t502w24_wl3p827] loss at p = pi_hat 0.118387 vs entropy 0.118387
+  [F5 on syn2_t982w10_wl4p153] loss at p = pi_hat 0.069276 vs entropy 0.069276
+  [F5 on geoclaw_2050] loss at p = pi_hat 0.076253 vs entropy 0.076253
+  [F5 on syn_ts_914_6_1p2955] loss at p = pi_hat 0.026358 vs entropy 0.026358
+  [F5 on syn_ts_258_9_3p0022] loss at p = pi_hat 0.134204 vs entropy 0.134204
+[2026-10-27T18:33:59.344] error: *** JOB 21149701 ON gl020 CANCELLED AT 2026-10-27T18:33:59 DUE to SIGNAL Terminated ***

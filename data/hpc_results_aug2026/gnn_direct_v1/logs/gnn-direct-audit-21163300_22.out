@@ -1,0 +1,21 @@
+task=22 name=direct_arrival_plain_n50_s2 ckpt=/scratch/tj2587/results/gnn_direct_v1/direct_arrival_plain_n50_s2/best.pt two_stage=/scratch/tj2587/results/gnn_morestorms_v1/mix57_full_ctx_dynamic_mask_s2/best.pt cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival out=/scratch/tj2587/results/gnn_direct_numbers_v1/direct_arrival_plain_n50_s2.json commit=898f966 branch=feat/direct-model
+[gate] CUDA OK: NVIDIA L40S
+[ckpt] /scratch/tj2587/results/gnn_direct_v1/direct_arrival_plain_n50_s2/best.pt: cell arrival_plain, 50 training storms, torch seed 2, best epoch 382, saved val 0.114519, params 699,032
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+[B2] /scratch/tj2587/results/gnn_morestorms_v1/mix57_full_ctx_dynamic_mask_s2/best.pt: timing off, 100 seed sets per storm; G6 inputs match data.py: True
+[gate] G2 val loss 0.114519 vs saved 0.114519 -> OK
+  syn2_t449w6_wl2p103         2.10 m  model 0.0648  B0 0.5956  B1 0.0670 (syn_ts_570_2_1p5)  B2 0.0574  floor 0.0414  count96 0.185 (floor 0.016)
+  syn_ts_914_6_1p2955         2.17 m  model 0.0323  B0 0.4755  B1 0.0279 (syn_ts_708_13_1p)  B2 0.0346  floor 0.0273  count96 0.097 (floor 0.013)
+  syn2_t580w24_wl2p439        2.44 m  model 0.1116  B0 1.5686  B1 0.1025 (syn2_t25w17_wl2p)  B2 0.1131  floor 0.1007  count96 0.026 (floor 0.023)
+  syn2_t934c34_wl2p777        2.78 m  model 0.1097  B0 2.6446  B1 0.6189 (geoclaw_2026)  B2 0.1119  floor 0.0978  count96 0.006 (floor 0.012)
+  syn2_t270w17_wl3p116        3.12 m  model 0.1217  B0 3.5553  B1 0.1530 (syn_ts_880_9_2p6)  B2 0.1295  floor 0.1101  count96 0.009 (floor 0.001)
+  syn_ts_258_9_3p0022         3.37 m  model 0.1478  B0 4.7217  B1 0.1518 (syn2_t870w11_wl3)  B2 0.1463  floor 0.1354  count96 0.035 (floor 0.014)
+  syn2_t33w13_wl3p458         3.46 m  model 0.1302  B0 5.1576  B1 0.1273 (syn_ts_999_12_3p)  B2 0.1250  floor 0.1147  count96 0.062 (floor 0.012)
+  geoclaw_2050                3.48 m  model 0.1815  B0 5.4113  B1 0.3229 (syn2_t78w9_wl3p2)  B2 0.1282  floor 0.0777  count96 0.204 (floor 0.005)
+  syn_ts_808_27_3p7885        3.75 m  model 0.1308  B0 5.9727  B1 0.1860 (syn2_t98w4_wl3p7)  B2 0.1426  floor 0.0827  count96 0.072 (floor 0.000)
+  syn2_t857w1_wl3p800         3.80 m  model 0.1064  B0 5.4089  B1 0.1000 (syn2_t98w4_wl3p7)  B2 0.1078  floor 0.0950  count96 0.017 (floor 0.001)
+  syn2_t116w1_wl4p130         4.13 m  model 0.0916  B0 5.6815  B1 0.1545 (syn2_t162w13_wl4)  B2 0.0934  floor 0.0710  count96 0.054 (floor 0.001)
+  syn_ts_605_5_3p7563         4.46 m  model 0.1753  B0 6.3838  B1 0.1548 (syn2_t459w5_wl4p)  B2 0.1922  floor 0.0788  count96 0.076 (floor 0.002)
+  syn2_t198w16_wl4p722        4.72 m  model 0.0981  B0 5.9371  B1 0.0705 (syn2_t66w12_wl4p)  B2 0.1012  floor 0.0597  count96 0.067 (floor 0.001)
+13-storm mean soft log loss 0.1155; speed 11.4 ms per pass; gates {'G1_history_present': True, 'G5_external_phi_zero': True, 'G6_two_stage_inputs_match_data_py': True, 'G2_val_loss_reproduced': True, 'G3_p_ge_phi': False, 'G4_monotone': True}; wrote /scratch/tj2587/results/gnn_direct_numbers_v1/direct_arrival_plain_n50_s2.json
+GATES FAILED: ['G3_p_ge_phi']

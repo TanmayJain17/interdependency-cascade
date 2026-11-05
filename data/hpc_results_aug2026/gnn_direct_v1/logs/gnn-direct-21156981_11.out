@@ -1,0 +1,30 @@
+task=11 cell=arrival_timing mode=arrival size=50 torch_seed=1 timing=1 cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival ckpt=/scratch/tj2587/results/gnn_direct_v1_smoke/direct_arrival_timing_n50_s1 smoke=1 commit=898f966 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_arrival_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/arrival: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs on -> OK
+=== TRAIN MODE, target marginal — the direct model, one example per storm ===
+torch seed set: 1
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+Train: 50 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode arrival | timing inputs on | input width 23 | loaded in 8s
+Model parameters: 701,336  head=hazard  device=cuda
+Epoch 000 | train=0.67469 val=0.42145 * | 3s
+Epoch 001 | train=0.31830 val=0.28526 * | 5s
+Epoch 002 | train=0.25079 val=0.25859 * | 7s
+Epoch 003 | train=0.22849 val=0.22112 * | 9s
+Epoch 004 | train=0.20371 val=0.21295 * | 11s
+[held-out geoclaw_2050] soft log loss=0.24959
+[held-out syn_ts_914_6_1p2955] soft log loss=0.08815
+[held-out syn_ts_258_9_3p0022] soft log loss=0.25744
+[held-out syn_ts_605_5_3p7563] soft log loss=0.22508
+[held-out syn_ts_808_27_3p7885] soft log loss=0.22361
+[held-out syn2_t449w6_wl2p103] soft log loss=0.10871
+[held-out syn2_t580w24_wl2p439] soft log loss=0.18429
+[held-out syn2_t934c34_wl2p777] soft log loss=0.20958
+[held-out syn2_t270w17_wl3p116] soft log loss=0.25031
+[held-out syn2_t33w13_wl3p458] soft log loss=0.24404
+[held-out syn2_t857w1_wl3p800] soft log loss=0.23948
+[held-out syn2_t116w1_wl4p130] soft log loss=0.22390
+[held-out syn2_t198w16_wl4p722] soft log loss=0.22220
+done: 5 epochs (max epochs), best epoch 4, best val 0.21295, 12s

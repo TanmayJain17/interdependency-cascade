@@ -1,0 +1,69 @@
+task=11 cell=arrival_timing mode=arrival size=50 torch_seed=1 timing=1 cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival ckpt=/scratch/tj2587/results/gnn_direct_v1/direct_arrival_timing_n50_s1 smoke=0 commit=898f966 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_arrival_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/arrival: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs on -> OK
+=== TRAIN MODE, target marginal — the direct model, one example per storm ===
+torch seed set: 1
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+Train: 50 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode arrival | timing inputs on | input width 23 | loaded in 5s
+Model parameters: 701,336  head=hazard  device=cuda
+Epoch 000 | train=0.67469 val=0.42145 * | 4s
+Epoch 001 | train=0.31837 val=0.28532 * | 7s
+Epoch 002 | train=0.25100 val=0.25880 * | 10s
+Epoch 003 | train=0.22881 val=0.22049 * | 13s
+Epoch 004 | train=0.20398 val=0.21254 * | 16s
+Epoch 005 | train=0.19000 val=0.19778 * | 19s
+Epoch 006 | train=0.19011 val=0.18639 * | 22s
+Epoch 007 | train=0.18010 val=0.18633 * | 26s
+Epoch 008 | train=0.17037 val=0.17904 * | 29s
+Epoch 009 | train=0.16675 val=0.17196 * | 32s
+Epoch 010 | train=0.16487 val=0.17589 | 35s
+Epoch 012 | train=0.15771 val=0.16473 * | 41s
+Epoch 015 | train=0.15428 val=0.15924 * | 50s
+Epoch 017 | train=0.15042 val=0.15844 * | 57s
+Epoch 018 | train=0.14883 val=0.15404 * | 60s
+Epoch 019 | train=0.14823 val=0.15369 * | 63s
+Epoch 020 | train=0.14627 val=0.14997 * | 66s
+Epoch 030 | train=0.13905 val=0.15194 | 97s
+Epoch 040 | train=0.13100 val=0.13698 * | 127s
+Epoch 050 | train=0.12746 val=0.13335 | 156s
+Epoch 060 | train=0.12359 val=0.12622 | 185s
+Epoch 070 | train=0.12029 val=0.12805 | 213s
+Epoch 080 | train=0.11949 val=0.12161 * | 242s
+Epoch 090 | train=0.11838 val=0.12075 | 270s
+Epoch 100 | train=0.11578 val=0.11861 * | 299s
+Epoch 110 | train=0.11412 val=0.11831 | 328s
+Epoch 120 | train=0.11329 val=0.11770 | 357s
+Epoch 130 | train=0.11309 val=0.12176 | 386s
+Epoch 140 | train=0.11449 val=0.11717 | 416s
+Epoch 150 | train=0.10780 val=0.11426 | 445s
+Epoch 160 | train=0.11081 val=0.11382 | 474s
+Epoch 170 | train=0.10775 val=0.11600 | 503s
+Epoch 180 | train=0.10925 val=0.11386 | 532s
+Epoch 190 | train=0.10830 val=0.11228 | 561s
+Epoch 200 | train=0.10674 val=0.11109 | 592s
+Epoch 210 | train=0.10884 val=0.11827 | 622s
+Epoch 220 | train=0.10672 val=0.11650 | 652s
+Epoch 230 | train=0.10522 val=0.11311 | 682s
+Epoch 240 | train=0.10316 val=0.10852 | 711s
+Epoch 250 | train=0.10724 val=0.11297 | 741s
+Epoch 260 | train=0.10527 val=0.11035 | 771s
+Epoch 270 | train=0.10401 val=0.11510 | 801s
+Epoch 280 | train=0.11053 val=0.11554 | 832s
+[early stop] no improvement for 50 epochs; best epoch 233 val 0.10832
+[held-out geoclaw_2050] soft log loss=0.13726
+[held-out syn_ts_914_6_1p2955] soft log loss=0.03142
+[held-out syn_ts_258_9_3p0022] soft log loss=0.14595
+[held-out syn_ts_605_5_3p7563] soft log loss=0.11464
+[held-out syn_ts_808_27_3p7885] soft log loss=0.10541
+[held-out syn2_t449w6_wl2p103] soft log loss=0.05654
+[held-out syn2_t580w24_wl2p439] soft log loss=0.11106
+[held-out syn2_t934c34_wl2p777] soft log loss=0.10984
+[held-out syn2_t270w17_wl3p116] soft log loss=0.12530
+[held-out syn2_t33w13_wl3p458] soft log loss=0.12904
+[held-out syn2_t857w1_wl3p800] soft log loss=0.11366
+[held-out syn2_t116w1_wl4p130] soft log loss=0.08409
+[held-out syn2_t198w16_wl4p722] soft log loss=0.07755
+done: 284 epochs (early stop), best epoch 233, best val 0.10832, 841s

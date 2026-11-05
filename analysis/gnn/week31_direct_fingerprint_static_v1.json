@@ -1,0 +1,4357 @@
+{
+ "F1": {
+  "pass": true,
+  "detail": "data.py inputs and labels identical to f45a7b2 on 4 runs in 4 switch settings (widths [9, 16, 12, 22]); model.py at f45a7b2 is a prefix of the working file: True; train.py: 0 lines of f45a7b2 removed (must be 0; the default path is additions only)"
+ },
+ "F4": {
+  "pass": true,
+  "detail": "p >= phi_k and non-decreasing on random weights, static and arrival, timing off/on; syn_ts_914_6_1p2955: 156 wet sites, expected seeds 91.3; syn2_t580w24_wl2p439: 216 wet sites, expected seeds 140.3; geoclaw_2050: 368 wet sites, expected seeds 295.5; syn2_t198w16_wl4p722: 737 wet sites, expected seeds 660.1; timing=off width 17 params 699,032; timing=on width 23 params 701,336"
+ },
+ "F5": {
+  "pass": true,
+  "detail": "loss at p = pi_hat 0.460928 vs entropy 0.460928; perturbed p 0.467974 > entropy: True"
+ },
+ "F5_real": [
+  {
+   "storm": "geoclaw_2026",
+   "loss_at_pi": 0.05836278572678566,
+   "entropy": 0.058362700045108795
+  },
+  {
+   "storm": "geoclaw_2080",
+   "loss_at_pi": 0.07397282123565674,
+   "entropy": 0.07397274672985077
+  },
+  {
+   "storm": "syn_ts_173_2_0p8859",
+   "loss_at_pi": 0.01697993278503418,
+   "entropy": 0.01697983592748642
+  },
+  {
+   "storm": "syn_ts_662_3_0p9973",
+   "loss_at_pi": 0.016150154173374176,
+   "entropy": 0.016150057315826416
+  },
+  {
+   "storm": "syn_ts_192_7_1p0240",
+   "loss_at_pi": 0.022679252550005913,
+   "entropy": 0.02267915941774845
+  },
+  {
+   "storm": "syn_ts_156_15_1p066",
+   "loss_at_pi": 0.08614196628332138,
+   "entropy": 0.08614189922809601
+  },
+  {
+   "storm": "syn_ts_708_13_1p1567",
+   "loss_at_pi": 0.024689210578799248,
+   "entropy": 0.024689117446541786
+  },
+  {
+   "storm": "syn_ts_436_11_1p3524",
+   "loss_at_pi": 0.08524323999881744,
+   "entropy": 0.08524317294359207
+  },
+  {
+   "storm": "syn_ts_570_2_1p5351",
+   "loss_at_pi": 0.02667398378252983,
+   "entropy": 0.02667388878762722
+  },
+  {
+   "storm": "syn_ts_463_29_1p6644",
+   "loss_at_pi": 0.06493596732616425,
+   "entropy": 0.06493587791919708
+  },
+  {
+   "storm": "syn_ts_321_19_1p7614",
+   "loss_at_pi": 0.06170303747057915,
+   "entropy": 0.06170295923948288
+  },
+  {
+   "storm": "syn_ts_831_27_1p9452",
+   "loss_at_pi": 0.08125007897615433,
+   "entropy": 0.08125000447034836
+  },
+  {
+   "storm": "syn_ts_192_15_2p5752",
+   "loss_at_pi": 0.0673523098230362,
+   "entropy": 0.06735223531723022
+  },
+  {
+   "storm": "syn_ts_880_9_2p6632",
+   "loss_at_pi": 0.08124465495347977,
+   "entropy": 0.0812445878982544
+  },
+  {
+   "storm": "syn_ts_514_13_2p7829",
+   "loss_at_pi": 0.08065833896398544,
+   "entropy": 0.08065826445817947
+  },
+  {
+   "storm": "syn_ts_914_26_3p4047",
+   "loss_at_pi": 0.06715800613164902,
+   "entropy": 0.06715793162584305
+  },
+  {
+   "storm": "syn_ts_999_12_3p44",
+   "loss_at_pi": 0.07323943823575974,
+   "entropy": 0.07323935627937317
+  },
+  {
+   "storm": "syn2_t817c20_wl1p935",
+   "loss_at_pi": 0.017658233642578125,
+   "entropy": 0.017658136785030365
+  },
+  {
+   "storm": "syn2_t296c32_wl2p002",
+   "loss_at_pi": 0.0206762682646513,
+   "entropy": 0.020676173269748688
+  },
+  {
+   "storm": "syn2_t931w15_wl2p070",
+   "loss_at_pi": 0.027882786467671394,
+   "entropy": 0.027882691472768784
+  },
+  {
+   "storm": "syn2_t504c15_wl2p205",
+   "loss_at_pi": 0.033649034798145294,
+   "entropy": 0.033648956567049026
+  },
+  {
+   "storm": "syn2_t910c36_wl2p272",
+   "loss_at_pi": 0.06213201582431793,
+   "entropy": 0.062131933867931366
+  },
+  {
+   "storm": "syn2_t736c42_wl2p339",
+   "loss_at_pi": 0.08057312667369843,
+   "entropy": 0.08057305961847305
+  },
+  {
+   "storm": "syn2_t25w17_wl2p408",
+   "loss_at_pi": 0.08836770802736282,
+   "entropy": 0.08836763352155685
+  },
+  {
+   "storm": "syn2_t354w10_wl2p544",
+   "loss_at_pi": 0.08737047761678696,
+   "entropy": 0.08737040311098099
+  },
+  {
+   "storm": "syn2_t589w12_wl2p614",
+   "loss_at_pi": 0.08249738067388535,
+   "entropy": 0.08249729871749878
+  },
+  {
+   "storm": "syn2_t748c28_wl2p684",
+   "loss_at_pi": 0.07756184041500092,
+   "entropy": 0.07756175100803375
+  },
+  {
+   "storm": "syn2_t731c2_wl2p755",
+   "loss_at_pi": 0.07140866667032242,
+   "entropy": 0.07140858471393585
+  },
+  {
+   "storm": "syn2_t853c18_wl2p880",
+   "loss_at_pi": 0.06497132778167725,
+   "entropy": 0.06497126072645187
+  },
+  {
+   "storm": "syn2_t760w7_wl2p959",
+   "loss_at_pi": 0.07296884804964066,
+   "entropy": 0.07296875864267349
+  },
+  {
+   "storm": "syn2_t51w23_wl3p011",
+   "loss_at_pi": 0.07645899802446365,
+   "entropy": 0.07645893096923828
+  },
+  {
+   "storm": "syn2_t512w18_wl3p089",
+   "loss_at_pi": 0.08093662559986115,
+   "entropy": 0.08093654364347458
+  },
+  {
+   "storm": "syn2_t78w9_wl3p232",
+   "loss_at_pi": 0.08083280175924301,
+   "entropy": 0.08083272725343704
+  },
+  {
+   "storm": "syn2_t546c20_wl3p299",
+   "loss_at_pi": 0.07795075327157974,
+   "entropy": 0.07795067876577377
+  },
+  {
+   "storm": "syn2_t858w3_wl3p342",
+   "loss_at_pi": 0.07586901634931564,
+   "entropy": 0.07586894184350967
+  },
+  {
+   "storm": "syn2_t870w11_wl3p407",
+   "loss_at_pi": 0.07380989193916321,
+   "entropy": 0.07380983233451843
+  },
+  {
+   "storm": "syn2_t175w10_wl3p557",
+   "loss_at_pi": 0.06917504966259003,
+   "entropy": 0.06917496770620346
+  },
+  {
+   "storm": "syn2_t431w19_wl3p632",
+   "loss_at_pi": 0.0685151144862175,
+   "entropy": 0.06851503998041153
+  },
+  {
+   "storm": "syn2_t397w4_wl3p687",
+   "loss_at_pi": 0.06837014853954315,
+   "entropy": 0.06837008893489838
+  },
+  {
+   "storm": "syn2_t98w4_wl3p759",
+   "loss_at_pi": 0.0681530311703682,
+   "entropy": 0.06815296411514282
+  },
+  {
+   "storm": "syn2_t494w17_wl3p890",
+   "loss_at_pi": 0.06625782698392868,
+   "entropy": 0.06625775992870331
+  },
+  {
+   "storm": "syn2_t445w4_wl3p963",
+   "loss_at_pi": 0.06522771716117859,
+   "entropy": 0.06522764265537262
+  },
+  {
+   "storm": "syn2_t574w1_wl4p027",
+   "loss_at_pi": 0.06471232324838638,
+   "entropy": 0.06471224129199982
+  },
+  {
+   "storm": "syn2_t162w13_wl4p105",
+   "loss_at_pi": 0.06316318362951279,
+   "entropy": 0.06316310167312622
+  },
+  {
+   "storm": "syn2_t13w19_wl4p230",
+   "loss_at_pi": 0.059805065393447876,
+   "entropy": 0.05980499088764191
+  },
+  {
+   "storm": "syn2_t874w0_wl4p297",
+   "loss_at_pi": 0.06070367991924286,
+   "entropy": 0.06070360541343689
+  },
+  {
+   "storm": "syn2_t433w18_wl4p363",
+   "loss_at_pi": 0.06199692189693451,
+   "entropy": 0.06199683994054794
+  },
+  {
+   "storm": "syn2_t459w5_wl4p437",
+   "loss_at_pi": 0.06244898959994316,
+   "entropy": 0.06244891136884689
+  },
+  {
+   "storm": "syn2_t117w7_wl4p508",
+   "loss_at_pi": 0.06098238378763199,
+   "entropy": 0.06098230555653572
+  },
+  {
+   "storm": "syn2_t66w12_wl4p572",
+   "loss_at_pi": 0.059652604162693024,
+   "entropy": 0.05965252220630646
+  },
+  {
+   "storm": "syn2_t165c31_wl2p137",
+   "loss_at_pi": 0.025068921968340874,
+   "entropy": 0.025068828836083412
+  },
+  {
+   "storm": "syn2_t326c15_wl2p477",
+   "loss_at_pi": 0.08942466974258423,
+   "entropy": 0.08942460268735886
+  },
+  {
+   "storm": "syn2_t551w16_wl2p807",
+   "loss_at_pi": 0.06631001830101013,
+   "entropy": 0.06630994379520416
+  },
+  {
+   "storm": "syn2_t595w12_wl3p142",
+   "loss_at_pi": 0.08275208622217178,
+   "entropy": 0.08275199681520462
+  },
+  {
+   "storm": "syn2_t194c43_wl3p498",
+   "loss_at_pi": 0.0713149681687355,
+   "entropy": 0.07131488621234894
+  },
+  {
+   "storm": "syn2_t502w24_wl3p827",
+   "loss_at_pi": 0.06704679876565933,
+   "entropy": 0.06704672425985336
+  },
+  {
+   "storm": "syn2_t982w10_wl4p153",
+   "loss_at_pi": 0.0615876168012619,
+   "entropy": 0.06158754229545593
+  },
+  {
+   "storm": "geoclaw_2050",
+   "loss_at_pi": 0.06237034499645233,
+   "entropy": 0.06237027049064636
+  },
+  {
+   "storm": "syn_ts_914_6_1p2955",
+   "loss_at_pi": 0.024933673441410065,
+   "entropy": 0.024933593347668648
+  },
+  {
+   "storm": "syn_ts_258_9_3p0022",
+   "loss_at_pi": 0.0750095322728157,
+   "entropy": 0.07500945776700974
+  },
+  {
+   "storm": "syn_ts_605_5_3p7563",
+   "loss_at_pi": 0.062186919152736664,
+   "entropy": 0.062186840921640396
+  },
+  {
+   "storm": "syn_ts_808_27_3p7885",
+   "loss_at_pi": 0.06685316562652588,
+   "entropy": 0.0668530985713005
+  },
+  {
+   "storm": "syn2_t449w6_wl2p103",
+   "loss_at_pi": 0.026568353176116943,
+   "entropy": 0.026568260043859482
+  },
+  {
+   "storm": "syn2_t580w24_wl2p439",
+   "loss_at_pi": 0.0894254669547081,
+   "entropy": 0.08942539989948273
+  },
+  {
+   "storm": "syn2_t934c34_wl2p777",
+   "loss_at_pi": 0.06985130161046982,
+   "entropy": 0.06985121220350266
+  },
+  {
+   "storm": "syn2_t270w17_wl3p116",
+   "loss_at_pi": 0.08218839764595032,
+   "entropy": 0.08218833059072495
+  },
+  {
+   "storm": "syn2_t33w13_wl3p458",
+   "loss_at_pi": 0.07263976335525513,
+   "entropy": 0.07263968139886856
+  },
+  {
+   "storm": "syn2_t857w1_wl3p800",
+   "loss_at_pi": 0.0671297088265419,
+   "entropy": 0.06712963432073593
+  },
+  {
+   "storm": "syn2_t116w1_wl4p130",
+   "loss_at_pi": 0.062179967761039734,
+   "entropy": 0.062179889529943466
+  },
+  {
+   "storm": "syn2_t198w16_wl4p722",
+   "loss_at_pi": 0.0639214813709259,
+   "entropy": 0.06392141431570053
+  }
+ ],
+ "F2_per_storm": [
+  "geoclaw_2026: 1000 runs, failed by 96 h mean 1970.6 sites, seeds 206.6 (t==0 fallback), recount equal",
+  "geoclaw_2080: 1000 runs, failed by 96 h mean 2509.1 sites, seeds 416.0 (t==0 fallback), recount equal",
+  "syn_ts_173_2_0p8859: 1000 runs, failed by 96 h mean 126.7 sites, seeds 58.0 (t==0 fallback), recount equal",
+  "syn_ts_662_3_0p9973: 1000 runs, failed by 96 h mean 121.2 sites, seeds 56.7 (t==0 fallback), recount equal",
+  "syn_ts_192_7_1p0240: 1000 runs, failed by 96 h mean 182.3 sites, seeds 69.4 (t==0 fallback), recount equal",
+  "syn_ts_156_15_1p066: 1000 runs, failed by 96 h mean 1434.9 sites, seeds 162.0 (t==0 fallback), recount equal",
+  "syn_ts_708_13_1p1567: 1000 runs, failed by 96 h mean 302.8 sites, seeds 89.2 (t==0 fallback), recount equal",
+  "syn_ts_436_11_1p3524: 1000 runs, failed by 96 h mean 935.0 sites, seeds 126.8 (t==0 fallback), recount equal",
+  "syn_ts_570_2_1p5351: 1000 runs, failed by 96 h mean 268.4 sites, seeds 82.3 (t==0 fallback), recount equal",
+  "syn_ts_463_29_1p6644: 1000 runs, failed by 96 h mean 609.2 sites, seeds 109.8 (t==0 fallback), recount equal",
+  "syn_ts_321_19_1p7614: 1000 runs, failed by 96 h mean 575.6 sites, seeds 108.4 (t==0 fallback), recount equal",
+  "syn_ts_831_27_1p9452: 1000 runs, failed by 96 h mean 1545.7 sites, seeds 174.4 (t==0 fallback), recount equal",
+  "syn_ts_192_15_2p5752: 1000 runs, failed by 96 h mean 1715.9 sites, seeds 209.6 (t==0 fallback), recount equal",
+  "syn_ts_880_9_2p6632: 1000 runs, failed by 96 h mean 1974.2 sites, seeds 276.5 (t==0 fallback), recount equal",
+  "syn_ts_514_13_2p7829: 1000 runs, failed by 96 h mean 2091.8 sites, seeds 316.0 (t==0 fallback), recount equal",
+  "syn_ts_914_26_3p4047: 1000 runs, failed by 96 h mean 2314.1 sites, seeds 419.0 (t==0 fallback), recount equal",
+  "syn_ts_999_12_3p44: 1000 runs, failed by 96 h mean 2218.1 sites, seeds 372.1 (t==0 fallback), recount equal",
+  "syn2_t817c20_wl1p935: 1000 runs, failed by 96 h mean 133.2 sites, seeds 59.5 (t==0 fallback), recount equal",
+  "syn2_t296c32_wl2p002: 1000 runs, failed by 96 h mean 170.3 sites, seeds 67.5 (t==0 fallback), recount equal",
+  "syn2_t931w15_wl2p070: 1000 runs, failed by 96 h mean 239.1 sites, seeds 77.4 (t==0 fallback), recount equal",
+  "syn2_t504c15_wl2p205: 1000 runs, failed by 96 h mean 368.5 sites, seeds 97.0 (t==0 fallback), recount equal",
+  "syn2_t910c36_wl2p272: 1000 runs, failed by 96 h mean 579.5 sites, seeds 108.4 (t==0 fallback), recount equal",
+  "syn2_t736c42_wl2p339: 1000 runs, failed by 96 h mean 823.8 sites, seeds 121.2 (t==0 fallback), recount equal",
+  "syn2_t25w17_wl2p408: 1000 runs, failed by 96 h mean 1065.7 sites, seeds 134.3 (t==0 fallback), recount equal",
+  "syn2_t354w10_wl2p544: 1000 runs, failed by 96 h mean 1395.7 sites, seeds 158.8 (t==0 fallback), recount equal",
+  "syn2_t589w12_wl2p614: 1000 runs, failed by 96 h mean 1521.7 sites, seeds 171.0 (t==0 fallback), recount equal",
+  "syn2_t748c28_wl2p684: 1000 runs, failed by 96 h mean 1603.6 sites, seeds 185.2 (t==0 fallback), recount equal",
+  "syn2_t731c2_wl2p755: 1000 runs, failed by 96 h mean 1674.5 sites, seeds 200.8 (t==0 fallback), recount equal",
+  "syn2_t853c18_wl2p880: 1000 runs, failed by 96 h mean 1779.0 sites, seeds 228.2 (t==0 fallback), recount equal",
+  "syn2_t760w7_wl2p959: 1000 runs, failed by 96 h mean 1845.2 sites, seeds 245.6 (t==0 fallback), recount equal",
+  "syn2_t51w23_wl3p011: 1000 runs, failed by 96 h mean 1893.5 sites, seeds 257.1 (t==0 fallback), recount equal",
+  "syn2_t512w18_wl3p089: 1000 runs, failed by 96 h mean 1971.2 sites, seeds 275.2 (t==0 fallback), recount equal",
+  "syn2_t78w9_wl3p232: 1000 runs, failed by 96 h mean 2086.2 sites, seeds 312.8 (t==0 fallback), recount equal",
+  "syn2_t546c20_wl3p299: 1000 runs, failed by 96 h mean 2132.3 sites, seeds 331.7 (t==0 fallback), recount equal",
+  "syn2_t858w3_wl3p342: 1000 runs, failed by 96 h mean 2158.1 sites, seeds 343.4 (t==0 fallback), recount equal",
+  "syn2_t870w11_wl3p407: 1000 runs, failed by 96 h mean 2197.9 sites, seeds 361.5 (t==0 fallback), recount equal",
+  "syn2_t175w10_wl3p557: 1000 runs, failed by 96 h mean 2290.5 sites, seeds 401.7 (t==0 fallback), recount equal",
+  "syn2_t431w19_wl3p632: 1000 runs, failed by 96 h mean 2330.4 sites, seeds 418.5 (t==0 fallback), recount equal",
+  "syn2_t397w4_wl3p687: 1000 runs, failed by 96 h mean 2360.2 sites, seeds 433.0 (t==0 fallback), recount equal",
+  "syn2_t98w4_wl3p759: 1000 runs, failed by 96 h mean 2391.7 sites, seeds 450.1 (t==0 fallback), recount equal",
+  "syn2_t494w17_wl3p890: 1000 runs, failed by 96 h mean 2442.7 sites, seeds 482.5 (t==0 fallback), recount equal",
+  "syn2_t445w4_wl3p963: 1000 runs, failed by 96 h mean 2463.7 sites, seeds 500.4 (t==0 fallback), recount equal",
+  "syn2_t574w1_wl4p027: 1000 runs, failed by 96 h mean 2477.9 sites, seeds 513.4 (t==0 fallback), recount equal",
+  "syn2_t162w13_wl4p105: 1000 runs, failed by 96 h mean 2499.9 sites, seeds 533.6 (t==0 fallback), recount equal",
+  "syn2_t13w19_wl4p230: 1000 runs, failed by 96 h mean 2522.8 sites, seeds 560.4 (t==0 fallback), recount equal",
+  "syn2_t874w0_wl4p297: 1000 runs, failed by 96 h mean 2539.5 sites, seeds 575.5 (t==0 fallback), recount equal",
+  "syn2_t433w18_wl4p363: 1000 runs, failed by 96 h mean 2555.5 sites, seeds 591.0 (t==0 fallback), recount equal",
+  "syn2_t459w5_wl4p437: 1000 runs, failed by 96 h mean 2572.0 sites, seeds 606.7 (t==0 fallback), recount equal",
+  "syn2_t117w7_wl4p508: 1000 runs, failed by 96 h mean 2584.5 sites, seeds 619.3 (t==0 fallback), recount equal",
+  "syn2_t66w12_wl4p572: 1000 runs, failed by 96 h mean 2597.8 sites, seeds 629.6 (t==0 fallback), recount equal",
+  "syn2_t165c31_wl2p137: 1000 runs, failed by 96 h mean 294.0 sites, seeds 87.4 (t==0 fallback), recount equal",
+  "syn2_t326c15_wl2p477: 1000 runs, failed by 96 h mean 1265.2 sites, seeds 147.2 (t==0 fallback), recount equal",
+  "syn2_t551w16_wl2p807: 1000 runs, failed by 96 h mean 1726.0 sites, seeds 211.7 (t==0 fallback), recount equal",
+  "syn2_t595w12_wl3p142: 1000 runs, failed by 96 h mean 2016.8 sites, seeds 288.3 (t==0 fallback), recount equal",
+  "syn2_t194c43_wl3p498: 1000 runs, failed by 96 h mean 2250.8 sites, seeds 386.7 (t==0 fallback), recount equal",
+  "syn2_t502w24_wl3p827: 1000 runs, failed by 96 h mean 2419.3 sites, seeds 466.6 (t==0 fallback), recount equal",
+  "syn2_t982w10_wl4p153: 1000 runs, failed by 96 h mean 2507.8 sites, seeds 542.9 (t==0 fallback), recount equal",
+  "geoclaw_2050: 1000 runs, failed by 96 h mean 2185.6 sites, seeds 295.5 (t==0 fallback), recount equal",
+  "syn_ts_914_6_1p2955: 1000 runs, failed by 96 h mean 313.3 sites, seeds 91.3 (t==0 fallback), recount equal",
+  "syn_ts_258_9_3p0022: 1000 runs, failed by 96 h mean 2176.8 sites, seeds 352.5 (t==0 fallback), recount equal",
+  "syn_ts_605_5_3p7563: 1000 runs, failed by 96 h mean 2552.2 sites, seeds 611.5 (t==0 fallback), recount equal",
+  "syn_ts_808_27_3p7885: 1000 runs, failed by 96 h mean 2362.6 sites, seeds 443.8 (t==0 fallback), recount equal",
+  "syn2_t449w6_wl2p103: 1000 runs, failed by 96 h mean 269.7 sites, seeds 82.5 (t==0 fallback), recount equal",
+  "syn2_t580w24_wl2p439: 1000 runs, failed by 96 h mean 1166.7 sites, seeds 140.3 (t==0 fallback), recount equal",
+  "syn2_t934c34_wl2p777: 1000 runs, failed by 96 h mean 1692.3 sites, seeds 205.3 (t==0 fallback), recount equal",
+  "syn2_t270w17_wl3p116: 1000 runs, failed by 96 h mean 1994.1 sites, seeds 281.7 (t==0 fallback), recount equal",
+  "syn2_t33w13_wl3p458: 1000 runs, failed by 96 h mean 2226.3 sites, seeds 375.8 (t==0 fallback), recount equal",
+  "syn2_t857w1_wl3p800: 1000 runs, failed by 96 h mean 2409.2 sites, seeds 460.0 (t==0 fallback), recount equal",
+  "syn2_t116w1_wl4p130: 1000 runs, failed by 96 h mean 2503.6 sites, seeds 537.7 (t==0 fallback), recount equal",
+  "syn2_t198w16_wl4p722: 1000 runs, failed by 96 h mean 2659.5 sites, seeds 660.4 (t==0 fallback), recount equal"
+ ],
+ "F2": {
+  "pass": true,
+  "detail": "70/70 storms with the recount equal to marginal_labels (seeds, pi_hat, both halves); geoclaw_2026: 1000 runs, failed by 96 h mean 1970.6 sites, seeds 206.6 (t==0 fallback), recount equal; geoclaw_2080: 1000 runs, failed by 96 h mean 2509.1 sites, seeds 416.0 (t==0 fallback), recount equal"
+ },
+ "F3": {
+  "pass": true,
+  "frac_wet_within_0.03": 0.9909549228944247,
+  "frac_wet_within_0.03_raw": 0.9907695729537367,
+  "external_phi_zero_and_never_seed": true,
+  "n_runs": [
+   1000
+  ],
+  "rows": [
+   {
+    "storm": "geoclaw_2026",
+    "n_runs": 1000,
+    "wet_non_external": 262,
+    "within_0.03": 258,
+    "offenders": [
+     [
+      "telecom_cluster_00294",
+      0.3543522357940674,
+      0.6093076467514038,
+      0.5699999928474426
+     ],
+     [
+      "telecom_cluster_03338",
+      0.3054637908935547,
+      0.5119988918304443,
+      0.47999998927116394
+     ],
+     [
+      "telecom_cluster_03830",
+      0.15972900390625,
+      0.14674268662929535,
+      0.1770000010728836
+     ],
+     [
+      "fuel_station_mobil_1108",
+      0.3258392810821533,
+      0.23771467804908752,
+      0.27000001072883606
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "geoclaw_2080",
+    "n_runs": 1000,
+    "wet_non_external": 476,
+    "within_0.03": 475,
+    "offenders": [
+     [
+      "telecom_cluster_02735",
+      0.4309818744659424,
+      0.7270136475563049,
+      0.6959999799728394
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_173_2_0p8859",
+    "n_runs": 1000,
+    "wet_non_external": 108,
+    "within_0.03": 107,
+    "offenders": [
+     [
+      "telecom_cluster_03042",
+      0.5313124656677246,
+      0.8296068906784058,
+      0.7300000190734863
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_662_3_0p9973",
+    "n_runs": 1000,
+    "wet_non_external": 107,
+    "within_0.03": 105,
+    "offenders": [
+     [
+      "telecom_cluster_03042",
+      0.5206781029701233,
+      0.8209302425384521,
+      0.718999981880188
+     ],
+     [
+      "telecom_cluster_03401",
+      0.1777781844139099,
+      0.19158333539962769,
+      0.1589999943971634
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_192_7_1p0240",
+    "n_runs": 1000,
+    "wet_non_external": 124,
+    "within_0.03": 121,
+    "offenders": [
+     [
+      "telecom_cluster_01237",
+      0.46447283029556274,
+      0.7668567299842834,
+      0.796999990940094
+     ],
+     [
+      "telecom_cluster_02813",
+      0.3596978783607483,
+      0.6188530921936035,
+      0.6489999890327454
+     ],
+     [
+      "telecom_cluster_03042",
+      0.6263977885246277,
+      0.8900896906852722,
+      0.8199999928474426
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_156_15_1p066",
+    "n_runs": 1000,
+    "wet_non_external": 241,
+    "within_0.03": 237,
+    "offenders": [
+     [
+      "telecom_cluster_00033",
+      0.23845462501049042,
+      0.35098135471343994,
+      0.38600000739097595
+     ],
+     [
+      "telecom_cluster_00192",
+      0.29560476541519165,
+      0.49018755555152893,
+      0.5230000019073486
+     ],
+     [
+      "telecom_cluster_00923",
+      0.3051295876502991,
+      0.5112713575363159,
+      0.5450000166893005
+     ],
+     [
+      "telecom_cluster_03098",
+      0.3527546525001526,
+      0.6064136624336243,
+      0.5709999799728394
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_708_13_1p1567",
+    "n_runs": 1000,
+    "wet_non_external": 150,
+    "within_0.03": 144,
+    "offenders": [
+     [
+      "telecom_cluster_00833",
+      0.30218422412872314,
+      0.5048233270645142,
+      0.5389999747276306
+     ],
+     [
+      "telecom_cluster_00879",
+      0.4831591844558716,
+      0.7864816784858704,
+      0.7559999823570251
+     ],
+     [
+      "telecom_cluster_01704",
+      0.25455915927886963,
+      0.39213886857032776,
+      0.3619999885559082
+     ],
+     [
+      "telecom_cluster_01751",
+      0.37838423252105713,
+      0.6505773067474365,
+      0.6150000095367432
+     ],
+     [
+      "telecom_cluster_02316",
+      0.20693422853946686,
+      0.2679683566093445,
+      0.3089999854564667
+     ],
+     [
+      "telecom_cluster_03042",
+      0.7593841552734375,
+      0.9391738772392273,
+      0.9079999923706055
+     ]
+    ],
+    "n_offenders": 6,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_436_11_1p3524",
+    "n_runs": 1000,
+    "wet_non_external": 197,
+    "within_0.03": 196,
+    "offenders": [
+     [
+      "telecom_cluster_02179",
+      0.6549692749977112,
+      0.9034294486045837,
+      0.8730000257492065
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_570_2_1p5351",
+    "n_runs": 1000,
+    "wet_non_external": 141,
+    "within_0.03": 140,
+    "offenders": [
+     [
+      "telecom_cluster_03042",
+      0.7113531827926636,
+      0.9249215722084045,
+      0.8849999904632568
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_463_29_1p6644",
+    "n_runs": 1000,
+    "wet_non_external": 187,
+    "within_0.03": 186,
+    "offenders": [
+     [
+      "telecom_cluster_01751",
+      0.5078495740890503,
+      0.8098484873771667,
+      0.777999997138977
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_321_19_1p7614",
+    "n_runs": 1000,
+    "wet_non_external": 185,
+    "within_0.03": 184,
+    "offenders": [
+     [
+      "telecom_cluster_01751",
+      0.5000771880149841,
+      0.802791178226471,
+      0.7689999938011169
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_831_27_1p9452",
+    "n_runs": 1000,
+    "wet_non_external": 263,
+    "within_0.03": 259,
+    "offenders": [
+     [
+      "telecom_cluster_00923",
+      0.3746165633201599,
+      0.6443836092948914,
+      0.6779999732971191
+     ],
+     [
+      "telecom_cluster_02478",
+      0.4508165717124939,
+      0.7513666749000549,
+      0.7200000286102295
+     ],
+     [
+      "telecom_cluster_03766",
+      0.4889165759086609,
+      0.7921820282936096,
+      0.7570000290870667
+     ],
+     [
+      "subway_canal_st_ace",
+      0.09839171916246414,
+      0.48383376002311707,
+      0.45100000500679016
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_192_15_2p5752",
+    "n_runs": 1000,
+    "wet_non_external": 309,
+    "within_0.03": 306,
+    "offenders": [
+     [
+      "power_160th_avenue",
+      0.4636397957801819,
+      0.30305173993110657,
+      0.33500000834465027
+     ],
+     [
+      "telecom_cluster_00033",
+      0.4731648564338684,
+      0.776203989982605,
+      0.8090000152587891
+     ],
+     [
+      "telecom_cluster_02959",
+      0.2255149483680725,
+      0.3171582818031311,
+      0.3479999899864197
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_880_9_2p6632",
+    "n_runs": 1000,
+    "wet_non_external": 388,
+    "within_0.03": 384,
+    "offenders": [
+     [
+      "power_160th_avenue",
+      0.7588402628898621,
+      0.6807236075401306,
+      0.7250000238418579
+     ],
+     [
+      "telecom_cluster_00086",
+      0.33974045515060425,
+      0.5821248888969421,
+      0.5509999990463257
+     ],
+     [
+      "telecom_cluster_00142",
+      0.4349903464317322,
+      0.7321194410324097,
+      0.7009999752044678
+     ],
+     [
+      "fuel_station_bp_0597",
+      0.5683402419090271,
+      0.5845394134521484,
+      0.6200000047683716
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_514_13_2p7829",
+    "n_runs": 1000,
+    "wet_non_external": 425,
+    "within_0.03": 419,
+    "offenders": [
+     [
+      "telecom_cluster_00155",
+      0.46869149804115295,
+      0.7714418768882751,
+      0.8059999942779541
+     ],
+     [
+      "telecom_cluster_00628",
+      0.278191477060318,
+      0.44994986057281494,
+      0.41600000858306885
+     ],
+     [
+      "water_wastewater_pumping_station",
+      0.34486642479896545,
+      0.22877055406570435,
+      0.2590000033378601
+     ],
+     [
+      "water_spring_creek_park_dep_aux_plnt",
+      0.4782165586948395,
+      0.4645056426525116,
+      0.4320000112056732
+     ],
+     [
+      "water_sirtoa_r_o_w_hannah_st_ps",
+      0.34486642479896545,
+      0.22877055406570435,
+      0.19699999690055847
+     ],
+     [
+      "fuel_station_bp_0597",
+      0.7163414359092712,
+      0.725496232509613,
+      0.7570000290870667
+     ]
+    ],
+    "n_offenders": 6,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_914_26_3p4047",
+    "n_runs": 1000,
+    "wet_non_external": 523,
+    "within_0.03": 517,
+    "offenders": [
+     [
+      "telecom_cluster_00294",
+      0.19160078465938568,
+      0.2274470180273056,
+      0.19599999487400055
+     ],
+     [
+      "telecom_cluster_01986",
+      0.22970078885555267,
+      0.3281569182872772,
+      0.296999990940094
+     ],
+     [
+      "telecom_cluster_03475",
+      0.39162588119506836,
+      0.6715537309646606,
+      0.6290000081062317
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.8678758144378662,
+      0.8209698796272278,
+      0.7870000004768372
+     ],
+     [
+      "fuel_station_sunoco_0884",
+      0.2773258686065674,
+      0.16296173632144928,
+      0.19499999284744263
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.8774008750915527,
+      0.8256875276565552,
+      0.8579999804496765
+     ]
+    ],
+    "n_offenders": 6,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_999_12_3p44",
+    "n_runs": 1000,
+    "wet_non_external": 475,
+    "within_0.03": 468,
+    "offenders": [
+     [
+      "telecom_cluster_00886",
+      0.25269100069999695,
+      0.38742944598197937,
+      0.34599998593330383
+     ],
+     [
+      "telecom_cluster_03475",
+      0.195541113615036,
+      0.23781366646289825,
+      0.2070000022649765
+     ],
+     [
+      "water_spring_creek_park_dep_aux_plnt",
+      0.681316077709198,
+      0.7319879531860352,
+      0.7009999752044678
+     ],
+     [
+      "water_hunts_pt_market_wholesale",
+      0.5765411257743835,
+      0.612130880355835,
+      0.6449999809265137
+     ],
+     [
+      "water_jfk_airport",
+      0.33841606974601746,
+      0.21750007569789886,
+      0.24899999797344208
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.6717910170555115,
+      0.6887223124504089,
+      0.656000018119812
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.681316077709198,
+      0.6969670057296753,
+      0.7310000061988831
+     ]
+    ],
+    "n_offenders": 7,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t817c20_wl1p935",
+    "n_runs": 1000,
+    "wet_non_external": 110,
+    "within_0.03": 109,
+    "offenders": [
+     [
+      "telecom_cluster_00586",
+      0.2774066925048828,
+      0.44808685779571533,
+      0.4099999964237213
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t296c32_wl2p002",
+    "n_runs": 1000,
+    "wet_non_external": 124,
+    "within_0.03": 123,
+    "offenders": [
+     [
+      "telecom_cluster_02813",
+      0.3449465036392212,
+      0.5919943451881409,
+      0.6269999742507935
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t931w15_wl2p070",
+    "n_runs": 1000,
+    "wet_non_external": 138,
+    "within_0.03": 135,
+    "offenders": [
+     [
+      "telecom_cluster_03400",
+      0.27020883560180664,
+      0.43081003427505493,
+      0.3970000147819519
+     ],
+     [
+      "subway_coney_island_stillwell_av_dfnq",
+      0.1082838922739029,
+      0.5788551568984985,
+      0.5389999747276306
+     ],
+     [
+      "subway_howard_beach_jfk_airport_a",
+      0.09875883162021637,
+      0.4875456988811493,
+      0.5180000066757202
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t504c15_wl2p205",
+    "n_runs": 1000,
+    "wet_non_external": 166,
+    "within_0.03": 164,
+    "offenders": [
+     [
+      "telecom_cluster_01751",
+      0.43344077467918396,
+      0.7301569581031799,
+      0.6859999895095825
+     ],
+     [
+      "telecom_cluster_02316",
+      0.2619907557964325,
+      0.4106828570365906,
+      0.44600000977516174
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t910c36_wl2p272",
+    "n_runs": 1000,
+    "wet_non_external": 185,
+    "within_0.03": 182,
+    "offenders": [
+     [
+      "telecom_cluster_01751",
+      0.5004792809486389,
+      0.8031628131866455,
+      0.7689999938011169
+     ],
+     [
+      "telecom_cluster_03524",
+      0.40522927045822144,
+      0.691855788230896,
+      0.7229999899864197
+     ],
+     [
+      "subway_richmond_valley_sir",
+      0.1004292368888855,
+      0.5042717456817627,
+      0.5350000262260437
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t736c42_wl2p339",
+    "n_runs": 1000,
+    "wet_non_external": 195,
+    "within_0.03": 191,
+    "offenders": [
+     [
+      "telecom_cluster_01751",
+      0.5677956938743591,
+      0.8561767339706421,
+      0.8240000009536743
+     ],
+     [
+      "telecom_cluster_02576",
+      0.443970650434494,
+      0.7432163953781128,
+      0.7089999914169312
+     ],
+     [
+      "telecom_cluster_02582",
+      0.34872063994407654,
+      0.5990211963653564,
+      0.6359999775886536
+     ],
+     [
+      "telecom_cluster_02683",
+      0.1677456647157669,
+      0.1663002222776413,
+      0.13099999725818634
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t25w17_wl2p408",
+    "n_runs": 1000,
+    "wet_non_external": 206,
+    "within_0.03": 202,
+    "offenders": [
+     [
+      "telecom_cluster_02582",
+      0.41728025674819946,
+      0.7088263630867004,
+      0.7440000176429749
+     ],
+     [
+      "telecom_cluster_02683",
+      0.23630529642105103,
+      0.34540238976478577,
+      0.3140000104904175
+     ],
+     [
+      "telecom_cluster_03098",
+      0.19820529222488403,
+      0.24484606087207794,
+      0.2070000022649765
+     ],
+     [
+      "fuel_station_speedway_1103",
+      0.5982553362846375,
+      0.6175360679626465,
+      0.6510000228881836
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t354w10_wl2p544",
+    "n_runs": 1000,
+    "wet_non_external": 237,
+    "within_0.03": 233,
+    "offenders": [
+     [
+      "telecom_cluster_00033",
+      0.2196393609046936,
+      0.3016505539417267,
+      0.3319999873638153
+     ],
+     [
+      "telecom_cluster_02634",
+      0.2672644257545471,
+      0.42364659905433655,
+      0.4560000002384186
+     ],
+     [
+      "telecom_cluster_03098",
+      0.3339393734931946,
+      0.5708852410316467,
+      0.5270000100135803
+     ],
+     [
+      "telecom_cluster_03766",
+      0.40061432123184204,
+      0.6851069331169128,
+      0.6539999842643738
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t589w12_wl2p614",
+    "n_runs": 1000,
+    "wet_non_external": 259,
+    "within_0.03": 255,
+    "offenders": [
+     [
+      "telecom_cluster_00923",
+      0.35629820823669434,
+      0.612807035446167,
+      0.6480000019073486
+     ],
+     [
+      "telecom_cluster_02634",
+      0.3372483253479004,
+      0.5773277282714844,
+      0.6159999966621399
+     ],
+     [
+      "telecom_cluster_03766",
+      0.4705982208251953,
+      0.7734841704368591,
+      0.7419999837875366
+     ],
+     [
+      "subway_canal_st_ace",
+      0.08007334917783737,
+      0.2892531752586365,
+      0.24799999594688416
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t748c28_wl2p684",
+    "n_runs": 1000,
+    "wet_non_external": 273,
+    "within_0.03": 271,
+    "offenders": [
+     [
+      "telecom_cluster_00923",
+      0.4262034296989441,
+      0.7208014130592346,
+      0.7580000162124634
+     ],
+     [
+      "telecom_cluster_03766",
+      0.5405034422874451,
+      0.8367523550987244,
+      0.8050000071525574
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t731c2_wl2p755",
+    "n_runs": 1000,
+    "wet_non_external": 297,
+    "within_0.03": 295,
+    "offenders": [
+     [
+      "telecom_cluster_00923",
+      0.4980057179927826,
+      0.8008650541305542,
+      0.8360000252723694
+     ],
+     [
+      "telecom_cluster_02034",
+      0.2503558099269867,
+      0.38151705265045166,
+      0.4129999876022339
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t853c18_wl2p880",
+    "n_runs": 1000,
+    "wet_non_external": 321,
+    "within_0.03": 318,
+    "offenders": [
+     [
+      "telecom_cluster_02034",
+      0.37454360723495483,
+      0.6442626714706421,
+      0.6790000200271606
+     ],
+     [
+      "telecom_cluster_02178",
+      0.2697686553001404,
+      0.42974260449409485,
+      0.3930000066757202
+     ],
+     [
+      "telecom_cluster_02735",
+      0.3173934817314148,
+      0.537418782711029,
+      0.503000020980835
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t760w7_wl2p959",
+    "n_runs": 1000,
+    "wet_non_external": 344,
+    "within_0.03": 341,
+    "offenders": [
+     [
+      "telecom_cluster_00142",
+      0.3015366792678833,
+      0.5033971071243286,
+      0.46799999475479126
+     ],
+     [
+      "telecom_cluster_00155",
+      0.18723665177822113,
+      0.2160269320011139,
+      0.2529999911785126
+     ],
+     [
+      "telecom_cluster_01949",
+      0.44441163539886475,
+      0.7437493801116943,
+      0.7829999923706055
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t51w23_wl3p011",
+    "n_runs": 1000,
+    "wet_non_external": 372,
+    "within_0.03": 366,
+    "offenders": [
+     [
+      "power_160th_avenue",
+      0.6769869923591614,
+      0.5953947901725769,
+      0.6299999952316284
+     ],
+     [
+      "telecom_cluster_00142",
+      0.3531371057033539,
+      0.6071081757545471,
+      0.5669999718666077
+     ],
+     [
+      "telecom_cluster_00155",
+      0.2388370931148529,
+      0.35197222232818604,
+      0.3930000066757202
+     ],
+     [
+      "telecom_cluster_01949",
+      0.4960120618343353,
+      0.7989929914474487,
+      0.8399999737739563
+     ],
+     [
+      "fuel_station_bp_0597",
+      0.4864870011806488,
+      0.48178935050964355,
+      0.5120000243186951
+     ],
+     [
+      "fuel_station_bp_0770",
+      0.4102869927883148,
+      0.3708566427230835,
+      0.4009999930858612
+     ]
+    ],
+    "n_offenders": 6,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t512w18_wl3p089",
+    "n_runs": 1000,
+    "wet_non_external": 387,
+    "within_0.03": 383,
+    "offenders": [
+     [
+      "power_160th_avenue",
+      0.7557915449142456,
+      0.6778416633605957,
+      0.7239999771118164
+     ],
+     [
+      "telecom_cluster_00086",
+      0.3366917371749878,
+      0.5762498378753662,
+      0.5450000166893005
+     ],
+     [
+      "telecom_cluster_00142",
+      0.4319416284561157,
+      0.7282448410987854,
+      0.6980000138282776
+     ],
+     [
+      "fuel_station_bp_0597",
+      0.5652915239334106,
+      0.5810403823852539,
+      0.6179999709129333
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t78w9_wl3p232",
+    "n_runs": 1000,
+    "wet_non_external": 422,
+    "within_0.03": 418,
+    "offenders": [
+     [
+      "telecom_cluster_00155",
+      0.46056899428367615,
+      0.7625307440757751,
+      0.7960000038146973
+     ],
+     [
+      "water_hunts_pt_market_wholesale",
+      0.3653191030025482,
+      0.2651088535785675,
+      0.29600000381469727
+     ],
+     [
+      "water_sirtoa_r_o_w_hannah_st_ps",
+      0.33674392104148865,
+      0.21459728479385376,
+      0.1809999942779541
+     ],
+     [
+      "fuel_station_bp_0597",
+      0.7082188725471497,
+      0.7191241979598999,
+      0.753000020980835
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t546c20_wl3p299",
+    "n_runs": 1000,
+    "wet_non_external": 440,
+    "within_0.03": 432,
+    "offenders": [
+     [
+      "telecom_cluster_00191",
+      0.24172666668891907,
+      0.3594392240047455,
+      0.4009999930858612
+     ],
+     [
+      "telecom_cluster_01872",
+      0.29887655377388,
+      0.49750539660453796,
+      0.5410000085830688
+     ],
+     [
+      "telecom_cluster_03304",
+      0.30840161442756653,
+      0.5183584094047546,
+      0.48500001430511475
+     ],
+     [
+      "hospital_hospital_for_special_surgery",
+      0.5846267342567444,
+      0.4792993366718292,
+      0.5099999904632568
+     ],
+     [
+      "water_wastewater_pumping_station",
+      0.40365150570869446,
+      0.33428463339805603,
+      0.36500000953674316
+     ],
+     [
+      "water_spring_creek_park_dep_aux_plnt",
+      0.5370016694068909,
+      0.5567705035209656,
+      0.515999972820282
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.5274766087532043,
+      0.5355228781700134,
+      0.5009999871253967
+     ],
+     [
+      "fuel_station_bp_0597",
+      0.7751265168190002,
+      0.7675178647041321,
+      0.7990000247955322
+     ]
+    ],
+    "n_offenders": 8,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t858w3_wl3p342",
+    "n_runs": 1000,
+    "wet_non_external": 445,
+    "within_0.03": 437,
+    "offenders": [
+     [
+      "telecom_cluster_02025",
+      0.2366446852684021,
+      0.34628450870513916,
+      0.3160000145435333
+     ],
+     [
+      "telecom_cluster_02843",
+      0.42714470624923706,
+      0.7220360040664673,
+      0.6899999976158142
+     ],
+     [
+      "telecom_cluster_03304",
+      0.3509446978569031,
+      0.6031119227409363,
+      0.5709999799728394
+     ],
+     [
+      "hospital_hospital_for_special_surgery",
+      0.6271697878837585,
+      0.5352903008460999,
+      0.5659999847412109
+     ],
+     [
+      "water_spring_creek_park_dep_aux_plnt",
+      0.579544723033905,
+      0.6161059737205505,
+      0.5839999914169312
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.5700196623802185,
+      0.5864560604095459,
+      0.5519999861717224
+     ],
+     [
+      "fuel_station_sunoco_0873",
+      0.3604697585105896,
+      0.2927621304988861,
+      0.3319999873638153
+     ],
+     [
+      "fuel_station_sunoco_1100",
+      0.7414695620536804,
+      0.7443162798881531,
+      0.7070000171661377
+     ]
+    ],
+    "n_offenders": 8,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t870w11_wl3p407",
+    "n_runs": 1000,
+    "wet_non_external": 464,
+    "within_0.03": 456,
+    "offenders": [
+     [
+      "telecom_cluster_00271",
+      0.502072811126709,
+      0.8046286106109619,
+      0.7720000147819519
+     ],
+     [
+      "telecom_cluster_01775",
+      0.311572790145874,
+      0.5251502394676208,
+      0.5559999942779541
+     ],
+     [
+      "telecom_cluster_03304",
+      0.4163477420806885,
+      0.7075462937355042,
+      0.6729999780654907
+     ],
+     [
+      "water_spring_creek_park_dep_aux_plnt",
+      0.6449477672576904,
+      0.6946668028831482,
+      0.6600000262260437
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.6354227066040039,
+      0.6552267670631409,
+      0.625
+     ],
+     [
+      "fuel_station_sunoco_0873",
+      0.425872802734375,
+      0.3945630192756653,
+      0.42500001192092896
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.6449477672576904,
+      0.6643151044845581,
+      0.6990000009536743
+     ],
+     [
+      "fuel_station_sunoco_1100",
+      0.8068726062774658,
+      0.7874475717544556,
+      0.7570000290870667
+     ]
+    ],
+    "n_offenders": 8,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t175w10_wl3p557",
+    "n_runs": 1000,
+    "wet_non_external": 503,
+    "within_0.03": 497,
+    "offenders": [
+     [
+      "telecom_cluster_00886",
+      0.3663744628429413,
+      0.6304790377616882,
+      0.5820000171661377
+     ],
+     [
+      "telecom_cluster_03475",
+      0.30922457575798035,
+      0.5201282501220703,
+      0.48100000619888306
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.7854745388031006,
+      0.7742149233818054,
+      0.7329999804496765
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.7949995994567871,
+      0.780206024646759,
+      0.8119999766349792
+     ],
+     [
+      "fuel_station_unknown_gas_station_1054",
+      0.5187745094299316,
+      0.5244937539100647,
+      0.5550000071525574
+     ],
+     [
+      "fuel_station_mobil_1108",
+      0.3282744586467743,
+      0.24156931042671204,
+      0.27300000190734863
+     ]
+    ],
+    "n_offenders": 6,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t431w19_wl3p632",
+    "n_runs": 1000,
+    "wet_non_external": 520,
+    "within_0.03": 515,
+    "offenders": [
+     [
+      "telecom_cluster_01986",
+      0.22190634906291962,
+      0.3076420724391937,
+      0.2750000059604645
+     ],
+     [
+      "telecom_cluster_03475",
+      0.3838314116001129,
+      0.6593543291091919,
+      0.6150000095367432
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.8600813746452332,
+      0.8170106410980225,
+      0.7820000052452087
+     ],
+     [
+      "fuel_station_sunoco_0884",
+      0.26953139901161194,
+      0.1515350490808487,
+      0.18400000035762787
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.8696064352989197,
+      0.8218368291854858,
+      0.8550000190734863
+     ]
+    ],
+    "n_offenders": 5,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t397w4_wl3p687",
+    "n_runs": 1000,
+    "wet_non_external": 533,
+    "within_0.03": 527,
+    "offenders": [
+     [
+      "telecom_cluster_00294",
+      0.23917889595031738,
+      0.3528572618961334,
+      0.30799999833106995
+     ],
+     [
+      "telecom_cluster_03475",
+      0.43920397758483887,
+      0.7373844385147095,
+      0.6899999976158142
+     ],
+     [
+      "telecom_cluster_03830",
+      0.2010788917541504,
+      0.2524472177028656,
+      0.30000001192092896
+     ],
+     [
+      "fuel_station_sunoco_0884",
+      0.3249039649963379,
+      0.2362355887889862,
+      0.2720000147819519
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.9249789714813232,
+      0.8473824262619019,
+      0.878000020980835
+     ],
+     [
+      "fuel_station_unknown_gas_station_1054",
+      0.6487538814544678,
+      0.6678832173347473,
+      0.7020000219345093
+     ]
+    ],
+    "n_offenders": 6,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t98w4_wl3p759",
+    "n_runs": 1000,
+    "wet_non_external": 544,
+    "within_0.03": 535,
+    "offenders": [
+     [
+      "telecom_cluster_00116",
+      0.5969834327697754,
+      0.8742771148681641,
+      0.8429999947547913
+     ],
+     [
+      "telecom_cluster_00294",
+      0.3112335205078125,
+      0.5244272351264954,
+      0.4740000069141388
+     ],
+     [
+      "telecom_cluster_02149",
+      0.3493335247039795,
+      0.6001521944999695,
+      0.5649999976158142
+     ],
+     [
+      "telecom_cluster_03099",
+      0.25408363342285156,
+      0.39094188809394836,
+      0.421999990940094
+     ],
+     [
+      "telecom_cluster_03475",
+      0.511258602142334,
+      0.8128609657287598,
+      0.7720000147819519
+     ],
+     [
+      "telecom_cluster_03830",
+      0.2731335163116455,
+      0.4378708600997925,
+      0.4790000021457672
+     ],
+     [
+      "fuel_station_sunoco_0884",
+      0.396958589553833,
+      0.35025694966316223,
+      0.39500001072883606
+     ],
+     [
+      "fuel_station_unknown_gas_station_1054",
+      0.7208085060119629,
+      0.7289395928382874,
+      0.7590000033378601
+     ],
+     [
+      "fuel_station_mobil_1108",
+      0.5303084850311279,
+      0.5390674471855164,
+      0.5799999833106995
+     ]
+    ],
+    "n_offenders": 9,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t494w17_wl3p890",
+    "n_runs": 1000,
+    "wet_non_external": 581,
+    "within_0.03": 577,
+    "offenders": [
+     [
+      "telecom_cluster_00217",
+      0.23261556029319763,
+      0.33578574657440186,
+      0.37400001287460327
+     ],
+     [
+      "telecom_cluster_00294",
+      0.44216546416282654,
+      0.7410231232643127,
+      0.7089999914169312
+     ],
+     [
+      "telecom_cluster_03567",
+      0.4231155812740326,
+      0.7167131304740906,
+      0.6779999732971191
+     ],
+     [
+      "fuel_station_mobil_0600",
+      0.4612155854701996,
+      0.4464755952358246,
+      0.4869999885559082
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t445w4_wl3p963",
+    "n_runs": 1000,
+    "wet_non_external": 601,
+    "within_0.03": 600,
+    "offenders": [
+     [
+      "telecom_cluster_00169",
+      0.24847516417503357,
+      0.37673547863960266,
+      0.40799999237060547
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t574w1_wl4p027",
+    "n_runs": 1000,
+    "wet_non_external": 607,
+    "within_0.03": 606,
+    "offenders": [
+     [
+      "telecom_cluster_00535",
+      0.19747646152973175,
+      0.2429206520318985,
+      0.27300000190734863
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t162w13_wl4p105",
+    "n_runs": 1000,
+    "wet_non_external": 624,
+    "within_0.03": 621,
+    "offenders": [
+     [
+      "telecom_cluster_01801",
+      0.19049133360385895,
+      0.22453702986240387,
+      0.19300000369548798
+     ],
+     [
+      "telecom_cluster_02151",
+      0.30479133129119873,
+      0.5105341076850891,
+      0.5540000200271606
+     ],
+     [
+      "fuel_station_sunoco_1021",
+      0.5905412435531616,
+      0.6092579960823059,
+      0.6430000066757202
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t13w19_wl4p230",
+    "n_runs": 1000,
+    "wet_non_external": 656,
+    "within_0.03": 655,
+    "offenders": [
+     [
+      "fuel_station_unknown_gas_station_1042",
+      0.343824565410614,
+      0.2662718892097473,
+      0.3019999861717224
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t874w0_wl4p297",
+    "n_runs": 1000,
+    "wet_non_external": 671,
+    "within_0.03": 667,
+    "offenders": [
+     [
+      "telecom_cluster_01859",
+      0.2301478236913681,
+      0.32932862639427185,
+      0.29899999499320984
+     ],
+     [
+      "telecom_cluster_03563",
+      0.1825227588415146,
+      0.20378446578979492,
+      0.17100000381469727
+     ],
+     [
+      "hospital_staten_island_university_hosp_north",
+      0.5635228157043457,
+      0.45008614659309387,
+      0.49000000953674316
+     ],
+     [
+      "fuel_station_sunoco_0520",
+      0.4396977126598358,
+      0.41519513726234436,
+      0.3779999911785126
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t433w18_wl4p363",
+    "n_runs": 1000,
+    "wet_non_external": 679,
+    "within_0.03": 677,
+    "offenders": [
+     [
+      "hospital_staten_island_university_hosp_north",
+      0.6289848685264587,
+      0.5375864505767822,
+      0.5830000042915344
+     ],
+     [
+      "fuel_station_sunoco_0520",
+      0.5051597952842712,
+      0.5068260431289673,
+      0.4740000069141388
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t459w5_wl4p437",
+    "n_runs": 1000,
+    "wet_non_external": 691,
+    "within_0.03": 690,
+    "offenders": [
+     [
+      "telecom_cluster_03021",
+      0.27487289905548096,
+      0.44204381108283997,
+      0.4740000069141388
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t117w7_wl4p508",
+    "n_runs": 1000,
+    "wet_non_external": 701,
+    "within_0.03": 699,
+    "offenders": [
+     [
+      "telecom_cluster_01932",
+      0.36496880650520325,
+      0.6280585527420044,
+      0.6620000004768372
+     ],
+     [
+      "fuel_station_unknown_gas_station_0627",
+      0.3554435074329376,
+      0.2847675681114197,
+      0.32100000977516174
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t66w12_wl4p572",
+    "n_runs": 1000,
+    "wet_non_external": 706,
+    "within_0.03": 703,
+    "offenders": [
+     [
+      "telecom_cluster_01932",
+      0.4289645254611969,
+      0.7244077920913696,
+      0.7570000290870667
+     ],
+     [
+      "hospital_staten_island_university_hosp_north",
+      0.8385394811630249,
+      0.7484002113342285,
+      0.7820000052452087
+     ],
+     [
+      "subway_canal_st_jz",
+      0.07653941214084625,
+      0.2519356608390808,
+      0.21899999678134918
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t165c31_wl2p137",
+    "n_runs": 1000,
+    "wet_non_external": 147,
+    "within_0.03": 146,
+    "offenders": [
+     [
+      "telecom_cluster_03400",
+      0.33724746108055115,
+      0.5773259997367859,
+      0.5460000038146973
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t326c15_wl2p477",
+    "n_runs": 1000,
+    "wet_non_external": 215,
+    "within_0.03": 213,
+    "offenders": [
+     [
+      "telecom_cluster_02683",
+      0.30551478266716003,
+      0.5121098160743713,
+      0.4740000069141388
+     ],
+     [
+      "telecom_cluster_03766",
+      0.3340897262096405,
+      0.5711797475814819,
+      0.5329999923706055
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t551w16_wl2p807",
+    "n_runs": 1000,
+    "wet_non_external": 309,
+    "within_0.03": 307,
+    "offenders": [
+     [
+      "power_160th_avenue",
+      0.4731243848800659,
+      0.3173426389694214,
+      0.3490000069141388
+     ],
+     [
+      "telecom_cluster_00033",
+      0.48264944553375244,
+      0.7859693765640259,
+      0.8220000267028809
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t595w12_wl3p142",
+    "n_runs": 1000,
+    "wet_non_external": 403,
+    "within_0.03": 399,
+    "offenders": [
+     [
+      "power_160th_avenue",
+      0.8083414435386658,
+      0.7244490385055542,
+      0.7620000243186951
+     ],
+     [
+      "telecom_cluster_02178",
+      0.5321165919303894,
+      0.8302448987960815,
+      0.796999990940094
+     ],
+     [
+      "telecom_cluster_02626",
+      0.21779151260852814,
+      0.29676058888435364,
+      0.3269999921321869
+     ],
+     [
+      "water_spring_creek_park_dep_aux_plnt",
+      0.3797166049480438,
+      0.2910342514514923,
+      0.2590000033378601
+     ]
+    ],
+    "n_offenders": 4,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t194c43_wl3p498",
+    "n_runs": 1000,
+    "wet_non_external": 487,
+    "within_0.03": 484,
+    "offenders": [
+     [
+      "telecom_cluster_00886",
+      0.30689454078674316,
+      0.5151041150093079,
+      0.47200000286102295
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.7259945869445801,
+      0.7328835129737854,
+      0.6970000267028809
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.7355196475982666,
+      0.7399793863296509,
+      0.7749999761581421
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t502w24_wl3p827",
+    "n_runs": 1000,
+    "wet_non_external": 559,
+    "within_0.03": 554,
+    "offenders": [
+     [
+      "telecom_cluster_00921",
+      0.4363616406917572,
+      0.7338442802429199,
+      0.6990000009536743
+     ],
+     [
+      "telecom_cluster_03567",
+      0.3601616322994232,
+      0.6196712255477905,
+      0.5889999866485596
+     ],
+     [
+      "fuel_station_mobil_0600",
+      0.3982616364955902,
+      0.35228270292282104,
+      0.3869999945163727
+     ],
+     [
+      "fuel_station_sunoco_0884",
+      0.46493658423423767,
+      0.45177483558654785,
+      0.4830000102519989
+     ],
+     [
+      "fuel_station_mobil_1108",
+      0.5982864499092102,
+      0.617569088935852,
+      0.6480000019073486
+     ]
+    ],
+    "n_offenders": 5,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t982w10_wl4p153",
+    "n_runs": 1000,
+    "wet_non_external": 638,
+    "within_0.03": 635,
+    "offenders": [
+     [
+      "telecom_cluster_00535",
+      0.3239361643791199,
+      0.5509017705917358,
+      0.5820000171661377
+     ],
+     [
+      "telecom_cluster_03379",
+      0.21916121244430542,
+      0.3003857135772705,
+      0.2639999985694885
+     ],
+     [
+      "fuel_station_sunoco_1021",
+      0.6382612586021423,
+      0.6579590439796448,
+      0.6899999976158142
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "geoclaw_2050",
+    "n_runs": 1000,
+    "wet_non_external": 361,
+    "within_0.03": 356,
+    "offenders": [
+     [
+      "telecom_cluster_01718",
+      0.43320679664611816,
+      0.7298594117164612,
+      0.7609999775886536
+     ],
+     [
+      "telecom_cluster_03475",
+      0.4080348014831543,
+      0.6958902478218079,
+      0.6520000100135803
+     ],
+     [
+      "water_sirtoa_r_o_w_hannah_st_ps",
+      0.35968780517578125,
+      0.2550303041934967,
+      0.22300000488758087
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.8620901107788086,
+      0.81803959608078,
+      0.8510000109672546
+     ],
+     [
+      "fuel_station_sunoco_1100",
+      0.7580842971801758,
+      0.7560473084449768,
+      0.7239999771118164
+     ]
+    ],
+    "n_offenders": 5,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_914_6_1p2955",
+    "n_runs": 1000,
+    "wet_non_external": 154,
+    "within_0.03": 151,
+    "offenders": [
+     [
+      "telecom_cluster_00879",
+      0.49870046973228455,
+      0.8015131950378418,
+      0.7689999938011169
+     ],
+     [
+      "telecom_cluster_01751",
+      0.3939255177974701,
+      0.6750732064247131,
+      0.6380000114440918
+     ],
+     [
+      "telecom_cluster_02316",
+      0.22247548401355743,
+      0.3091447949409485,
+      0.3490000069141388
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_258_9_3p0022",
+    "n_runs": 1000,
+    "wet_non_external": 456,
+    "within_0.03": 447,
+    "offenders": [
+     [
+      "telecom_cluster_01775",
+      0.27661049365997314,
+      0.44619253277778625,
+      0.4790000021457672
+     ],
+     [
+      "telecom_cluster_02843",
+      0.4575854539871216,
+      0.7591700553894043,
+      0.7289999723434448
+     ],
+     [
+      "telecom_cluster_03304",
+      0.3813854455947876,
+      0.6554389595985413,
+      0.6230000257492065
+     ],
+     [
+      "water_spring_creek_park_dep_aux_plnt",
+      0.6099854707717896,
+      0.6545574069023132,
+      0.6179999709129333
+     ],
+     [
+      "water_hunts_pt_market_wholesale",
+      0.5052105188369751,
+      0.5082711577415466,
+      0.5419999957084656
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.600460410118103,
+      0.6198731660842896,
+      0.5809999704360962
+     ],
+     [
+      "fuel_station_sunoco_0873",
+      0.3909105062484741,
+      0.34082385897636414,
+      0.3720000088214874
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.6099854707717896,
+      0.6298206448554993,
+      0.6629999876022339
+     ],
+     [
+      "fuel_station_sunoco_1100",
+      0.7719103097915649,
+      0.7653956413269043,
+      0.7350000143051147
+     ]
+    ],
+    "n_offenders": 9,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_605_5_3p7563",
+    "n_runs": 1000,
+    "wet_non_external": 697,
+    "within_0.03": 696,
+    "offenders": [
+     [
+      "telecom_cluster_03021",
+      0.29589349031448364,
+      0.490836501121521,
+      0.527999997138977
+     ]
+    ],
+    "n_offenders": 1,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn_ts_808_27_3p7885",
+    "n_runs": 1000,
+    "wet_non_external": 540,
+    "within_0.03": 532,
+    "offenders": [
+     [
+      "telecom_cluster_00116",
+      0.5827281475067139,
+      0.8657587170600891,
+      0.8339999914169312
+     ],
+     [
+      "telecom_cluster_00294",
+      0.2969782054424286,
+      0.49326902627944946,
+      0.44699999690055847
+     ],
+     [
+      "telecom_cluster_03475",
+      0.4970032870769501,
+      0.7999259829521179,
+      0.7590000033378601
+     ],
+     [
+      "telecom_cluster_03830",
+      0.2588782012462616,
+      0.4029541611671448,
+      0.4449999928474426
+     ],
+     [
+      "fuel_station_sunoco_0884",
+      0.3827032744884491,
+      0.32795023918151855,
+      0.37599998712539673
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.9827783107757568,
+      0.8699791431427002,
+      0.9010000228881836
+     ],
+     [
+      "fuel_station_unknown_gas_station_1054",
+      0.7065532207489014,
+      0.7177996635437012,
+      0.753000020980835
+     ],
+     [
+      "fuel_station_mobil_1108",
+      0.5160531997680664,
+      0.5210024118423462,
+      0.5559999942779541
+     ]
+    ],
+    "n_offenders": 8,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t449w6_wl2p103",
+    "n_runs": 1000,
+    "wet_non_external": 141,
+    "within_0.03": 141,
+    "offenders": [],
+    "n_offenders": 0,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t580w24_wl2p439",
+    "n_runs": 1000,
+    "wet_non_external": 211,
+    "within_0.03": 209,
+    "offenders": [
+     [
+      "telecom_cluster_02683",
+      0.2674744129180908,
+      0.42415928840637207,
+      0.39399999380111694
+     ],
+     [
+      "telecom_cluster_03766",
+      0.2960493564605713,
+      0.49118655920028687,
+      0.46000000834465027
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t934c34_wl2p777",
+    "n_runs": 1000,
+    "wet_non_external": 305,
+    "within_0.03": 305,
+    "offenders": [],
+    "n_offenders": 0,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t270w17_wl3p116",
+    "n_runs": 1000,
+    "wet_non_external": 400,
+    "within_0.03": 395,
+    "offenders": [
+     [
+      "power_160th_avenue",
+      0.781955361366272,
+      0.7018525004386902,
+      0.7440000176429749
+     ],
+     [
+      "telecom_cluster_00086",
+      0.36285555362701416,
+      0.6243923306465149,
+      0.5910000205039978
+     ],
+     [
+      "telecom_cluster_00142",
+      0.4581054449081421,
+      0.7597591876983643,
+      0.7269999980926514
+     ],
+     [
+      "telecom_cluster_02626",
+      0.19140541553497314,
+      0.2269342839717865,
+      0.25999999046325684
+     ],
+     [
+      "fuel_station_bp_0597",
+      0.591455340385437,
+      0.6102472543716431,
+      0.6470000147819519
+     ]
+    ],
+    "n_offenders": 5,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t33w13_wl3p458",
+    "n_runs": 1000,
+    "wet_non_external": 479,
+    "within_0.03": 473,
+    "offenders": [
+     [
+      "telecom_cluster_00886",
+      0.267146497964859,
+      0.4233585596084595,
+      0.38600000739097595
+     ],
+     [
+      "telecom_cluster_03304",
+      0.4671715795993805,
+      0.7698005437850952,
+      0.7369999885559082
+     ],
+     [
+      "hospital_hospital_for_special_surgery",
+      0.7433966398239136,
+      0.6658928990364075,
+      0.6959999799728394
+     ],
+     [
+      "water_hunts_pt_market_wholesale",
+      0.5909966230392456,
+      0.6309627890586853,
+      0.6629999876022339
+     ],
+     [
+      "fuel_station_allegiance_0213",
+      0.6862465143203735,
+      0.7011513113975525,
+      0.6669999957084656
+     ],
+     [
+      "fuel_station_exxon_1020",
+      0.6957715749740601,
+      0.7090765237808228,
+      0.7419999837875366
+     ]
+    ],
+    "n_offenders": 6,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t857w1_wl3p800",
+    "n_runs": 1000,
+    "wet_non_external": 556,
+    "within_0.03": 548,
+    "offenders": [
+     [
+      "telecom_cluster_00294",
+      0.3524492383003235,
+      0.6058582663536072,
+      0.5649999976158142
+     ],
+     [
+      "telecom_cluster_02149",
+      0.3905492424964905,
+      0.6698935627937317,
+      0.6370000243186951
+     ],
+     [
+      "telecom_cluster_02796",
+      0.3905492424964905,
+      0.6698935627937317,
+      0.6380000114440918
+     ],
+     [
+      "telecom_cluster_03260",
+      0.36197429895401,
+      0.6228538155555725,
+      0.6549999713897705
+     ],
+     [
+      "telecom_cluster_03475",
+      0.552474319934845,
+      0.8455914855003357,
+      0.8109999895095825
+     ],
+     [
+      "fuel_station_mobil_0600",
+      0.37149935960769653,
+      0.3102641999721527,
+      0.34299999475479126
+     ],
+     [
+      "fuel_station_sunoco_0884",
+      0.438174307346344,
+      0.41294121742248535,
+      0.4449999928474426
+     ],
+     [
+      "fuel_station_mobil_1108",
+      0.5715242028236389,
+      0.5881665945053101,
+      0.6290000081062317
+     ]
+    ],
+    "n_offenders": 8,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t116w1_wl4p130",
+    "n_runs": 1000,
+    "wet_non_external": 627,
+    "within_0.03": 625,
+    "offenders": [
+     [
+      "telecom_cluster_02151",
+      0.3292558193206787,
+      0.5616238713264465,
+      0.6010000109672546
+     ],
+     [
+      "fuel_station_sunoco_1021",
+      0.6150057315826416,
+      0.6349675059318542,
+      0.6700000166893005
+     ]
+    ],
+    "n_offenders": 2,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   },
+   {
+    "storm": "syn2_t198w16_wl4p722",
+    "n_runs": 1000,
+    "wet_non_external": 728,
+    "within_0.03": 725,
+    "offenders": [
+     [
+      "telecom_cluster_00799",
+      0.2543443441390991,
+      0.39159828424453735,
+      0.4259999990463257
+     ],
+     [
+      "telecom_cluster_02862",
+      0.18766964972019196,
+      0.21715663373470306,
+      0.1809999942779541
+     ],
+     [
+      "fuel_station_mobil_1138",
+      0.3591192960739136,
+      0.2906149625778198,
+      0.2529999911785126
+     ]
+    ],
+    "n_offenders": 3,
+    "seed_source": "t==0 fallback",
+    "counted_in_f3": true
+   }
+  ],
+  "quirk_site_flagged_in": [
+   "syn_ts_173_2_0p8859",
+   "syn_ts_662_3_0p9973",
+   "syn_ts_192_7_1p0240",
+   "syn_ts_708_13_1p1567",
+   "syn_ts_570_2_1p5351"
+  ],
+  "quirk_site_gaps": [
+   0.09960687160491943,
+   0.10193026065826416,
+   0.07008969783782959,
+   0.031173884868621826,
+   0.039921581745147705
+  ],
+  "other_beyond_0.03": 244,
+  "other_max_gap": 0.05042722821235657,
+  "other_offenders": {
+   "geoclaw_2026": [
+    [
+     "telecom_cluster_00294",
+     0.3543522357940674,
+     0.6093076467514038,
+     0.5699999928474426
+    ],
+    [
+     "telecom_cluster_03338",
+     0.3054637908935547,
+     0.5119988918304443,
+     0.47999998927116394
+    ],
+    [
+     "telecom_cluster_03830",
+     0.15972900390625,
+     0.14674268662929535,
+     0.1770000010728836
+    ],
+    [
+     "fuel_station_mobil_1108",
+     0.3258392810821533,
+     0.23771467804908752,
+     0.27000001072883606
+    ]
+   ],
+   "geoclaw_2080": [
+    [
+     "telecom_cluster_02735",
+     0.4309818744659424,
+     0.7270136475563049,
+     0.6959999799728394
+    ]
+   ],
+   "syn_ts_662_3_0p9973": [
+    [
+     "telecom_cluster_03401",
+     0.1777781844139099,
+     0.19158333539962769,
+     0.1589999943971634
+    ]
+   ],
+   "syn_ts_192_7_1p0240": [
+    [
+     "telecom_cluster_01237",
+     0.46447283029556274,
+     0.7668567299842834,
+     0.796999990940094
+    ],
+    [
+     "telecom_cluster_02813",
+     0.3596978783607483,
+     0.6188530921936035,
+     0.6489999890327454
+    ]
+   ],
+   "syn_ts_156_15_1p066": [
+    [
+     "telecom_cluster_00033",
+     0.23845462501049042,
+     0.35098135471343994,
+     0.38600000739097595
+    ],
+    [
+     "telecom_cluster_00192",
+     0.29560476541519165,
+     0.49018755555152893,
+     0.5230000019073486
+    ],
+    [
+     "telecom_cluster_00923",
+     0.3051295876502991,
+     0.5112713575363159,
+     0.5450000166893005
+    ],
+    [
+     "telecom_cluster_03098",
+     0.3527546525001526,
+     0.6064136624336243,
+     0.5709999799728394
+    ]
+   ],
+   "syn_ts_708_13_1p1567": [
+    [
+     "telecom_cluster_00833",
+     0.30218422412872314,
+     0.5048233270645142,
+     0.5389999747276306
+    ],
+    [
+     "telecom_cluster_00879",
+     0.4831591844558716,
+     0.7864816784858704,
+     0.7559999823570251
+    ],
+    [
+     "telecom_cluster_01704",
+     0.25455915927886963,
+     0.39213886857032776,
+     0.3619999885559082
+    ],
+    [
+     "telecom_cluster_01751",
+     0.37838423252105713,
+     0.6505773067474365,
+     0.6150000095367432
+    ],
+    [
+     "telecom_cluster_02316",
+     0.20693422853946686,
+     0.2679683566093445,
+     0.3089999854564667
+    ]
+   ],
+   "syn_ts_436_11_1p3524": [
+    [
+     "telecom_cluster_02179",
+     0.6549692749977112,
+     0.9034294486045837,
+     0.8730000257492065
+    ]
+   ],
+   "syn_ts_463_29_1p6644": [
+    [
+     "telecom_cluster_01751",
+     0.5078495740890503,
+     0.8098484873771667,
+     0.777999997138977
+    ]
+   ],
+   "syn_ts_321_19_1p7614": [
+    [
+     "telecom_cluster_01751",
+     0.5000771880149841,
+     0.802791178226471,
+     0.7689999938011169
+    ]
+   ],
+   "syn_ts_831_27_1p9452": [
+    [
+     "telecom_cluster_00923",
+     0.3746165633201599,
+     0.6443836092948914,
+     0.6779999732971191
+    ],
+    [
+     "telecom_cluster_02478",
+     0.4508165717124939,
+     0.7513666749000549,
+     0.7200000286102295
+    ],
+    [
+     "telecom_cluster_03766",
+     0.4889165759086609,
+     0.7921820282936096,
+     0.7570000290870667
+    ],
+    [
+     "subway_canal_st_ace",
+     0.09839171916246414,
+     0.48383376002311707,
+     0.45100000500679016
+    ]
+   ],
+   "syn_ts_192_15_2p5752": [
+    [
+     "power_160th_avenue",
+     0.4636397957801819,
+     0.30305173993110657,
+     0.33500000834465027
+    ],
+    [
+     "telecom_cluster_00033",
+     0.4731648564338684,
+     0.776203989982605,
+     0.8090000152587891
+    ],
+    [
+     "telecom_cluster_02959",
+     0.2255149483680725,
+     0.3171582818031311,
+     0.3479999899864197
+    ]
+   ],
+   "syn_ts_880_9_2p6632": [
+    [
+     "power_160th_avenue",
+     0.7588402628898621,
+     0.6807236075401306,
+     0.7250000238418579
+    ],
+    [
+     "telecom_cluster_00086",
+     0.33974045515060425,
+     0.5821248888969421,
+     0.5509999990463257
+    ],
+    [
+     "telecom_cluster_00142",
+     0.4349903464317322,
+     0.7321194410324097,
+     0.7009999752044678
+    ],
+    [
+     "fuel_station_bp_0597",
+     0.5683402419090271,
+     0.5845394134521484,
+     0.6200000047683716
+    ]
+   ],
+   "syn_ts_514_13_2p7829": [
+    [
+     "telecom_cluster_00155",
+     0.46869149804115295,
+     0.7714418768882751,
+     0.8059999942779541
+    ],
+    [
+     "telecom_cluster_00628",
+     0.278191477060318,
+     0.44994986057281494,
+     0.41600000858306885
+    ],
+    [
+     "water_wastewater_pumping_station",
+     0.34486642479896545,
+     0.22877055406570435,
+     0.2590000033378601
+    ],
+    [
+     "water_spring_creek_park_dep_aux_plnt",
+     0.4782165586948395,
+     0.4645056426525116,
+     0.4320000112056732
+    ],
+    [
+     "water_sirtoa_r_o_w_hannah_st_ps",
+     0.34486642479896545,
+     0.22877055406570435,
+     0.19699999690055847
+    ],
+    [
+     "fuel_station_bp_0597",
+     0.7163414359092712,
+     0.725496232509613,
+     0.7570000290870667
+    ]
+   ],
+   "syn_ts_914_26_3p4047": [
+    [
+     "telecom_cluster_00294",
+     0.19160078465938568,
+     0.2274470180273056,
+     0.19599999487400055
+    ],
+    [
+     "telecom_cluster_01986",
+     0.22970078885555267,
+     0.3281569182872772,
+     0.296999990940094
+    ],
+    [
+     "telecom_cluster_03475",
+     0.39162588119506836,
+     0.6715537309646606,
+     0.6290000081062317
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.8678758144378662,
+     0.8209698796272278,
+     0.7870000004768372
+    ],
+    [
+     "fuel_station_sunoco_0884",
+     0.2773258686065674,
+     0.16296173632144928,
+     0.19499999284744263
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.8774008750915527,
+     0.8256875276565552,
+     0.8579999804496765
+    ]
+   ],
+   "syn_ts_999_12_3p44": [
+    [
+     "telecom_cluster_00886",
+     0.25269100069999695,
+     0.38742944598197937,
+     0.34599998593330383
+    ],
+    [
+     "telecom_cluster_03475",
+     0.195541113615036,
+     0.23781366646289825,
+     0.2070000022649765
+    ],
+    [
+     "water_spring_creek_park_dep_aux_plnt",
+     0.681316077709198,
+     0.7319879531860352,
+     0.7009999752044678
+    ],
+    [
+     "water_hunts_pt_market_wholesale",
+     0.5765411257743835,
+     0.612130880355835,
+     0.6449999809265137
+    ],
+    [
+     "water_jfk_airport",
+     0.33841606974601746,
+     0.21750007569789886,
+     0.24899999797344208
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.6717910170555115,
+     0.6887223124504089,
+     0.656000018119812
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.681316077709198,
+     0.6969670057296753,
+     0.7310000061988831
+    ]
+   ],
+   "syn2_t817c20_wl1p935": [
+    [
+     "telecom_cluster_00586",
+     0.2774066925048828,
+     0.44808685779571533,
+     0.4099999964237213
+    ]
+   ],
+   "syn2_t296c32_wl2p002": [
+    [
+     "telecom_cluster_02813",
+     0.3449465036392212,
+     0.5919943451881409,
+     0.6269999742507935
+    ]
+   ],
+   "syn2_t931w15_wl2p070": [
+    [
+     "telecom_cluster_03400",
+     0.27020883560180664,
+     0.43081003427505493,
+     0.3970000147819519
+    ],
+    [
+     "subway_coney_island_stillwell_av_dfnq",
+     0.1082838922739029,
+     0.5788551568984985,
+     0.5389999747276306
+    ],
+    [
+     "subway_howard_beach_jfk_airport_a",
+     0.09875883162021637,
+     0.4875456988811493,
+     0.5180000066757202
+    ]
+   ],
+   "syn2_t504c15_wl2p205": [
+    [
+     "telecom_cluster_01751",
+     0.43344077467918396,
+     0.7301569581031799,
+     0.6859999895095825
+    ],
+    [
+     "telecom_cluster_02316",
+     0.2619907557964325,
+     0.4106828570365906,
+     0.44600000977516174
+    ]
+   ],
+   "syn2_t910c36_wl2p272": [
+    [
+     "telecom_cluster_01751",
+     0.5004792809486389,
+     0.8031628131866455,
+     0.7689999938011169
+    ],
+    [
+     "telecom_cluster_03524",
+     0.40522927045822144,
+     0.691855788230896,
+     0.7229999899864197
+    ],
+    [
+     "subway_richmond_valley_sir",
+     0.1004292368888855,
+     0.5042717456817627,
+     0.5350000262260437
+    ]
+   ],
+   "syn2_t736c42_wl2p339": [
+    [
+     "telecom_cluster_01751",
+     0.5677956938743591,
+     0.8561767339706421,
+     0.8240000009536743
+    ],
+    [
+     "telecom_cluster_02576",
+     0.443970650434494,
+     0.7432163953781128,
+     0.7089999914169312
+    ],
+    [
+     "telecom_cluster_02582",
+     0.34872063994407654,
+     0.5990211963653564,
+     0.6359999775886536
+    ],
+    [
+     "telecom_cluster_02683",
+     0.1677456647157669,
+     0.1663002222776413,
+     0.13099999725818634
+    ]
+   ],
+   "syn2_t25w17_wl2p408": [
+    [
+     "telecom_cluster_02582",
+     0.41728025674819946,
+     0.7088263630867004,
+     0.7440000176429749
+    ],
+    [
+     "telecom_cluster_02683",
+     0.23630529642105103,
+     0.34540238976478577,
+     0.3140000104904175
+    ],
+    [
+     "telecom_cluster_03098",
+     0.19820529222488403,
+     0.24484606087207794,
+     0.2070000022649765
+    ],
+    [
+     "fuel_station_speedway_1103",
+     0.5982553362846375,
+     0.6175360679626465,
+     0.6510000228881836
+    ]
+   ],
+   "syn2_t354w10_wl2p544": [
+    [
+     "telecom_cluster_00033",
+     0.2196393609046936,
+     0.3016505539417267,
+     0.3319999873638153
+    ],
+    [
+     "telecom_cluster_02634",
+     0.2672644257545471,
+     0.42364659905433655,
+     0.4560000002384186
+    ],
+    [
+     "telecom_cluster_03098",
+     0.3339393734931946,
+     0.5708852410316467,
+     0.5270000100135803
+    ],
+    [
+     "telecom_cluster_03766",
+     0.40061432123184204,
+     0.6851069331169128,
+     0.6539999842643738
+    ]
+   ],
+   "syn2_t589w12_wl2p614": [
+    [
+     "telecom_cluster_00923",
+     0.35629820823669434,
+     0.612807035446167,
+     0.6480000019073486
+    ],
+    [
+     "telecom_cluster_02634",
+     0.3372483253479004,
+     0.5773277282714844,
+     0.6159999966621399
+    ],
+    [
+     "telecom_cluster_03766",
+     0.4705982208251953,
+     0.7734841704368591,
+     0.7419999837875366
+    ],
+    [
+     "subway_canal_st_ace",
+     0.08007334917783737,
+     0.2892531752586365,
+     0.24799999594688416
+    ]
+   ],
+   "syn2_t748c28_wl2p684": [
+    [
+     "telecom_cluster_00923",
+     0.4262034296989441,
+     0.7208014130592346,
+     0.7580000162124634
+    ],
+    [
+     "telecom_cluster_03766",
+     0.5405034422874451,
+     0.8367523550987244,
+     0.8050000071525574
+    ]
+   ],
+   "syn2_t731c2_wl2p755": [
+    [
+     "telecom_cluster_00923",
+     0.4980057179927826,
+     0.8008650541305542,
+     0.8360000252723694
+    ],
+    [
+     "telecom_cluster_02034",
+     0.2503558099269867,
+     0.38151705265045166,
+     0.4129999876022339
+    ]
+   ],
+   "syn2_t853c18_wl2p880": [
+    [
+     "telecom_cluster_02034",
+     0.37454360723495483,
+     0.6442626714706421,
+     0.6790000200271606
+    ],
+    [
+     "telecom_cluster_02178",
+     0.2697686553001404,
+     0.42974260449409485,
+     0.3930000066757202
+    ],
+    [
+     "telecom_cluster_02735",
+     0.3173934817314148,
+     0.537418782711029,
+     0.503000020980835
+    ]
+   ],
+   "syn2_t760w7_wl2p959": [
+    [
+     "telecom_cluster_00142",
+     0.3015366792678833,
+     0.5033971071243286,
+     0.46799999475479126
+    ],
+    [
+     "telecom_cluster_00155",
+     0.18723665177822113,
+     0.2160269320011139,
+     0.2529999911785126
+    ],
+    [
+     "telecom_cluster_01949",
+     0.44441163539886475,
+     0.7437493801116943,
+     0.7829999923706055
+    ]
+   ],
+   "syn2_t51w23_wl3p011": [
+    [
+     "power_160th_avenue",
+     0.6769869923591614,
+     0.5953947901725769,
+     0.6299999952316284
+    ],
+    [
+     "telecom_cluster_00142",
+     0.3531371057033539,
+     0.6071081757545471,
+     0.5669999718666077
+    ],
+    [
+     "telecom_cluster_00155",
+     0.2388370931148529,
+     0.35197222232818604,
+     0.3930000066757202
+    ],
+    [
+     "telecom_cluster_01949",
+     0.4960120618343353,
+     0.7989929914474487,
+     0.8399999737739563
+    ],
+    [
+     "fuel_station_bp_0597",
+     0.4864870011806488,
+     0.48178935050964355,
+     0.5120000243186951
+    ],
+    [
+     "fuel_station_bp_0770",
+     0.4102869927883148,
+     0.3708566427230835,
+     0.4009999930858612
+    ]
+   ],
+   "syn2_t512w18_wl3p089": [
+    [
+     "power_160th_avenue",
+     0.7557915449142456,
+     0.6778416633605957,
+     0.7239999771118164
+    ],
+    [
+     "telecom_cluster_00086",
+     0.3366917371749878,
+     0.5762498378753662,
+     0.5450000166893005
+    ],
+    [
+     "telecom_cluster_00142",
+     0.4319416284561157,
+     0.7282448410987854,
+     0.6980000138282776
+    ],
+    [
+     "fuel_station_bp_0597",
+     0.5652915239334106,
+     0.5810403823852539,
+     0.6179999709129333
+    ]
+   ],
+   "syn2_t78w9_wl3p232": [
+    [
+     "telecom_cluster_00155",
+     0.46056899428367615,
+     0.7625307440757751,
+     0.7960000038146973
+    ],
+    [
+     "water_hunts_pt_market_wholesale",
+     0.3653191030025482,
+     0.2651088535785675,
+     0.29600000381469727
+    ],
+    [
+     "water_sirtoa_r_o_w_hannah_st_ps",
+     0.33674392104148865,
+     0.21459728479385376,
+     0.1809999942779541
+    ],
+    [
+     "fuel_station_bp_0597",
+     0.7082188725471497,
+     0.7191241979598999,
+     0.753000020980835
+    ]
+   ],
+   "syn2_t546c20_wl3p299": [
+    [
+     "telecom_cluster_00191",
+     0.24172666668891907,
+     0.3594392240047455,
+     0.4009999930858612
+    ],
+    [
+     "telecom_cluster_01872",
+     0.29887655377388,
+     0.49750539660453796,
+     0.5410000085830688
+    ],
+    [
+     "telecom_cluster_03304",
+     0.30840161442756653,
+     0.5183584094047546,
+     0.48500001430511475
+    ],
+    [
+     "hospital_hospital_for_special_surgery",
+     0.5846267342567444,
+     0.4792993366718292,
+     0.5099999904632568
+    ],
+    [
+     "water_wastewater_pumping_station",
+     0.40365150570869446,
+     0.33428463339805603,
+     0.36500000953674316
+    ],
+    [
+     "water_spring_creek_park_dep_aux_plnt",
+     0.5370016694068909,
+     0.5567705035209656,
+     0.515999972820282
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.5274766087532043,
+     0.5355228781700134,
+     0.5009999871253967
+    ],
+    [
+     "fuel_station_bp_0597",
+     0.7751265168190002,
+     0.7675178647041321,
+     0.7990000247955322
+    ]
+   ],
+   "syn2_t858w3_wl3p342": [
+    [
+     "telecom_cluster_02025",
+     0.2366446852684021,
+     0.34628450870513916,
+     0.3160000145435333
+    ],
+    [
+     "telecom_cluster_02843",
+     0.42714470624923706,
+     0.7220360040664673,
+     0.6899999976158142
+    ],
+    [
+     "telecom_cluster_03304",
+     0.3509446978569031,
+     0.6031119227409363,
+     0.5709999799728394
+    ],
+    [
+     "hospital_hospital_for_special_surgery",
+     0.6271697878837585,
+     0.5352903008460999,
+     0.5659999847412109
+    ],
+    [
+     "water_spring_creek_park_dep_aux_plnt",
+     0.579544723033905,
+     0.6161059737205505,
+     0.5839999914169312
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.5700196623802185,
+     0.5864560604095459,
+     0.5519999861717224
+    ],
+    [
+     "fuel_station_sunoco_0873",
+     0.3604697585105896,
+     0.2927621304988861,
+     0.3319999873638153
+    ],
+    [
+     "fuel_station_sunoco_1100",
+     0.7414695620536804,
+     0.7443162798881531,
+     0.7070000171661377
+    ]
+   ],
+   "syn2_t870w11_wl3p407": [
+    [
+     "telecom_cluster_00271",
+     0.502072811126709,
+     0.8046286106109619,
+     0.7720000147819519
+    ],
+    [
+     "telecom_cluster_01775",
+     0.311572790145874,
+     0.5251502394676208,
+     0.5559999942779541
+    ],
+    [
+     "telecom_cluster_03304",
+     0.4163477420806885,
+     0.7075462937355042,
+     0.6729999780654907
+    ],
+    [
+     "water_spring_creek_park_dep_aux_plnt",
+     0.6449477672576904,
+     0.6946668028831482,
+     0.6600000262260437
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.6354227066040039,
+     0.6552267670631409,
+     0.625
+    ],
+    [
+     "fuel_station_sunoco_0873",
+     0.425872802734375,
+     0.3945630192756653,
+     0.42500001192092896
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.6449477672576904,
+     0.6643151044845581,
+     0.6990000009536743
+    ],
+    [
+     "fuel_station_sunoco_1100",
+     0.8068726062774658,
+     0.7874475717544556,
+     0.7570000290870667
+    ]
+   ],
+   "syn2_t175w10_wl3p557": [
+    [
+     "telecom_cluster_00886",
+     0.3663744628429413,
+     0.6304790377616882,
+     0.5820000171661377
+    ],
+    [
+     "telecom_cluster_03475",
+     0.30922457575798035,
+     0.5201282501220703,
+     0.48100000619888306
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.7854745388031006,
+     0.7742149233818054,
+     0.7329999804496765
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.7949995994567871,
+     0.780206024646759,
+     0.8119999766349792
+    ],
+    [
+     "fuel_station_unknown_gas_station_1054",
+     0.5187745094299316,
+     0.5244937539100647,
+     0.5550000071525574
+    ],
+    [
+     "fuel_station_mobil_1108",
+     0.3282744586467743,
+     0.24156931042671204,
+     0.27300000190734863
+    ]
+   ],
+   "syn2_t431w19_wl3p632": [
+    [
+     "telecom_cluster_01986",
+     0.22190634906291962,
+     0.3076420724391937,
+     0.2750000059604645
+    ],
+    [
+     "telecom_cluster_03475",
+     0.3838314116001129,
+     0.6593543291091919,
+     0.6150000095367432
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.8600813746452332,
+     0.8170106410980225,
+     0.7820000052452087
+    ],
+    [
+     "fuel_station_sunoco_0884",
+     0.26953139901161194,
+     0.1515350490808487,
+     0.18400000035762787
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.8696064352989197,
+     0.8218368291854858,
+     0.8550000190734863
+    ]
+   ],
+   "syn2_t397w4_wl3p687": [
+    [
+     "telecom_cluster_00294",
+     0.23917889595031738,
+     0.3528572618961334,
+     0.30799999833106995
+    ],
+    [
+     "telecom_cluster_03475",
+     0.43920397758483887,
+     0.7373844385147095,
+     0.6899999976158142
+    ],
+    [
+     "telecom_cluster_03830",
+     0.2010788917541504,
+     0.2524472177028656,
+     0.30000001192092896
+    ],
+    [
+     "fuel_station_sunoco_0884",
+     0.3249039649963379,
+     0.2362355887889862,
+     0.2720000147819519
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.9249789714813232,
+     0.8473824262619019,
+     0.878000020980835
+    ],
+    [
+     "fuel_station_unknown_gas_station_1054",
+     0.6487538814544678,
+     0.6678832173347473,
+     0.7020000219345093
+    ]
+   ],
+   "syn2_t98w4_wl3p759": [
+    [
+     "telecom_cluster_00116",
+     0.5969834327697754,
+     0.8742771148681641,
+     0.8429999947547913
+    ],
+    [
+     "telecom_cluster_00294",
+     0.3112335205078125,
+     0.5244272351264954,
+     0.4740000069141388
+    ],
+    [
+     "telecom_cluster_02149",
+     0.3493335247039795,
+     0.6001521944999695,
+     0.5649999976158142
+    ],
+    [
+     "telecom_cluster_03099",
+     0.25408363342285156,
+     0.39094188809394836,
+     0.421999990940094
+    ],
+    [
+     "telecom_cluster_03475",
+     0.511258602142334,
+     0.8128609657287598,
+     0.7720000147819519
+    ],
+    [
+     "telecom_cluster_03830",
+     0.2731335163116455,
+     0.4378708600997925,
+     0.4790000021457672
+    ],
+    [
+     "fuel_station_sunoco_0884",
+     0.396958589553833,
+     0.35025694966316223,
+     0.39500001072883606
+    ],
+    [
+     "fuel_station_unknown_gas_station_1054",
+     0.7208085060119629,
+     0.7289395928382874,
+     0.7590000033378601
+    ],
+    [
+     "fuel_station_mobil_1108",
+     0.5303084850311279,
+     0.5390674471855164,
+     0.5799999833106995
+    ]
+   ],
+   "syn2_t494w17_wl3p890": [
+    [
+     "telecom_cluster_00217",
+     0.23261556029319763,
+     0.33578574657440186,
+     0.37400001287460327
+    ],
+    [
+     "telecom_cluster_00294",
+     0.44216546416282654,
+     0.7410231232643127,
+     0.7089999914169312
+    ],
+    [
+     "telecom_cluster_03567",
+     0.4231155812740326,
+     0.7167131304740906,
+     0.6779999732971191
+    ],
+    [
+     "fuel_station_mobil_0600",
+     0.4612155854701996,
+     0.4464755952358246,
+     0.4869999885559082
+    ]
+   ],
+   "syn2_t445w4_wl3p963": [
+    [
+     "telecom_cluster_00169",
+     0.24847516417503357,
+     0.37673547863960266,
+     0.40799999237060547
+    ]
+   ],
+   "syn2_t574w1_wl4p027": [
+    [
+     "telecom_cluster_00535",
+     0.19747646152973175,
+     0.2429206520318985,
+     0.27300000190734863
+    ]
+   ],
+   "syn2_t162w13_wl4p105": [
+    [
+     "telecom_cluster_01801",
+     0.19049133360385895,
+     0.22453702986240387,
+     0.19300000369548798
+    ],
+    [
+     "telecom_cluster_02151",
+     0.30479133129119873,
+     0.5105341076850891,
+     0.5540000200271606
+    ],
+    [
+     "fuel_station_sunoco_1021",
+     0.5905412435531616,
+     0.6092579960823059,
+     0.6430000066757202
+    ]
+   ],
+   "syn2_t13w19_wl4p230": [
+    [
+     "fuel_station_unknown_gas_station_1042",
+     0.343824565410614,
+     0.2662718892097473,
+     0.3019999861717224
+    ]
+   ],
+   "syn2_t874w0_wl4p297": [
+    [
+     "telecom_cluster_01859",
+     0.2301478236913681,
+     0.32932862639427185,
+     0.29899999499320984
+    ],
+    [
+     "telecom_cluster_03563",
+     0.1825227588415146,
+     0.20378446578979492,
+     0.17100000381469727
+    ],
+    [
+     "hospital_staten_island_university_hosp_north",
+     0.5635228157043457,
+     0.45008614659309387,
+     0.49000000953674316
+    ],
+    [
+     "fuel_station_sunoco_0520",
+     0.4396977126598358,
+     0.41519513726234436,
+     0.3779999911785126
+    ]
+   ],
+   "syn2_t433w18_wl4p363": [
+    [
+     "hospital_staten_island_university_hosp_north",
+     0.6289848685264587,
+     0.5375864505767822,
+     0.5830000042915344
+    ],
+    [
+     "fuel_station_sunoco_0520",
+     0.5051597952842712,
+     0.5068260431289673,
+     0.4740000069141388
+    ]
+   ],
+   "syn2_t459w5_wl4p437": [
+    [
+     "telecom_cluster_03021",
+     0.27487289905548096,
+     0.44204381108283997,
+     0.4740000069141388
+    ]
+   ],
+   "syn2_t117w7_wl4p508": [
+    [
+     "telecom_cluster_01932",
+     0.36496880650520325,
+     0.6280585527420044,
+     0.6620000004768372
+    ],
+    [
+     "fuel_station_unknown_gas_station_0627",
+     0.3554435074329376,
+     0.2847675681114197,
+     0.32100000977516174
+    ]
+   ],
+   "syn2_t66w12_wl4p572": [
+    [
+     "telecom_cluster_01932",
+     0.4289645254611969,
+     0.7244077920913696,
+     0.7570000290870667
+    ],
+    [
+     "hospital_staten_island_university_hosp_north",
+     0.8385394811630249,
+     0.7484002113342285,
+     0.7820000052452087
+    ],
+    [
+     "subway_canal_st_jz",
+     0.07653941214084625,
+     0.2519356608390808,
+     0.21899999678134918
+    ]
+   ],
+   "syn2_t165c31_wl2p137": [
+    [
+     "telecom_cluster_03400",
+     0.33724746108055115,
+     0.5773259997367859,
+     0.5460000038146973
+    ]
+   ],
+   "syn2_t326c15_wl2p477": [
+    [
+     "telecom_cluster_02683",
+     0.30551478266716003,
+     0.5121098160743713,
+     0.4740000069141388
+    ],
+    [
+     "telecom_cluster_03766",
+     0.3340897262096405,
+     0.5711797475814819,
+     0.5329999923706055
+    ]
+   ],
+   "syn2_t551w16_wl2p807": [
+    [
+     "power_160th_avenue",
+     0.4731243848800659,
+     0.3173426389694214,
+     0.3490000069141388
+    ],
+    [
+     "telecom_cluster_00033",
+     0.48264944553375244,
+     0.7859693765640259,
+     0.8220000267028809
+    ]
+   ],
+   "syn2_t595w12_wl3p142": [
+    [
+     "power_160th_avenue",
+     0.8083414435386658,
+     0.7244490385055542,
+     0.7620000243186951
+    ],
+    [
+     "telecom_cluster_02178",
+     0.5321165919303894,
+     0.8302448987960815,
+     0.796999990940094
+    ],
+    [
+     "telecom_cluster_02626",
+     0.21779151260852814,
+     0.29676058888435364,
+     0.3269999921321869
+    ],
+    [
+     "water_spring_creek_park_dep_aux_plnt",
+     0.3797166049480438,
+     0.2910342514514923,
+     0.2590000033378601
+    ]
+   ],
+   "syn2_t194c43_wl3p498": [
+    [
+     "telecom_cluster_00886",
+     0.30689454078674316,
+     0.5151041150093079,
+     0.47200000286102295
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.7259945869445801,
+     0.7328835129737854,
+     0.6970000267028809
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.7355196475982666,
+     0.7399793863296509,
+     0.7749999761581421
+    ]
+   ],
+   "syn2_t502w24_wl3p827": [
+    [
+     "telecom_cluster_00921",
+     0.4363616406917572,
+     0.7338442802429199,
+     0.6990000009536743
+    ],
+    [
+     "telecom_cluster_03567",
+     0.3601616322994232,
+     0.6196712255477905,
+     0.5889999866485596
+    ],
+    [
+     "fuel_station_mobil_0600",
+     0.3982616364955902,
+     0.35228270292282104,
+     0.3869999945163727
+    ],
+    [
+     "fuel_station_sunoco_0884",
+     0.46493658423423767,
+     0.45177483558654785,
+     0.4830000102519989
+    ],
+    [
+     "fuel_station_mobil_1108",
+     0.5982864499092102,
+     0.617569088935852,
+     0.6480000019073486
+    ]
+   ],
+   "syn2_t982w10_wl4p153": [
+    [
+     "telecom_cluster_00535",
+     0.3239361643791199,
+     0.5509017705917358,
+     0.5820000171661377
+    ],
+    [
+     "telecom_cluster_03379",
+     0.21916121244430542,
+     0.3003857135772705,
+     0.2639999985694885
+    ],
+    [
+     "fuel_station_sunoco_1021",
+     0.6382612586021423,
+     0.6579590439796448,
+     0.6899999976158142
+    ]
+   ],
+   "geoclaw_2050": [
+    [
+     "telecom_cluster_01718",
+     0.43320679664611816,
+     0.7298594117164612,
+     0.7609999775886536
+    ],
+    [
+     "telecom_cluster_03475",
+     0.4080348014831543,
+     0.6958902478218079,
+     0.6520000100135803
+    ],
+    [
+     "water_sirtoa_r_o_w_hannah_st_ps",
+     0.35968780517578125,
+     0.2550303041934967,
+     0.22300000488758087
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.8620901107788086,
+     0.81803959608078,
+     0.8510000109672546
+    ],
+    [
+     "fuel_station_sunoco_1100",
+     0.7580842971801758,
+     0.7560473084449768,
+     0.7239999771118164
+    ]
+   ],
+   "syn_ts_914_6_1p2955": [
+    [
+     "telecom_cluster_00879",
+     0.49870046973228455,
+     0.8015131950378418,
+     0.7689999938011169
+    ],
+    [
+     "telecom_cluster_01751",
+     0.3939255177974701,
+     0.6750732064247131,
+     0.6380000114440918
+    ],
+    [
+     "telecom_cluster_02316",
+     0.22247548401355743,
+     0.3091447949409485,
+     0.3490000069141388
+    ]
+   ],
+   "syn_ts_258_9_3p0022": [
+    [
+     "telecom_cluster_01775",
+     0.27661049365997314,
+     0.44619253277778625,
+     0.4790000021457672
+    ],
+    [
+     "telecom_cluster_02843",
+     0.4575854539871216,
+     0.7591700553894043,
+     0.7289999723434448
+    ],
+    [
+     "telecom_cluster_03304",
+     0.3813854455947876,
+     0.6554389595985413,
+     0.6230000257492065
+    ],
+    [
+     "water_spring_creek_park_dep_aux_plnt",
+     0.6099854707717896,
+     0.6545574069023132,
+     0.6179999709129333
+    ],
+    [
+     "water_hunts_pt_market_wholesale",
+     0.5052105188369751,
+     0.5082711577415466,
+     0.5419999957084656
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.600460410118103,
+     0.6198731660842896,
+     0.5809999704360962
+    ],
+    [
+     "fuel_station_sunoco_0873",
+     0.3909105062484741,
+     0.34082385897636414,
+     0.3720000088214874
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.6099854707717896,
+     0.6298206448554993,
+     0.6629999876022339
+    ],
+    [
+     "fuel_station_sunoco_1100",
+     0.7719103097915649,
+     0.7653956413269043,
+     0.7350000143051147
+    ]
+   ],
+   "syn_ts_605_5_3p7563": [
+    [
+     "telecom_cluster_03021",
+     0.29589349031448364,
+     0.490836501121521,
+     0.527999997138977
+    ]
+   ],
+   "syn_ts_808_27_3p7885": [
+    [
+     "telecom_cluster_00116",
+     0.5827281475067139,
+     0.8657587170600891,
+     0.8339999914169312
+    ],
+    [
+     "telecom_cluster_00294",
+     0.2969782054424286,
+     0.49326902627944946,
+     0.44699999690055847
+    ],
+    [
+     "telecom_cluster_03475",
+     0.4970032870769501,
+     0.7999259829521179,
+     0.7590000033378601
+    ],
+    [
+     "telecom_cluster_03830",
+     0.2588782012462616,
+     0.4029541611671448,
+     0.4449999928474426
+    ],
+    [
+     "fuel_station_sunoco_0884",
+     0.3827032744884491,
+     0.32795023918151855,
+     0.37599998712539673
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.9827783107757568,
+     0.8699791431427002,
+     0.9010000228881836
+    ],
+    [
+     "fuel_station_unknown_gas_station_1054",
+     0.7065532207489014,
+     0.7177996635437012,
+     0.753000020980835
+    ],
+    [
+     "fuel_station_mobil_1108",
+     0.5160531997680664,
+     0.5210024118423462,
+     0.5559999942779541
+    ]
+   ],
+   "syn2_t580w24_wl2p439": [
+    [
+     "telecom_cluster_02683",
+     0.2674744129180908,
+     0.42415928840637207,
+     0.39399999380111694
+    ],
+    [
+     "telecom_cluster_03766",
+     0.2960493564605713,
+     0.49118655920028687,
+     0.46000000834465027
+    ]
+   ],
+   "syn2_t270w17_wl3p116": [
+    [
+     "power_160th_avenue",
+     0.781955361366272,
+     0.7018525004386902,
+     0.7440000176429749
+    ],
+    [
+     "telecom_cluster_00086",
+     0.36285555362701416,
+     0.6243923306465149,
+     0.5910000205039978
+    ],
+    [
+     "telecom_cluster_00142",
+     0.4581054449081421,
+     0.7597591876983643,
+     0.7269999980926514
+    ],
+    [
+     "telecom_cluster_02626",
+     0.19140541553497314,
+     0.2269342839717865,
+     0.25999999046325684
+    ],
+    [
+     "fuel_station_bp_0597",
+     0.591455340385437,
+     0.6102472543716431,
+     0.6470000147819519
+    ]
+   ],
+   "syn2_t33w13_wl3p458": [
+    [
+     "telecom_cluster_00886",
+     0.267146497964859,
+     0.4233585596084595,
+     0.38600000739097595
+    ],
+    [
+     "telecom_cluster_03304",
+     0.4671715795993805,
+     0.7698005437850952,
+     0.7369999885559082
+    ],
+    [
+     "hospital_hospital_for_special_surgery",
+     0.7433966398239136,
+     0.6658928990364075,
+     0.6959999799728394
+    ],
+    [
+     "water_hunts_pt_market_wholesale",
+     0.5909966230392456,
+     0.6309627890586853,
+     0.6629999876022339
+    ],
+    [
+     "fuel_station_allegiance_0213",
+     0.6862465143203735,
+     0.7011513113975525,
+     0.6669999957084656
+    ],
+    [
+     "fuel_station_exxon_1020",
+     0.6957715749740601,
+     0.7090765237808228,
+     0.7419999837875366
+    ]
+   ],
+   "syn2_t857w1_wl3p800": [
+    [
+     "telecom_cluster_00294",
+     0.3524492383003235,
+     0.6058582663536072,
+     0.5649999976158142
+    ],
+    [
+     "telecom_cluster_02149",
+     0.3905492424964905,
+     0.6698935627937317,
+     0.6370000243186951
+    ],
+    [
+     "telecom_cluster_02796",
+     0.3905492424964905,
+     0.6698935627937317,
+     0.6380000114440918
+    ],
+    [
+     "telecom_cluster_03260",
+     0.36197429895401,
+     0.6228538155555725,
+     0.6549999713897705
+    ],
+    [
+     "telecom_cluster_03475",
+     0.552474319934845,
+     0.8455914855003357,
+     0.8109999895095825
+    ],
+    [
+     "fuel_station_mobil_0600",
+     0.37149935960769653,
+     0.3102641999721527,
+     0.34299999475479126
+    ],
+    [
+     "fuel_station_sunoco_0884",
+     0.438174307346344,
+     0.41294121742248535,
+     0.4449999928474426
+    ],
+    [
+     "fuel_station_mobil_1108",
+     0.5715242028236389,
+     0.5881665945053101,
+     0.6290000081062317
+    ]
+   ],
+   "syn2_t116w1_wl4p130": [
+    [
+     "telecom_cluster_02151",
+     0.3292558193206787,
+     0.5616238713264465,
+     0.6010000109672546
+    ],
+    [
+     "fuel_station_sunoco_1021",
+     0.6150057315826416,
+     0.6349675059318542,
+     0.6700000166893005
+    ]
+   ],
+   "syn2_t198w16_wl4p722": [
+    [
+     "telecom_cluster_00799",
+     0.2543443441390991,
+     0.39159828424453735,
+     0.4259999990463257
+    ],
+    [
+     "telecom_cluster_02862",
+     0.18766964972019196,
+     0.21715663373470306,
+     0.1809999942779541
+    ],
+    [
+     "fuel_station_mobil_1138",
+     0.3591192960739136,
+     0.2906149625778198,
+     0.2529999911785126
+    ]
+   ]
+  },
+  "expected_noise": {
+   "n_runs": 1000,
+   "tol": 0.03,
+   "wet_non_external": 26976,
+   "expected_beyond_tol": 237.7703941848443,
+   "expected_share_beyond_tol": 0.008814145691905556
+  },
+  "seed_sources": [
+   "t==0 fallback"
+  ],
+  "storms_counted": 70,
+  "storms_left_out": []
+ },
+ "_meta": {
+  "base_commit": "f45a7b2",
+  "labels_dir": "/scratch/tj2587/results/legacy_v1_n1000,/scratch/tj2587/results/gissr48_v1/static",
+  "label_mode": "static",
+  "storms": "all",
+  "elapsed_s": 1081.8,
+  "decided": [
+   "F1",
+   "F2",
+   "F3",
+   "F4",
+   "F5"
+  ],
+  "rescored_from": "analysis/gnn/week31_direct_fingerprint_static_v1_job21152059_raw.json",
+  "rescore_note": "F3 verdict recomputed from the stored rows under the pre-registered rule; the measurements (rows) and F1, F2, F4, F5 are those of the original run"
+ }
+}

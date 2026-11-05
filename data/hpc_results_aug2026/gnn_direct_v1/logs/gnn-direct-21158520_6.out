@@ -1,0 +1,72 @@
+task=6 cell=arrival_plain mode=arrival size=34 torch_seed=1 timing=unset cache=/scratch/tj2587/results/gnn_direct_targets_v1/arrival ckpt=/scratch/tj2587/results/gnn_direct_v1/direct_arrival_plain_n34_s1 smoke=0 commit=898f966 branch=feat/direct-model uncommitted_files=0
+[gate] CUDA OK: NVIDIA L40S
+[gate] heterodata data/graph/nyc_infra_heterodata_v1_frozen_failover_edges.pt: total=6231 -> OK
+[gate] fingerprint analysis/gnn/week31_direct_fingerprint_arrival_v1.json: {'F1': True, 'F2': True, 'F3': True, 'F4': True, 'F5': True} -> OK
+[gate] targets in /scratch/tj2587/results/gnn_direct_targets_v1/arrival: 70/70; missing [] -> OK
+[gate] switches: target marginal, storm context off, timing inputs off -> OK
+=== TRAIN MODE, target marginal — the direct model, one example per storm ===
+torch seed set: 1
+[timing-features] loaded 71 scenarios from data/flood/timing/node_timing_jesse22_plus_gissr48_v1.csv (features ('arrival_h', 'duration_h', 'time_to_peak_h'), scaled by 96 h)
+Train: 34 storms  Val: 7  Test: 13 | runs per storm [1000] | label mode arrival | timing inputs off | input width 17 | loaded in 5s
+Model parameters: 699,032  head=hazard  device=cuda
+Epoch 000 | train=0.65984 val=0.46224 * | 3s
+Epoch 001 | train=0.39484 val=0.34791 * | 4s
+Epoch 002 | train=0.28732 val=0.29690 * | 5s
+Epoch 003 | train=0.24246 val=0.25165 * | 7s
+Epoch 004 | train=0.21782 val=0.22511 * | 8s
+Epoch 005 | train=0.20208 val=0.21764 * | 9s
+Epoch 007 | train=0.18694 val=0.19751 * | 12s
+Epoch 009 | train=0.18126 val=0.18925 * | 14s
+Epoch 010 | train=0.16728 val=0.18128 * | 16s
+Epoch 013 | train=0.16524 val=0.17832 * | 20s
+Epoch 014 | train=0.15685 val=0.16950 * | 21s
+Epoch 015 | train=0.15835 val=0.16890 * | 22s
+Epoch 017 | train=0.15207 val=0.16539 * | 25s
+Epoch 020 | train=0.15734 val=0.16886 | 29s
+Epoch 030 | train=0.14686 val=0.15333 * | 42s
+Epoch 040 | train=0.13362 val=0.14597 * | 55s
+Epoch 050 | train=0.13069 val=0.14283 * | 68s
+Epoch 060 | train=0.13278 val=0.14472 | 81s
+Epoch 070 | train=0.12314 val=0.13755 | 94s
+Epoch 080 | train=0.12124 val=0.13879 | 107s
+Epoch 090 | train=0.11706 val=0.13337 | 119s
+Epoch 100 | train=0.11771 val=0.13328 | 132s
+Epoch 110 | train=0.11581 val=0.12853 | 145s
+Epoch 120 | train=0.11503 val=0.13188 | 158s
+Epoch 130 | train=0.11584 val=0.12901 | 171s
+Epoch 140 | train=0.11114 val=0.13943 | 184s
+Epoch 150 | train=0.11034 val=0.12408 * | 197s
+Epoch 160 | train=0.11107 val=0.12329 | 210s
+Epoch 170 | train=0.11383 val=0.12640 | 223s
+Epoch 180 | train=0.10847 val=0.12353 | 236s
+Epoch 190 | train=0.10647 val=0.12114 * | 249s
+Epoch 200 | train=0.10723 val=0.12151 | 262s
+Epoch 210 | train=0.10743 val=0.12171 | 274s
+Epoch 220 | train=0.10815 val=0.12384 | 287s
+Epoch 230 | train=0.10813 val=0.12238 | 300s
+Epoch 240 | train=0.10615 val=0.12976 | 313s
+Epoch 250 | train=0.10405 val=0.11818 | 326s
+Epoch 260 | train=0.10443 val=0.11850 | 339s
+Epoch 270 | train=0.10413 val=0.12250 | 352s
+Epoch 280 | train=0.10471 val=0.11890 | 365s
+Epoch 290 | train=0.10672 val=0.12042 | 378s
+Epoch 300 | train=0.10343 val=0.13138 | 390s
+Epoch 310 | train=0.10470 val=0.11969 | 403s
+Epoch 320 | train=0.10481 val=0.11972 | 416s
+Epoch 330 | train=0.10683 val=0.12285 | 429s
+Epoch 340 | train=0.10520 val=0.11942 | 442s
+[early stop] no improvement for 50 epochs; best epoch 292 val 0.11678
+[held-out geoclaw_2050] soft log loss=0.17089
+[held-out syn_ts_914_6_1p2955] soft log loss=0.03323
+[held-out syn_ts_258_9_3p0022] soft log loss=0.15127
+[held-out syn_ts_605_5_3p7563] soft log loss=0.15725
+[held-out syn_ts_808_27_3p7885] soft log loss=0.13673
+[held-out syn2_t449w6_wl2p103] soft log loss=0.07156
+[held-out syn2_t580w24_wl2p439] soft log loss=0.11049
+[held-out syn2_t934c34_wl2p777] soft log loss=0.10967
+[held-out syn2_t270w17_wl3p116] soft log loss=0.12446
+[held-out syn2_t33w13_wl3p458] soft log loss=0.13262
+[held-out syn2_t857w1_wl3p800] soft log loss=0.10900
+[held-out syn2_t116w1_wl4p130] soft log loss=0.09241
+[held-out syn2_t198w16_wl4p722] soft log loss=0.08955
+done: 343 epochs (early stop), best epoch 292, best val 0.11678, 445s
