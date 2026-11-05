@@ -140,3 +140,6 @@ external/
 data/hpc_results_aug2026/
 logs/
 !data/graph/*v1_frozen*.pt
+
+# Week 32/33: the direct-model target cache copied from Torch (hpc/fingerprint_gnn_direct_v1.sbatch), ~70 .pt per label mode
+data/gnn_direct_targets_v1/

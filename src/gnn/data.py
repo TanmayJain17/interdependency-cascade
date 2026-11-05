@@ -564,6 +564,49 @@ def direct_example(storm, depths, external, base_data, node_id_index, label_mode
     return x_dict, phi, phi_k, (timing if TIMING_FEATURES else None)
 
 
+
+def arrival_gate(timing, timesteps=DEFAULT_TIMESTEPS, label_mode="static"):
+    """The horizon indicator of phi_by_horizon on its own: {node_type: float tensor [N, K]} of 1[arrival_rel <= t_k]
+    under arrival labels (arrival_rel = -time_to_peak_h on the peak-relative label clock), all ones under static.
+    phi_by_horizon(phi, ...) == phi.unsqueeze(1) * arrival_gate(...) entry for entry."""
+    ts = torch.tensor(list(timesteps), dtype=torch.float32)
+    out = {}
+    for nt in timing if timing is not None else []:
+        if label_mode == "static":
+            out[nt] = torch.ones(timing[nt].shape[0], len(ts))
+        elif label_mode == "arrival":
+            ttp_h = timing[nt][:, TIMING_COLS.index("time_to_peak_h")] * TIMING_SCALE_H
+            out[nt] = ((-ttp_h).unsqueeze(1) <= ts.unsqueeze(0)).to(torch.float32)
+        else:
+            raise ValueError(f"label_mode must be static or arrival, got {label_mode!r}")
+    return out
+
+
+def direct_pieces(storm, depths, external, base_data, node_id_index, label_mode="static"):
+    """The raw ingredients of one storm for the end-to-end model (Week 33), with nothing computed from the formula
+    except phi_formula, which is returned for checks and baselines only:
+      base_x  {nt: [N, 8]}   the frozen attributes
+      depth   {nt: [N]}      metres (0 = dry)
+      wet     {nt: bool [N]} depth > 0 and not external (the sites a fragility head may assign phi > 0)
+      gate    {nt: [N, K]}   arrival indicator (ones under static)
+      timing  {nt: [N, 3]} or None   the timing columns, only when GNN_TIMING_FEATURES=1
+      phi_formula {nt: [N]}  the formula's phi (for the A0 baseline, the curve error and the fingerprint)
+    """
+    if storm not in depths:
+        raise KeyError(f"no depth column for storm {storm}")
+    need_timing = TIMING_FEATURES or label_mode == "arrival"
+    timing = timing_for(storm, base_data, node_id_index) if need_timing else None
+    gate_src = timing if timing is not None else {nt: torch.zeros(base_data[nt].num_nodes, len(TIMING_COLS)) for nt in base_data.node_types}
+    return {
+        "base_x": {nt: base_data[nt].x for nt in base_data.node_types},
+        "depth": {nt: depths[storm][nt] for nt in base_data.node_types},
+        "wet": {nt: (depths[storm][nt] > 0) & (~external[nt]) for nt in base_data.node_types},
+        "gate": arrival_gate(gate_src, DEFAULT_TIMESTEPS, label_mode),
+        "timing": timing if TIMING_FEATURES else None,
+        "phi_formula": fragility_probs(base_data, depths[storm], external),
+    }
+
+
 # --------------------------------------------------------------------------
 # Quick verification
 # --------------------------------------------------------------------------

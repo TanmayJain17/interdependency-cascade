@@ -44,6 +44,7 @@ from src.gnn.data import (
 from src.gnn.model import CascadeGNN, HEADS, count_parameters
 from src.gnn import data as gnn_data           # direct model (Week 32): module access for the marginal target
 from src.gnn.model import compose_with_fragility, soft_bce_with_logits
+from src.gnn.model import EndToEndDirectModel, fit_fragility_head_on_seeds, seed_frequency_nll   # end-to-end fragility (Week 33)
 
 
 # GNN_CKPT_DIR env var redirects checkpoints for ablation runs
@@ -781,6 +782,202 @@ def run_train_marginal(args):
 
 
 # --------------------------------------------------------------------------
+# Mode: train, end-to-end fragility (Week 33) — depth in, probability out, the fragility learned
+# --------------------------------------------------------------------------
+# Reached only with --target marginal --fragility lognormal|mixture|none; run_train_marginal above (the Week 32
+# direct model, --fragility formula) is untouched. Differences from run_train_marginal:
+#   * the input row is assembled INSIDE the model from the depth (src/gnn/model.py::EndToEndDirectModel): the
+#     fragility head gives phi_hat, the storm summary is computed from phi_hat (not from the formula), and
+#     p = 1 - (1 - phi_hat * gate)(1 - g); the black-box arm has no head and no composition;
+#   * the loss adds lambda_seed * soft BCE(phi_hat, s) over wet non-external sites, s being the seed frequency of the
+#     1,000 runs (in the target cache), so the direct/cascade split is identifiable; optionally lambda_g * soft
+#     BCE(g, g_hat) with g_hat = (pi_hat - s)/(1 - s);
+#   * --frag_regime sequential fits the head on the seed loss alone first (full batch over the training storms'
+#     wet sites, seconds), freezes it, then trains the GNN; joint trains both at once;
+#   * the head has its own learning rate and NO weight decay (decay on log-median would pull medians toward 1 m);
+#   * history.json records the head's parameters after every epoch; best.pt records arm, head kind, init, lambdas.
+
+def _e2e_losses(model, e, edge_idx_dict, node_types, lambda_seed, lambda_g):
+    logit_p, phi, g_logit = model(e["base_x"], e["depth"], e["wet"], e["gate"], edge_idx_dict, e["timing"])
+    main = soft_bce_with_logits(torch.cat([logit_p[nt] for nt in node_types]), torch.cat([e["pi"][nt] for nt in node_types]))
+    seed_l = torch.zeros((), device=main.device); g_l = torch.zeros((), device=main.device)
+    if phi is not None and (lambda_seed > 0 or lambda_g > 0):
+        if lambda_seed > 0:
+            tot, n = seed_frequency_nll(model.head, e["depth"], e["wet"], e["s"])    # stable log form, mean over wet sites
+            if n:
+                seed_l = tot / n
+        if lambda_g > 0:
+            keep = torch.cat([e["wet"][nt] & (e["s"][nt] <= 0.99) for nt in node_types])
+            if bool(keep.any()):
+                gl = torch.cat([g_logit[nt] for nt in node_types])[keep]
+                g_l = soft_bce_with_logits(gl, torch.cat([e["g_hat"][nt] for nt in node_types])[keep])
+    return main + lambda_seed * seed_l + lambda_g * g_l, main, seed_l, g_l
+
+
+def run_train_e2e(args):
+    print(f"=== TRAIN MODE, end-to-end fragility ({args.fragility}) — depth in, probability out ===")
+    if gnn_data.TARGET != "marginal":
+        raise SystemExit("--fragility needs GNN_TARGET=marginal in the environment")
+    if gnn_data.STORM_CONTEXT:
+        raise SystemExit("GNN_STORM_CONTEXT must be unset for the direct and end-to-end models")
+    if args.label_mode is None or args.marginal_cache is None:
+        raise SystemExit("--fragility needs --label_mode and --marginal_cache")
+    if args.resume or args.epochs_this_job:
+        raise SystemExit("--resume / --epochs_this_job are not supported here")
+    if args.fragility == "none" and (args.lambda_seed > 0 or args.frag_regime == "sequential"):
+        raise SystemExit("the black-box arm has no fragility head: use --lambda_seed 0 --frag_regime joint")
+    if args.fragility == "mixture" and args.frag_init != "hazus":
+        print("[note] --frag_init is ignored for the mixture head (its components start at medians x0.5/1/2)")
+    device = torch.device(args.device)
+    if args.torch_seed is not None:
+        torch.manual_seed(args.torch_seed)
+        print(f"torch seed set: {args.torch_seed}")
+
+    base_data = load_base_graph()
+    node_id_index = build_node_id_index(base_data)
+    edge_idx_dict = {k: v.to(device) for k, v in edge_index_dict(base_data).items()}
+    node_types = list(base_data.node_types)
+    split = gnn_data.load_direct_split()
+    train_storms = split[f"train{args.train_storms}"]
+    val_storms, test_storms = split["val7"], split["test13"]
+    depths = gnn_data.load_depths(base_data, node_id_index)
+    external = gnn_data.external_mask(base_data, node_id_index)
+    cache = Path(args.marginal_cache)
+    from src.simulation.fragility import FRAGILITY_PARAMS
+
+    def example(storm):
+        pc = gnn_data.direct_pieces(storm, depths, external, base_data, node_id_index, label_mode=args.label_mode)
+        fp = cache / f"{storm}.pt"
+        if not fp.exists():
+            raise SystemExit(f"[e2e] no cached target for {storm} at {fp}")
+        got = torch.load(fp, weights_only=False)
+        if got.get("timesteps") != list(DEFAULT_TIMESTEPS):
+            raise SystemExit(f"[e2e] {fp} built for horizons {got.get('timesteps')}")
+        e = {"storm": storm, "n_runs": int(got["n_runs"])}
+        for k in ("base_x", "depth", "wet", "gate"):
+            e[k] = {nt: pc[k][nt].to(device) for nt in node_types}
+        e["timing"] = None if pc["timing"] is None else {nt: pc["timing"][nt].to(device) for nt in node_types}
+        e["pi"] = {nt: got["pi"][nt].to(device) for nt in node_types}
+        e["s"] = {nt: got["seeds"][nt].to(device) for nt in node_types}
+        e["g_hat"] = {nt: ((got["pi"][nt] - got["seeds"][nt].unsqueeze(1)) / (1 - got["seeds"][nt].unsqueeze(1)).clamp(min=1e-3)).clamp(0, 1).to(device)
+                      for nt in node_types}
+        return e
+
+    t_load = time.time()
+    train_ex = [example(s) for s in train_storms]; val_ex = [example(s) for s in val_storms]; test_ex = [example(s) for s in test_storms]
+    n_runs = sorted({e["n_runs"] for e in train_ex + val_ex + test_ex})
+    n_timing = gnn_data.N_TIMING_FEATURES
+    model = EndToEndDirectModel(node_types=node_types, edge_types=list(base_data.edge_types),
+                                base_dims={nt: base_data[nt].x.shape[1] for nt in node_types},
+                                fragility=args.fragility, init_params=FRAGILITY_PARAMS,
+                                perturb={"hazus": None, "perturb_up": "up", "perturb_down": "down"}[args.frag_init],
+                                n_timing=n_timing, detach_phi=bool(args.detach_phi), hidden_dim=args.hidden_dim,
+                                num_layers=args.num_layers, num_heads=args.num_heads, num_timesteps=len(DEFAULT_TIMESTEPS),
+                                dropout=args.dropout).to(device)
+    print(f"Train: {len(train_ex)} storms  Val: {len(val_ex)}  Test: {len(test_ex)} | runs per storm {n_runs} | label mode "
+          f"{args.label_mode} | timing inputs {'on' if n_timing else 'off'} | input width {model.node_in_dims['telecom']} | "
+          f"fragility {args.fragility} init {args.frag_init} lambda_seed {args.lambda_seed} lambda_g {args.lambda_g} "
+          f"regime {args.frag_regime} detach {int(args.detach_phi)} | loaded in {time.time() - t_load:.0f}s")
+    print(f"Model parameters: {count_parameters(model):,} (head {sum(p.numel() for p in model.head_parameters()):,})  device={device}")
+    if model.head is not None:
+        print("head at start:", {nt: {k: round(v, 4) for k, v in d.items() if k in ('median', 'beta')} for nt, d in model.head.params().items()}
+              if model.fragility == "lognormal" else "mixture")
+
+    # ---- sequential regime: stage 1, fit the head on the seed frequency alone (a probit regression) -------------
+    stage1 = None
+    if args.frag_regime == "sequential":
+        ex1 = [(e["depth"], e["wet"], e["s"]) for e in train_ex]
+        n_steps, tot = fit_fragility_head_on_seeds(model.head, ex1, max_steps_per_lr=args.stage1_steps // 4)
+        for p_ in model.head_parameters():
+            p_.requires_grad_(False)
+        stage1 = {"steps": n_steps, "seed_loss": tot, "params": model.head.params()}
+        print(f"[sequential] stage 1 done in {n_steps} steps, seed loss {tot:.6f}; head frozen:",
+              {nt: (round(d['median'], 4), round(d['beta'], 4)) for nt, d in model.head.params().items()} if model.fragility == "lognormal" else "")
+        lambda_seed, lambda_g = 0.0, args.lambda_g
+    else:
+        lambda_seed, lambda_g = args.lambda_seed, args.lambda_g
+
+    groups = [{"params": model.gnn_parameters(), "lr": args.lr, "weight_decay": args.weight_decay}]
+    if model.head is not None and args.frag_regime != "sequential":
+        groups.append({"params": model.head_parameters(), "lr": args.frag_lr, "weight_decay": 0.0})
+    optimizer = Adam(groups)
+
+    CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+    rng = random.Random(args.seed)
+    history, best_val, best_epoch, since_best = [], float("inf"), -1, 0
+    t0 = time.time()
+
+    @torch.no_grad()
+    def evaluate(examples):
+        model.eval()
+        out = []
+        for e in examples:
+            _, main, sl, _ = _e2e_losses(model, e, edge_idx_dict, node_types, lambda_seed, lambda_g)
+            out.append((float(main), float(sl)))
+        return out
+
+    meta = {"target": "marginal", "arm": args.arm, "fragility": args.fragility, "frag_init": args.frag_init,
+            "lambda_seed": args.lambda_seed, "lambda_g": args.lambda_g, "frag_regime": args.frag_regime,
+            "detach_phi": int(args.detach_phi), "frag_lr": args.frag_lr, "label_mode": args.label_mode,
+            "train_storms": args.train_storms, "train_storm_names": train_storms, "val_storms": val_storms,
+            "test_storms": test_storms, "timing": int(bool(n_timing)), "node_in_dims": model.node_in_dims,
+            "node_types": node_types, "edge_types": [list(et) for et in base_data.edge_types],
+            "timesteps": list(DEFAULT_TIMESTEPS), "head": "hazard", "storm_context": 0, "n_runs": n_runs,
+            "stage1": stage1, "assumed_params": {nt: list(FRAGILITY_PARAMS[nt]) for nt in node_types}}
+    for epoch in range(args.max_epochs):
+        model.train()
+        rng.shuffle(train_ex)
+        tl, ts = [], []
+        for e in train_ex:
+            loss, main, sl, _ = _e2e_losses(model, e, edge_idx_dict, node_types, lambda_seed, lambda_g)
+            optimizer.zero_grad(); loss.backward(); optimizer.step()
+            tl.append(float(main.detach())); ts.append(float(sl.detach()))
+        vl = evaluate(val_ex)
+        mean_train, mean_val = sum(tl) / len(tl), sum(v[0] for v in vl) / len(vl)
+        improved = mean_val < best_val - 1e-7
+        hp = model.head.params() if model.head is not None else None
+        history.append({"epoch": epoch, "train_loss": mean_train, "train_seed_loss": sum(ts) / len(ts), "val_loss": mean_val,
+                        "val_seed_loss": sum(v[1] for v in vl) / len(vl), "val_loss_per_storm": dict(zip(val_storms, [v[0] for v in vl])),
+                        "head_params": hp, "elapsed_s": time.time() - t0})
+        if epoch % 10 == 0 or improved and epoch < 20:
+            hs = ""
+            if hp is not None and model.fragility == "lognormal":
+                hs = " | " + " ".join(f"{nt[:3]} {d['median']:.3f}/{d['beta']:.3f}" for nt, d in hp.items())
+            print(f"Epoch {epoch:03d} | train={mean_train:.5f} val={mean_val:.5f}{' *' if improved else ''} seed={sum(ts)/len(ts):.4f}{hs} | {time.time() - t0:.0f}s")
+        ckpt = {"model_state": model.state_dict(), "args": vars(args), "epoch": epoch, "val_loss": mean_val,
+                "head_params": hp, **meta}
+        if improved:
+            best_val, best_epoch, since_best = mean_val, epoch, 0
+            torch.save(ckpt, CHECKPOINT_DIR / "best.pt")
+        else:
+            since_best += 1
+        torch.save(ckpt, CHECKPOINT_DIR / "last.pt")
+        if since_best >= args.patience:
+            print(f"[early stop] no improvement for {args.patience} epochs; best epoch {best_epoch} val {best_val:.5f}")
+            break
+    epochs_run = len(history); early = epochs_run < args.max_epochs
+
+    best = torch.load(CHECKPOINT_DIR / "best.pt", map_location=device, weights_only=False)
+    model.load_state_dict(best["model_state"])
+    per_storm = {}
+    for e, (l, sl) in zip(test_ex, evaluate(test_ex)):
+        per_storm[e["storm"]] = {"loss": l, "seed_loss": sl, "n_runs": e["n_runs"]}
+        print(f"[held-out {e['storm']}] soft log loss={l:.5f}")
+    hp = best.get("head_params")
+    if hp is not None and model.fragility == "lognormal":
+        print("head at best epoch:", {nt: (round(d['median'], 4), round(d['beta'], 4)) for nt, d in hp.items()})
+    with open(CHECKPOINT_DIR / "history.json", "w") as f:
+        json.dump({"epochs": history, "best_epoch": best_epoch, "best_val_loss": best_val, "epochs_run": epochs_run,
+                   "early_stopped": early, "patience": args.patience, "max_epochs": args.max_epochs,
+                   "test_per_scenario": per_storm, "holdout_scenarios": test_storms, "val_storms": val_storms,
+                   "train_storm_names": train_storms, "head_params_best": hp, **{k: meta[k] for k in
+                   ("arm", "fragility", "frag_init", "lambda_seed", "lambda_g", "frag_regime", "detach_phi", "label_mode",
+                    "train_storms", "timing", "stage1", "assumed_params")}, "target": "marginal", "head": "hazard",
+                   "scenario_set": os.environ.get("SCENARIO_SET", "base6")}, f, indent=2)
+    print(f"done: {epochs_run} epochs ({'early stop' if early else 'max epochs'}), best epoch {best_epoch}, best val {best_val:.5f}, {time.time() - t0:.0f}s")
+
+
+# --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
 
@@ -833,6 +1030,23 @@ def parse_args():
     p.add_argument("--marginal_cache", default=None,
                    help="marginal: folder of <storm>.pt targets written by scripts/week31_direct_fingerprint_v1.py "
                         "--cache-dir; required, so a training job never rebuilds targets from the label files")
+    # --- end-to-end fragility (Week 33): the seed probability learned inside the network ---------------------
+    p.add_argument("--fragility", choices=["formula", "lognormal", "mixture", "none"], default="formula",
+                   help="formula (default): the Week 32 direct model, phi from src/simulation/fragility.py outside the "
+                        "network. lognormal: learnable per-type lognormal head (12 parameters). mixture: mixture of three "
+                        "lognormals per type. none: black box, depth as a feature, no composition.")
+    p.add_argument("--frag_init", choices=["hazus", "perturb_up", "perturb_down"], default="hazus",
+                   help="lognormal head start: at the assumed values, or medians x2 and betas x0.5 (up), or x0.5 and x2 (down)")
+    p.add_argument("--lambda_seed", type=float, default=1.0, help="weight of the seed-frequency loss on phi_hat (0 = none)")
+    p.add_argument("--lambda_g", type=float, default=0.0, help="weight of the optional loss on g against g_hat = (pi - s)/(1 - s)")
+    p.add_argument("--frag_regime", choices=["joint", "sequential"], default="joint",
+                   help="joint: head and GNN trained together. sequential: head fitted on the seed frequency first, then frozen")
+    p.add_argument("--detach_phi", type=int, choices=[0, 1], default=1,
+                   help="1: phi_hat enters the GNN input and the storm summary without gradient (the head learns only from "
+                        "the seed loss and the composition). 0: gradients flow through those paths too (leakage test)")
+    p.add_argument("--frag_lr", type=float, default=5e-3, help="learning rate of the fragility head (no weight decay)")
+    p.add_argument("--stage1_steps", type=int, default=2000, help="sequential: maximum full-batch steps for stage 1")
+    p.add_argument("--arm", default="", help="label recorded in the checkpoint and history (e.g. a1a_lognormal_l1)")
     return p.parse_args()
 
 
@@ -846,6 +1060,8 @@ def main():
         if not args.ckpt:
             raise SystemExit("--mode evalckpt requires --ckpt")
         run_evalckpt(args)
+    elif args.target == "marginal" and args.fragility != "formula":
+        run_train_e2e(args)
     elif args.target == "marginal":
         run_train_marginal(args)
     else:
